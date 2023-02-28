@@ -1,5 +1,4 @@
 .container {
- 
   width: 100%;
   height: 100vh;
   display: grid;
@@ -7,13 +6,12 @@
 }
 #content-left {
   background-color: #f0f2f5;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 #content-left .logo {
-  color: black;
 }
 /* Form*/
 .form-content {
@@ -59,83 +57,83 @@ input {
 .field-input input::placeholder {
   font-weight: 700;
 }
-.submit{
-cursor: pointer;
-background-color: rgb(212, 212, 30);
-font-weight: bold;
+.submit {
+  cursor: pointer;
+  background-color: rgb(212, 212, 30);
+  font-weight: bold;
 }
-.submit:hover{
-filter: brightness(.9);
+.submit:hover {
+  filter: brightness(0.9);
 }
 /* Chekbox*/
-.check{
-display: flex;
-align-items: center;
-gap: 1rem;
+.check {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-.check p{
+.check p {
   color: #7a7878;
   font-size: 1.4rem;
 }
-#chk{
-display: none;
+#chk {
+  display: none;
 }
-.switch{
-position: relative;
-background-color: #777;
-width: 5rem;
-height: 2.5rem;
-border-radius: 1.5rem;
-display:flex;
-align-items: center;
-padding: .5rem;
-transition: all .5s ease-in-out;
-cursor: pointer;
+.switch {
+  position: relative;
+  background-color: #777;
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
 }
-.slider{
-position: absolute;
-background-color: white;
-border-radius: 20%;
-width: 2rem;
-height: 2rem;
-transition: all .5s ease-in-out;
+.slider {
+  position: absolute;
+  background-color: white;
+  border-radius: 20%;
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.5s ease-in-out;
 }
-#chk:checked ~ .switch{
-background-color: rgb(212, 212, 30);
+#chk:checked ~ .switch {
+  background-color: rgb(212, 212, 30);
 }
-#chk:checked ~ .switch .slider{
-transform: translateX(20px);
+#chk:checked ~ .switch .slider {
+  transform: translateX(20px);
 }
 .content-right {
-width: 100%;
+  width: 100%;
 }
-.content-right img{
-width: 100%;
+.content-right img {
+  width: 100%;
 }
-.count{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: .5rem;
+.count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
-.count a{
+.count a {
   font-size: 1.4rem;
   text-decoration: none;
 }
-.count a:hover{
-text-decoration: underline;
+.count a:hover {
+  text-decoration: underline;
 }
-.count .forgot-password p{
+.count .forgot-password p {
   color: #7a7878;
   font-size: 1.4rem;
 }
 /* Section content-right*/
-.content-right{
+.content-right {
   width: 100%;
   height: 100%;
 }
-img{
-width: 100%;
-height: 100%;
+img {
+  width: 100%;
+  height: 100%;
 }
