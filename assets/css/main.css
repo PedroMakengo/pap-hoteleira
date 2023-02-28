@@ -51,7 +51,7 @@ input {
   border-radius: 1rem;
   padding: 0 3rem;
   margin-top: 1rem;
-  background-color: #e7e6e6;
+  background-color: #f1efef;
   outline: none;
 }
 .field-input input::placeholder {
@@ -59,7 +59,7 @@ input {
 }
 .submit {
   cursor: pointer;
-  background-color: rgb(212, 212, 30);
+  background-color:#FF7500;
   font-weight: bold;
 }
 .submit:hover {
@@ -99,7 +99,7 @@ input {
   transition: all 0.5s ease-in-out;
 }
 #chk:checked ~ .switch {
-  background-color: rgb(212, 212, 30);
+  background-color:#FF7500;
 }
 #chk:checked ~ .switch .slider {
   transform: translateX(20px);
@@ -120,6 +120,7 @@ input {
 .count a {
   font-size: 1.4rem;
   text-decoration: none;
+  color: #FF7500;
 }
 .count a:hover {
   text-decoration: underline;
@@ -129,11 +130,11 @@ input {
   font-size: 1.4rem;
 }
 /* Section content-right*/
-.content-right {
+#content-right {
   width: 100%;
   height: 100%;
-}
-img {
-  width: 100%;
-  height: 100%;
+  background-image: url('../images/img0 .webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
