@@ -12,7 +12,9 @@ body,html{
 }
 body{
   font-size: 1.6rem;
-  overflow-y: hidden;
   font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+
 }
 
