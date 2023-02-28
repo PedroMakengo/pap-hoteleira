@@ -86,7 +86,7 @@
       <div class="nav-left-sidebar sidebar-dark">
         <div class="menu-list">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <a class="d-xl-none d-lg-none" href="index.html">Dashboard</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -102,37 +102,37 @@
               <ul class="navbar-nav flex-column">
                 <li class="nav-divider">Menu</li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#"
+                  <a class="nav-link active" href="index.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Home
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="hoteis.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Hotéis
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="restaurantes.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Restaurantes
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="usuarios.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Usuários
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="reservas.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Reservas
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="graficos.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Gráficos
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a class="nav-link" href="/login.html"
                     ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
                   </a>
                 </li>
@@ -253,7 +253,9 @@
                       <h5 class="mb-0">Registro Mensal de Usuários</h5>
                     </div>
                     <div class="card-body">
-                      <div class="ct-chart-product ct-golden-section"></div>
+                      <div class="charts mt-2">
+                        <canvas id="mychart" style="height: 350px"></canvas>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -268,5 +270,70 @@
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../../assets/libs/js/main-js.js"></script>
     <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="../../assets/js/template/Chart.min.js"></script>
+
+    <script>
+      $(function () {
+        var lineChart = document.getElementById('mychart').getContext('2d')
+        var myLineChart = new Chart(lineChart, {
+          type: 'bar',
+          data: {
+            labels: [
+              'Jan',
+              'Feb',
+              'Mar',
+              'Apr',
+              'May',
+              'Jun',
+              'Jul',
+              'Aug',
+              'Sep',
+              'Oct',
+              'Nov',
+              'Dec',
+            ],
+            datasets: [
+              {
+                label: 'Gráfico Geral de Saída',
+                borderColor: '#704828',
+                pointBorderColor: '#704828',
+                pointBackgroundColor: '#704828',
+                pointBorderWidth: 2,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 1,
+                pointRadius: 4,
+                backgroundColor: '#704828',
+                fill: true,
+                borderWidth: 2,
+                data: [10, 20, 10, 10, 20, 50, 20, 10, 10, 10, 20, 50],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 10,
+                fontColor: '#1f6feb',
+              },
+            },
+            tooltips: {
+              bodySpacing: 4,
+              mode: 'nearest',
+              intersect: 0,
+              position: 'nearest',
+              xPadding: 10,
+              yPadding: 10,
+              caretPadding: 10,
+            },
+            layout: {
+              padding: { left: 15, right: 15, top: 15, bottom: 15 },
+            },
+          },
+        })
+      })
+    </script>
   </body>
 </html>
