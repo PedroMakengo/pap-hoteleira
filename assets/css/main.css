@@ -61,11 +61,7 @@ input {
 }
 .submit {
   cursor: pointer;
-<<<<<<< HEAD
   background-color:#FF7500;
-=======
-  background-color: rgb(212, 212, 30);
->>>>>>> 13dc53e45d19fd775e68e731bd61d768bb242b9d
   font-weight: bold;
 }
 .submit:hover {
@@ -105,11 +101,7 @@ input {
   transition: all 0.5s ease-in-out;
 }
 #chk:checked ~ .switch {
-<<<<<<< HEAD
   background-color:#FF7500;
-=======
-  background-color: rgb(212, 212, 30);
->>>>>>> 13dc53e45d19fd775e68e731bd61d768bb242b9d
 }
 #chk:checked ~ .switch .slider {
   transform: translateX(20px);
@@ -140,11 +132,7 @@ input {
   font-size: 1.4rem;
 }
 /* Section content-right*/
-<<<<<<< HEAD
 #content-right {
-=======
-.content-right {
->>>>>>> 13dc53e45d19fd775e68e731bd61d768bb242b9d
   width: 100%;
   height: 100%;
   background-image: url('../images/img0 .webp');
@@ -152,30 +140,3 @@ input {
   background-size: cover;
   background-repeat: no-repeat;
 }
-<<<<<<< HEAD
-=======
-img {
-  width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 780px) {
-  body {
-    background: red !important;
-  }
-
-  .container {
-    grid-template-columns: 1fr;
-  }
-  #content-right {
-    display: none;
-  }
-
-  .form-content {
-    width: 90%;
-    margin: 0 auto !important;
-    padding-block: 4rem;
-    left: auto;
-  }
-}
->>>>>>> 13dc53e45d19fd775e68e731bd61d768bb242b9d
