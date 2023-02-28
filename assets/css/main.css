@@ -142,10 +142,6 @@ img {
 }
 
 @media (max-width: 780px) {
-  body {
-    background: red !important;
-  }
-
   .container {
     grid-template-columns: 1fr;
   }

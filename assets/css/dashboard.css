@@ -1,0 +1,22 @@
+.logo {
+  font-size: 1rem;
+  color: #704828;
+}
+
+.sidebar-dark {
+  background: radial-gradient(circle, #704828e1 0%, #704828f5 35%, #413524 100%),
+    url(../images/img1.webp);
+}
+
+.nav-link,
+.nav-link i {
+  color: #fff !important;
+}
+
+.nav-link.active {
+  background: #413524 !important;
+}
+
+.nav-link:hover {
+  background: #413524 !important;
+}
