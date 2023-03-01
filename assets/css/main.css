@@ -232,7 +232,7 @@ a {
 }
 /* Hotel image*/
 #hotel-img {
-  width: 100%;
+  width: 100vw;
   height: 40rem;
 }
 #hotel-img img {
@@ -274,7 +274,7 @@ a {
 }
 
 #why {
-  width: 100%;
+  width: 100vw;
   height: auto;
   margin-top: 6rem;
 }
@@ -340,6 +340,10 @@ a {
 
 .why-cols .why-cols-b {
 position: relative;
+}
+.why-cols .why-cols-b > img{
+width: 100%;
+overflow: hidden;
 }
 .absolute-image{
 position: absolute;
