@@ -260,7 +260,7 @@ ul {
 #why {
   width: 100vw;
   height: auto;
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 #why .why-header {
   text-align: center;
@@ -339,7 +339,7 @@ ul {
 #services {
   width: 100vw;
   padding: 5rem 10rem 5rem 10rem;
-  margin: 10rem 0;
+  margin-top: 7rem;
 }
 .services-content .services-header {
   text-align: center;
@@ -397,10 +397,66 @@ ul {
   color: #292929;
   opacity: 0.3;
 }
+
+/*===================Roooms Section==============================*/
+
+#rooms{
+  padding: 5rem 10rem 5rem 10rem;
+  margin-top: 2rem;
+  }
+  #rooms .rooms-header{
+  text-align: center;
+  margin-bottom: 4.5rem;
+  }
+  #rooms .rooms-header h4{
+  font-size: 2.4rem;
+  line-height: 133.02%;
+  color: #292929;
+  }
+  #rooms .rooms-header h2{
+  font-size: 4.5rem;
+  line-height: 133.02%;
+  color: #292929;
+  margin: 1.6rem 0 1.8rem 0;
+  }
+  #rooms .rooms-header h2 span{
+  color: #ff7500;
+  }
+  #rooms .rooms-header p{
+    width: 40%;
+    line-height: 175.52%;
+    margin: 0 auto;
+    color: #292929;
+    opacity: 0.4;
+    font-weight: 500;
+  }
+  #rooms .rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4rem;
+  }
+  .rooms-grid .room h5{
+  margin-top:1.5rem;
+  text-transform:uppercase;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 133.02%;
+  color: #292929;
+  opacity:.6;
+  }
+  .rooms-grid .room p{
+  margin:.6rem 0 3.2rem 0;
+  font-size: 2.2rem;
+  line-height: 133.02%;
+  color: #292929;
+  font-weight: 600;
+  }
+
 /*============================ About Section ============================== */
 #about {
   width: 100vw;
-  margin-bottom: 10rem;
+margin-top: 7rem;
+margin-bottom: 2rem;
 }
 #about .about-cols {
   display: flex;
@@ -456,58 +512,7 @@ ul {
   height: 100%;
 }
 
-/*===================Roooms Section==============================*/
 
-#rooms{
-padding: 5rem 10rem 5rem 10rem;
-}
-#rooms .rooms-header{
-text-align: center;
-margin-bottom: 4.5rem;
-}
-#rooms .rooms-header h4{
-font-size: 2.4rem;
-line-height: 133.02%;
-color: #292929;
-}
-#rooms .rooms-header h2{
-font-size: 4.5rem;
-line-height: 133.02%;
-color: #292929;
-margin: 1.6rem 0 1.8rem 0;
-}
-#rooms .rooms-header h2 span{
-color: #ff7500;
-}
-#rooms .rooms-header p{
-  width: 40%;
-  line-height: 175.52%;
-  margin: 0 auto;
-  color: #292929;
-  opacity: 0.4;
-  font-weight: 500;
-}
-#rooms .rooms-grid {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 4rem;
-}
-.rooms-grid .room h5{
-margin-top:1.5rem;
-text-transform:uppercase;
-font-weight: 500;
-font-size: 1.4rem;
-line-height: 133.02%;
-color: #292929;
-opacity:.6;
-}
-.rooms-grid .room p{
-margin:.6rem 0 3.2rem 0;
-font-size: 2.2rem;
-line-height: 133.02%;
-color: #292929;
-font-weight: 600;
-}
 
 /*================================ Footer================================*/
 
@@ -551,8 +556,6 @@ font-weight: 600;
   opacity: 0.3;
   font-size: 1.6rem;
 }
-
-/* Newletter*/
 .footer-content .newsletter p {
   font-weight: 500;
   line-height: 162.52%;
