@@ -1,4 +1,15 @@
-/*Tela de login */
+/*====================== general style===================*/
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+ul {
+  list-style: none;
+}
+
+/*==============================Tela de login================== */
+
 .container {
   width: 100%;
   height: 100vh;
@@ -13,8 +24,6 @@
   align-items: center;
 }
 
-#content-left .logo {
-}
 /* Form*/
 .form-content {
   background-color: white;
@@ -142,15 +151,9 @@
   background-repeat: no-repeat;
 }
 
-/* general style*/
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
-ul {
-  list-style: none;
-}
-/* Home Page*/
+
+/*====================== Home Page====================================*/
+
 #header {
   width: 100vw;
   height: 41rem;
@@ -192,8 +195,6 @@ ul {
 .button:hover {
   background-color: #ff7500;
 }
-
-/* header-cols */
 .header-cols {
   width: 85%;
   margin: 0 auto;
@@ -212,7 +213,7 @@ ul {
   text-transform: uppercase;
   color: #ffffff;
 }
-/* Hotel image*/
+/*================================ Hotel image=================*/
 #hotel-img {
   width: 100vw;
   height: 40rem;
@@ -221,7 +222,7 @@ ul {
   width: 100%;
   height: 100%;
 }
-/* Banner*/
+/*======================== Banner=========================*/
 
 #banner {
   width: 100%;
@@ -254,11 +255,12 @@ ul {
   color: #565656;
   text-transform: capitalize;
 }
+/*===========================Choice Section===================*/
 
 #why {
   width: 100vw;
   height: auto;
-  margin-top: 6rem;
+  margin-top: 10rem;
 }
 #why .why-header {
   text-align: center;
@@ -317,9 +319,8 @@ ul {
   line-height: 175.52%;
   color: #292929;
   opacity: 0.3;
-  width: 76%;
+  width: 40%;
 }
-
 .why-cols .why-cols-b {
   position: relative;
 }
@@ -333,14 +334,12 @@ ul {
   top: 30%;
 }
 
-/*Sevices*/
+/*=============================Sevices Section==================*/
 
 #services {
   width: 100vw;
   padding: 5rem 10rem 5rem 10rem;
-  margin: 0;
-}
-#services .services-content {
+  margin: 10rem 0;
 }
 .services-content .services-header {
   text-align: center;
@@ -348,12 +347,20 @@ ul {
 .services-content .services-header h2 {
   color: #292929;
   font-size: 4.5rem;
-  font-weight: bold;
+  margin: 1.6rem 0 1.8rem 0;
   line-height: 133.02%;
-  margin-block: 1.5rem;
+}
+.services-content .services-header h2 span {
+ color: #ff7500;
+}
+.services-content .services-header h4{
+  font-size: 2.4rem;
+  line-height: 133.02%;
+  color: #292929;
 }
 .services-content .services-header p {
   width: 40%;
+  line-height: 175.52%;
   margin: 0 auto;
   color: #292929;
   opacity: 0.3;
@@ -363,7 +370,8 @@ ul {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 40vh 40vh;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 4.5rem;
+  gap: 1.6rem;
 }
 .services-cards .service-card {
   padding: 2rem;
@@ -389,11 +397,10 @@ ul {
   color: #292929;
   opacity: 0.3;
 }
-/* Section about */
-
+/*============================ About Section ============================== */
 #about {
   width: 100vw;
-  margin-bottom: 3rem;
+  margin-bottom: 10rem;
 }
 #about .about-cols {
   display: flex;
@@ -449,26 +456,61 @@ ul {
   height: 100%;
 }
 
-/*Room
+/*===================Roooms Section==============================*/
+
 #rooms{
 padding: 5rem 10rem 5rem 10rem;
 }
 #rooms .rooms-header{
 text-align: center;
+margin-bottom: 4.5rem;
+}
+#rooms .rooms-header h4{
+font-size: 2.4rem;
+line-height: 133.02%;
+color: #292929;
+}
+#rooms .rooms-header h2{
+font-size: 4.5rem;
+line-height: 133.02%;
+color: #292929;
+margin: 1.6rem 0 1.8rem 0;
+}
+#rooms .rooms-header h2 span{
+color: #ff7500;
+}
+#rooms .rooms-header p{
+  width: 40%;
+  line-height: 175.52%;
+  margin: 0 auto;
+  color: #292929;
+  opacity: 0.4;
+  font-weight: 500;
 }
 #rooms .rooms-grid {
 display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 4rem;
 }
-.item1{
-grid-column: 1/2;
-grid-row: 1/2;
+.rooms-grid .room h5{
+margin-top:1.5rem;
+text-transform:uppercase;
+font-weight: 500;
+font-size: 1.4rem;
+line-height: 133.02%;
+color: #292929;
+opacity:.6;
 }
-.item2{
-grid-column: 1/2;
-grid-row: 2/3;
+.rooms-grid .room p{
+margin:.6rem 0 3.2rem 0;
+font-size: 2.2rem;
+line-height: 133.02%;
+color: #292929;
+font-weight: 600;
 }
-*/
-/* Footer*/
+
+/*================================ Footer================================*/
+
 #footer {
   width: 100vw;
   background-color: #121212;
