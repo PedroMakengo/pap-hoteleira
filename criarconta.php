@@ -69,7 +69,7 @@
             </div>
             <div class="count">
               <div class="forgot-password">
-                <p>Tens uma conta ? <a href="login.html">Login</a></p>
+                <p>Tens uma conta ? <a href="login.php">Login</a></p>
               </div>
             </div>
           </form>
