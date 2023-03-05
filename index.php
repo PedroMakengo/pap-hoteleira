@@ -29,14 +29,14 @@
           </div>
           <nav>
             <ul class="menu">
-              <li><a href="#" class="active">Home</a></li>
-              <li><a href="#">Serviços</a></li>
-              <li><a href="#">Quartos</a></li>
-              <li><a href="#">Sobre Nos</a></li>
-              <li><a href="#">Contacto</a></li>
+              <li><a href="/" class="active">Home</a></li>
+              <li><a href="#sobre">Sobre Nos</a></li>
+              <li><a href="#quartos">Quartos</a></li>
+              <li><a href="#restaurante">Restaurante</a></li>
+              <li><a href="#contactos">Contacto</a></li>
             </ul>
           </nav>
-          <a href="#" class="button">Book now</a>
+          <a href="login.html" class="button">Iniciar Sessão</a>
         </div>
         <div class="header-cols">
           <div class="header-cols-a">
@@ -115,140 +115,6 @@
                 src="./assets/images/img04.svg"
                 class="absolute-image"
                 alt=""
-              />
-            </div>
-          </div>
-        </section>
-
-        <section id="services">
-          <div class="services-content">
-            <div class="services-header">
-              <h4>What we do</h4>
-              <h2>Discover Our <span> Services</span></h2>
-              <p class="oi">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat.
-              </p>
-            </div>
-            <div class="services-cards">
-              <div class="service-card">
-                <i class="ph-airplane-light"></i>
-                <h2 class="services-subtitle">Travel Plan</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-
-              <div class="service-card">
-                <i class="ph-fork-knife-light"></i>
-                <h2 class="services-subtitle">Catering Service</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-
-              <div class="service-card">
-                <i class="ph-bed-light"></i>
-                <h2 class="services-subtitle">Babysitting</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-
-              <div class="service-card">
-                <i class="ph-coat-hanger-light"></i>
-                <h2 class="services-subtitle">Laundry</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-
-              <div class="service-card">
-                <i class="ph-airplane-light"></i>
-                <h2 class="services-subtitle">Hire Driver</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-
-              <div class="service-card">
-                <i class="ph-martini-light"></i>
-                <h2 class="services-subtitle">Bar & Drink</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="rooms">
-          <div class="rooms-header">
-            <h4>Our Room</h4>
-            <h2>A World of <span>Choice</span></h2>
-            <p>
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat.
-            </p>
-          </div>
-          <div class="rooms-grid">
-            <div class="rooms-left">
-              <div class="room">
-                <img src="./assets/images/room01.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
-              </div>
-              <div class="room">
-                <img src="./assets/images/room02.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
-              </div>
-            </div>
-            <div class="rooms-middle">
-              <div class="room">
-                <img src="./assets/images/room03.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
-              </div>
-            </div>
-            <div class="rooms-right">
-              <div class="room">
-                <img src="./assets/images/room04.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
-              </div>
-              <div class="room">
-                <img src="./assets/images/room05.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="about">
-          <div class="about-cols">
-            <div class="about-col-a">
-              <h2>About Us</h2>
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequatduis enim.
-              </p>
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              </p>
-              <button>Explore</button>
-            </div>
-            <div class="about-col-b">
-              <img
-                src="./assets/images/about-image.svg"
-                alt="imagem de restaurante"
               />
             </div>
           </div>
