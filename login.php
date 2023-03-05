@@ -63,7 +63,7 @@
             <div class="count">
               <div class="forgot-password">
                 <p>
-                  Tens uma conta ? <a href="criarconta.html">Criar Conta</a>
+                  Tens uma conta ? <a href="criarconta.php">Criar Conta</a>
                 </p>
               </div>
               <a href="">Recuperar Senha</a>

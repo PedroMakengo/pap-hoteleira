@@ -18,7 +18,7 @@
     <div class="container">
       <section id="content-left">
         <div class="form-content">
-          <h1>Tela de Login</h1>
+          <h1>Criar Conta</h1>
           <form action="" id="form">
             <div class="field-input">
               <label for="name">
@@ -69,7 +69,7 @@
             </div>
             <div class="count">
               <div class="forgot-password">
-                <p>Tens uma conta ? <a href="login.html">Login</a></p>
+                <p>Tens uma conta ? <a href="login.php">Login</a></p>
               </div>
             </div>
           </form>
