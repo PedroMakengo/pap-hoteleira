@@ -12,27 +12,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <title>Tela de Login</title>
+    <title>Criar Conta</title>
   </head>
   <body>
     <div class="container">
       <section id="content-left">
-        <div class="logo">
-          <img src="" alt="" />
-        </div>
-
         <div class="form-content">
           <h1>Tela de Login</h1>
-          <form action="">
+          <form action="" id="form">
             <div class="field-input">
               <label for="name">
+                Nome do Usuário
+                <input type="text" id="name" placeholder="Insira seu nome" />
+              </label>
+            </div>
+            <div class="field-input">
+              <label for="email">
                 Email
-                <input type="text" id="name" placeholder="Insira seu email" />
+                <input type="email" id="email" placeholder="Insira seu email" />
               </label>
             </div>
             <div class="field-input">
               <label for="password">
-                Palavra-Passe
+                Senha
                 <input
                   type="password"
                   id="password"
@@ -40,6 +42,18 @@
                 />
               </label>
             </div>
+
+            <div class="field-input">
+              <label for="password">
+                Confirme sua senha
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="confirme sua senha"
+                />
+              </label>
+            </div>
+
             <!--
             <div class="field-input check">
               <input type="checkbox" id="chk" name="" />
@@ -54,16 +68,14 @@
               <input type="submit" name="" value="Entrar" class="submit" />
             </div>
             <div class="count">
-            <div class="forgot-password">
-              <p>Tens uma conta <a href="">Criar Conta</a> </p>
-            </div>
-            <a href="">Recuperar Senha</a>
+              <div class="forgot-password">
+                <p>Tens uma conta ? <a href="login.html">Login</a></p>
+              </div>
             </div>
           </form>
         </div>
       </section>
-      <section id="content-right">
-      </section>
+      <section id="content-right"></section>
     </div>
   </body>
 </html>

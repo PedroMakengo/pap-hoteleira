@@ -12,10 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/home.css" />
     <script defer src="https://unpkg.com/phosphor-icons"></script>
+    <script defer src="./assets/js/scrollreveal.js"></script>
+    <script defer src="./assets/js/main.js"></script>
 
-    <title>Home Page</title>
+    <title>Sistema de Gestão Hoteleira</title>
   </head>
   <body>
     <div id="container">
@@ -28,11 +29,11 @@
           </div>
           <nav>
             <ul class="menu">
-              <li><a href="#" class="active">Home</a></li>
-              <li><a href="#">Sobre Nos</a></li>
-              <li><a href="#">Quartos</a></li>
-              <li><a href="#">Restaurante</a></li>
-              <li><a href="#">Contacto</a></li>
+              <li><a href="/" class="active">Home</a></li>
+              <li><a href="#sobre">Sobre Nos</a></li>
+              <li><a href="#quartos">Quartos</a></li>
+              <li><a href="#restaurante">Restaurante</a></li>
+              <li><a href="#contactos">Contacto</a></li>
             </ul>
           </nav>
           <a href="login.html" class="button">Iniciar Sessão</a>
@@ -48,6 +49,7 @@
         <section id="hotel-img">
           <img src="./assets/images/Rectangle.png" alt="" />
         </section>
+        <!-- Section Banner-->
         <section id="banner">
           <div class="banner-content">
             <div class="banner-flex">
@@ -69,8 +71,9 @@
             </div>
           </div>
         </section>
+        <!-- Section Why-->
         <section id="why">
-          <div class="why-subtitle">
+          <div class="why-header">
             <h2>Why You Shoud <span>Stay Here ?</span></h2>
             <p>
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do
@@ -117,7 +120,56 @@
           </div>
         </section>
       </main>
-      <footer id="footer"></footer>
+      <footer id="footer">
+        <div class="footer-content">
+          <div class="link-footer">
+            <h4 class="footer-content-title">Quick Link</h4>
+            <nav class="footer-nav">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Sobre Nos</a></li>
+                <li><a href="">Quartos</a></li>
+                <li><a href="">Contacto</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="reservations-footer">
+            <h4 class="footer-content-title">Reservations</h4>
+            <ul id="resevation-ul">
+              <li>Tel:244 925 545</li>
+              <li>Skype:breakdance</li>
+              <li>reservations@breadance.com</li>
+            </ul>
+          </div>
+          <div class="newsletter">
+            <h4 class="footer-content-title">Newsletter</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Molestias
+            </p>
+            <form action="" class="form-newletter">
+              <input type="email" placeholder="Enter email" />
+              <input type="submit" value="Subcribe" />
+            </form>
+          </div>
+        </div>
+
+        <div class="social-media">
+          <ul class="social-media-links">
+            <li>
+              <a href=""><i class="ph-facebook-logo-light"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="ph-whatsapp-logo-light"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="ph-instagram-logo-light"></i></a>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

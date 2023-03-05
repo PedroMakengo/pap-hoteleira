@@ -1,10 +1,21 @@
+/*====================== general style===================*/
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+ul {
+  list-style: none;
+}
+
+/*==============================Tela de login================== */
+
 .container {
   width: 100%;
   height: 100vh;
   display: grid;
   grid-template-columns: 30% 1fr;
 }
-
 #content-left {
   background-color: #f0f2f5;
   position: relative;
@@ -13,8 +24,6 @@
   align-items: center;
 }
 
-#content-left .logo {
-}
 /* Form*/
 .form-content {
   background-color: white;
@@ -34,18 +43,18 @@
   padding-top: 1rem;
   text-align: center;
 }
-form {
+#form {
   padding: 0 2.5rem;
 }
-form .field-input {
+#form .field-input {
   padding: 1rem;
 }
-.field-input label {
+#form .field-input label {
   line-height: 160%;
   font-size: 1.4rem;
   color: #7a7878;
 }
-input {
+#form input {
   display: block;
   width: 100%;
   height: 5rem;
@@ -56,16 +65,16 @@ input {
   background-color: #f1efef;
   outline: none;
 }
-.field-input input::placeholder {
-  font-weight: 700;
+#form .field-input input::placeholder {
+  font-weight: bold;
 }
-.submit {
+#form .submit {
   cursor: pointer;
   background-color: #704828;
   color: #ffffff;
   font-weight: bold;
 }
-.submit:hover {
+#form .submit:hover {
   filter: brightness(0.9);
 }
 /* Chekbox*/
@@ -141,25 +150,14 @@ input {
   background-size: cover;
   background-repeat: no-repeat;
 }
-img {
-  width: 100%;
-  height: 100%;
-}
 
-@media (max-width: 780px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-  #content-right {
-    display: none;
-  }
+/*====================== Home Page====================================*/
 
-  .form-content {
-    width: 90%;
-    margin: 0 auto !important;
-    padding-block: 4rem;
-    left: auto;
-  }
+.form-content {
+  width: 90%;
+  margin: 0 auto !important;
+  padding-block: 4rem;
+  left: auto;
 }
 
 /* general style*/
@@ -196,7 +194,6 @@ a {
   align-items: center;
   height: 100%;
   gap: 2rem;
-  list-style: none;
 }
 
 .header-top nav .menu a {
@@ -219,8 +216,6 @@ a {
 .button:hover {
   background-color: #ff7500;
 }
-
-/* header-cols */
 .header-cols {
   width: 85%;
   margin: 0 auto;
@@ -289,11 +284,12 @@ a {
   color: #565656;
   text-transform: capitalize;
 }
+/*===========================Choice Section===================*/
 
 #why {
   width: 100vw;
   height: auto;
-  margin-top: 6rem;
+  margin-top: 7rem;
 }
 
 #why .why-subtitle {
@@ -360,7 +356,19 @@ a {
   line-height: 175.52%;
   color: #292929;
   opacity: 0.3;
-  width: 76%;
+  width: 40%;
+}
+.why-cols .why-cols-b {
+  position: relative;
+}
+.why-cols .why-cols-b > img {
+  width: 100%;
+  overflow: hidden;
+}
+.absolute-image {
+  position: absolute;
+  right: 40%;
+  top: 30%;
 }
 
 .why-cols .why-cols-b {
