@@ -36,7 +36,7 @@
               <li><a href="#contactos">Contacto</a></li>
             </ul>
           </nav>
-          <a href="login.html" class="button">Iniciar Sessão</a>
+          <a href="login.php" class="button">Iniciar Sessão</a>
         </div>
         <div class="header-cols">
           <div class="header-cols-a">

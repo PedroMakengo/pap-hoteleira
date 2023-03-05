@@ -1,3 +1,11 @@
+<?php
+  require 'source/model/Config.php';
+  require 'source/model/Model.php';
+ session_start();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -12,18 +20,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+
     <title>Tela de Login</title>
+    <script src="./assets/js/template/sweetalert.min.js"></script>
   </head>
   <body>
     <div class="container">
       <section id="content-left">
         <div class="form-content">
           <h1>Tela de Login</h1>
-          <form action="" id="form">
+          <form method="POST" id="form">
             <div class="field-input">
               <label for="name">
                 Email
-                <input type="text" id="name" placeholder="Insira seu email" />
+                <input type="email" id="name" name="email" placeholder="Insira seu email" />
               </label>
             </div>
             <div class="field-input">
@@ -31,6 +41,7 @@
                 Palavra-Passe
                 <input
                   type="password"
+                  name="password"
                   id="password"
                   placeholder="Insira sua senha"
                 />
@@ -47,7 +58,7 @@
             </div>
             -->
             <div class="field-input">
-              <input type="submit" name="" value="Entrar" class="submit" />
+              <input type="submit" name="login" value="Entrar" class="submit" />
             </div>
             <div class="count">
               <div class="forgot-password">
@@ -64,3 +75,7 @@
     </div>
   </body>
 </html>
+
+<!-- =============================================== -->
+<?php include "source/controllers/Login.php" ?>
+<!-- =============================================== -->

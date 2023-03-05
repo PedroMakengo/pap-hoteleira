@@ -2,13 +2,16 @@ CREATE DATABASE hotel;
 
 USE hotel;
 
-CREATE TABLE admin(
+CREATE TABLE tb_admin(
   id_admin INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   senha VARCHAR(255) NOT NULL,
   foto  VARCHAR(255) NOT NULL
 )
+
+INSERT INTO tb_admin (id_admin,nome, email, senha, foto ) 
+VALUES (1, "Beny João", "beny@gmail.com", md5(md5(123)), "beny.jpg");
 
 CREATE TABLE hotel (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
