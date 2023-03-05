@@ -22,15 +22,11 @@
                 <div class="card-body">
                   <h5 class="text-muted">Hoteis</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">13</h1>
+                    <h1 class="mb-1">0</h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
                   >
-                    <span
-                      class="icon-circle-small icon-box-xs text-success bg-success-light"
-                      ><i class="fa fa-fw fa-arrow-up"></i></span
-                    ><span class="ml-1">2.86%</span>
                   </div>
                 </div>
               </div>
@@ -46,15 +42,11 @@
                 <div class="card-body">
                   <h5 class="text-muted">Restaurantes</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">53</h1>
+                    <h1 class="mb-1">0</h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
                   >
-                    <span
-                      class="icon-circle-small icon-box-xs text-success bg-success-light"
-                      ><i class="fa fa-fw fa-arrow-up"></i></span
-                    ><span class="ml-1">10%</span>
                   </div>
                 </div>
               </div>
@@ -70,15 +62,11 @@
                 <div class="card-body">
                   <h5 class="text-muted">Usuários</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">13000</h1>
+                    <h1 class="mb-1">0</h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
                   >
-                    <span
-                      class="icon-circle-small icon-box-xs text-success bg-success-light"
-                      ><i class="fa fa-fw fa-arrow-up"></i></span
-                    ><span class="ml-1">5%</span>
                   </div>
                 </div>
               </div>
@@ -94,15 +82,11 @@
                 <div class="card-body">
                   <h5 class="text-muted">Reservas</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">1340</h1>
+                    <h1 class="mb-1">0</h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-danger font-weight-bold"
                   >
-                    <span
-                      class="icon-circle-small icon-box-xs text-danger bg-danger-light bg-danger-light"
-                      ><i class="fa fa-fw fa-arrow-down"></i></span
-                    ><span class="ml-1">4%</span>
                   </div>
                 </div>
               </div>

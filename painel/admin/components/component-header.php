@@ -24,7 +24,7 @@
               aria-haspopup="true"
               aria-expanded="false"
               ><img
-                src="../../assets/avatar.jpg"
+                src="../../assets/__storage/<?= $_SESSION['foto']?>"
                 alt=""
                 class="user-avatar-md rounded-circle"
             /></a>
@@ -33,12 +33,12 @@
               aria-labelledby="navbarDropdownMenuLink2"
             >
               <div class="nav-user-info">
-                <h5 class="mb-0 text-white nav-user-name">Afonso Kiala</h5>
+                <h5 class="mb-0 text-white nav-user-name"><?= $_SESSION['nome']?></h5>
               </div>
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="perfil.php?id=perfil"
                 ><i class="fas fa-user mr-2"></i>Perfil</a
               >
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="?logout=true"
                 ><i class="fas fa-power-off mr-2"></i>Terminar Sessão</a
               >
             </div>

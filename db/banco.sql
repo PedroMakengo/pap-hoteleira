@@ -19,8 +19,7 @@ CREATE TABLE hotel (
   endereco VARCHAR(255) NOT NULL,
   cidade VARCHAR(255) NOT NULL,
   estado VARCHAR(255) NOT NULL,
-  cep VARCHAR(10) NOT NULL,
-  pais VARCHAR(255) NOT NULL,
+  nif VARCHAR(10) NOT NULL,
   descricao TEXT,
   classificacao INT NOT NULL,
   num_quartos INT NOT NULL,
@@ -28,6 +27,7 @@ CREATE TABLE hotel (
   regras TEXT,
   telefone VARCHAR(20) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  senha VARCHAR(255) NOT NULL,
   site VARCHAR(255),
   data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
   data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
