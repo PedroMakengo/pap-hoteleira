@@ -49,9 +49,11 @@
         </div>
       </header>
       <main id="main">
+        <!-- Section Hotel -->
         <section id="hotel-img">
           <img src="./assets/images/Rectangle.png" alt="" />
         </section>
+
         <!-- Section Banner-->
         <section id="banner">
           <div class="banner-content">
@@ -74,6 +76,7 @@
             </div>
           </div>
         </section>
+
         <!-- Section Why-->
         <section id="why">
           <div class="why-header">
@@ -123,6 +126,7 @@
           </div>
         </section>
 
+        <!-- Section Services -->
         <section id="services">
           <div class="services-content">
           <div class="services-header">
@@ -191,6 +195,7 @@
           </div>
         </section>
 
+        <!-- Section About -->
         <section id="about">
           <div class="about-cols">
             <div class="about-col-a">
@@ -213,6 +218,7 @@
           </div>
         </section>
 
+        <!-- Section Rooms -->
         <section id="rooms">
           <div class="rooms-header">
             <h4>Our Room</h4>
@@ -256,7 +262,9 @@
             </div>
           </div>
         </section>
+
       </main>
+
       <footer id="footer">
         <div class="footer-content">
           <div class="link-footer">
@@ -307,6 +315,7 @@
           </ul>
         </div>
       </footer>
+
     </div>
   </body>
 </html>
