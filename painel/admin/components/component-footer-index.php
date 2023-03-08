@@ -1,14 +1,16 @@
+<?php require '../../public/admin_graphic/index.php' ?>
+
 <script src="../../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="../../assets/libs/js/main-js.js"></script>
-    <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
-    <script src="../../assets/js/template/Chart.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="../../assets/libs/js/main-js.js"></script>
+<script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+<script src="../../assets/js/template/Chart.min.js"></script>
 
     <script>
       $(function () {
         var lineChart = document.getElementById('mychart').getContext('2d')
         var myLineChart = new Chart(lineChart, {
-          type: 'bar',
+          type: 'line',
           data: {
             labels: [
               'Jan',
@@ -34,10 +36,10 @@
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: '#704828',
+                backgroundColor: '#fff',
                 fill: true,
                 borderWidth: 2,
-                data: [10, 20, 10, 10, 20, 50, 20, 10, 10, 10, 20, 50],
+                data: <?= json_encode($mensalHospede) ?>,
               },
             ],
           },
