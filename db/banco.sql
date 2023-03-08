@@ -131,3 +131,43 @@ CREATE TABLE tb_reservas (
     FOREIGN KEY (id_hospede) REFERENCES tb_hospedes(id_hospede),
     FOREIGN KEY (id_quarto) REFERENCES tb_quartos(id_quarto)
 );
+
+
+
+INSERT INTO tb_hotel 
+(
+id_hotel,
+nome_hotel, 
+email_hotel,
+senha_hotel,
+nif_hotel,
+endereco_hotel,
+foto_hotel,
+cidade_hotel,
+descricao_hotel,
+classificacao_hotel,
+num_quartos_hotel,
+servicos_hotel,
+telefone_hotel,
+site_hotel,
+data_criacao_hotel,
+data_atualizacao_hotel
+) 
+VALUES (
+1,
+"Epic Sana",
+"epicsana@gmail.com",
+md5(md5(123)),
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+now(),
+now()
+) 

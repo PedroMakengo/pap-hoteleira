@@ -6,9 +6,39 @@
 <?php 
    $users = new Model();
    $listUserHospede = $users->EXE_QUERY("SELECT * FROM tb_hospedes");
-  
 ?>
 <!-- Listagem de usuários -->
+
+
+<!-- Eliminar Usuário -->
+<?php 
+     if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+      $id = $_GET['id'];
+      $parametros  =[
+          ":id"=>$id
+      ];
+      $delete = new Model();
+      $delete->EXE_NON_QUERY("DELETE FROM tb_hospedes WHERE id_hospede=:id", $parametros);
+      if($delete == true):
+        echo '<script> 
+                swal({
+                  title: "Dados eliminados!",
+                  text: "Dados eliminados com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href="usuarios.php?id=usuarios";
+            }, 2000)
+        </script>';
+      else:
+          echo "<script>window.alert('Operação falhou');</script>";
+      endif;
+  endif;
+?>
+<!-- Eliminar Usuário -->
 
     <div class="dashboard-main-wrapper">
       <!-- =============================================== -->
@@ -54,7 +84,7 @@
                                 <td><?= $user['data_nascimento_hospede'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="#" class="btn btn-danger btn-sm">
+                                  <a href="usuarios.php?<?= $user['id_hospede'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
