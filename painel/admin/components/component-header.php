@@ -67,6 +67,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav flex-column">
             <li class="nav-divider">Menu</li>
+          
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'home' ? 'active': '' ?>" href="index.php?id=home"
                 ><i class="fa fa-fw fa-user-circle"></i>Home
@@ -77,6 +78,7 @@
                 ><i class="fa fa-fw fa-user-circle"></i>Hotéis
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'restaurantes' ? 'active': '' ?>" href="restaurantes.php?id=restaurantes"
                 ><i class="fa fa-fw fa-user-circle"></i>Restaurantes
@@ -87,10 +89,23 @@
                 ><i class="fa fa-fw fa-user-circle"></i>Usuários
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="reservas.php?id=reservas"
                 ><i class="fa fa-fw fa-user-circle"></i>Reservas
               </a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-user-circle"></i>Reservas</a>
+                <div id="submenu-2" class="collapse submenu" style="">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="reservas.php?id=reservas">Quartos <span class="badge badge-secondary">New</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="mesas.php?id=reservas">Mesas</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'graficos' ? 'active': '' ?>" href="graficos.php?id=graficos"

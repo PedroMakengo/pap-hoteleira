@@ -2,6 +2,14 @@
 <?php include "components/component-head.php" ?>
 <!-- =============================================== -->
 
+<!-- Listagem de usuários hospedes -->
+<?php 
+   $users = new Model();
+   $listUserHospede = $users->EXE_QUERY("SELECT * FROM tb_hospedes");
+  
+?>
+<!-- Listagem de usuários -->
+
     <div class="dashboard-main-wrapper">
       <!-- =============================================== -->
       <?php include "components/component-header.php" ?>
@@ -25,32 +33,42 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Foto de capa</th>
-                          <th>Título</th>
-                          <th>Lidos</th>
+                          <th>Nome</th>
+                          <th>E-mail</th>
+                          <th>B.I</th>
+                          <th>Data de Nascimento</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><a href="#">Baixar agora</a></td>
-                          <td>25</td>
-                          <td>200kz</td>
-                          <td class="text-center">
-                            <a
-                              href="detalhe-fronteira.html"
-                              class="btn btn-primary btn-sm add-plus"
-                            >
-                              <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                            <a href="#" class="btn btn-danger btn-sm add-plus">
-                              <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                          </td>
-                        </tr>
+                        <?php 
+
+                          if($listUserHospede):
+                            foreach($listUserHospede as $user):
+                            ?>
+                              <tr>
+                                <td><?= $user['id_hospede'] ?></td>
+                                <td><?= $user['nome_hospede'] ?></td>
+                                <td><?= $user['email_hospede'] ?></td>
+                                <td><?= $user['bi_hospede'] ?></td>
+                                <td><?= $user['data_nascimento_hospede'] ?></td>
+                                <td class="text-center">
+                                  <!-- Eliminar -->
+                                  <a href="#" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
+                                  </a>
+                                  <!-- Eliminar -->
+                                </td>
+                              </tr>
+                            <?php 
+                            endforeach;
+                          else:  ?>
+                            <tr>
+                              <td>Não existe usuário registrado</td>
+                            </tr>
+                          <?php 
+                          endif;
+                        ?>
                       </tbody>
                     </table>
                   </div>

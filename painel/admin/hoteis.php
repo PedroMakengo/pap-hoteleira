@@ -17,14 +17,6 @@
                 <div class="col-lg-6">
                   <h4>Listagem de hotéis</h4>
                 </div>
-                <div class="col-lg-6 text-right">
-                  <a
-                    href="register-hotel.html"
-                    class="btn btn-primary btn-small"
-                    >Novo hotel</a
-                  >
-                </div>
-
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
