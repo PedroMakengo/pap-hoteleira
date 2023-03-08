@@ -2,16 +2,21 @@
 <?php include "components/component-head.php" ?>
 <!-- =============================================== -->
 
-<!-- Listagem de Hotel -->
+<!-- Listagem de Restaurante e Quartos -->
 <?php 
    $parametros = [":id" => $_GET['userId']];
    $restaurante = new Model();
    $listRestauranteAndHotel = $restaurante->EXE_QUERY("SELECT * FROM tb_restaurante INNER JOIN tb_hotel ON
    tb_restaurante.id_hotel=tb_hotel.id_hotel WHERE tb_restaurante.id_hotel=:id", $parametros);
-?>
-<!-- Listagem de Hotel -->
 
-<!-- Eliminar Hotel -->
+
+  $listQuartosAndHotel = $restaurante->EXE_QUERY("SELECT * FROM tb_quartos INNER JOIN tb_hotel ON 
+  tb_quartos.id_hotel=tb_hotel.id_hotel WHERE tb_quartos.id_hotel=:id
+  ", $parametros);
+?>
+<!-- Listagem de Restaurante e Quartos -->
+
+<!-- Eliminar Restaurante -->
 <?php 
      if (isset($_GET['action']) && $_GET['action'] == 'delete'):
       $id = $_GET['id'];
@@ -39,7 +44,7 @@
       endif;
   endif;
 ?>
-<!-- Eliminar Hotel -->
+<!-- Eliminar Restaurante -->
 
     <div class="dashboard-main-wrapper">
 
@@ -86,6 +91,9 @@
                                 <td><?= $hotel['data_criacao_restaurante'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
+                                  <a href="detailhe-restaurante.php?id=hoteis&userId=<?= $hotel['id_restaurante'] ?>&restaurante=<?= $hotel['nome_restaurante'] ?>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                  </a>
                                   <a href="detailhe-hoteis.php?<?= $hotel['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
@@ -115,27 +123,27 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nome Restaurante</th>
-                          <th>Classificação</th>
-                          <th>Número de Mesas</th>
-                          <th>Data de Registro</th>
+                          <th>Tipo de Quarto</th>
+                          <th>Capacidade</th>
+                          <th>Preço</th>
+                          <th>Status do Quarto</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          if($listRestauranteAndHotel):
-                            foreach($listRestauranteAndHotel as $hotel):
+                          if($listQuartosAndHotel):
+                            foreach($listQuartosAndHotel as $hotel):
                             ?>
                               <tr>
-                                <td><?= $hotel['id_restaurante'] ?></td>
-                                <td><?= $hotel['nome_restaurante'] ?></td>
-                                <td><?= $hotel['classificacao_restaurante'] ?></td>
-                                <td><?= $hotel['num_mesas_restaurante'] ?></td>
-                                <td><?= $hotel['data_criacao_restaurante'] ?></td>
+                                <td><?= $hotel['id_quarto'] ?></td>
+                                <td><?= $hotel['tipo_quarto'] ?></td>
+                                <td><?= $hotel['capacidade_quarto'] ?></td>
+                                <td><?= $hotel['preco_quarto'] ?></td>
+                                <td><?= $hotel['status_quarto'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="detailhe-hoteis.php?<?= $hotel['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?<?= $hotel['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
