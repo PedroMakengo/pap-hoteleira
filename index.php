@@ -57,6 +57,7 @@
         </div>
       </header>
       <main id="main">
+
         <!-- Section Hotel -->
         <section id="hotel-img">
           <img src="./assets/images/Rectangle.png" alt="" />

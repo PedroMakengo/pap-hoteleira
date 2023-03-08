@@ -1,6 +1,21 @@
 <!-- =============================================== -->
 <?php include "components/component-head.php" ?>
 <!-- =============================================== -->
+
+
+<!-- Retornar todos os counts -->
+<?php 
+  $count = new Model();
+  // Count Total Hotel
+  $countTotalHotel = $count->EXE_QUERY("SELECT * FROM tb_hotel");
+  // Count Total Restaurante
+  $countTotalRestaurant = $count->EXE_QUERY("SELECT * FROM tb_restaurante");
+  // Count Total Hospedes
+  $countTotalUsers = $count->EXE_QUERY("SELECT * FROM tb_hospedes");
+  // Count Total Reservas
+  $countTotalReserva = $count->EXE_QUERY("SELECT * FROM tb_reservas");
+?>
+<!-- Retornar todos os counts -->
   
 <div class="dashboard-main-wrapper">
 
@@ -14,15 +29,14 @@
       <div class="container-fluid dashboard-content">
         <div class="ecommerce-widget">
           <div class="row">
-            <!-- ============================================================== -->
-            <!-- sales  -->
-            <!-- ============================================================== -->
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Hoteis</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">0</h1>
+                    <h1 class="mb-1">
+                      <?= count($countTotalHotel) ?>
+                    </h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
@@ -31,18 +45,15 @@
                 </div>
               </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end sales  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- new customer  -->
-            <!-- ============================================================== -->
+
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Restaurantes</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">0</h1>
+                    <h1 class="mb-1">
+                      <?= count($countTotalRestaurant) ?>
+                    </h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
@@ -51,18 +62,15 @@
                 </div>
               </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end new customer  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- visitor  -->
-            <!-- ============================================================== -->
+           
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Usuários</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">0</h1>
+                    <h1 class="mb-1">
+                     <?= count($countTotalUsers) ?>
+                    </h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-success font-weight-bold"
@@ -71,18 +79,15 @@
                 </div>
               </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end visitor  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- total orders  -->
-            <!-- ============================================================== -->
+          
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Reservas</h5>
                   <div class="metric-value d-inline-block">
-                    <h1 class="mb-1">0</h1>
+                    <h1 class="mb-1">
+                     <?= count($countTotalReserva) ?>
+                    </h1>
                   </div>
                   <div
                     class="metric-label d-inline-block float-right text-danger font-weight-bold"
@@ -91,9 +96,7 @@
                 </div>
               </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end total orders  -->
-            <!-- ============================================================== -->
+          
           </div>
 
           <div class="row">

@@ -2,6 +2,45 @@
 <?php include "components/component-head.php" ?>
 <!-- =============================================== -->
 
+<!-- Listagem de usuários hospedes -->
+<?php 
+   $restaurante = new Model();
+   $listRestaurante = $restaurante->EXE_QUERY("SELECT * FROM tb_restaurante INNER JOIN tb_hotel ON 
+    tb_restaurante.id_hotel=tb_hotel.id_hotel");
+?>
+<!-- Listagem de usuários -->
+
+
+<!-- Eliminar Usuário -->
+<?php 
+     if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+      $id = $_GET['id'];
+      $parametros  =[
+          ":id"=>$id
+      ];
+      $delete = new Model();
+      $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
+      if($delete == true):
+        echo '<script> 
+                swal({
+                  title: "Dados eliminados!",
+                  text: "Dados eliminados com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href="usuarios.php?id=usuarios";
+            }, 2000)
+        </script>';
+      else:
+          echo "<script>window.alert('Operação falhou');</script>";
+      endif;
+  endif;
+?>
+<!-- Eliminar Usuário -->
+
     <div class="dashboard-main-wrapper">
       <!-- =============================================== -->
       <?php include "components/component-header.php" ?>
@@ -25,32 +64,42 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Foto de capa</th>
-                          <th>Título</th>
-                          <th>Lidos</th>
+                          <th>Nome do Hotel</th>
+                          <th>Restaurante</th>
+                          <th>Classificação</th>
+                          <th>Número de Mesas</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><a href="#">Baixar agora</a></td>
-                          <td>25</td>
-                          <td>200kz</td>
-                          <td class="text-center">
-                            <a
-                              href="detalhe-fronteira.html"
-                              class="btn btn-primary btn-sm add-plus"
-                            >
-                              <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                            <a href="#" class="btn btn-danger btn-sm add-plus">
-                              <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                          </td>
-                        </tr>
+                        <?php 
+
+                          if($listRestaurante):
+                            foreach($listRestaurante as $details):
+                            ?>
+                              <tr>
+                                <td><?= $details['id_restaurante'] ?></td>
+                                <td><?= $details['nome_hotel'] ?></td>
+                                <td><?= $details['nome_restaurante'] ?></td>
+                                <td><?= $details['classificacao_restaurante'] ?></td>
+                                <td><?= $details['num_mesas_restaurante'] ?></td>
+                                <td class="text-center">
+                                  <!-- Eliminar -->
+                                  <a href="usuarios.php?<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
+                                  </a>
+                                  <!-- Eliminar -->
+                                </td>
+                              </tr>
+                            <?php 
+                            endforeach;
+                          else:  ?>
+                            <tr>
+                              <td>Não existe usuário registrado</td>
+                            </tr>
+                          <?php 
+                          endif;
+                        ?>
                       </tbody>
                     </table>
                   </div>

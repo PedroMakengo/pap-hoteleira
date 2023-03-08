@@ -2,14 +2,17 @@
 <?php include "components/component-head.php" ?>
 <!-- =============================================== -->
 
-<!-- Listagem de Hotel -->
+<!-- Listagem de Mesas do Restaurante -->
 <?php 
-   $hoteis = new Model();
-   $listUserHoteis = $hoteis->EXE_QUERY("SELECT * FROM tb_hotel");
+   $parametros = [":id" => $_GET['userId']];
+   $mesas = new Model();
+   $listMesasRestaurantes = $mesas->EXE_QUERY("SELECT * FROM tb_mesas INNER JOIN 
+   tb_restaurante ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante WHERE tb_mesas.id_restaurante=:id
+   ", $parametros);
 ?>
-<!-- Listagem de Hotel -->
+<!-- Listagem de Restaurante e Quartos -->
 
-<!-- Eliminar Hotel -->
+<!-- Eliminar Restaurante -->
 <?php 
      if (isset($_GET['action']) && $_GET['action'] == 'delete'):
       $id = $_GET['id'];
@@ -37,7 +40,7 @@
       endif;
   endif;
 ?>
-<!-- Eliminar Hotel -->
+<!-- Eliminar Restaurante -->
 
     <div class="dashboard-main-wrapper">
 
@@ -52,42 +55,39 @@
             <div class="ecommerce-widget bg-white p-5">
               <div class="row mb-4">
                 <div class="col-lg-6">
-                  <h4>Listagem de hotéis</h4>
+                  <h4 class="">Dados referente à <strong><?= $_GET['restaurante'] ?></strong></h4>
                 </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="table-responsive bg-white p-2">
+                  <div class="table-responsive p-2 border bg-white">
+                    <h4 class="pl-3">Listagem de Mesas</h4>
                      <table class="table" id="tabela">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Nome</th>
-                          <th>E-mail</th>
-                          <th>Nif</th>
-                          <th>Status</th>
+                          <th>Nome da Mesa</th>
+                          <th>Tipo de Mesa</th>
+                          <th>Preço</th>
+                          <th>Data de Registro</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          if($listUserHoteis):
-                            foreach($listUserHoteis as $hotel):
+                          if($listMesasRestaurantes):
+                            foreach($listMesasRestaurantes as $hotel):
                             ?>
                               <tr>
-                                <td><?= $hotel['id_hotel'] ?></td>
-                                <td><?= $hotel['nome_hotel'] ?></td>
-                                <td><?= $hotel['email_hotel'] ?></td>
-                                <td><?= $hotel['nif_hotel'] === "" ? "Por Preencher": $hotel['nif_hotel'] ?></td>
-                                <td><?= $hotel['status_hotel'] ?></td>
+                                <td><?= $hotel['id_mesa'] ?></td>
+                                <td><?= $hotel['nome_mesa'] ?></td>
+                                <td><?= $hotel['tipo_mesa'] ?></td>
+                                <td><?= $hotel['preco_mesa'] ?></td>
+                                <td><?= $hotel['data_criacao_mesa'] ?></td>
                                 <td class="text-center">
-                                  <button class="btn btn-sm btn-info">Activar</button>
-                                  <a href="detailhe-hoteis.php?id=hoteis&userId=<?= $hotel['id_hotel'] ?>&hotel=<?= $hotel['nome_hotel'] ?>" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                  </a>
                                   <!-- Eliminar -->
-                                  <a href="hoteis.php?<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?<?= $hotel['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
@@ -97,7 +97,7 @@
                             endforeach;
                           else:  ?>
                             <tr>
-                              <td>Não existe usuário registrado</td>
+                              <td>Não existe nenhum registro</td>
                             </tr>
                           <?php 
                           endif;
@@ -107,6 +107,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
