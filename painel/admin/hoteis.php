@@ -82,7 +82,7 @@
                                 <td><?= $hotel['nif_hotel'] === "" ? "Por Preencher": $hotel['nif_hotel'] ?></td>
                                 <td><?= $hotel['status_hotel'] ?></td>
                                 <td class="text-center">
-                                  <button class="btn btn-sm btn-primary">Activar</button>
+                                  <button class="btn btn-sm btn-info">Activar</button>
                                   <a href="detailhe-hoteis.php?id=hoteis&userId=<?= $hotel['id_hotel'] ?>&hotel=<?= $hotel['nome_hotel'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                   </a>
