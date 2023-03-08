@@ -68,37 +68,37 @@
           <ul class="navbar-nav flex-column">
             <li class="nav-divider">Menu</li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.php?id=home"
+              <a class="nav-link <?= $_GET['id'] == 'home' ? 'active': '' ?>" href="index.php?id=home"
                 ><i class="fa fa-fw fa-user-circle"></i>Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="quartos.php?id=quartos"
+              <a class="nav-link <?= $_GET['id'] == 'quartos' ? 'active': '' ?>" href="quartos.php?id=quartos"
                 ><i class="fa fa-fw fa-user-circle"></i>Quartos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="restaurante.php?id=restaurante"
+              <a class="nav-link <?= $_GET['id'] == 'restaurante' ? 'active': '' ?>" href="restaurante.php?id=restaurante"
                 ><i class="fa fa-fw fa-user-circle"></i>Restaurante
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="reservas.php?id=reservas"
+              <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="reservas.php?id=reservas"
                 ><i class="fa fa-fw fa-user-circle"></i>Reservas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="hospedes.php?id=hospedes"
+              <a class="nav-link <?= $_GET['id'] == 'hospedes' ? 'active': '' ?>" href="hospedes.php?id=hospedes"
                 ><i class="fa fa-fw fa-user-circle"></i>Clientes
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="graficos.php?id=graficos"
+              <a class="nav-link <?= $_GET['id'] == 'graficos' ? 'active': '' ?>" href="graficos.php?id=graficos"
                 ><i class="fa fa-fw fa-user-circle"></i>Gráficos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?logout=true"
+              <a class="nav-link " href="?logout=true"
                 ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
               </a>
             </li>

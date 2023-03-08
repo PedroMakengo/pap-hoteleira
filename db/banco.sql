@@ -107,6 +107,7 @@ CREATE TABLE tb_mesa_reservas (
   id_reserva_mesa INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   id_mesa INT NOT NULL,
   id_hospede INT NOT NULL, 
+  id_restaurante INT NOT NULL,
   data_checkin_mesa_reserva DATE NOT NULL,
   status_mesa_reserva VARCHAR(20) NOT NULL,
   comprovativo_mesa_reserva VARCHAR(255) NOT NULL,
@@ -114,6 +115,7 @@ CREATE TABLE tb_mesa_reservas (
   data_atualizacao_mesa_reserva DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (id_mesa) REFERENCES tb_mesas (id_mesa),
   FOREIGN KEY (id_hospede) REFERENCES tb_hospedes(id_hospede),
+  FOREIGN KEY (id_restaurante) REFERENCES tb_restaurante(id_restaurante),
 )
 
 CREATE TABLE tb_reservas (
@@ -199,3 +201,29 @@ VALUES (
     now(),
     now()
 )
+
+
+
+INSERT INTO tb_mesa_reservas (
+	id_reserva_mesa,
+    id_mesa,
+    id_hospede,
+    id_restaurante,
+    data_checkin_mesa_reserva,
+    status_mesa_reserva,
+    comprovativo_mesa_reserva,
+    data_criacao_mesa_reserva,
+    data_atualizacao_mesa_reserva
+)
+VALUES (
+	2,
+    2, 
+    1,
+    1,
+    NOW(),
+    "Por verificar",
+    "comprovativo.jpg",
+    now(),
+    now()
+	
+) 
