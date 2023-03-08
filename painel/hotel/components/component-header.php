@@ -1,7 +1,7 @@
  <!-- Header -->
  <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-      <a class="navbar-brand logo" href="/">Sistema de Gestão Hoteleiro</a>
+      <a class="navbar-brand logo" href="index.php?id=home">Sistema de Gestão Hoteleiro</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -24,7 +24,7 @@
               aria-haspopup="true"
               aria-expanded="false"
               ><img
-                src="../../assets/avatar.jpg"
+                src="../../assets/<?= $_SESSION['foto'] ?>"
                 alt=""
                 class="user-avatar-md rounded-circle"
             /></a>
@@ -33,11 +33,11 @@
               aria-labelledby="navbarDropdownMenuLink2"
             >
               <div class="nav-user-info">
-                <h5 class="mb-0 text-white nav-user-name">Afonso Kiala</h5>
+                <h5 class="mb-0 text-white nav-user-name"><?= $_SESSION['nome'] ?></h5>
               </div>
-              <a class="dropdown-item" href="#"
+              <!-- <a class="dropdown-item" href="#"
                 ><i class="fas fa-user mr-2"></i>Perfil</a
-              >
+              > -->
               <a class="dropdown-item" href="#"
                 ><i class="fas fa-power-off mr-2"></i>Terminar Sessão</a
               >
@@ -45,14 +45,14 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> 
   </div>
 
   <!-- Sidebar -->
   <div class="nav-left-sidebar sidebar-dark">
     <div class="menu-list">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="d-xl-none d-lg-none" href="index.html">Dashboard</a>
+        <a class="d-xl-none d-lg-none" href="index.php">Dashboard</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -68,32 +68,37 @@
           <ul class="navbar-nav flex-column">
             <li class="nav-divider">Menu</li>
             <li class="nav-item">
-              <a class="nav-link active" href="index.html"
+              <a class="nav-link active" href="index.php?id=home"
                 ><i class="fa fa-fw fa-user-circle"></i>Home
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="quartos.html"
+              <a class="nav-link" href="quartos.php?id=quartos"
                 ><i class="fa fa-fw fa-user-circle"></i>Quartos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="reservas.html"
+              <a class="nav-link" href="restaurante.php?id=restaurante"
+                ><i class="fa fa-fw fa-user-circle"></i>Restaurante
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reservas.php?id=reservas"
                 ><i class="fa fa-fw fa-user-circle"></i>Reservas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="clientes.html"
+              <a class="nav-link" href="hospedes.php?id=hospedes"
                 ><i class="fa fa-fw fa-user-circle"></i>Clientes
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="graficos.html"
+              <a class="nav-link" href="graficos.php?id=graficos"
                 ><i class="fa fa-fw fa-user-circle"></i>Gráficos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login.html"
+              <a class="nav-link" href="?logout=true"
                 ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
               </a>
             </li>

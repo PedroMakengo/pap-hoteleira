@@ -171,3 +171,31 @@ md5(md5(123)),
 now(),
 now()
 ) 
+
+
+INSERT INTO tb_reservas (
+	id_reserva,
+    id_hospede,
+    id_quarto,
+    data_checkin_reserva,
+    data_checkout_reserva,
+    num_hospedes_reserva,
+    preco_total_reserva,
+    status_quarto_reserva,
+    comprovativo_reserva,
+    data_criacao_reserva,
+    data_atualizacao_reserva
+)
+VALUES (
+	3, 
+    1, 
+    3,
+    now(),
+    now(),
+    "2",
+    "10.50",
+    "Por verificar",
+    "comprovativo.jpg",
+    now(),
+    now()
+)
