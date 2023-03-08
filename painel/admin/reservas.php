@@ -14,7 +14,7 @@
             <div class="ecommerce-widget bg-white p-5">
               <div class="row mb-4">
                 <div class="col-lg-6">
-                  <h4>Listagem de reservas</h4>
+                  <h4>Listagem de reservas de quartos</h4>
                 </div>
                 <div class="col-lg-12"><hr /></div>
               </div>

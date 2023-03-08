@@ -1,8 +1,10 @@
+<?php require '../../public/admin_graphic/index.php' ?>
+
 <script src="../../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="../../assets/libs/js/main-js.js"></script>
-    <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
-    <script src="../../assets/js/template/Chart.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="../../assets/libs/js/main-js.js"></script>
+<script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
+<script src="../../assets/js/template/Chart.min.js"></script>
 
     <script>
       $(function () {
@@ -37,7 +39,7 @@
                 backgroundColor: 'transparent',
                 fill: true,
                 borderWidth: 2,
-                data: [10, 20, 10, 10, 20, 50, 20, 10, 10, 10, 20, 50],
+                data: <?= json_encode($mensalHospede) ?>,
               },
             ],
           },
@@ -65,6 +67,7 @@
             },
           },
         })
+
         var lineChart = document.getElementById('saida').getContext('2d')
         var myLineChart = new Chart(lineChart, {
           type: 'bar',
@@ -96,7 +99,7 @@
                 backgroundColor: 'transparent',
                 fill: true,
                 borderWidth: 2,
-                data: [10, 20, 10, 10, 20, 50, 20, 10, 10, 10, 20, 50],
+                data: <?= json_encode($mensalHotel) ?>,
               },
             ],
           },
@@ -124,6 +127,7 @@
             },
           },
         })
+
         var lineChart = document.getElementById('genero').getContext('2d')
         var myLineChart = new Chart(lineChart, {
           type: 'pie',
@@ -139,10 +143,10 @@
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: ['#704828', '#704828'],
+                backgroundColor: ['#1f6feb', '#704828'],
                 fill: true,
                 borderWidth: 2,
-                data: [10, 20],
+                data: <?= json_encode($dataHospedeGenero) ?>,
               },
             ],
           },
@@ -170,6 +174,7 @@
             },
           },
         })
+
         var lineChart = document.getElementById('fronteira').getContext('2d')
         var myLineChart = new Chart(lineChart, {
           type: 'line',
@@ -201,7 +206,7 @@
                 backgroundColor: 'transparent',
                 fill: true,
                 borderWidth: 2,
-                data: [10, 20, 10, 10, 20, 50, 20, 10, 10, 10, 20, 50],
+                data: <?= json_encode($mensalReservas) ?>,
               },
             ],
           },
