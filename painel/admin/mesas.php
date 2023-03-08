@@ -4,9 +4,12 @@
 
 <!-- Listagem de usuários hospedes -->
 <?php 
-   $quartos = new Model();
-   $listQuartos= $quartos->EXE_QUERY("SELECT * FROM tb_quartos INNER JOIN tb_hotel ON 
-    tb_quartos.id_hotel=tb_hotel.id_hotel
+   $mesas = new Model();
+   $listMesasReservas= $mesas->EXE_QUERY("SELECT * FROM tb_mesa_reservas 
+    INNER JOIN tb_mesas ON 
+    tb_mesa_reservas.id_mesa=tb_mesas.id_mesa 
+    INNER JOIN tb_hospedes ON 
+    tb_mesa_reservas.id_hospede=tb_hospedes.id_hospede
    ");
 ?>
 <!-- Listagem de usuários -->
@@ -65,27 +68,29 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Tipo de Quarto</th>
-                          <th>Capacidade</th>
-                          <th>Preço</th>
-                          <th>Status do Quarto</th>
+                          <th>Cliente</th>
+                          <th>Mesa</th>
+                          <th>Comprovativo</th>
+                          <th>Status da Mesa</th>
+                          <th>Data de Registro</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          if($listQuartos):
-                            foreach($listQuartos as $details):
+                          if($listMesasReservas):
+                            foreach($listMesasReservas as $details):
                             ?>
                               <tr>
-                                <td><?= $details['id_quarto'] ?></td>
-                                <td><?= $details['tipo_quarto'] ?></td>
-                                <td><?= $details['capacidade_quarto'] ?></td>
-                                <td><?= $details['preco_quarto'] ?></td>
-                                <td><?= $details['status_quarto'] ?></td>
+                                <td><?= $details['id_reserva_mesa'] ?></td>
+                                <td><?= $details['nome_hospede'] ?></td>
+                                <td><?= $details['nome_mesa'] ?></td>
+                                <td><?= $details['comprovativo_mesa_reserva'] ?></td>
+                                <td><?= $details['status_mesa_reserva'] ?></td>
+                                <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="reservas.php?<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="mesas.php?<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
@@ -95,7 +100,7 @@
                             endforeach;
                           else:  ?>
                             <tr>
-                              <td>Não existe usuário registrado</td>
+                              <td colspan="12" class="text-center">Não existe nenhum registro</td>
                             </tr>
                           <?php 
                           endif;

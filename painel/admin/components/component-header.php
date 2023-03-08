@@ -35,9 +35,9 @@
               <div class="nav-user-info">
                 <h5 class="mb-0 text-white nav-user-name"><?= $_SESSION['nome']?></h5>
               </div>
-              <a class="dropdown-item" href="perfil.php?id=perfil"
+              <!-- <a class="dropdown-item" href="#"
                 ><i class="fas fa-user mr-2"></i>Perfil</a
-              >
+              > -->
               <a class="dropdown-item" href="?logout=true"
                 ><i class="fas fa-power-off mr-2"></i>Terminar Sessão</a
               >
