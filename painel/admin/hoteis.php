@@ -83,6 +83,9 @@
                                 <td><?= $hotel['status_hotel'] ?></td>
                                 <td class="text-center">
                                   <button class="btn btn-sm btn-primary">Activar</button>
+                                  <a href="detailhe-hoteis.php?id=hoteis&userId=<?= $hotel['id_hotel'] ?>&hotel=<?= $hotel['nome_hotel'] ?>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                  </a>
                                   <!-- Eliminar -->
                                   <a href="hoteis.php?<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
