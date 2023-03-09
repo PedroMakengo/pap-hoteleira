@@ -37,9 +37,9 @@
           <nav class='nav-bar'>
             <ul>
               <li><a href="/" class="active">Home</a></li>
-              <li><a href="#sobre">Sobre Nos</a></li>
-              <li><a href="#contactos">Hoteis</a></li>
-              <li><a href="#quartos">Quartos</a></li>
+              <li><a href="#about">Sobre Nos</a></li>
+              <li><a href="#hotel">Hoteis</a></li>
+              <li><a href="#rooms">Quartos</a></li>
               <li><a href="#restaurante">Restaurante</a></li>
             </ul>
             <div>
