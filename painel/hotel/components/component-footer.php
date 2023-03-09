@@ -7,7 +7,8 @@
 <script src="../../assets/libs/js/dashboard-ecommerce.js"></script>
 
 <script>
-$('#tabela').dataTable()
+  $('#tabela').dataTable()
+  $('#tabela1').dataTable()
 </script>
 </body>
 </html>
