@@ -27,25 +27,33 @@
               <img src="./assets/images/logo.svg" alt="" />
             </a>
           </div>
-          <nav>
-            <ul class="menu">
+          
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+         </div>
+
+          <nav class='nav-bar'>
+            <ul>
               <li><a href="/" class="active">Home</a></li>
               <li><a href="#sobre">Sobre Nos</a></li>
               <li><a href="#contactos">Hoteis</a></li>
               <li><a href="#quartos">Quartos</a></li>
               <li><a href="#restaurante">Restaurante</a></li>
             </ul>
-          </nav>
-          <div>
+            <div>
             <a href="login.php" class="button">Criar Conta</a>
             <a href="login.php" class="button">Iniciar Sessão</a>
           </div>
+         </nav>
+         
         </div>
+
         <div class="header-cols">
           <div class="header-cols-a">
             <h1>Encontre um hotel 5 estrelas -</h1>
           </div>
-          <div class="headercols-b"></div>
         </div>
       </header>
       <main id="main">
@@ -229,13 +237,16 @@
               amet sint. Velit officia consequat.
             </p>
           </div>
+
           <div class="rooms-grid">
+
             <div class="rooms-left">
               <div class="room">
                 <img src="./assets/images/room01.png" alt="" />
                 <h5>3 GUEST</h5>
                 <p>Room with View</p>
               </div>
+
               <div class="room">
                 <img src="./assets/images/room02.png" alt="" />
                 <h5>3 GUEST</h5>
@@ -243,24 +254,31 @@
               </div>
             </div>
             <div class="rooms-middle">
+           
             <div class="room">
               <img src="./assets/images/room03.png" alt="" />
               <h5>3 GUEST</h5>
               <p>Room with View</p>
             </div>
-          </div>
+
+           </div>
+
+
             <div class="rooms-right">
               <div class="room">
                 <img src="./assets/images/room04.png" alt="" />
                 <h5>3 GUEST</h5>
                 <p>Room with View</p>
               </div>
+
               <div class="room">
                 <img src="./assets/images/room05.png" alt="" />
                 <h5>3 GUEST</h5>
                 <p>Room with View</p>
               </div>
+            
             </div>
+
           </div>
         </section>
 
