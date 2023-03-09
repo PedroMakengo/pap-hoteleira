@@ -2,16 +2,6 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
-<!-- Buscando Dados de Restaurantes -->
-<?php
-  $parametros = [":id" => $_SESSION['id']];
-  $listRestaurante = new Model();
-  $listDetailsRestaurante = $listRestaurante->EXE_QUERY("SELECT * FROM 
-  tb_restaurante WHERE id_hotel=:id", $parametros);
-?> 
-<!-- Component Head -->
-
-
     <div class="dashboard-main-wrapper">
       <!-- Component Header -->
       <?php require 'components/component-header.php' ?> 
@@ -44,13 +34,13 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Listagem de restaurante</h4>
+                    <h4>Listagem de hotéis</h4>
                   </div>
                   <div class="col-lg-6 text-right">
                     <a
-                      href="register-restaurante.php?id=restaurante"
+                      href="register-quarto.html"
                       class="btn btn-primary btn-small"
-                      >Novo Restaurante</a
+                      >Novo Quarto</a
                     >
                   </div>
 
@@ -63,44 +53,32 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Nome do Restaurante</th>
-                            <th>Classificação</th>
-                            <th>Número de Mesas</th>
-                            <th>Data de Registro</th>
+                            <th>Foto de capa</th>
+                            <th>Título</th>
+                            <th>Lidos</th>
                             <th class="text-center">Ações</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <?php 
-                            if($listDetailsRestaurante):
-                              foreach($listDetailsRestaurante as $details):
-                              ?>
-                                <tr>
-                                  <td><?= $details['id_restaurante'] ?></td>
-                                  <td><?= $details['nome_restaurante'] ?></td>
-                                  <td><?= $details['classificacao_restaurante'] ?></td>
-                                  <td><?= $details['num_mesas_restaurante'] ?></td>
-                                  <td><?= $details['data_criacao_restaurante'] ?></td>
-                                  <td class="text-center">
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                      <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
-                                    </a>
-                                    <!-- Eliminar -->
-                                    <a href="restaurante.php?<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                      <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                                    </a>
-                                    <!-- Eliminar -->
-                                  </td>
-                                </tr>
-                              <?php 
-                              endforeach;
-                            else:  ?>
-                              <tr>
-                                <td>Não existe nenhum registro</td>
-                              </tr>
-                            <?php 
-                            endif;
-                          ?>
+                          <tr>
+                            <td>1</td>
+                            <td><a href="#">Baixar agora</a></td>
+                            <td>25</td>
+                            <td>200kz</td>
+                            <td class="text-center">
+                              <a
+                                href="detalhe-fronteira.html"
+                                class="btn btn-primary btn-sm add-plus"
+                              >
+                                <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
+                              </a>
+                              <!-- Eliminar -->
+                              <a href="#" class="btn btn-danger btn-sm add-plus">
+                                <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
+                              </a>
+                              <!-- Eliminar -->
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>

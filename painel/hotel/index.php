@@ -108,7 +108,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="mb-0">Registro Mensal de Clientes</h5>
+                  <h5 class="mb-0">Registro Mensal de Reservas de Quartos</h5>
                 </div>
                 <div class="card-body">
                   <div class="charts mt-2">

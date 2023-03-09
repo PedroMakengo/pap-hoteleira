@@ -34,54 +34,69 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Listagem de hotéis</h4>
+                    <h4>Adicionar um novo quarto</h4>
                   </div>
-                  <div class="col-lg-6 text-right">
-                    <a
-                      href="register-quarto.html"
-                      class="btn btn-primary btn-small"
-                      >Novo Quarto</a
-                    >
-                  </div>
-
                   <div class="col-lg-12"><hr /></div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="table-responsive bg-white p-2">
-                      <table class="table" id="tabela">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Foto de capa</th>
-                            <th>Título</th>
-                            <th>Lidos</th>
-                            <th class="text-center">Ações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td><a href="#">Baixar agora</a></td>
-                            <td>25</td>
-                            <td>200kz</td>
-                            <td class="text-center">
-                              <a
-                                href="detalhe-fronteira.html"
-                                class="btn btn-primary btn-sm add-plus"
-                              >
-                                <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                              <a href="#" class="btn btn-danger btn-sm add-plus">
-                                <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <form method="POST">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Primeira Foto</label>
+                            <input type="file" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Segunda Foto</label>
+                            <input type="file" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Tipo de Quarto</label>
+                            <select name="" class="form-control form-control-lg">
+                              <option value="">Selecione o tipo de quarto</option>
+                              <option value="Vip">Vip</option>
+                              <option value="Normal">Normal</option>
+                              <option value="Medio">Medio</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-2">
+                          <div class="form-group">
+                            <label for="">Nº do Quarto</label>
+                            <input type="text" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-2">
+                          <div class="form-group">
+                            <label for="">Capacidade</label>
+                            <input type="text" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Preço</label>
+                            <input type="text" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Nome do Hotel</label>
+                            <input type="text" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="">Descrição</label>
+                           <textarea name="" id="" class="form-control form-control-lg"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

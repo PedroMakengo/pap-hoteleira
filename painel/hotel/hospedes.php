@@ -2,6 +2,17 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
+<!-- Buscando Dados de Hospedes que fizeram uma reserva -->
+<?php
+  $parametros = [":id" => $_SESSION['id']];
+  $listHospedes = new Model();
+  $listDetailsHospedes = $listHospedes->EXE_QUERY("SELECT * FROM tb_reservas INNER JOIN tb_quartos 
+  ON tb_reservas.id_quarto=tb_quartos.id_quarto 
+  INNER JOIN tb_hospedes ON tb_reservas.id_hospede=tb_hospedes.id_hospede
+  WHERE tb_quartos.id_hotel=:id", $parametros);
+
+?>
+
     <div class="dashboard-main-wrapper">
       <!-- Component Head -->
       <?php require 'components/component-header.php' ?> 
@@ -47,32 +58,41 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Foto de capa</th>
-                          <th>Título</th>
-                          <th>Lidos</th>
+                          <th>Nome do Hospede</th>
+                          <th>E-mail</th>
+                          <th>Genero</th>
+                          <th>Data de Registro</th>
                           <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><a href="#">Baixar agora</a></td>
-                          <td>25</td>
-                          <td>200kz</td>
-                          <td class="text-center">
-                            <a
-                              href="detalhe-fronteira.html"
-                              class="btn btn-primary btn-sm add-plus"
-                            >
-                              <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                            <a href="#" class="btn btn-danger btn-sm add-plus">
-                              <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
-                            </a>
-                            <!-- Eliminar -->
-                          </td>
-                        </tr>
+                        <?php 
+                          if($listDetailsHospedes):
+                            foreach($listDetailsHospedes as $details):
+                            ?>
+                              <tr>
+                                <td><?= $details['id_hospede'] ?></td>
+                                <td><?= $details['nome_hospede'] ?></td>
+                                <td><?= $details['email_hospede'] ?></td>
+                                <td><?= $details['genero_hospedes'] == "M" ? "Masculino":"Feminino" ?></td>
+                                <td><?= $details['data_criacao_reserva'] ?></td>
+                                <td class="text-center">
+                                  <!-- Eliminar -->
+                                  <a href="restaurante.php?<?= $details['id_reserva'] ?>&action=delete" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                  </a>
+                                  <!-- Eliminar -->
+                                </td>
+                              </tr>
+                            <?php 
+                            endforeach;
+                          else:  ?>
+                            <tr>
+                              <td>Não existe nenhum registro</td>
+                            </tr>
+                          <?php 
+                          endif;
+                        ?>
                       </tbody>
                     </table>
                   </div>

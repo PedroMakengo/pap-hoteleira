@@ -89,12 +89,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'hospedes' ? 'active': '' ?>" href="hospedes.php?id=hospedes"
-                ><i class="fa fa-fw fa-user-circle"></i>Clientes
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link <?= $_GET['id'] == 'graficos' ? 'active': '' ?>" href="graficos.php?id=graficos"
-                ><i class="fa fa-fw fa-user-circle"></i>Gráficos
+                ><i class="fa fa-fw fa-user-circle"></i>Hospedes
               </a>
             </li>
             <li class="nav-item">

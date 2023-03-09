@@ -47,7 +47,7 @@
                   </div>
                   <div class="col-lg-6 text-right">
                     <a
-                      href="register-quarto.php"
+                      href="register-quarto.php?id=quartos"
                       class="btn btn-primary btn-small"
                       >Novo Quarto</a
                     >

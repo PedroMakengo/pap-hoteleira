@@ -109,9 +109,6 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['comprovativo_reserva'] ?></td>
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
-                                                <a href="#" class="btn btn-primary btn-sm">
-                                                  <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
-                                                </a>
                                                 <!-- Eliminar -->
                                                 <a href="restaurante.php?<?= $details['id_reserva'] ?>&action=delete" class="btn btn-danger btn-sm">
                                                   <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
@@ -136,12 +133,12 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
 
                               <div class="tab-pane fade" id="outline-two" role="tabpanel" aria-labelledby="tab-outline-two">
                                   <!-- Tabela das Mesas reservados -->
-                                  <div class="table-responsive bg-white p-2">
-                                    <table class="table" id="tabela1">
+                                  <div class="table-responsive bg-white p-2" >
+                                    <table class="table" id="tabela1" >
                                       <thead>
                                         <tr>
                                           <th>#</th>
-                                          <th>Nome do Cliente</th>
+                                          <th>Cliente</th>
                                           <th>Restaurante</th>
                                           <th>Mesa</th>
                                           <th>Preço</th>
@@ -164,9 +161,6 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                 <td><?= $details['comprovativo_mesa_reserva'] ?></td>
                                                 <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                                 <td class="text-center">
-                                                  <a href="#" class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
-                                                  </a>
                                                   <!-- Eliminar -->
                                                   <a href="reservas.php?<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
