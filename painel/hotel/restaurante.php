@@ -11,6 +11,36 @@
 ?> 
 <!-- Component Head -->
 
+<!-- Eliminar Quartos -->
+<?php 
+    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+    $id = $_GET['id'];
+    $parametros  =[
+        ":id"=>$id
+    ];
+    $delete = new Model();
+    $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
+    if($delete == true):
+      echo '<script> 
+              swal({
+                title: "Dados eliminados!",
+                text: "Dados eliminados com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="restaurante.php?id=restaurante";
+          }, 1000)
+      </script>';
+    else:
+        echo "<script>window.alert('Operação falhou');</script>";
+    endif;
+endif;
+?>
+<!-- Eliminar Quartos -->
+
 
     <div class="dashboard-main-wrapper">
       <!-- Component Header -->
@@ -86,7 +116,7 @@
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
-                                    <a href="restaurante.php?<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="restaurante.php?id=<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->

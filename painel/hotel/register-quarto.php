@@ -125,10 +125,10 @@
     $descricao  = $_POST['descricao'];
 
     // Pegando a foto
-    $target        = "../assets/__storage/" . basename($_FILES['foto']['name']);
+    $target        = "../../assets/__storage/" . basename($_FILES['foto']['name']);
     $foto          = $_FILES['foto']['name'];
 
-    $target1        = "../assets/__storage/" . basename($_FILES['foto1']['name']);
+    $target1        = "../../assets/__storage/" . basename($_FILES['foto1']['name']);
     $foto1          = $_FILES['foto1']['name'];
 
     $parametros = [
