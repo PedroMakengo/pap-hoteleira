@@ -68,7 +68,7 @@
                         <tr>
                           <th>#</th>
                           <th>Nome do Hospede</th>
-                          <th>Quarto</th>
+                          <th>Mº Quarto</th>
                           <th>Comprovativo</th>
                           <th>Data Checkin</th>
                           <th>Data Checkout</th>
@@ -84,7 +84,7 @@
                               <tr>
                                 <td><?= $details['id_reserva'] ?></td>
                                 <td><?= $details['nome_hospede'] ?></td>
-                                <td><?= $details['nome_quarto'] ?></td>
+                                <td><?= $details['quarto'] ?></td>
                                 <td><?= $details['comprovativo_reserva'] ?></td>
                                 <td><?= $details['data_checkin_reserva'] ?></td>
                                 <td><?= $details['data_checkout_reserva'] ?></td>

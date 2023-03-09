@@ -18,13 +18,39 @@
 
 <!-- Eliminar Restaurante -->
 <?php 
-     if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+    if (isset($_GET['action']) && $_GET['action'] == 'deleteRestaurante'):
+    $id = $_GET['id'];
+    $parametros  =[
+        ":id"=>$id
+    ];
+    $delete = new Model();
+    $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
+    if($delete == true):
+      echo '<script> 
+              swal({
+                title: "Dados eliminados!",
+                text: "Dados eliminados com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="hoteis.php?id=hoteis";
+          }, 2000)
+      </script>';
+    else:
+        echo "<script>window.alert('Operação falhou');</script>";
+    endif;
+    endif;
+
+    if (isset($_GET['action']) && $_GET['action'] == 'deleteQuarto'):
       $id = $_GET['id'];
       $parametros  =[
           ":id"=>$id
       ];
       $delete = new Model();
-      $delete->EXE_NON_QUERY("DELETE FROM tb_hotel WHERE id_hotel=:id", $parametros);
+      $delete->EXE_NON_QUERY("DELETE FROM tb_quartos WHERE id_quarto=:id", $parametros);
       if($delete == true):
         echo '<script> 
                 swal({
@@ -42,7 +68,7 @@
       else:
           echo "<script>window.alert('Operação falhou');</script>";
       endif;
-  endif;
+    endif;
 ?>
 <!-- Eliminar Restaurante -->
 
@@ -94,7 +120,7 @@
                                   <a href="detailhe-restaurante.php?id=hoteis&userId=<?= $hotel['id_restaurante'] ?>&restaurante=<?= $hotel['nome_restaurante'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                   </a>
-                                  <a href="detailhe-hoteis.php?<?= $hotel['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?id=<?= $hotel['id_restaurante'] ?>&action=deleteRestaurante" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
@@ -143,7 +169,7 @@
                                 <td><?= $hotel['status_quarto'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="detailhe-hoteis.php?<?= $hotel['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?id=<?= $hotel['id_quarto'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

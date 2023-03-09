@@ -82,14 +82,55 @@
                                 <td><?= $hotel['nif_hotel'] === "" ? "Por Preencher": $hotel['nif_hotel'] ?></td>
                                 <td><?= $hotel['status_hotel'] ?></td>
                                 <td class="text-center">
-                                  <button class="btn btn-sm btn-info">Activar</button>
-                                  <a href="detailhe-hoteis.php?id=hoteis&userId=<?= $hotel['id_hotel'] ?>&hotel=<?= $hotel['nome_hotel'] ?>" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                  </a>
-                                  <!-- Eliminar -->
-                                  <a href="hoteis.php?<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                                  </a>
+                                  <div class="d-flex " style="display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                                    <?php if($hotel['status_hotel'] == "Inativo"):?> 
+                                      <form method="POST">
+                                        <button type="submit" name="<?= $aprovarHotel = 'updateActiveHotel' . $hotel['id_hotel'] ?>" class="btn btn-sm btn-info">
+                                          <i class="fas fa-check"></i>
+                                        </button>
+
+                                        <?php
+                                          if(isset($_POST[$aprovarHotel])):
+                                            $parametros = [
+                                              ":id_hotel"     => $hotel["id_hotel"],
+                                              ":status_hotel" => "Ativo"
+                                            ];
+                                            $imovelAtualizar = new Model();
+                                            $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_hotel SET status_hotel=:status_hotel
+                                            WHERE id_hotel=:id_hotel", $parametros);
+
+                                            
+                                            echo '<script> 
+                                                  swal({
+                                                    title: "Hotel activo!",
+                                                    text: "Dados atualizados",
+                                                    icon: "success",
+                                                    button: "Fechar!",
+                                                  })
+                                                </script>';
+                                            echo '<script>
+                                              setTimeout(function() {
+                                                  window.location.href="hoteis.php?id=hoteis";
+                                              }, 2000)
+                                            </script>';
+                                          endif;
+                                                              
+                                          ?>
+
+                                      </form>
+                                    <?php else:?> 
+                                      <button disabled class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                      </button>
+                                    <?php endif;?> 
+                                    <a href="detailhe-hoteis.php?id=hoteis&userId=<?= $hotel['id_hotel'] ?>&hotel=<?= $hotel['nome_hotel'] ?>" class="btn btn-primary btn-sm">
+                                      <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                    </a>
+                                    <!-- Eliminar -->
+                                    <a href="hoteis.php?id=<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                      <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
+                                    </a>
+                                  </div>
                                   <!-- Eliminar -->
                                 </td>
                               </tr>
@@ -114,6 +155,7 @@
       <!-- Container -->
     </div>
 
+   
 <!-- =============================================== -->
 <?php include "components/component-footer.php" ?>
 <!-- =============================================== -->

@@ -87,7 +87,7 @@
                                 <td><?= $hotel['data_criacao_mesa'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="detailhe-hoteis.php?<?= $hotel['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?id=<?= $hotel['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
