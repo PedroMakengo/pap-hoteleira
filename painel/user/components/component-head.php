@@ -2,16 +2,6 @@
 <?php require '../../public/verify_session_auth.php' ?>
 <!-- End Head -->
 
-<!-- Verify auth user -->
-<?php 
-  // $parametros = [":id" => $_SESSION['id'], ":status_hotel"=>"Inativo"];
-  // $userAuth = new Model();
-  // $userAuthVerify = $userAuth->EXE_QUERY("SELECT * FROM tb_hotel 
-  // WHERE id_hotel=:id AND status_hotel=:status_hotel", $parametros);
-?>
-<!-- End Head -->
-
-
 <!DOCTYPE html>
 <html lang="pt-PT">
   <head>
