@@ -40,24 +40,24 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                       <div class="row">
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Primeira Foto</label>
-                            <input type="file" class="form-control form-control-lg">
+                            <input type="file" name="foto" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Segunda Foto</label>
-                            <input type="file" class="form-control form-control-lg">
+                            <input type="file" name="foto1" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Tipo de Quarto</label>
-                            <select name="" class="form-control form-control-lg">
+                            <select name="tipo" class="form-control form-control-lg">
                               <option value="">Selecione o tipo de quarto</option>
                               <option value="Vip">Vip</option>
                               <option value="Normal">Normal</option>
@@ -68,31 +68,36 @@
                         <div class="col-lg-2">
                           <div class="form-group">
                             <label for="">Nº do Quarto</label>
-                            <input type="text" class="form-control form-control-lg">
+                            <input type="text" name="quarto" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-2">
                           <div class="form-group">
                             <label for="">Capacidade</label>
-                            <input type="text" class="form-control form-control-lg">
+                            <input type="text" name="capacidade" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Preço</label>
-                            <input type="text" class="form-control form-control-lg">
+                            <label for="">Preço </label>
+                            <input type="number" name="preco" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Nome do Hotel</label>
-                            <input type="text" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
+                            <input type="text" name="hotel" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="">Descrição</label>
-                           <textarea name="" id="" class="form-control form-control-lg"></textarea>
+                           <textarea name="descricao" id="" class="form-control form-control-lg"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <input type="submit" class="btn btn-primary" name="register-quarto" value="Registrar Quarto" id="">
                           </div>
                         </div>
                       </div>
@@ -106,6 +111,98 @@
       </div>
     </div>
 
-    <!-- Component Header -->
-    <?php require 'components/component-footer.php' ?> 
-    <!-- Component Header -->
+
+    
+<?php
+
+  if(isset($_POST['register-quarto'])):
+    // Pegando os dados 
+    $tipo       = $_POST['tipo'];
+    $quarto     = $_POST['quarto'];
+    $preco      = $_POST['preco'];
+    $capacidade = $_POST['capacidade'];
+    $hotel      = $_SESSION['id'];
+    $descricao  = $_POST['descricao'];
+
+    // Pegando a foto
+    $target        = "../assets/__storage/" . basename($_FILES['foto']['name']);
+    $foto          = $_FILES['foto']['name'];
+
+    $target1        = "../assets/__storage/" . basename($_FILES['foto1']['name']);
+    $foto1          = $_FILES['foto1']['name'];
+
+    $parametros = [
+      ":quarto"     => $quarto,
+      ":tipo"       => $tipo,
+      ":capacidade" => $capacidade,
+      ":preco"      => $preco,
+      ":descricao"  => $descricao,
+      ":foto"       => $foto,
+      ":foto1"      => $foto1,
+      ":statusQ"    => "Disponível",
+      ":id"         => $hotel
+    ];
+
+    $inserirQuarto = new Model();
+    $inserirQuarto->EXE_NON_QUERY("INSERT INTO tb_quartos 
+      (
+        quarto, 
+        tipo_quarto,
+        capacidade_quarto,
+        preco_quarto,
+        descricao_quarto,
+        foto_primeira_quarto, 
+        foto_segunda_quarto,
+        status_quarto,
+        data_criacao_quarto,
+        data_atualizacao_quarto,
+        id_hotel 
+      ) 
+      VALUES 
+      (
+      :quarto, 
+      :tipo, 
+      :capacidade, 
+      :preco, 
+      :descricao,
+      :foto,
+      :foto1,
+      :statusQ,
+      now(),
+      now(),
+      :id)", $parametros);
+
+    if($inserirQuarto):
+      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+          $sms = "Não foi possível fazer o upload";
+      endif;
+      if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+          $sms = "Não foi possível fazer o upload";
+      endif;
+      echo '<script> 
+            swal({
+              title: "Dados inseridos!",
+              text: "Dados inseridos com sucesso",
+              icon: "success",
+              button: "Fechar!",
+            })
+          </script>';
+      echo '<script>
+        setTimeout(function() {
+            window.location.href="quartos.php?id=quartos";
+        }, 2000)
+      </script>';
+
+    else:
+      echo "Não foi possível";
+    endif;
+  endif;
+  ?>
+
+  <!-- Component Header -->
+  <?php require 'components/component-footer.php' ?> 
+  <!-- Component Header -->

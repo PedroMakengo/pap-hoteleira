@@ -2,13 +2,43 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
-<!-- Component Head -->
+<!-- Component Buscando daddos de todos quartos -->
 <?php
   $parametros = [":id" => $_SESSION['id']];
   $listQuartos = new Model();
   $listDetailsQuartos = $listQuartos->EXE_QUERY("SELECT * FROM tb_quartos WHERE id_hotel=:id", $parametros);
 ?> 
-<!-- Component Head -->
+<!-- Component -->
+
+<!-- Eliminar Quartos -->
+<?php 
+    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+    $id = $_GET['id'];
+    $parametros  =[
+        ":id"=>$id
+    ];
+    $delete = new Model();
+    $delete->EXE_NON_QUERY("DELETE FROM tb_quartos WHERE id_quarto=:id", $parametros);
+    if($delete == true):
+      echo '<script> 
+              swal({
+                title: "Dados eliminados!",
+                text: "Dados eliminados com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="quartos.php?id=quartos";
+          }, 1000)
+      </script>';
+    else:
+        echo "<script>window.alert('Operação falhou');</script>";
+    endif;
+endif;
+?>
+<!-- Eliminar Quartos -->
 
 
     <div class="dashboard-main-wrapper">
@@ -87,7 +117,7 @@
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
-                                    <a href="quartos.php?<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="quartos.php?id=<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->

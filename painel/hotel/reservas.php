@@ -22,6 +22,62 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
 ?> 
 <!-- Component Reservas -->
 
+<!-- Eliminar Quartos -->
+<?php 
+  if (isset($_GET['action']) && $_GET['action'] == 'deleteQuarto'):
+    $id = $_GET['id'];
+    $parametros  =[
+        ":id"=>$id
+    ];
+    $delete = new Model();
+    $delete->EXE_NON_QUERY("DELETE FROM tb_reservas WHERE id_reserva=:id", $parametros);
+    if($delete == true):
+      echo '<script> 
+              swal({
+                title: "Dados eliminados!",
+                text: "Dados eliminados com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="reservas.php?id=reservas";
+          }, 1000)
+      </script>';
+    else:
+        echo "<script>window.alert('Operação falhou');</script>";
+    endif;
+  endif;
+
+  if (isset($_GET['action']) && $_GET['action'] == 'deleteMesa'):
+    $id = $_GET['id'];
+    $parametros  =[
+        ":id"=>$id
+    ];
+    $delete = new Model();
+    $delete->EXE_NON_QUERY("DELETE FROM tb_mesa_reservas WHERE id_reserva_mesa=:id", $parametros);
+    if($delete == true):
+      echo '<script> 
+              swal({
+                title: "Dados eliminados!",
+                text: "Dados eliminados com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="reservas.php?id=reservas";
+          }, 1000)
+      </script>';
+    else:
+        echo "<script>window.alert('Operação falhou');</script>";
+    endif;
+  endif;
+?>
+<!-- Eliminar Quartos -->
+
 
     <div class="dashboard-main-wrapper">
       <!-- Component Header -->
@@ -110,7 +166,7 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
                                                 <!-- Eliminar -->
-                                                <a href="restaurante.php?<?= $details['id_reserva'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                                <a href="reservas.php?id=<?= $details['id_reserva'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
                                                   <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                                 </a>
                                                 <!-- Eliminar -->
@@ -120,7 +176,7 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                           endforeach;
                                         else:  ?>
                                           <tr>
-                                            <td>Não existe nenhum registro</td>
+                                            <td colspan="12" class="text-center">Não existe nenhum registro</td>
                                           </tr>
                                         <?php 
                                         endif;
@@ -162,7 +218,7 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                 <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                                 <td class="text-center">
                                                   <!-- Eliminar -->
-                                                  <a href="reservas.php?<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                                  <a href="reservas.php?id=<?= $details['id_reserva_mesa'] ?>&action=deleteMesa" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                                   </a>
                                                   <!-- Eliminar -->

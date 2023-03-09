@@ -41,6 +41,7 @@
     />
 
     <link rel="stylesheet" href="../../assets/css/dashboard.css" />
+    <script src="../../assets/js/template/sweetalert.min.js"></script>
     <title>Sistema de Gestão Hoteleira</title>
   </head>
 
