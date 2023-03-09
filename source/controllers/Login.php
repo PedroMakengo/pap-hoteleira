@@ -57,14 +57,30 @@
           endforeach;
           echo "<script>location.href='painel/hotel/index.php?id=home'</script>";
         else:
-          echo '<script>
-                swal({
-                  title: "Opps!",
-                  text: "Infelizmente este usuário não foi encontrado",
-                  icon: "error",
-                  button: "Fechar!",
-                })
-              </script>';
+
+          // (3) Analisando o login do usuário Normal 
+          $loginUserHospede = $login->EXE_QUERY("SELECT * FROM tb_hospedes WHERE 
+            email_hospede=:email AND senha_hospede=:senha", $parametros);
+          if($loginUserHospede):
+            foreach($loginUserHospede as $details):
+              $_SESSION['id']     = addslashes($details['id_hospede']);
+              $_SESSION['nome']   = addslashes($details['nome_hospede']);
+              $_SESSION['email']  = addslashes($details['email_hospede']);
+              $_SESSION['senha']  = addslashes($details['senha_hospede']);
+              $_SESSION['foto']   = addslashes($details['foto_hospedes']);
+              $_SESSION['genero'] = addslashes($details['genero_hospedes']);
+            endforeach;
+            echo "<script>location.href='painel/user/index.php?id=home'</script>";
+          else:
+            echo '<script>
+            swal({
+              title: "Opps!",
+              text: "Infelizmente este usuário não foi encontrado",
+              icon: "error",
+              button: "Fechar!",
+            })
+            </script>';
+          endif;
         endif;
       endif;
     endif;

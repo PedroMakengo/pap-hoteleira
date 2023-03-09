@@ -57,7 +57,7 @@
                         <div class="col-lg-2">
                           <div class="form-group">
                             <label for="">Classificação:</label>
-                            <input type="text" placeholder="ex: Muito Bom" name="classificacao" class="form-control form-control-lg">
+                            <input type="number" placeholder="ex: Muito Bom" name="classificacao" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-2">
