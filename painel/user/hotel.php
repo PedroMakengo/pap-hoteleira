@@ -3,12 +3,8 @@
 <!-- Component Head -->
 
 <?php
-  $parametros = [":id" => $_SESSION['id']];
-  $listReservas = new Model();
-  $listDetailsReservas = $listReservas->EXE_QUERY("SELECT * FROM tb_reservas 
-    INNER JOIN tb_hospedes ON tb_reservas.id_hospede=tb_hospedes.id_hospede 
-    INNER JOIN tb_quartos ON tb_reservas.id_quarto=tb_quartos.id_quarto
-    WHERE tb_reservas.id_hospede=:id", $parametros);
+  $listHotel = new Model();
+  $listDetailsHoteis = $listHotel->EXE_QUERY("SELECT * FROM tb_hotel");
 ?> 
 
 <div class="dashboard-main-wrapper">
@@ -24,60 +20,45 @@
         <div class="ecommerce-widget bg-white p-5">
           <div class="row mb-4">
             <div class="col-lg-6">
-              <h4>Lista de Reservas de Quarto</h4>
+              <h3>Listagem dos Hoteis</h3>
             </div>
             <div class="col-lg-12"><hr /></div>
           </div>
 
           <div class="row">
             <div class="col-lg-12">
-              <div class="table-responsive bg-white p-2">
-                <table class="table" id="tabela">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Tipo de Quarto</th>
-                      <th>Capacidade Quarto</th>
-                      <th>Preço do Quarto</th>
-                      <th>Status</th>
-                      <th>Data de Registro</th>
-                      <th class="text-center">Ações</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <?php 
+                  if($listDetailsHoteis): ?>
+                  <div class="row">
                     <?php 
-                      if($listDetailsReservas):
-                        foreach($listDetailsReservas as $details):
-                        ?>
-                          <tr>
-                            <td><?= $details['id_reserva'] ?></td>
-                            <td><?= $details['tipo_quarto'] ?></td>
-                            <td><?= $details['capacidade_quarto'] ?></td>
-                            <td><?= $details['preco_quarto'] . " kz" ?></td>
-                            <td><?= $details['status_quarto'] ?></td>
-                            <td><?= $details['data_criacao_quarto'] ?></td>
-                            <td class="text-center">
-                              <a href="#" class="btn btn-primary btn-sm">
-                                <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                              <a href="index.php?id=<?= $details['id_reserva'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                            </td>
-                          </tr>
-                        <?php 
-                        endforeach;
-                      else:  ?>
-                        <tr>
-                          <td>Não existe registro</td>
-                        </tr>
+                      foreach($listDetailsHoteis as $details):
+                      ?>
+                        <div class="col-lg-4">
+                          <div class="card">
+                            <?php if($details['foto_hotel'] == ""): ?>
+                            <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/default.jpg" alt="Card image cap">
+                            <?php else: ?>
+                            <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/<?= $details['foto_hotel'] ?>" alt="Card image cap">
+                            <?php endif; ?>
+                            <div class="card-body">
+                              <h3 class="card-title"><?= $details['nome_hotel'] ?></h3>
+                              <p class="card-text">
+                                <?= $details['descricao_hotel'] == "" ? "Em atualização": $details['descricao_hotel']   ?>
+                              </p>
+                              <small>Endereço:
+                                <?= $details['endereco_hotel'] == "" ? "Por definir":$details['endereco_hotel']?>
+                              </small>
+                              <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
+                            </div>
+                          </div>
+                        </div>
                       <?php 
-                      endif;
-                    ?>
-                  </tbody>
-                </table>
+                      endforeach;
+                      ?>
+                  </div>
+                  <?php else:  ?>
+                  <div>Não existe nenhum registro</div>
+                  <?php endif;?>
               </div>
             </div>
           </div>
