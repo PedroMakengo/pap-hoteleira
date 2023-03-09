@@ -2,6 +2,15 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
+<!-- Component Head -->
+<?php
+  $parametros = [":id" => $_SESSION['id']];
+  $listQuartos = new Model();
+  $listDetailsQuartos = $listQuartos->EXE_QUERY("SELECT * FROM tb_quartos WHERE id_hotel=:id", $parametros);
+?> 
+<!-- Component Head -->
+
+
     <div class="dashboard-main-wrapper">
     <!-- Component Head -->
     <?php require 'components/component-header.php' ?> 
@@ -34,11 +43,11 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Listagem de hotéis</h4>
+                    <h4>Listagem de Quartos</h4>
                   </div>
                   <div class="col-lg-6 text-right">
                     <a
-                      href="register-quarto.html"
+                      href="register-quarto.php"
                       class="btn btn-primary btn-small"
                       >Novo Quarto</a
                     >
@@ -53,32 +62,46 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Foto de capa</th>
-                            <th>Título</th>
-                            <th>Lidos</th>
+                            <th>Tipo de Quarto</th>
+                            <th>Capacidade Quarto</th>
+                            <th>Preço do Quarto</th>
+                            <th>Status</th>
+                            <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td><a href="#">Baixar agora</a></td>
-                            <td>25</td>
-                            <td>200kz</td>
-                            <td class="text-center">
-                              <a
-                                href="detalhe-fronteira.html"
-                                class="btn btn-primary btn-sm add-plus"
-                              >
-                                <i class="bx bx-plus fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                              <a href="#" class="btn btn-danger btn-sm add-plus">
-                                <i class="bx bx-trash fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
-                            </td>
-                          </tr>
+                          <?php 
+                            if($listDetailsQuartos):
+                              foreach($listDetailsQuartos as $details):
+                              ?>
+                                <tr>
+                                  <td><?= $details['id_quarto'] ?></td>
+                                  <td><?= $details['tipo_quarto'] ?></td>
+                                  <td><?= $details['capacidade_quarto'] ?></td>
+                                  <td><?= $details['preco_quarto'] . " kz" ?></td>
+                                  <td><?= $details['status_quarto'] ?></td>
+                                  <td><?= $details['data_criacao_quarto'] ?></td>
+                                  <td class="text-center">
+                                    <a href="#" class="btn btn-primary btn-sm">
+                                      <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
+                                    </a>
+                                    <!-- Eliminar -->
+                                    <a href="quartos.php?<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                      <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
+                                    </a>
+                                    <!-- Eliminar -->
+                                  </td>
+                                </tr>
+                              <?php 
+                              endforeach;
+                            else:  ?>
+                              <tr>
+                                <td>Não existe usuário registrado</td>
+                              </tr>
+                            <?php 
+                            endif;
+                          ?>
                         </tbody>
                       </table>
                     </div>
