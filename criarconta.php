@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/loginCount.css" />
-    <title>Criar Conta</title>
+    <title>Sistema de Gestão Hoteleira</title>
   </head>
   <body>
     <div class="container">

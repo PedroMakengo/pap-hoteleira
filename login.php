@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/loginCount.css" />
 
-    <title>Tela de Login</title>
+    <title>Sistema de Gestão Hoteleira</title>
     <script src="./assets/js/template/sweetalert.min.js"></script>
   </head>
   <body>
