@@ -77,6 +77,19 @@ resize: none;
 padding-top: 1rem;
 }
 
+
+form .field-input .radio input{
+  height: 1.5rem;
+  display: inline;
+cursor: pointer;
+  
+  }
+  .genero{
+  display: flex;
+  padding: 2rem 0 0 0;
+  color: #7a7878;
+ gap: 1rem;
+  }
 .content-right {
   width: 100%;
   height: 100%;
