@@ -15,26 +15,21 @@
     <script defer src="https://unpkg.com/phosphor-icons"></script>
     <script defer src="./assets/js/scrollreveal.js"></script>
     <script defer src="./assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <title>Sistema de Gestão Hoteleira</title>
   </head>
   <body>
     <div id="container">
       <header id="header">
-        <div class="header-top">
+      <div class="header-top">
           <div class="logo">
             <a href="">
               <img src="./assets/images/logo.svg" alt="" />
             </a>
           </div>
-          
-        <div class="hamburger">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-         </div>
 
-          <nav class='nav-bar'>
+          <nav id="nav-bar" class=''>
             <ul>
               <li><a href="/" class="active">Home</a></li>
               <li><a href="#about">Sobre Nos</a></li>
@@ -47,6 +42,22 @@
             <a href="login.php" class="button">Iniciar Sessão</a>
           </div>
          </nav>
+
+         <i class="bi bi-list" id="open-menu"></i>
+         <nav id='mobile-nav' class="">
+          <i class="bi bi-x-lg" id="close-menu"></i>
+          <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="#about">Sobre Nos</a></li>
+            <li><a href="#hotel">Hoteis</a></li>
+            <li><a href="#rooms">Quartos</a></li>
+            <li><a href="#restaurante">Restaurante</a></li>
+          </ul>
+          <div class="button-mobile">
+          <a href="login.php" class="button">Criar Conta</a>
+          <a href="login.php" class="button">Iniciar Sessão</a>
+        </div>
+       </nav>
          
         </div>
 
