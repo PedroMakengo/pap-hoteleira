@@ -3,12 +3,9 @@
 <!-- Component Head -->
 
 <?php
-  $parametros = [":id" => $_SESSION['id']];
-  $listReservas = new Model();
-  $listDetailsReservas = $listReservas->EXE_QUERY("SELECT * FROM tb_reservas 
-    INNER JOIN tb_hospedes ON tb_reservas.id_hospede=tb_hospedes.id_hospede 
-    INNER JOIN tb_quartos ON tb_reservas.id_quarto=tb_quartos.id_quarto
-    WHERE tb_reservas.id_hospede=:id", $parametros);
+  $listRestaurantes = new Model();
+  $listRestaurantesDetalhes = $listRestaurantes->EXE_QUERY("SELECT * FROM tb_restaurante 
+  INNER JOIN tb_hotel ON tb_restaurante.id_hotel=tb_hotel.id_hotel");
 ?> 
 
 <div class="dashboard-main-wrapper">
@@ -24,7 +21,7 @@
         <div class="ecommerce-widget bg-white p-5">
           <div class="row mb-4">
             <div class="col-lg-6">
-              <h4>Lista de Reservas de Quarto</h4>
+              <h4>Lista de Restaurantes</h4>
             </div>
             <div class="col-lg-12"><hr /></div>
           </div>
@@ -36,42 +33,37 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Tipo de Quarto</th>
-                      <th>Capacidade Quarto</th>
-                      <th>Preço do Quarto</th>
-                      <th>Status</th>
+                      <th>Hotel</th>
+                      <th>Nome do Restaurante</th>
+                      <th>Classificação</th>
+                      <th>Nº Mesas</th>
                       <th>Data de Registro</th>
                       <th class="text-center">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
-                      if($listDetailsReservas):
-                        foreach($listDetailsReservas as $details):
+                      if($listRestaurantesDetalhes):
+                        foreach($listRestaurantesDetalhes as $details):
                         ?>
                           <tr>
-                            <td><?= $details['id_reserva'] ?></td>
-                            <td><?= $details['tipo_quarto'] ?></td>
-                            <td><?= $details['capacidade_quarto'] ?></td>
-                            <td><?= $details['preco_quarto'] . " kz" ?></td>
-                            <td><?= $details['status_quarto'] ?></td>
-                            <td><?= $details['data_criacao_quarto'] ?></td>
+                            <td><?= $details['id_restaurante'] ?></td>
+                            <td><?= $details['nome_hotel'] ?></td>
+                            <td><?= $details['nome_restaurante'] ?></td>
+                            <td><?= $details['classificacao_restaurante'] ?></td>
+                            <td><?= $details['num_mesas_restaurante'] ?></td>
+                            <td><?= $details['data_criacao_restaurante'] ?></td>
                             <td class="text-center">
-                              <a href="#" class="btn btn-primary btn-sm">
-                                <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
+                              <a href="detalhes-restaurante.php?id=restaurante&userId=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                               </a>
-                              <!-- Eliminar -->
-                              <a href="index.php?id=<?= $details['id_reserva'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                              </a>
-                              <!-- Eliminar -->
                             </td>
                           </tr>
                         <?php 
                         endforeach;
                       else:  ?>
                         <tr>
-                          <td>Não existe registro</td>
+                          <td colspan="12" class="text-center">Não existe registro</td>
                         </tr>
                       <?php 
                       endif;

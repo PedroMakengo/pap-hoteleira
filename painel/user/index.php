@@ -71,7 +71,7 @@
                         endforeach;
                       else:  ?>
                         <tr>
-                          <td>Não existe registro</td>
+                          <td colspan="12" class="text-center">Não existe registro</td>
                         </tr>
                       <?php 
                       endif;

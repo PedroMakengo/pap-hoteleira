@@ -20,7 +20,7 @@
         <div class="ecommerce-widget bg-white p-5">
           <div class="row mb-4">
             <div class="col-lg-6">
-              <h3>Detalhes do Quarto</h3>
+              <h3>Detalhes do Restaurante</h3>
             </div>
             <div class="col-lg-12"><hr /></div>
           </div>
