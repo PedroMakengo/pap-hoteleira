@@ -55,35 +55,12 @@
                     />
                   </label>
                 </div>
-
-                <div class="field-input">
-                  <label for="file">
-                    Foto
-                    <input
-                      class="file"
-                      type="file"
-                      id="file"
-                      placeholder="confirme sua senha"
-                    />
-                  </label>
-                </div>
-
-                <div class="field-input">
-                  <div class="radio">
-                  <label for="genero">Genero:
-                    <div class="genero">
-                    <input type="radio" name="gen" class="genero"> masculino
-                    <input type="radio" name="gen" class="genero">Femnino
-                  </div>
-                </label>
-                </div>
-              </div>
               </div>
 
               <div class="form-flex-right">
                 <div class="field-input">
                   <label for="bi">
-                    BI
+                    NIF
                     <input type="text" id="bi" placeholder="digite o seu nif" />
                   </label>
                 </div>
@@ -105,28 +82,7 @@
                     <input
                       type="text"
                       id="cidade"
-                      placeholder="confirme sua senha"
-                    />
-                  </label>
-                </div>
-
-                <div class="field-input">
-                  <label for="cidade">
-                    Telefone
-                    <input
-                      type="number"
-                      id="cidade"
-                      placeholder="confirme sua senha"
-                    />
-                  </label>
-                </div>
-                <div class="field-input">
-                  <label for="data_nasc">
-                    Data_Nascimento
-                    <input
-                      type="data"
-                      id="data_nasc"
-                      placeholder="confirme sua senha"
+                      placeholder="ex: Luanda"
                     />
                   </label>
                 </div>
@@ -135,6 +91,12 @@
 
             <div class="field-input">
               <input type="submit" name="" value="Cadastrar" class="submit" />
+            </div>
+
+            <div class="count" style="text-align: center;">
+              <div class="forgot-password">
+                <p>Tens uma conta ? <a href="login.php">Login</a></p>
+              </div>
             </div>
           </form>
         </div>
