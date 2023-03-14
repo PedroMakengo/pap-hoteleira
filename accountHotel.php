@@ -1,3 +1,10 @@
+<?php
+  require 'source/model/Config.php';
+  require 'source/model/Model.php';
+  session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -13,6 +20,8 @@
     <title>Sistema de Gestão Hoteleira</title>
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/cadastro.css" />
+
+    <script src="./assets/js/template/sweetalert.min.js"></script>
   </head>
  
   <body>
@@ -20,7 +29,7 @@
       <section class="content-left">
         <div class="form-content">
           <h1>Cadastro de Hotel</h1>
-          <form action="">
+          <form method="POST">
             <div class="form-flex">
               <div class="form-flex-left">
                 <div class="field-input">
@@ -29,6 +38,7 @@
                     <input
                       type="text"
                       id="name"
+                      name="nome"
                       placeholder="Insira seu nome"
                     />
                   </label>
@@ -40,6 +50,7 @@
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       placeholder="Insira seu email"
                     />
                   </label>
@@ -51,6 +62,7 @@
                     <input
                       type="password"
                       id="password"
+                      name="senha"
                       placeholder="Insira sua senha"
                     />
                   </label>
@@ -61,7 +73,7 @@
                 <div class="field-input">
                   <label for="bi">
                     NIF
-                    <input type="text" id="bi" placeholder="digite o seu nif" />
+                    <input type="text" id="bi"  name="nif" placeholder="digite o seu nif" />
                   </label>
                 </div>
 
@@ -71,6 +83,7 @@
                     <input
                       type="text"
                       id="endereco"
+                      name="endereco"
                       placeholder="confirme sua senha"
                     />
                   </label>
@@ -82,6 +95,7 @@
                     <input
                       type="text"
                       id="cidade"
+                      name="cidade"
                       placeholder="ex: Luanda"
                     />
                   </label>
@@ -90,7 +104,7 @@
             </div>
 
             <div class="field-input">
-              <input type="submit" name="" value="Cadastrar" class="submit" />
+              <input type="submit" name="accountHotel" value="Cadastrar" class="submit" />
             </div>
 
             <div class="count" style="text-align: center;">
@@ -105,3 +119,8 @@
     </div>
   </body>
 </html>
+
+
+<!-- =============================================== -->
+<?php include "source/controllers/CriarUserHotel.php" ?>
+<!-- =============================================== -->
