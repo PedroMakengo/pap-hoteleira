@@ -30,8 +30,8 @@
           <form method="POST" id="form">
             <div class="field-input">
               <label for="name">
-                Email
-                <input type="email" id="name" name="email" placeholder="Insira seu email" />
+                Nome
+                <input type="text" id="name" name="nome" placeholder="Insira seu nome" />
               </label>
             </div>
             <div class="field-input">

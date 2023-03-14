@@ -18,17 +18,17 @@
         </script>';
       // echo "<script>window.alert('Por favor preenche todos os campos')</script>";
     else:
-      $email = $_POST['email'];
+      $nome = $_POST['nome'];
       $pass  = $_POST['password'];
 
       $parametros = [
-        ":email"  => $email,
+        ":nome"  => $nome,
         ":senha"   => md5(md5($pass))
       ];
       // (1) Efectuando o login do Administrador
       $login = new Model();
       $loginAdmin = $login->EXE_QUERY("SELECT * FROM tb_admin WHERE 
-      email=:email AND senha=:senha", $parametros);
+      nome=:nome AND senha=:senha", $parametros);
       if($loginAdmin):
         // Sessão do administrador
         foreach($loginAdmin as $mostrar):
@@ -43,7 +43,7 @@
 
         // (2) Analisando o login do usuário Hotel
         $loginUserHotel = $login->EXE_QUERY("SELECT * FROM tb_hotel WHERE 
-        email_hotel=:email AND senha_hotel=:senha", $parametros);
+        nome_hotel=:nome AND senha_hotel=:senha", $parametros);
         if($loginUserHotel):
           // Trabalhar na sessão do usuário hotel
           foreach($loginUserHotel as $details):
@@ -60,7 +60,7 @@
 
           // (3) Analisando o login do usuário Normal 
           $loginUserHospede = $login->EXE_QUERY("SELECT * FROM tb_hospedes WHERE 
-            email_hospede=:email AND senha_hospede=:senha", $parametros);
+            nome_hospede=:nome AND senha_hospede=:senha", $parametros);
           if($loginUserHospede):
             foreach($loginUserHospede as $details):
               $_SESSION['id']     = addslashes($details['id_hospede']);

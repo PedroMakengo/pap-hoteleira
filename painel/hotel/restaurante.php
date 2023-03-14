@@ -112,6 +112,9 @@ endif;
                                   <td><?= $details['num_mesas_restaurante'] ?></td>
                                   <td><?= $details['data_criacao_restaurante'] ?></td>
                                   <td class="text-center">
+                                    <a href="register-mesa-restaurante.php?id=<?= $details['id_restaurante'] ?>" class="btn btn-info btn-sm">
+                                      <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                    </a>
                                     <a href="#" class="btn btn-primary btn-sm">
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
@@ -126,7 +129,7 @@ endif;
                               endforeach;
                             else:  ?>
                               <tr>
-                                <td>Não existe nenhum registro</td>
+                                <td colspan="12">Não existe nenhum registro</td>
                               </tr>
                             <?php 
                             endif;

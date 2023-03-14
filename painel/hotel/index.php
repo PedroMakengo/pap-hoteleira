@@ -105,7 +105,7 @@
           </div>
 
           <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
               <div class="card">
                 <div class="card-header">
                   <h5 class="mb-0">Registro Mensal de Reservas de Quartos</h5>
@@ -114,6 +114,18 @@
                   <div class="charts mt-2">
                     <canvas id="mychart" style="height: 350px"></canvas>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">Registro Mensal de Reservas de Mesas</h5>
+                </div>
+                <div class="card-body">
+                  <!-- <div class="charts mt-2">
+                    <canvas id="mychart" style="height: 350px"></canvas>
+                  </div> -->
                 </div>
               </div>
             </div>

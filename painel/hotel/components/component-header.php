@@ -93,6 +93,11 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
+                ><i class="fa fa-fw fa-user-circle"></i>Perfil
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link " href="?logout=true"
                 ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
               </a>
