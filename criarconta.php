@@ -1,3 +1,11 @@
+<?php
+  require 'source/model/Config.php';
+  require 'source/model/Model.php';
+  session_start();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -13,23 +21,25 @@
     <link rel="stylesheet" href="./assets/css/global.css" />
     <link rel="stylesheet" href="./assets/css/loginCount.css" />
     <title>Sistema de Gestão Hoteleira</title>
+
+    <script src="./assets/js/template/sweetalert.min.js"></script>
   </head>
   <body>
     <div class="container">
       <section id="content-left">
         <div class="form-content">
           <h1>Criar Conta</h1>
-          <form action="" id="form">
+          <form method="POST" id="form">
             <div class="field-input">
               <label for="name">
                 Nome do Usuário
-                <input type="text" id="name" placeholder="Insira seu nome" />
+                <input type="text" name="nome" id="name" required placeholder="Insira seu nome" />
               </label>
             </div>
             <div class="field-input">
               <label for="email">
                 Email
-                <input type="email" id="email" placeholder="Insira seu email" />
+                <input type="email" name="email" id="email" required placeholder="Insira seu email" />
               </label>
             </div>
             <div class="field-input">
@@ -38,18 +48,9 @@
                 <input
                   type="password"
                   id="password"
+                  name="senha"
+                  required
                   placeholder="Insira sua senha"
-                />
-              </label>
-            </div>
-
-            <div class="field-input">
-              <label for="password">
-                Confirme sua senha
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="confirme sua senha"
                 />
               </label>
             </div>
@@ -65,7 +66,7 @@
             </div>
             -->
             <div class="field-input">
-              <input type="submit" name="" value="Entrar" class="submit" />
+              <input type="submit" name="criarconta" value="Criar conta" class="submit" />
             </div>
             <div class="count">
               <div class="forgot-password">
@@ -79,3 +80,7 @@
     </div>
   </body>
 </html>
+
+<!-- =============================================== -->
+<?php include "source/controllers/CriarUserHospede.php" ?>
+<!-- =============================================== -->
