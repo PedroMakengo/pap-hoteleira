@@ -15,21 +15,24 @@
     <script defer src="https://unpkg.com/phosphor-icons"></script>
     <script defer src="./assets/js/scrollreveal.js"></script>
     <script defer src="./assets/js/main.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
 
     <title>Sistema de Gestão Hoteleira</title>
   </head>
   <body>
     <div id="container">
       <header id="header">
-      <div class="header-top">
+        <div class="header-top">
           <div class="logo">
             <a href="">
               <img src="./assets/images/logo.svg" alt="" />
             </a>
           </div>
 
-          <nav id="nav-bar" class=''>
+          <nav id="nav-bar" class="">
             <ul>
               <li><a href="/" class="active">Home</a></li>
               <li><a href="#about">Sobre Nos</a></li>
@@ -38,29 +41,27 @@
               <li><a href="#restaurante">Restaurante</a></li>
             </ul>
             <div>
-            <a href="login.php" class="button">Criar Conta</a>
-            <a href="login.php" class="button">Iniciar Sessão</a>
-          </div>
-         </nav>
+              <a href="login.php" class="button">Criar Conta</a>
+              <a href="login.php" class="button">Iniciar Sessão</a>
+            </div>
+          </nav>
 
-         <i class="bi bi-list" id="open-menu"></i>
-         <nav id='mobile-nav' class="">
-          <i class="bi bi-x-lg" id="close-menu"></i>
-          <ul>
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="#about">Sobre Nos</a></li>
-            <li><a href="#hotel">Hoteis</a></li>
-            <li><a href="#rooms">Quartos</a></li>
-            <li><a href="#restaurante">Restaurante</a></li>
-          </ul>
-          <div class="button-mobile">
-          <a href="login.php" class="button">Criar Conta</a>
-          <a href="login.php" class="button">Iniciar Sessão</a>
+          <i class="bi bi-list" id="open-menu"></i>
+          <nav id="mobile-nav" class="">
+            <i class="bi bi-x-lg" id="close-menu"></i>
+            <ul>
+              <li><a href="/" class="active">Home</a></li>
+              <li><a href="#about">Sobre Nos</a></li>
+              <li><a href="#hotel">Hoteis</a></li>
+              <li><a href="#rooms">Quartos</a></li>
+              <li><a href="#restaurante">Restaurante</a></li>
+            </ul>
+            <div class="button-mobile">
+              <a href="login.php" class="button">Criar Conta</a>
+              <a href="login.php" class="button">Iniciar Sessão</a>
+            </div>
+          </nav>
         </div>
-       </nav>
-         
-        </div>
-
         <div class="header-cols">
           <div class="header-cols-a">
             <h1>Encontre um hotel 5 estrelas -</h1>
@@ -68,7 +69,6 @@
         </div>
       </header>
       <main id="main">
-
         <!-- Section Hotel -->
         <section id="hotel-img">
           <img src="./assets/images/Rectangle.png" alt="" />
@@ -149,69 +149,69 @@
         <!-- Section Services -->
         <section id="services">
           <div class="services-content">
-          <div class="services-header">
-            <h4>What we do</h4>
-            <h2>Discover Our Services</h2>
-            <p>
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat.
-            </p>
-          </div>
-          <div class="services-cards">
-            <div class="service-card">
-              <i class="ph-airplane-light"></i>
-              <h2 class="services-subtitle">Travel Plan</h2>
+            <div class="services-header">
+              <h4>What we do</h4>
+              <h2>Discover Our Services</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
+                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                amet sint. Velit officia consequat.
               </p>
             </div>
+            <div class="services-cards">
+              <div class="service-card">
+                <i class="ph-airplane-light"></i>
+                <h2 class="services-subtitle">Travel Plan</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
 
-            <div class="service-card">
-              <i class="ph-fork-knife-light"></i>
-              <h2 class="services-subtitle">Catering Service</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
+              <div class="service-card">
+                <i class="ph-fork-knife-light"></i>
+                <h2 class="services-subtitle">Catering Service</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
 
-            <div class="service-card">
-              <i class="ph-bed-light"></i>
-              <h2 class="services-subtitle">Babysitting</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
+              <div class="service-card">
+                <i class="ph-bed-light"></i>
+                <h2 class="services-subtitle">Babysitting</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
 
-            <div class="service-card">
-              <i class="ph-coat-hanger-light"></i>
-              <h2 class="services-subtitle">Laundry</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
+              <div class="service-card">
+                <i class="ph-coat-hanger-light"></i>
+                <h2 class="services-subtitle">Laundry</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
 
-            <div class="service-card">
-              <i class="ph-airplane-light"></i>
-              <h2 class="services-subtitle">Hire Driver</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
+              <div class="service-card">
+                <i class="ph-airplane-light"></i>
+                <h2 class="services-subtitle">Hire Driver</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
 
-            <div class="service-card">
-              <i class="ph-martini-light"></i>
-              <h2 class="services-subtitle">Bar & Drink</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
+              <div class="service-card">
+                <i class="ph-martini-light"></i>
+                <h2 class="services-subtitle">Bar & Drink</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+              </div>
             </div>
-          </div>
           </div>
         </section>
 
@@ -250,7 +250,6 @@
           </div>
 
           <div class="rooms-grid">
-
             <div class="rooms-left">
               <div class="room">
                 <img src="./assets/images/room01.png" alt="" />
@@ -265,15 +264,12 @@
               </div>
             </div>
             <div class="rooms-middle">
-           
-            <div class="room">
-              <img src="./assets/images/room03.png" alt="" />
-              <h5>3 GUEST</h5>
-              <p>Room with View</p>
+              <div class="room">
+                <img src="./assets/images/room03.png" alt="" />
+                <h5>3 GUEST</h5>
+                <p>Room with View</p>
+              </div>
             </div>
-
-           </div>
-
 
             <div class="rooms-right">
               <div class="room">
@@ -287,12 +283,9 @@
                 <h5>3 GUEST</h5>
                 <p>Room with View</p>
               </div>
-            
             </div>
-
           </div>
         </section>
-
       </main>
 
       <footer id="footer">
@@ -345,7 +338,6 @@
           </ul>
         </div>
       </footer>
-
     </div>
   </body>
 </html>
