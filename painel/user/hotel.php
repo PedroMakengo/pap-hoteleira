@@ -48,7 +48,7 @@
                               <small>Endereço:
                                 <?= $details['endereco_hotel'] == "" ? "Por definir":$details['endereco_hotel']?>
                               </small>
-                              <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
+                              <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>&userHotel=<?= $details['nome_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
                             </div>
                           </div>
                         </div>

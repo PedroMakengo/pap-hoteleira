@@ -9,6 +9,7 @@
 <script>
   $('#tabela').dataTable()
   $('#tabela1').dataTable()
+  $('#tabela2').dataTable()
 </script>
 </body>
 </html>
