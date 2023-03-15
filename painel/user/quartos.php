@@ -6,6 +6,7 @@
   $parametros = [":status_quarto" => "Disponível"];
   $listReservas = new Model();
   $listDetailsReservas = $listReservas->EXE_QUERY("SELECT * FROM tb_quartos
+  INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel
   WHERE status_quarto=:status_quarto
   ", $parametros);
 ?> 
@@ -35,6 +36,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Hotel</th>
                       <th>Tipo de Quarto</th>
                       <th>Capacidade Quarto</th>
                       <th>Preço do Quarto</th>
@@ -50,6 +52,7 @@
                         ?>
                           <tr>
                             <td><?= $details['id_quarto'] ?></td>
+                            <td><?= $details['nome_hotel'] ?></td>
                             <td><?= $details['tipo_quarto'] ?></td>
                             <td><?= $details['capacidade_quarto'] ?></td>
                             <td><?= $details['preco_quarto'] . " kz" ?></td>
