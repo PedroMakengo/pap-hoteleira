@@ -148,7 +148,7 @@ ul {
   color: #ff7500;
 }
 #why .why-header > p {
-  width: 47rem;
+  width:40%;
   margin: auto;
   font-weight: 500;
   line-height: 175.52%;
@@ -191,7 +191,8 @@ ul {
   line-height: 175.52%;
   color: #292929;
   opacity: 0.3;
-  width: 40%;
+  width: 60%;
+
 }
 
 .why-cols .why-cols-b {
@@ -249,7 +250,7 @@ ul {
 
 #rooms {
   padding: 5rem 10rem 5rem 10rem;
-  margin-top: 2rem;
+  margin-top: 2rem;w
 }
 #rooms .rooms-header {
   text-align: center;
@@ -270,7 +271,7 @@ ul {
   color: #ff7500;
 }
 #rooms .rooms-header p {
-  width: 40%;
+  width: 60%;
   line-height: 175.52%;
   margin: 0 auto;
   color: #292929;
@@ -303,16 +304,7 @@ ul {
 }
 
 /*============================ About Section ============================== */
-#about {
-  width: 100vw;
-  margin-top: 7rem;
-  margin-bottom: 2rem;
-}
-#about .about-cols {
-  display: flex;
-  margin-bottom: 2rem;
-  height: 100%;
-}
+
 
 /*================================ Footer================================*/
 #services {
@@ -380,7 +372,7 @@ ul {
 .about-cols .about-col-a {
   width: 60%;
   background-color: #121212;
-  padding: 15rem 0 0rem 10rem;
+  padding: 12rem 0 0rem 10rem;
 }
 .about-col-a h2 {
   font-size: 4.5rem;
@@ -389,7 +381,7 @@ ul {
 }
 .about-col-a h2::after {
   content: "";
-  width: 15rem;
+  width: 13rem;
   height: 0.4rem;
   background-color: #ff7500;
   border: 0.3.5rem;
@@ -403,7 +395,8 @@ ul {
   color: #ffffff;
   opacity: 0.3;
   margin-block: 2.6rem;
-  width: 63%;
+  width: 70%;
+  text-align: justify;
 }
 .about-col-a button {
   margin-top: 2rem;
