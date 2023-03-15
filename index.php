@@ -27,8 +27,11 @@
       <header id="header">
         <div class="header-top">
           <div class="logo">
-            <a href="">
-              <img src="./assets/images/logo.svg" alt="" />
+            <a href="index.php">
+              <img src="./assets/images/logo.png" alt="" />
+            </a>
+            <a href="index.php">
+              Hotelaria
             </a>
           </div>
 

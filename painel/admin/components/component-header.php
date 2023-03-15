@@ -1,7 +1,10 @@
   <!-- Header -->
   <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-      <a class="navbar-brand logo" href="/">Sistema de Gestão Hoteleiro</a>
+      <a class="navbar-brand logo" href="index.php?id=home">
+        <img src="../../assets/images/logo.png" />
+        Sistema de Gestão Hoteleiro
+      </a>
       <button
         class="navbar-toggler"
         type="button"
