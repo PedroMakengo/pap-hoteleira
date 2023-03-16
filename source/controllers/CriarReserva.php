@@ -3,10 +3,10 @@
     $datacheckin  = $_POST['datacheckin'];
     $datacheckout = $_POST['datacheckout'];
     $num_hospede  = $_POST['num_hospede'];
-
+  
     $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
     $foto         = $_FILES['foto']['name'];
-
+  
     // Verificar data 
     $today =  Date('Y-m-d');
     echo $today  ." - ". $datacheckin;
@@ -40,8 +40,7 @@
         ":comprovativo"   => $foto
       ];
       $inserirReservaQuarto = new Model();
-      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
-        (
+      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas (
           id_hospede, 
           id_quarto, 
           data_checkin_reserva, 
@@ -57,14 +56,18 @@
             :quarto, 
             :dataCheckin, 
             :dataCheckout, 
+            :num_hospede,
             :preco, 
             :statusReserva, 
-            :comprovativo
+            :comprovativo,
             now(),
             now()
         )", $parametros);
   
       if($inserirReservaQuarto):
+        // Executar a operação de atualizar o estado da reserva
+
+
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
           $sms = "Uploaded feito com sucesso";
         else:
@@ -78,11 +81,11 @@
                   button: "Fechar!",
                 })
               </script>';
-        // echo '<script>
-        //       setTimeout(function() {
-        //           window.location.href="index.php?id=home";
-        //       }, 2000)
-        //   </script>';
+        echo '<script>
+              setTimeout(function() {
+                  window.location.href="index.php?id=home";
+              }, 2000)
+          </script>';
       else:
       echo '<script>
               swal({
@@ -95,4 +98,5 @@
       endif;
     endif;
   endif;
+  
 

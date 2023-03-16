@@ -11,6 +11,36 @@
     WHERE tb_reservas.id_hospede=:id", $parametros);
 ?> 
 
+<!-- Eliminar Hotel -->
+<?php 
+     if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+      $id = $_GET['id'];
+      $parametros  =[
+          ":id"=>$id
+      ];
+      $delete = new Model();
+      $delete->EXE_NON_QUERY("DELETE FROM tb_reservas WHERE id_reserva=:id", $parametros);
+      if($delete == true):
+        echo '<script> 
+                swal({
+                  title: "Dados eliminados!",
+                  text: "Dados eliminados com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href="index.php?id=home";
+            }, 2000)
+        </script>';
+      else:
+          echo "<script>window.alert('Operação falhou');</script>";
+      endif;
+  endif;
+?>
+<!-- Eliminar Hotel -->
+
 <div class="dashboard-main-wrapper">
   
 <!-- Component Head -->

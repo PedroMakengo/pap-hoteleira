@@ -8,6 +8,10 @@
    $listMesasReservas= $mesas->EXE_QUERY("SELECT * FROM tb_mesa_reservas 
     INNER JOIN tb_mesas ON 
     tb_mesa_reservas.id_mesa=tb_mesas.id_mesa 
+    INNER JOIN tb_restaurante ON 
+    tb_mesas.id_restaurante=tb_restaurante.id_restaurante 
+    INNER JOIN tb_hotel ON 
+    tb_restaurante.id_hotel=tb_hotel.id_hotel
     INNER JOIN tb_hospedes ON 
     tb_mesa_reservas.id_hospede=tb_hospedes.id_hospede
    ");
@@ -69,6 +73,7 @@
                         <tr>
                           <th>#</th>
                           <th>Cliente</th>
+                          <th>Hotel</th>
                           <th>Mesa</th>
                           <th>Comprovativo</th>
                           <th>Status da Mesa</th>
@@ -84,6 +89,7 @@
                               <tr>
                                 <td><?= $details['id_reserva_mesa'] ?></td>
                                 <td><?= $details['nome_hospede'] ?></td>
+                                <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['nome_mesa'] ?></td>
                                 <td><?= $details['comprovativo_mesa_reserva'] ?></td>
                                 <td><?= $details['status_mesa_reserva'] ?></td>
