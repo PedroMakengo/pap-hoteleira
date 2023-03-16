@@ -66,6 +66,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Quarto</th>
                       <th>Tipo de Quarto</th>
                       <th>Capacidade Quarto</th>
                       <th>Preço do Quarto</th>
@@ -81,6 +82,7 @@
                         ?>
                           <tr>
                             <td><?= $details['id_reserva'] ?></td>
+                            <td><?= $details['quarto'] ?></td>
                             <td><?= $details['tipo_quarto'] ?></td>
                             <td><?= $details['capacidade_quarto'] ?></td>
                             <td><?= $details['preco_quarto'] . " kz" ?></td>

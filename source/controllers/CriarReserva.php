@@ -66,7 +66,11 @@
   
       if($inserirReservaQuarto):
         // Executar a operação de atualizar o estado da reserva
-
+        $parametros = [":id" => $quartoId, ":statusQuarto" => "Reservado"];
+        $atualizarQuarto = new Model();
+        $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_quartos SET
+          status_quarto=:statusQuarto
+          WHERE id_quarto=:id", $parametros);
 
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
           $sms = "Uploaded feito com sucesso";

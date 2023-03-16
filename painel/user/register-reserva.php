@@ -176,6 +176,12 @@
                   <p>Não é possível efetuar uma reserva porque o quarto encontra-se Indisponível</p>
                 </div>
               </div>
+            <?php elseif($status == 'Reservado'): ?>
+              <div class="col-lg-12 mt-4">
+                <div class="text-center">
+                  <p>Não é possível efetuar uma reserva porque o quarto encontra-se Reservado</p>
+                </div>
+              </div>
             <?php endif; ?>
           </div>
         </div>
