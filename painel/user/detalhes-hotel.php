@@ -69,7 +69,7 @@
                                       <td><?= $details['status_quarto'] ?></td>
                                       <td><?= $details['data_criacao_quarto'] ?></td>
                                       <td class="text-center">
-                                        <a title="Efetuar uma reserva" href="register-reserva.php?id=<?= $details['id_quarto'] ?>" class="btn btn-primary btn-sm">
+                                        <a title="Efetuar uma reserva" href="register-reserva.php?id=hotel&userId=<?= $details['id_quarto'] ?>" class="btn btn-primary btn-sm">
                                           <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                         </a>
                                       </td>
