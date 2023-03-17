@@ -54,6 +54,9 @@
                 <div class="col-lg-6">
                   <h4>Listagem de usuários</h4>
                 </div>
+                <div class="col-lg-6 text-right">
+                  <a href="register-user.php?id=usuarios" class="btn btn-primary btn-sm">Novo usuário</a>
+                </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
