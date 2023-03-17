@@ -9,7 +9,10 @@
     INNER JOIN tb_quartos ON 
     tb_reservas.id_quarto=tb_quartos.id_quarto
     INNER JOIN tb_hospedes ON 
-    tb_reservas.id_hospede=tb_hospedes.id_hospede");
+    tb_reservas.id_hospede=tb_hospedes.id_hospede
+    INNER JOIN tb_hotel ON 
+    tb_quartos.id_hotel=tb_hotel.id_hotel
+    ");
 ?>
 <!-- Listagem de usuários -->
 
@@ -63,13 +66,13 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="table-responsive bg-white p-2">
-                    <table class="table" id="tabela">
+                    <table class="table" id="tabela" style="width: 2220px !important">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Nome do Hospede</th>
-                          <th>Mº Quarto</th>
-                          <th>Comprovativo</th>
+                          <th>Hotel</th>
+                          <th>Quarto</th>
                           <th>Data Checkin</th>
                           <th>Data Checkout</th>
                           <th>Data Registro</th>
@@ -84,8 +87,8 @@
                               <tr>
                                 <td><?= $details['id_reserva'] ?></td>
                                 <td><?= $details['nome_hospede'] ?></td>
+                                <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['quarto'] ?></td>
-                                <td><?= $details['comprovativo_reserva'] ?></td>
                                 <td><?= $details['data_checkin_reserva'] ?></td>
                                 <td><?= $details['data_checkout_reserva'] ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>

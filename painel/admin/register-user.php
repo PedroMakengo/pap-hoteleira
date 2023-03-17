@@ -14,7 +14,7 @@
             <div class="ecommerce-widget bg-white p-5">
               <div class="row mb-4">
                 <div class="col-lg-6">
-                  <h4>Formulário de registro de um hotel</h4>
+                  <h4>Formulário de registro de um usuário (Hospede)</h4>
                 </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
@@ -106,4 +106,75 @@
 <!-- =============================================== -->
 <?php include "components/component-footer.php" ?>
 <!-- =============================================== -->
+
+<?php
+  if(isset($_POST['adicionarUsuario'])):
+    $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
+    $foto         = $_FILES['foto']['name'];
+
+    $nome  = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = md5(md5("123"));
+    $genero         = $_POST['genero'];
+    $bi             = $_POST['bi'];
+    $cidade         = $_POST['cidade'];
+    $endereco       = $_POST['endereco'];
+    $telefone       = $_POST['telefone'];
+    $dataNascimento = $_POST['datanascimento'];
+
+    $parametros = [
+      ":nome"         => $nome,
+      ":email"        => $email,
+      ":senha"        => $senha, 
+      ":foto"         => $foto, 
+      ":genero"       => $genero,
+      ":endereco"     => $endereco,
+      ":cidade"       => $cidade,
+      ":bi"           => $bi,
+      ":tel"          => $telefone,
+      ":datanasc"     => $dataNascimento
+    ];
+
+    $inserirUsuario = new Model();
+    $inserirUsuario->EXE_NON_QUERY("INSERT INTO tb_hospedes
+    (
+      nome_hospede,
+      email_hospede,
+      senha_hospede,
+      foto_hospedes,
+      genero_hospedes,
+      endereco_hospede,
+      cidade_hospede,
+      bi_hospede,
+      telefone_hospede,
+      data_nascimento_hospede,
+      data_criacao_hospede,
+      data_atualizacao_hospede
+    ) 
+    VALUES 
+    (:nome, :email, :senha, :foto, :genero, :endereco, :cidade, :bi, :tel, :datanasc, now(), now())", $parametros);
+
+    if($inserirUsuario):
+      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+        $sms = "Não foi possível fazer o upload";
+      endif;
+      echo '<script> 
+          swal({
+            title: "Dados inseridos!",
+            text: "Perfil atualizado com sucesso, termine a sessão",
+            icon: "success",
+            button: "Fechar!",
+          })
+        </script>';
+      echo '<script>
+            setTimeout(function() {
+                window.location.href="usuarios.php?id=usuarios";
+            }, 2000)
+        </script>';
+    endif;
+  endif;
+
+?>
 
