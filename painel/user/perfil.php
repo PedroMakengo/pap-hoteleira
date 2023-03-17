@@ -161,14 +161,24 @@
     WHERE id_hospede=:id", $parametros);
 
     if($atualizarPerfilHospede):
+      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+        $sms = "Não foi possível fazer o upload";
+      endif;
       echo '<script> 
           swal({
-            title: "Dados inseridos!",
+            title: "Dados atualizados!",
             text: "Perfil atualizado com sucesso, termine a sessão",
             icon: "success",
             button: "Fechar!",
           })
         </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="perfil.php?id=perfil";
+          }, 2000)
+      </script>';
     endif;
   endif;
 

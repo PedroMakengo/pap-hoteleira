@@ -140,6 +140,11 @@
     (:idMesa, :id, :idRestaurante, :dataCheckin, :status_mesa, :foto, now(), now()) ", $parametros);
 
     if($inserirReservaMesa):
+      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+        $sms = "Não foi possível fazer o upload";
+      endif;
       echo '<script> 
             swal({
               title: "Dados inseridos!",
