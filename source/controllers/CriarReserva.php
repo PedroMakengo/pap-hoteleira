@@ -1,4 +1,6 @@
 <?php 
+
+  // Reserva Quarto
   if(isset($_POST['reserva'])):
     $datacheckin  = $_POST['datacheckin'];
     $datacheckout = $_POST['datacheckout'];
@@ -100,6 +102,57 @@
               })
             </script>';
       endif;
+    endif;
+  endif;
+
+
+  // Reserva Mesa
+  if(isset($_POST['reservarMesaSelecionada'])):
+
+    $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
+    $foto         = $_FILES['foto']['name'];
+
+    $datacheckin = $_POST['dataCheckin'];
+
+
+    $parametros = [
+      ":idMesa"         => $idMesa,
+      ":id"             => $_SESSION['id'],
+      ":idRestaurante"  => $idRestaurante,
+      ":dataCheckin"    => $datacheckin,
+      ":status_mesa"    => "Reservado",
+      ":foto"           => $foto
+    ];
+
+    $inserirReservaMesa = new Model();
+    $inserirReservaMesa->EXE_NON_QUERY("INSERT INTO tb_mesa_reservas 
+    (
+      id_mesa, 
+      id_hospede, 
+      id_restaurante, 
+      data_checkin_mesa_reserva, 
+      status_mesa_reserva,
+      comprovativo_mesa_reserva,
+      data_criacao_mesa_reserva,
+      data_atualizacao_mesa_reserva 
+      ) 
+    VALUES 
+    (:idMesa, :id, :idRestaurante, :dataCheckin, :status_mesa, :foto, now(), now()) ", $parametros);
+
+    if($inserirReservaMesa):
+      echo '<script> 
+            swal({
+              title: "Dados inseridos!",
+              text: "Usuário cadastrado com sucesso",
+              icon: "success",
+              button: "Fechar!",
+            })
+          </script>';
+      echo '<script>
+          setTimeout(function() {
+              window.location.href="index.php?id=home";
+          }, 2000)
+      </script>';
     endif;
   endif;
   
