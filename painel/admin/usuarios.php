@@ -55,6 +55,7 @@
                   <h4>Listagem de usuários</h4>
                 </div>
                 <div class="col-lg-6 text-right">
+                  <a href="#" class="btn btn-sm btn-info">Imprimir relatório</a>
                   <a href="register-user.php?id=usuarios" class="btn btn-primary btn-sm">Novo usuário</a>
                 </div>
                 <div class="col-lg-12"><hr /></div>

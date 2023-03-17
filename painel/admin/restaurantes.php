@@ -55,6 +55,9 @@
                 <div class="col-lg-6">
                   <h4>Listagem de restaurantes</h4>
                 </div>
+                <div class="col-lg-6 text-right">
+                  <a href="#" class="btn btn-sm btn-info">Imprimir relatório</a>
+                </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
