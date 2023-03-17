@@ -1,7 +1,7 @@
 <?php
     include '../source/model/Config.php';
     include '../source/model/Model.php';
-    include '../assets/mpdf-6.1/mpdf.php';
+    include '../../assets/mpdf-6.1/mpdf.php';
     
     // Instanciar 
     $hotel = new Model();

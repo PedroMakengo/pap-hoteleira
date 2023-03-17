@@ -77,9 +77,10 @@ endif;
                     <h4>Listagem de restaurante</h4>
                   </div>
                   <div class="col-lg-6 text-right">
+                  <a href="../../public/relatorio.php?id=hoteis" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
                     <a
                       href="register-restaurante.php?id=restaurante"
-                      class="btn btn-primary btn-small"
+                      class="btn btn-primary btn-sm"
                       >Novo Restaurante</a
                     >
                   </div>
