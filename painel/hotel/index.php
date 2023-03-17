@@ -112,7 +112,7 @@
                 </div>
                 <div class="card-body">
                   <div class="charts mt-2">
-                    <canvas id="mychart" style="height: 350px"></canvas>
+                    <canvas id="mychart" ></canvas>
                   </div>
                 </div>
               </div>
@@ -123,9 +123,9 @@
                   <h5 class="mb-0">Registro Mensal de Reservas de Mesas</h5>
                 </div>
                 <div class="card-body">
-                  <!-- <div class="charts mt-2">
-                    <canvas id="mychart" style="height: 350px"></canvas>
-                  </div> -->
+                   <div class="charts mt-2">
+                    <canvas id="mesas" ></canvas>
+                  </div>
                 </div>
               </div>
             </div>
