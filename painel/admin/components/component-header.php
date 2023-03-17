@@ -38,9 +38,9 @@
               <div class="nav-user-info">
                 <h5 class="mb-0 text-white nav-user-name"><?= $_SESSION['nome']?></h5>
               </div>
-              <!-- <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="perfil.php?id=perfil"
                 ><i class="fas fa-user mr-2"></i>Perfil</a
-              > -->
+              >
               <a class="dropdown-item" href="?logout=true"
                 ><i class="fas fa-power-off mr-2"></i>Terminar Sessão</a
               >
@@ -92,11 +92,6 @@
                 ><i class="fa fa-fw fa-user-circle"></i>Usuários
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="reservas.php?id=reservas"
-                ><i class="fa fa-fw fa-user-circle"></i>Reservas
-              </a>
-            </li> -->
             <li class="nav-item">
                 <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-user-circle"></i>Reservas</a>
                 <div id="submenu-2" class="collapse submenu" style="">
@@ -113,6 +108,11 @@
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'graficos' ? 'active': '' ?>" href="graficos.php?id=graficos"
                 ><i class="fa fa-fw fa-user-circle"></i>Gráficos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
+                ><i class="fa fa-fw fa-user-circle"></i>Perfil
               </a>
             </li>
             <li class="nav-item">
