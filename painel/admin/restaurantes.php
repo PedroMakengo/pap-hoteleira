@@ -85,7 +85,7 @@
                                 <td><?= $details['num_mesas_restaurante'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="usuarios.php?<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="usuarios.php?id=<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

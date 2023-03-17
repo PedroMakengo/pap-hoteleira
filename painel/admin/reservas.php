@@ -91,7 +91,7 @@
                                 <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="reservas.php?<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="reservas.php?id=<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

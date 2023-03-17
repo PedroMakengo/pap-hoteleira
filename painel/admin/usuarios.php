@@ -84,7 +84,7 @@
                                 <td><?= $user['data_nascimento_hospede'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="usuarios.php?<?= $user['id_hospede'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="usuarios.php?id=<?= $user['id_hospede'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
