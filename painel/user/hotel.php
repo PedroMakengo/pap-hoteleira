@@ -27,38 +27,37 @@
 
           <div class="row">
             <div class="col-lg-12">
-              <?php 
-                  if($listDetailsHoteis): ?>
-                  <div class="row">
-                    <?php 
-                      foreach($listDetailsHoteis as $details):
-                      ?>
-                        <div class="col-lg-4">
-                          <div class="card">
-                            <?php if($details['foto_hotel'] == ""): ?>
-                            <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/default.jpg" alt="Card image cap">
-                            <?php else: ?>
-                            <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/<?= $details['foto_hotel'] ?>" alt="Card image cap">
-                            <?php endif; ?>
-                            <div class="card-body">
-                              <h3 class="card-title"><?= $details['nome_hotel'] ?></h3>
-                              <p class="card-text">
-                                <?= $details['descricao_hotel'] == "" ? "Em atualização": $details['descricao_hotel']   ?>
-                              </p>
-                              <small>Endereço:
-                                <?= $details['endereco_hotel'] == "" ? "Por definir":$details['endereco_hotel']?>
-                              </small>
-                              <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>&userHotel=<?= $details['nome_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
-                            </div>
+                <?php if($listDetailsHoteis): ?>
+                <div class="row">
+                  <?php 
+                    foreach($listDetailsHoteis as $details):
+                    ?>
+                      <div class="col-lg-4">
+                        <div class="card">
+                          <?php if($details['foto_hotel'] == ""): ?>
+                          <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/default.jpg" alt="Card image cap">
+                          <?php else: ?>
+                          <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/<?= $details['foto_hotel'] ?>" alt="Card image cap">
+                          <?php endif; ?>
+                          <div class="card-body">
+                            <h3 class="card-title"><?= $details['nome_hotel'] ?></h3>
+                            <p class="card-text">
+                              <?= $details['descricao_hotel'] == "" ? "Em atualização": $details['descricao_hotel']   ?>
+                            </p>
+                            <small>Endereço:
+                              <?= $details['endereco_hotel'] == "" ? "Por definir":$details['endereco_hotel']?>
+                            </small>
+                            <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>&userHotel=<?= $details['nome_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
                           </div>
                         </div>
-                      <?php 
-                      endforeach;
-                      ?>
-                  </div>
-                  <?php else:  ?>
-                  <div>Não existe nenhum registro</div>
-                  <?php endif;?>
+                      </div>
+                    <?php 
+                    endforeach;
+                    ?>
+                </div>
+                <?php else:  ?>
+                <div>Não existe nenhum registro</div>
+                <?php endif;?>
               </div>
             </div>
           </div>

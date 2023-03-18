@@ -44,7 +44,8 @@
               <li><a href="#restaurante">Restaurante</a></li>
             </ul>
             <div>
-              <a href="login.php" class="button">Criar Conta</a>
+              <a href="accountHotel.php" class="button">Registro Hotel</a>
+              <a href="criarconta.php" class="button">Registo Hospede</a>
               <a href="login.php" class="button">Iniciar Sessão</a>
             </div>
           </nav>

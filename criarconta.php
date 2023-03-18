@@ -23,11 +23,21 @@
     <title>Sistema de Gestão Hoteleira</title>
 
     <script src="./assets/js/template/sweetalert.min.js"></script>
+    <style>
+      .form-content a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <section id="content-left">
         <div class="form-content">
+          <a href="index.php">
+            <img src="assets/images/logo.png" />
+          </a>
           <h1>Criar Conta</h1>
           <form method="POST" id="form">
             <div class="field-input">
