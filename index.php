@@ -30,9 +30,6 @@
             <a href="index.php">
               <img src="./assets/images/logo.png" alt="" />
             </a>
-            <a href="index.php">
-              Hotelaria
-            </a>
           </div>
 
           <nav id="nav-bar" class="">
@@ -68,7 +65,7 @@
         </div>
         <div class="header-cols">
           <div class="header-cols-a">
-            <h1>Encontre um hotel 5 estrelas -</h1>
+            <h1>Encontre um hotel 5 estrelas</h1>
           </div>
         </div>
       </header>
@@ -106,7 +103,7 @@
           <div class="why-header">
             <h2>Por que você deve<span> ficar aqui?</span></h2>
             <p>
-             The breakdance é um oásis de tranquilidade e conforto em meio a uma paisagem paradisíaca de praias de areia branca e águas cristalinas. Localizado em um dos mais belos destinos turísticos.
+              é um oásis de tranquilidade e conforto em meio a uma paisagem paradisíaca de praias de areia branca e águas cristalinas. Localizado em um dos mais belos destinos turísticos.
           </div>
           <div class="why-cols">
             <div class="why-cols-a">

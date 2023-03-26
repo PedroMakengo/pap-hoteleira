@@ -25,9 +25,12 @@
               id="navbarDropdownMenuLink2"
               data-toggle="dropdown"
               aria-haspopup="true"
+              style="color: #000 !important"
               aria-expanded="false"
-              ><img
-                src="../../assets/__storage/<?= $_SESSION['foto']?>"
+              >
+              <span>Admin: <?= $_SESSION['nome'] ?></span>
+              <img
+                src="../../assets/__storage/<?= $_SESSION['foto'] ?>"
                 alt=""
                 class="user-avatar-md rounded-circle"
             /></a>

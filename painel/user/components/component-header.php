@@ -19,14 +19,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto navbar-right-top">
           <li class="nav-item dropdown nav-user">
+           
             <a
               class="nav-link nav-user-img"
               href="#"
               id="navbarDropdownMenuLink2"
               data-toggle="dropdown"
               aria-haspopup="true"
+              style="color: #000 !important"
               aria-expanded="false"
-              ><img
+              >
+              <span><?= $_SESSION['nome'] ?></span>
+              <img
                 src="../../assets/__storage/<?= $_SESSION['foto'] ?>"
                 alt=""
                 class="user-avatar-md rounded-circle"

@@ -25,9 +25,12 @@
               id="navbarDropdownMenuLink2"
               data-toggle="dropdown"
               aria-haspopup="true"
+              style="color: #000 !important"
               aria-expanded="false"
-              ><img
-                src="../../assets/<?= $_SESSION['foto'] ?>"
+              >
+              <span>Hotel: <?= $_SESSION['nome'] ?></span>
+              <img
+                src="../../assets/__storage/<?= $_SESSION['foto'] ?>"
                 alt=""
                 class="user-avatar-md rounded-circle"
             /></a>
@@ -93,6 +96,11 @@
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'hospedes' ? 'active': '' ?>" href="hospedes.php?id=hospedes"
                 ><i class="fa fa-fw fa-user-circle"></i>Hospedes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'verificar' ? 'active': '' ?>" href="verificar.php?id=verificar"
+                ><i class="fa fa-fw fa-search"></i>Verificar Reserva
               </a>
             </li>
             <li class="nav-item">

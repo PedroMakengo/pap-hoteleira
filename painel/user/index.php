@@ -7,7 +7,8 @@
   $listReservas = new Model();
   $listDetailsReservas = $listReservas->EXE_QUERY("SELECT * FROM tb_reservas 
     INNER JOIN tb_hospedes ON tb_reservas.id_hospede=tb_hospedes.id_hospede 
-    INNER JOIN tb_quartos ON tb_reservas.id_quarto=tb_quartos.id_quarto
+    INNER JOIN tb_quartos ON tb_reservas.id_quarto=tb_quartos.id_quarto 
+    INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel
     WHERE tb_reservas.id_hospede=:id", $parametros);
 
 
@@ -118,6 +119,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Hotel</th>
                           <th>Quarto</th>
                           <th>Tipo de Quarto</th>
                           <th>Capacidade Quarto</th>
@@ -134,6 +136,7 @@
                             ?>
                               <tr>
                                 <td><?= $details['id_reserva'] ?></td>
+                                <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['quarto'] ?></td>
                                 <td><?= $details['tipo_quarto'] ?></td>
                                 <td><?= $details['capacidade_quarto'] ?></td>

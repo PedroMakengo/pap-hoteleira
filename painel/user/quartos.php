@@ -47,11 +47,12 @@
                           <?php endif; ?>
                           <div class="card-body">
                             <h3 class="card-title">Quarto <?= $details['quarto'] ?></h3>
+                            <span class="card-text">Hotel: <strong><?= $details['nome_hotel'] ?></strong></span><br>
                             <span class="card-text">Tipo do Quarto: <strong><?= $details['tipo_quarto'] ?></strong></span><br>
                             <span class="card-text">Preço do Quarto: <strong><?= $details['preco_quarto'] . " kz" ?></strong></span><br>
                             <span class="card-text">Capacidade do Quarto: <strong><?= $details['preco_quarto'] ?></strong></span><br>
                             <span class="card-text">Estado do Quarto: <strong><?= $details['status_quarto'] ?></strong></span><br>
-                            <a href="detalhes-hotel.php?id=hotel&userId=<?= $details['id_hotel'] ?>&userHotel=<?= $details['nome_hotel'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Mais detalhes</a>
+                            <a href="register-reserva.php?id=hotel&userId=<?= $details['id_quarto'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Reservar</a>
                           </div>
                         </div>
                       </div>
