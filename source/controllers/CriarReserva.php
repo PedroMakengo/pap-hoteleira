@@ -11,7 +11,6 @@
   
     // Verificar data 
     $today =  Date('Y-m-d');
-    echo $today  ." - ". $datacheckin;
     if($datacheckin > $datacheckout):
       echo '<script> 
               swal({
@@ -114,58 +113,73 @@
 
     $datacheckin = $_POST['dataCheckin'];
 
+    
 
-    $parametros = [
-      ":idMesa"         => $idMesa,
-      ":id"             => $_SESSION['id'],
-      ":idRestaurante"  => $idRestaurante,
-      ":dataCheckin"    => $datacheckin,
-      ":status_mesa"    => "Reservado",
-      ":foto"           => $foto
-    ];
+    $today =  Date('Y-m-d');
 
-    $inserirReservaMesa = new Model();
-    $inserirReservaMesa->EXE_NON_QUERY("INSERT INTO tb_mesa_reservas 
-    (
-      id_mesa, 
-      id_hospede, 
-      id_restaurante, 
-      data_checkin_mesa_reserva, 
-      status_mesa_reserva,
-      comprovativo_mesa_reserva,
-      data_criacao_mesa_reserva,
-      data_atualizacao_mesa_reserva 
-      ) 
-    VALUES 
-    (:idMesa, :id, :idRestaurante, :dataCheckin, :status_mesa, :foto, now(), now()) ", $parametros);
+    if($datacheckin >= $today):
 
-    if($inserirReservaMesa):
-      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-        $sms = "Uploaded feito com sucesso";
-      else:
-        $sms = "Não foi possível fazer o upload";
+      $parametros = [
+        ":idMesa"         => $idMesa,
+        ":id"             => $_SESSION['id'],
+        ":idRestaurante"  => $idRestaurante,
+        ":dataCheckin"    => $datacheckin,
+        ":status_mesa"    => "Reservado",
+        ":foto"           => $foto
+      ];
+
+      $inserirReservaMesa = new Model();
+      $inserirReservaMesa->EXE_NON_QUERY("INSERT INTO tb_mesa_reservas 
+      (
+        id_mesa, 
+        id_hospede, 
+        id_restaurante, 
+        data_checkin_mesa_reserva, 
+        status_mesa_reserva,
+        comprovativo_mesa_reserva,
+        data_criacao_mesa_reserva,
+        data_atualizacao_mesa_reserva 
+        ) 
+      VALUES 
+      (:idMesa, :id, :idRestaurante, :dataCheckin, :status_mesa, :foto, now(), now()) ", $parametros);
+
+      if($inserirReservaMesa):
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+          $sms = "Uploaded feito com sucesso";
+        else:
+          $sms = "Não foi possível fazer o upload";
+        endif;
+
+
+        // Atualizar o estado da reserva
+        $parametros = [":id" => $idMesa, ":statusMesa" => "Reservado"];
+        $atualizarQuarto = new Model();
+        $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_mesas SET 
+        status_mesa=:statusMesa
+        WHERE id_mesa=:id", $parametros);
+        echo '<script> 
+              swal({
+                title: "Dados inseridos!",
+                text: "Usuário cadastrado com sucesso",
+                icon: "success",
+                button: "Fechar!",
+              })
+            </script>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href="index.php?id=home";
+            }, 2000)
+        </script>';
       endif;
-
-
-      // Atualizar o estado da reserva
-      $parametros = [":id" => $idMesa, ":statusMesa" => "Reservado"];
-      $atualizarQuarto = new Model();
-      $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_mesas SET 
-      status_mesa=:statusMesa
-      WHERE id_mesa=:id", $parametros);
+    else:
       echo '<script> 
-            swal({
-              title: "Dados inseridos!",
-              text: "Usuário cadastrado com sucesso",
-              icon: "success",
-              button: "Fechar!",
-            })
-          </script>';
-      echo '<script>
-          setTimeout(function() {
-              window.location.href="index.php?id=home";
-          }, 2000)
-      </script>';
+              swal({
+                title: "Ops!!",
+                text: "A data de checkin não pode ser menor que a data de hoje",
+                icon: "error",
+                button: "Fechar!",
+              })
+            </script>';
     endif;
   endif;
   
