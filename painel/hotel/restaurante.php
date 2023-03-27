@@ -84,7 +84,6 @@ endif;
                       >Novo Restaurante</a
                     >
                   </div>
-
                   <div class="col-lg-12"><hr /></div>
                 </div>
                 <div class="row">
@@ -113,7 +112,7 @@ endif;
                                   <td><?= $details['num_mesas_restaurante'] ?></td>
                                   <td><?= $details['data_criacao_restaurante'] ?></td>
                                   <td class="text-center">
-                                    <a href="register-mesa-restaurante.php?id=<?= $details['id_restaurante'] ?>" class="btn btn-info btn-sm">
+                                    <a href="register-mesa-restaurante.php?id=restaurante&idUser=<?= $details['id_restaurante'] ?>" class="btn btn-info btn-sm">
                                       <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <a href="#" class="btn btn-primary btn-sm">
