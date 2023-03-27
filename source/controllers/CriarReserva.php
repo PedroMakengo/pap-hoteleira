@@ -145,6 +145,14 @@
       else:
         $sms = "Não foi possível fazer o upload";
       endif;
+
+
+      // Atualizar o estado da reserva
+      $parametros = [":id" => $idMesa, ":statusMesa" => "Reservado"];
+      $atualizarQuarto = new Model();
+      $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_mesas SET 
+      status_mesa=:statusMesa
+      WHERE id_mesa=:id", $parametros);
       echo '<script> 
             swal({
               title: "Dados inseridos!",

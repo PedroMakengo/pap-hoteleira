@@ -136,13 +136,13 @@
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label for="">DataCheckin</label>
-                          <input type="date" class="form-control" name="dataCheckin" />
+                          <input type="date" class="form-control" required name="dataCheckin" />
                         </div>
                       </div>
                       <div class="col-lg-8">
                         <div class="form-group">
                           <label for="">Comprovativo:</label>
-                          <input type="file" class="form-control" name="foto" />
+                          <input type="file" required class="form-control" name="foto" />
                         </div>
                       </div>
                       <div class="col-lg-3 mt-2">
