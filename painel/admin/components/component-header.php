@@ -76,23 +76,23 @@
           
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'home' ? 'active': '' ?>" href="index.php?id=home"
-                ><i class="fa fa-fw fa-user-circle"></i>Home
+                ><i class="fa fa-fw fa-home"></i>Home
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'hoteis' ? 'active': '' ?>" href="hoteis.php?id=hoteis"
-                ><i class="fa fa-fw fa-user-circle"></i>Hotéis
+                ><i class="fa fa-fw fa-file"></i>Hotéis
               </a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'restaurantes' ? 'active': '' ?>" href="restaurantes.php?id=restaurantes"
-                ><i class="fa fa-fw fa-user-circle"></i>Restaurantes
+                ><i class="fa fa-fw fa-file"></i>Restaurantes
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'usuarios' ? 'active': '' ?>" href="usuarios.php?id=usuarios"
-                ><i class="fa fa-fw fa-user-circle"></i>Usuários
+                ><i class="fa fa-fw fa-users"></i>Usuários
               </a>
             </li>
             <li class="nav-item">
@@ -110,17 +110,17 @@
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'graficos' ? 'active': '' ?>" href="graficos.php?id=graficos"
-                ><i class="fa fa-fw fa-user-circle"></i>Gráficos
+                ><i class="fa fa-fw fa-file"></i>Gráficos
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
-                ><i class="fa fa-fw fa-user-circle"></i>Perfil
+                ><i class="fa fa-fw fa-user"></i>Perfil
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="?logout=true"
-                ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
+                ><i class="fas fa-power-off"></i>Terminar Sessão
               </a>
             </li>
           </ul>
