@@ -24,3 +24,7 @@
 .nav-left-sidebar .submenu {
   background: #704828 !important;
 }
+
+:disabled {
+  cursor: not-allowed !important;
+}

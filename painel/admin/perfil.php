@@ -7,6 +7,11 @@
   $listDataPerfilAdmin = new Model();
   $listUserPerfil = $listDataPerfilAdmin->EXE_QUERY("SELECT * FROM tb_admin
    WHERE id_admin=:id", $parametros);
+
+   foreach($listUserPerfil as $details):
+      $fotoBancoDados = $details['foto'];
+      $senhaBancoDados = $details['senha'];
+   endforeach;
 ?> 
 
 
@@ -105,12 +110,23 @@
 
   if(isset($_POST['atualizarPerfil'])):
 
-    $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
-    $foto         = $_FILES['foto']['name'];
+    
+    if(empty($_FILES['foto']['name'])) {
+      $foto = $fotoBancoDados;
+    }else {
+      $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
+      $foto         = $_FILES['foto']['name'];
+    }
 
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $senha = md5(md5($_POST['senha']));
+
+    if(empty($_POST['senha'])):
+      $senha = $senhaBancoDados
+    else:
+      $senha = md5(md5($_POST['senha']));
+    endif;
+
 
     $parametros = [
       ":id"         => $_SESSION['id'],
@@ -129,12 +145,13 @@
     WHERE id_admin=:id", $parametros);
 
     if($atualizarPerfilAdmin):
-      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-        $sms = "Uploaded feito com sucesso";
-      else:
-        $sms = "Não foi possível fazer o upload";
-      endif;
-
+      if(!empty($_FILES['foto']['name'])) {
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+          $sms = "Uploaded feito com sucesso";
+        else:
+          $sms = "Não foi possível fazer o upload";
+        endif;
+      }
       echo '<script> 
               swal({
                 title: "Dados atualizados!",
