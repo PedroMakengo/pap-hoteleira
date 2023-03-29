@@ -64,6 +64,18 @@
                 />
               </label>
             </div>
+            <div class="field-input">
+              <label for="password">
+                Confirmar Senha
+                <input
+                  type="password"
+                  id="password"
+                  name="confirmarSenha"
+                  required
+                  placeholder="Confirme a sua senha"
+                />
+              </label>
+            </div>
 
             <!--
             <div class="field-input check">

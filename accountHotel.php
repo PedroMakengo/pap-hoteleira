@@ -44,11 +44,12 @@
               <div class="form-flex-left">
                 <div class="field-input">
                   <label for="name">
-                    Nome
+                    Nome <sup>*</sup>
                     <input
                       type="text"
                       id="name"
                       name="nome"
+                      required
                       placeholder="Insira seu nome"
                     />
                   </label>
@@ -56,24 +57,25 @@
 
                 <div class="field-input">
                   <label for="email">
-                    Email
+                    Email <sup>*</sup>
                     <input
                       type="email"
                       id="email"
                       name="email"
+                      required
                       placeholder="Insira seu email"
                     />
                   </label>
                 </div>
-
                 <div class="field-input">
-                  <label for="password">
-                    Senha
+                  <label for="cidade">
+                    Cidade <sup>*</sup>
                     <input
-                      type="password"
-                      id="password"
-                      name="senha"
-                      placeholder="Insira sua senha"
+                      type="text"
+                      id="cidade"
+                      name="cidade"
+                      required
+                      placeholder="ex: Luanda"
                     />
                   </label>
                 </div>
@@ -82,35 +84,51 @@
               <div class="form-flex-right">
                 <div class="field-input">
                   <label for="bi">
-                    NIF
-                    <input type="text" id="bi"  name="nif" placeholder="digite o seu nif" />
+                    NIF <sup>*</sup>
+                    <input type="text" id="bi" required name="nif" placeholder="digite o seu nif" />
                   </label>
                 </div>
 
                 <div class="field-input">
                   <label for="enreco">
-                    Endereço
+                    Endereço <sup>*</sup>
                     <input
                       type="text"
                       id="endereco"
                       name="endereco"
-                      placeholder="confirme sua senha"
+                      required
+                      placeholder="Insira o seu endereço"
                     />
                   </label>
                 </div>
-
                 <div class="field-input">
-                  <label for="cidade">
-                    Cidade
+                  <label for="password">
+                    Senha <sup>*</sup>
                     <input
-                      type="text"
-                      id="cidade"
-                      name="cidade"
-                      placeholder="ex: Luanda"
+                      type="password"
+                      id="password"
+                      name="senha"
+                      required
+                      placeholder="Insira sua senha"
                     />
                   </label>
                 </div>
               </div>
+            </div>
+           
+
+           
+            <div class="field-input">
+              <label for="password">
+                Confirmar Senha <sup>*</sup>
+                <input
+                  type="password"
+                  id="password"
+                  name="confirmarSenha"
+                  required
+                  placeholder="Confirme a sua senha"
+                />
+              </label>
             </div>
 
             <div class="field-input">

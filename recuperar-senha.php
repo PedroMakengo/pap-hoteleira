@@ -85,7 +85,7 @@
             </div>
             -->
             <div class="field-input">
-              <input type="submit" name="recuperar-senha" value="Entrar" class="submit" />
+              <input type="submit" name="recuperar-senha" value="Recuperar senha" class="submit" />
             </div>
             <div class="count">
               <div class="forgot-password">
@@ -133,7 +133,7 @@
           ":nome"  => $nome, 
           ":tel"   => $tel,
           ":email" => $email,
-          ":senha" => $_POST['password']
+          ":senha" => md5(md5($_POST['password']))
         ];
         $senhaAtualizado = new Model();
         $senhaAtualizado->EXE_NON_QUERY("UPDATE tb_hospedes SET
@@ -151,7 +151,7 @@
             </script>';
             echo '<script>
                   setTimeout(function() {
-                      window.location.href="index.php?id=home";
+                      window.location.href="login.php";
                   }, 2000)
               </script>';
           endif;
@@ -176,7 +176,7 @@
             ":nome"  => $nome, 
             ":tel"   => $tel,
             ":email" => $email,
-            ":senha" => $_POST['password']
+            ":senha" => md5(md5($_POST['password']))
           ];
           $senhaAtualizado = new Model();
           $senhaAtualizado->EXE_NON_QUERY("UPDATE tb_hotel SET
@@ -194,7 +194,7 @@
               </script>';
               echo '<script>
                     setTimeout(function() {
-                        window.location.href="index.php?id=home";
+                        window.location.href="login.php";
                     }, 2000)
                 </script>';
             endif;
