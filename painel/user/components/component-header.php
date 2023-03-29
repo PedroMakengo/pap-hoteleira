@@ -73,32 +73,32 @@
             <li class="nav-divider">Menu</li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'home' ? 'active': '' ?>" href="index.php?id=home"
-                ><i class="fa fa-fw fa-user-circle"></i>Minhas Reservas
+                ><i class="fa fa-fw fa-home"></i>Minhas Reservas
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'hotel' ? 'active': '' ?>" href="hotel.php?id=hotel"
-                ><i class="fa fa-fw fa-user-circle"></i>Hotéis
+                ><i class="fa fa-fw fa-file"></i>Hotéis
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'restaurante' ? 'active': '' ?>" href="restaurante.php?id=restaurante"
-                ><i class="fa fa-fw fa-user-circle"></i>Restaurantes
+                ><i class="fa fa-fw fa-utensils"></i>Restaurantes
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'quartos' ? 'active': '' ?>" href="quartos.php?id=quartos"
-                ><i class="fa fa-fw fa-user-circle"></i>Quartos Disponíveis
+                ><i class="fa fa-fw fa-file"></i>Quartos Disponíveis
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
-                ><i class="fa fa-fw fa-user-circle"></i>Meu Perfil
+                ><i class="fa fa-fw fa-user"></i>Meu Perfil
               </a>
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="?logout=true"
-                ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
+                ><i class="fa fa-fw fa-power-off"></i>Terminar Sessão
               </a>
             </li>
           </ul>
