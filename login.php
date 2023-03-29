@@ -37,7 +37,7 @@
           <a href="index.php">
             <img src="assets/images/logo.png" />
           </a>
-          <h1>Tela de Login</h1>
+          <h1>Entrar no sistema</h1>
           <form method="POST" id="form">
             <div class="field-input">
               <label for="name">
@@ -45,6 +45,7 @@
                 <input type="text" id="name" name="nome" placeholder="Insira seu nome" />
               </label>
             </div>
+            
             <div class="field-input">
               <label for="password">
                 Palavra-Passe
@@ -75,7 +76,7 @@
                   Tens uma conta ? <a href="criarconta.php">Criar Conta</a>
                 </p>
               </div>
-              <a href="">Recuperar Senha</a>
+              <a href="recuperar-senha.php">Recuperar Senha</a>
             </div>
           </form>
         </div>

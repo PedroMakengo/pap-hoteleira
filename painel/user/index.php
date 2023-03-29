@@ -115,7 +115,7 @@
                 <div class="tab-pane fade active show" id="outline-one" role="tabpanel" aria-labelledby="tab-outline-one">
                   <!-- Tabela Reserva Quarto  -->
                   <div class="table-responsive bg-white p-2">
-                    <table class="table" id="tabela">
+                    <table class="table" id="tabela" style="width: 1400px !important">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -144,7 +144,7 @@
                                 <td><?= $details['status_quarto'] ?></td>
                                 <td><?= $details['data_criacao_quarto'] ?></td>
                                 <td class="text-center">
-                                  <a href="#" class="btn btn-primary btn-sm">
+                                  <a href="editar-reserva-quarto.php?id=home&idUser=<?= $details['id_reserva'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

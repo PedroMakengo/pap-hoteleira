@@ -113,8 +113,6 @@
 
     $datacheckin = $_POST['dataCheckin'];
 
-    
-
     $today =  Date('Y-m-d');
 
     if($datacheckin >= $today):
