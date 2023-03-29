@@ -6,13 +6,9 @@
   $parametros = [":id" => $_SESSION['id']];
   $listMesasUser = new Model();
   $listMesasRestaurantes = $listMesasUser->EXE_QUERY("SELECT * FROM tb_mesas 
-  INNER JOIN tb_restaurante 
-  ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante
+  INNER JOIN tb_restaurante ON 
+  tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
-
-  foreach($listMesasRestaurantes as $details):
-    $nomeRestaurante = $details['nome_restaurante'];
-  endforeach;
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -47,7 +43,7 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Dados referente ao <strong><?= $nomeRestaurante ?></strong>
+                    <h4>Dados referente ao <strong><?= $_GET['nome'] ?></strong>
                     </h4>
                   </div>
                   <div class="col-lg-12"><hr /></div>
@@ -98,7 +94,7 @@
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Restaurante</label>
-                            <input type="text" value=<?= $nomeRestaurante ?> disabled name="bebidas" class="form-control form-control-lg">
+                            <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
                           </div>
                         </div>
 
