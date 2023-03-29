@@ -13,7 +13,7 @@
 
 <!-- Eliminar Quartos -->
 <?php 
-    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+  if (isset($_GET['action']) && $_GET['action'] == 'delete'):
     $id = $_GET['id'];
     $parametros  =[
         ":id"=>$id
@@ -37,7 +37,7 @@
     else:
         echo "<script>window.alert('Operação falhou');</script>";
     endif;
-endif;
+  endif;
 ?>
 <!-- Eliminar Quartos -->
 

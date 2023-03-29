@@ -42,6 +42,12 @@
                   <div class="col-lg-12">
                     <form method="POST" enctype="multipart/form-data">
                       <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="">Nome do Hotel</label>
+                            <input type="text" name="hotel" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
+                          </div>
+                        </div>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Primeira Foto</label>
@@ -57,7 +63,7 @@
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Tipo de Quarto</label>
-                            <select name="tipo" class="form-control form-control-lg">
+                            <select name="tipo" required class="form-control form-control-lg">
                               <option value="">Selecione o tipo de quarto</option>
                               <option value="Vip">Vip</option>
                               <option value="Normal">Normal</option>
@@ -83,12 +89,19 @@
                             <input type="number" name="preco" class="form-control form-control-lg">
                           </div>
                         </div>
+
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Nome do Hotel</label>
-                            <input type="text" name="hotel" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
+                            <label for="">Estado do Quarto</label>
+                            <select name="estado" required class="form-control form-control-lg">
+                              <option value="">Selecione o estado do quarto</option>
+                              <option value="Disponível">Disponível</option>
+                              <option value="Indisponível">Indisponível</option>
+                              <option value="Manutenção">Manutenção</option>
+                            </select>
                           </div>
                         </div>
+                       
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="">Descrição</label>
@@ -139,7 +152,7 @@
       ":descricao"  => $descricao,
       ":foto"       => $foto,
       ":foto1"      => $foto1,
-      ":statusQ"    => "Disponível",
+      ":statusQ"    => $_POST['estado'],
       ":id"         => $hotel
     ];
 

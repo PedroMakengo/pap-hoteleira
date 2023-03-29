@@ -114,9 +114,11 @@ endif;
                                   <td><?= $details['status_quarto'] ?></td>
                                   <td><?= $details['data_criacao_quarto'] ?></td>
                                   <td class="text-center">
-                                    <a href="#" class="btn btn-primary btn-sm">
+                                    <?php if($details['status_quarto'] === "Disponível"): ?>
+                                    <a href="editar-quartos.php?id=quartos&userId=<?= $details['id_quarto'] ?>" class="btn btn-primary btn-sm">
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
+                                    <?php endif; ?>
                                     <!-- Eliminar -->
                                     <a href="quartos.php?id=<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
