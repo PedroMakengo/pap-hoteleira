@@ -9,6 +9,10 @@
   INNER JOIN tb_restaurante 
   ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
+
+  foreach($listMesasRestaurantes as $details):
+    $nomeRestaurante = $details['nome_restaurante'];
+  endforeach;
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -43,64 +47,67 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Dados referente ao <?= $_GET['idUser'] ?></h4>
+                    <h4>Dados referente ao <strong><?= $nomeRestaurante ?></strong>
+                    </h4>
                   </div>
                   <div class="col-lg-12"><hr /></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="table-responsive p-2 border bg-white">
-                      <h4 class="pl-3">Listagem de Mesas</h4>
-                      <table class="table" id="tabela">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Nome da Mesa</th>
-                            <th>Tipo de Mesa</th>
-                            <th>Preço</th>
-                            <th>Data de Registro</th>
-                            <th class="text-center">Ações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php 
-                            if($listMesasRestaurantes):
-                              foreach($listMesasRestaurantes as $hotel):
-                              ?>
-                                <tr>
-                                  <td><?= $hotel['id_mesa'] ?></td>
-                                  <td><?= $hotel['nome_mesa'] ?></td>
-                                  <td><?= $hotel['tipo_mesa'] ?></td>
-                                  <td><?= $hotel['preco_mesa'] ?></td>
-                                  <td><?= $hotel['data_criacao_mesa'] ?></td>
-                                  <td class="text-center">
-                                    <!-- Eliminar -->
-                                    <a href="detailhe-hoteis.php?id=<?= $hotel['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                      <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                                    </a>
-                                    <!-- Eliminar -->
-                                  </td>
-                                </tr>
-                              <?php 
-                              endforeach;
-                            else:  ?>
-                              <tr>
-                                <td>Não existe nenhum registro</td>
-                              </tr>
-                            <?php 
-                            endif;
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
                 </div>
                 
                 <div class="row">
                   <div class="col-lg-12 p-4">
-                    <form method="POST" enctype="multipart/form-data">
-                      
+                  <form method="POST" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Nome da Mesa <sup>*</sup></label>
+                            <input type="text" required name="nome_mesa" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Tipo de Mesa <sup>*</sup></label>
+                            <select name="tipo" required class="form-control form-control-lg">
+                              <option value="">Selecione o tipo de mesa</option>
+                              <option value="Vip">Vip</option>
+                              <option value="Normal">Normal</option>
+                              <option value="Medio">Medio</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Preço <sup>*</sup></label>
+                            <input type="text" name="preco" required class="form-control form-control-lg">
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Comidas <sup>*</sup></label>
+                            <input type="text" required name="comidas" class="form-control form-control-lg">
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Bebidas <sup>*</sup></label>
+                            <input type="text" required name="bebidas" class="form-control form-control-lg">
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Restaurante</label>
+                            <input type="text" value=<?= $nomeRestaurante ?> disabled name="bebidas" class="form-control form-control-lg">
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <input type="submit" class="btn btn-primary" name="register-mesa" value="Registrar Mesa" >
+                          </div>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -113,8 +120,65 @@
 
     <?php 
 
-      if(isset($_POST['register-restaurante'])):
+      if(isset($_POST['register-mesa'])):
 
+        $nome = $_POST['nome_mesa'];
+        $tipo = $_POST['tipo'];
+        $preco = $_POST['preco'];
+        $comida = $_POST['comidas'];
+        $bebidas = $_POST['bebidas'];
+        $statusMesa = "Disponível";
+
+        $parametros = [
+          ":id"         => $_SESSION['id'],
+          ":nome"       => $nome,
+          ":tipo"       => $tipo,
+          ":preco"      => $preco,
+          ":statusMesa" => $statusMesa,
+          ":comida"     => $comida,
+          ":bebidas"    => $bebidas
+        ];
+
+        $inserirMesa = new Model();
+        $inserirMesa->EXE_NON_QUERY("INSERT INTO tb_mesas
+        (
+          id_restaurante, 
+          nome_mesa, 
+          tipo_mesa, 
+          preco_mesa, 
+          status_mesa,
+          descricao_comida,
+          descricao_bebidas,
+          data_criacao_mesa,
+          data_atualizacao__mesa
+        ) 
+        VALUES (
+        :id, 
+        :nome, 
+        :tipo, 
+        :preco, 
+        :statusMesa,
+        :comida,
+        :bebidas,
+        now(),
+        now()
+        )",$parametros);
+
+        if($inserirMesa):
+          echo '<script> 
+                swal({
+                  title: "Dados inseridos!",
+                  text: "Dados inseridos com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+          echo '<script>
+              setTimeout(function() {
+                  window.location.href="mesas-restaurante.php?id=mesas";
+              }, 1000)
+          </script>';
+        endif;
       endif;
     
     ?>

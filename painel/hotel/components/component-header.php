@@ -75,17 +75,23 @@
             <li class="nav-divider">Menu</li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'home' ? 'active': '' ?>" href="index.php?id=home"
-                ><i class="fa fa-fw fa-user-circle"></i>Home
+                ><i class="fa fa-fw fa-home"></i>Home
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'quartos' ? 'active': '' ?>" href="quartos.php?id=quartos"
-                ><i class="fa fa-fw fa-user-circle"></i>Quartos
+                ><i class="fa fa-fw fa-home"></i>Quartos
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'restaurante' ? 'active': '' ?>" href="restaurante.php?id=restaurante"
-                ><i class="fa fa-fw fa-user-circle"></i>Restaurante
+                ><i class="fa fa-fw fa-utensils"></i>Restaurante
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'mesas' ? 'active': '' ?>" href="mesas-restaurante.php?id=mesas"
+                ><i class="fa fa-fw fa-table"></i>
+                Mesas
               </a>
             </li>
             <li class="nav-item">
@@ -95,22 +101,22 @@
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'hospedes' ? 'active': '' ?>" href="hospedes.php?id=hospedes"
-                ><i class="fa fa-fw fa-user-circle"></i>Hospedes
+                ><i class="fa fa-fw fa-file"></i>Hospedes
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'verificar' ? 'active': '' ?>" href="verificar.php?id=verificar"
                 ><i class="fa fa-fw fa-search"></i>Verificar Reserva
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
-                ><i class="fa fa-fw fa-user-circle"></i>Perfil
+                ><i class="fa fa-fw fa-user"></i>Perfil
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="?logout=true"
-                ><i class="fa fa-fw fa-user-circle"></i>Terminar Sessão
+                ><i class="fas fa-fw fa-power-off"></i>Terminar Sessão
               </a>
             </li>
           </ul>
