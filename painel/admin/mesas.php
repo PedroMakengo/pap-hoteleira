@@ -27,8 +27,25 @@
           ":id"=>$id
       ];
       $delete = new Model();
-      $delete->EXE_NON_QUERY("DELETE FROM tb_hospedes WHERE id_hospede=:id", $parametros);
+      $delete->EXE_NON_QUERY("DELETE FROM tb_mesa_reservas WHERE id_reserva_mesa=:id", $parametros);
       if($delete == true):
+
+        //===================================================================================================================
+        $today   =  Date('Y-m-d');
+        $nome    = $_SESSION['nome'];
+        $action  = "eliminou";
+        $textLog = "O usuário ". $nome. " ". $action . " uma reserva de mesa cujo o nome é ". $_GET['nomeMesa'];
+        $parametros = [
+          ":nome"     => $nome, 
+          ":actionLog"   => $action, 
+          ":textLog"  => $textLog,
+          ":dataLog"     => $today       
+        ];
+        $insertLog = new Model();
+        $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+        (user_log, action_log, text_log, data_log) 
+        VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+        //===================================================================================================================
         echo '<script> 
                 swal({
                   title: "Dados eliminados!",
@@ -99,7 +116,7 @@
                                 <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="mesas.php?id=<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="mesas.php?nomeMesa=<?= $details['nome_mesa'] ?>&id=<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

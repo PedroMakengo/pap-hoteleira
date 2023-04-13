@@ -22,10 +22,6 @@
       $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
       if($delete == true):
         //===================================================================================================================
-        $parametros = [":id" => $id];
-        $buscandoHotel = new Model();
-        $buscando = $buscandoHotel->EXE_QUERY("SELECT * FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
-
         $today   =  Date('Y-m-d');
         $nome    = $_SESSION['nome'];
         $action  = "eliminou";

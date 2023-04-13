@@ -110,19 +110,19 @@
 
   if(isset($_POST['atualizarPerfil'])):
 
-    
-    if(empty($_FILES['foto']['name'])) {
+
+    if(empty($_FILES['foto']['name'])):
       $foto = $fotoBancoDados;
-    }else {
+    else:
       $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
       $foto         = $_FILES['foto']['name'];
-    }
+    endif;
 
     $nome = $_POST['nome'];
     $email = $_POST['email'];
 
     if(empty($_POST['senha'])):
-      $senha = $senhaBancoDados
+      $senha = $senhaBancoDados;
     else:
       $senha = md5(md5($_POST['senha']));
     endif;
@@ -145,6 +145,25 @@
     WHERE id_admin=:id", $parametros);
 
     if($atualizarPerfilAdmin):
+
+      //===================================================================================================================
+      $today   =  Date('Y-m-d');
+      $nome    = $_SESSION['nome'];
+      $action  = "atualizou";
+      $textLog = "O usuário ". $nome. " ". $action . " o seu perfil";
+      $parametros = [
+        ":nome"     => $nome, 
+        ":actionLog"   => $action, 
+        ":textLog"  => $textLog,
+        ":dataLog"     => $today       
+      ];
+      $insertLog = new Model();
+      $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+      (user_log, action_log, text_log, data_log) 
+      VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+      //==================================================================================================================
+
+
       if(!empty($_FILES['foto']['name'])) {
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
           $sms = "Uploaded feito com sucesso";

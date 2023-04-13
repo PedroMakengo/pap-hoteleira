@@ -18,13 +18,13 @@
           ":id"=>$id
       ];
       $delete = new Model();
-      $delete->EXE_NON_QUERY("DELETE FROM tb_hospedes WHERE id_hospede=:id", $parametros);
+      $delete->EXE_NON_QUERY("DELETE FROM tb_logs WHERE id_log=:id", $parametros);
       if($delete == true):
         // INSERT LOG ========================================================
         $today =  Date('Y-m-d');
         $nome = $_SESSION['nome'];
         $action = "eliminou";
-        $textLog = "O usuário". $nome. " ". $action . " um log" . $today;
+        $textLog = "O usuário ". $nome. " ". $action . " um log em" . $today;
         $parametros = [
           ":nome"     => $nome, 
           ":actionLog"   => $action, 
@@ -46,7 +46,7 @@
               </script>';
         echo '<script>
             setTimeout(function() {
-                window.location.href="usuarios.php?id=usuarios";
+                window.location.href="notifications.php?id=notifications";
             }, 2000)
         </script>';
       else:
