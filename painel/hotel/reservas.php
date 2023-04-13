@@ -13,6 +13,7 @@
   WHERE tb_quartos.id_hotel=:id", $parametros);
 
 
+// Analisando
 $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM 
   tb_mesa_reservas INNER JOIN tb_restaurante 
   ON tb_mesa_reservas.id_restaurante=tb_restaurante.id_restaurante
