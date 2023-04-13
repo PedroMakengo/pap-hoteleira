@@ -304,6 +304,26 @@
     WHERE id_hotel=:id", $parametros);
 
     if($atualizarPerfilAdmin):
+
+      // ATUALIZANDO O PERFIL
+      //===================================================================================================================
+      $today   =  Date('Y-m-d');
+      $nome    = $_SESSION['nome'];
+      $action  = "atualizou";
+      $textLog = "O usuário ". $nome. " ". $action . " o seu perfil";
+      $parametros = [
+        ":nome"     => $nome, 
+        ":actionLog"   => $action, 
+        ":textLog"  => $textLog,
+        ":dataLog"     => $today       
+      ];
+      $insertLog = new Model();
+      $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+      (user_log, action_log, text_log, data_log) 
+      VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+      //==================================================================================================================
+ 
+
      if(!empty($_FILES['foto']['name'])) {
       if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
         $sms = "Uploaded feito com sucesso";

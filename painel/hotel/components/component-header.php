@@ -1,4 +1,13 @@
- <!-- Header -->
+<?php 
+  // Pegando o dia 
+  $today =  Date('Y-m-d');
+
+  $parametros = [":dataHoje" => $today];
+  $buscandoNotifications = new Model();
+  $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs WHERE data_log=:dataHoje", $parametros);
+?>
+
+<!-- Header -->
  <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
       <a class="navbar-brand logo" href="index.php?id=home"> 
@@ -104,11 +113,13 @@
                 ><i class="fa fa-fw fa-file"></i>Hospedes
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link <?= $_GET['id'] == 'verificar' ? 'active': '' ?>" href="verificar.php?id=verificar"
-                ><i class="fa fa-fw fa-search"></i>Verificar Reserva
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'notifications' ? 'active': '' ?>" href="notifications.php?id=notifications"
+                >
+                <span><i class="fa fa-fw fa-bell"></i>Notificações</span>
+                <span class="bg-success btn btn-sm"><?= count($buscandoCont) ?></span>
               </a>
-            </li> -->
+            </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'perfil' ? 'active': '' ?>" href="perfil.php?id=perfil"
                 ><i class="fa fa-fw fa-user"></i>Perfil

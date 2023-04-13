@@ -23,6 +23,24 @@
     $delete = new Model();
     $delete->EXE_NON_QUERY("DELETE FROM tb_mesas WHERE id_mesa=:id", $parametros);
     if($delete == true):
+
+      //===================================================================================================================
+      $today   =  Date('Y-m-d');
+      $nome    = $_SESSION['nome'];
+      $action  = "eliminou";
+      $textLog = "O usuário ". $nome. " ". $action . " um quarto cujo o nome é ". $_GET['nomeMesa'];
+      $parametros = [
+        ":nome"     => $nome, 
+        ":actionLog"   => $action, 
+        ":textLog"  => $textLog,
+        ":dataLog"     => $today       
+      ];
+      $insertLog = new Model();
+      $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+      (user_log, action_log, text_log, data_log) 
+      VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+      //===================================================================================================================
+
       echo '<script> 
               swal({
                 title: "Dados eliminados!",
@@ -116,7 +134,7 @@ endif;
                                   <td><?= $details['descricao_bebidas'] ?></td>
                                   <td><?= $details['data_criacao_mesa'] ?></td>
                                   <td class="text-center">
-                                    <a href="mesas-restaurante.php?id=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="mesas-restaurante.php?nomeMesa=<?= $details['nome_mesa'] ?>&id=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->

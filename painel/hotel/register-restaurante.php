@@ -116,6 +116,24 @@
         VALUES (:id, :nome, :foto, :descricao, :classif, :num_mesas, now(), now())", $parametros);
 
         if($inserirRestaurante):
+
+          //===================================================================================================================
+          $today   =  Date('Y-m-d');
+          $nome    = $_SESSION['nome'];
+          $action  = "registrou";
+          $textLog = "O usuário ". $nome. " ". $action . " um restaurante cujo o nome é ". $_POST['nome'];
+          $parametros = [
+            ":nome"     => $nome, 
+            ":actionLog"   => $action, 
+            ":textLog"  => $textLog,
+            ":dataLog"     => $today       
+          ];
+          $insertLog = new Model();
+          $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+          (user_log, action_log, text_log, data_log) 
+          VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+          //===================================================================================================================
+          
           if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
             $sms = "Uploaded feito com sucesso";
           else:
