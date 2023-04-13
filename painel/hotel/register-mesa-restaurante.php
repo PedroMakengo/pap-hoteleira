@@ -128,7 +128,7 @@
         $statusMesa = "Disponível";
 
         $parametros = [
-          ":id"         => $_SESSION['id'],
+          ":id"         => $_GET['idUser'],
           ":nome"       => $nome,
           ":tipo"       => $tipo,
           ":preco"      => $preco,

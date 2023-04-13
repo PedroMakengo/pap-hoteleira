@@ -19,6 +19,28 @@
       $delete = new Model();
       $delete->EXE_NON_QUERY("DELETE FROM tb_hotel WHERE id_hotel=:id", $parametros);
       if($delete == true):
+
+         //===================================================================================================================
+         $parametros = [":id" => $id];
+         $buscandoHotel = new Model();
+         $buscando = $buscandoHotel->EXE_QUERY("SELECT * FROM tb_hotel WHERE id_hotel=:id", $parametros);
+
+         $today   =  Date('Y-m-d');
+         $nome    = $_SESSION['nome'];
+         $action  = "eliminou";
+         $textLog = "O usuário ". $nome. " ". $action . " um hotel cujo o nome é ". $_GET['nome']. " em " . $today;
+         $parametros = [
+           ":nome"     => $nome, 
+           ":actionLog"   => $action, 
+           ":textLog"  => $textLog,
+           ":dataLog"     => $today       
+         ];
+         $insertLog = new Model();
+         $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+         (user_log, action_log, text_log, data_log) 
+         VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+         //===================================================================================================================
+
         echo '<script> 
                 swal({
                   title: "Dados eliminados!",
@@ -130,7 +152,7 @@
                                       <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
-                                    <a href="hoteis.php?id=<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="hoteis.php?nome=<?= $hotel['nome_hotel'] ?>&id=<?= $hotel['id_hotel'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                   </div>

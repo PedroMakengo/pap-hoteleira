@@ -95,12 +95,17 @@ CREATE TABLE tb_restaurante (
 CREATE TABLE tb_mesas (
   id_mesa INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   id_restaurante INT NOT NULL,
+  id_hotel   INT NOT NULL,
   nome_mesa VARCHAR(25) NOT NULL,
   tipo_mesa VARCHAR(25) NOT NULL,
   preco_mesa DECIMAL(10, 2) NOT NULL,
+  status_mesa VARCHAR(50) NOT NULL,
+  descricao_comida VARCHAR(255) NOT NULL, 
+  descricao_bebidas VARCHAR(255) NOT NULL,
   data_criacao_mesa DATETIME DEFAULT CURRENT_TIMESTAMP,
   data_atualizacao__mesa DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (id_restaurante) REFERENCES tb_restaurante (id_restaurante)
+  FOREIGN KEY (id_hotel) REFERENCES tb_hotel (id_hotel)
 )
 
 CREATE TABLE tb_mesa_reservas (
