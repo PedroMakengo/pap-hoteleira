@@ -4,8 +4,9 @@
 
 <!-- Listagem de usuários hospedes -->
 <?php 
+   $parametros = [":id" => $_SESSION['id']];
    $logs = new Model();
-   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_logs");
+   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_historico=:id", $parametros);
 ?>
 <!-- Listagem de usuários -->
 
@@ -18,7 +19,7 @@
           ":id"=>$id
       ];
       $delete = new Model();
-      $delete->EXE_NON_QUERY("DELETE FROM tb_logs WHERE id_log=:id", $parametros);
+      $delete->EXE_NON_QUERY("DELETE FROM tb_historico_reserva WHERE id_log=:id", $parametros);
       if($delete == true):
         // INSERT LOG ========================================================
         $today =  Date('Y-m-d');
@@ -68,10 +69,7 @@
             <div class="ecommerce-widget bg-white p-5">
               <div class="row mb-4">
                 <div class="col-lg-6">
-                  <h4>Listagem de todas as ocorrências no sistema</h4>
-                </div>
-                <div class="col-lg-6 text-right">
-                  <a href="../../public/relatorio.php?id=ocorrencia" class="btn btn-sm btn-info">Imprimir relatório</a>
+                  <h4>Notificações</h4>
                 </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
@@ -83,10 +81,10 @@
                         <tr>
                           <th>#</th>
                           <th>Usuário</th>
-                          <th>Acção</th>
                           <th>Ocorrência</th>
+                          <th>Histórico</th>
                           <th>Data</th>
-                          <th class="text-center">Ações</th>
+                          <!-- <th class="text-center">Ações</th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -95,18 +93,17 @@
                             foreach($listLogs as $details):
                             ?>
                               <tr>
-                                <td><?= $details['id_log'] ?></td>
-                                <td><?= $details['user_log'] ?></td>
-                                <td><?= $details['action_log'] ?></td>
-                                <td><?= $details['text_log'] ?></td>
-                                <td><?= $details['data_log'] ?></td>
-                                <td class="text-center">
-                                  <!-- Eliminar -->
-                                  <a href="notifications.php?id=<?= $details['id_log'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                <td><?= $details['id_historico'] ?></td>
+                                <td><?= $details['usuario_historico'] ?></td>
+                                <td><?= $details['action_historico'] ?></td>
+                                <td><?= $details['historico'] ?></td>
+                                <td><?= $details['data_historico'] ?></td>
+                                <!-- <td class="text-center">
+                                  <a href="notifications.php?id=<?= $details['id_historico'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
-                                  <!-- Eliminar -->
-                                </td>
+                                 
+                                </td> -->
                               </tr>
                             <?php 
                             endforeach;

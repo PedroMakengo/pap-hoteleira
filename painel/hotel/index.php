@@ -29,6 +29,8 @@
   <?php 
     require 'components/component-header.php';
   ?>
+  
+
   <!-- Component Header -->
 
   <div class="dashboard-wrapper">

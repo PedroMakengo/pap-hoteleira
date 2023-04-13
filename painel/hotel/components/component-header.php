@@ -1,11 +1,10 @@
 <?php 
   // Pegando o dia 
-  $today =  Date('Y-m-d');
-
-  $parametros = [":dataHoje" => $today];
+  $parametros = [":id" => $_SESSION['id']];
   $buscandoNotifications = new Model();
-  $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs WHERE data_log=:dataHoje", $parametros);
+  $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_hotel=:id", $parametros);
 ?>
+
 
 <!-- Header -->
  <div class="dashboard-header">

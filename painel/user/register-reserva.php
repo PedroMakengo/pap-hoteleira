@@ -3,11 +3,12 @@
 <!-- Component Head -->
 
 <?php
-  $parametros = [":id" => $_GET['userId'], ":status_quarto"=> 'Disponível'];
+  $parametros = [":id" => $_GET['userId']];
   $list = new Model();
   $listDetailsQuartos = $list->EXE_QUERY("SELECT * FROM tb_quartos
-  WHERE id_quarto=:id AND status_quarto=:status_quarto", $parametros);
+  WHERE id_quarto=:id", $parametros);
 
+  // global $status, $quartoId;
   foreach($listDetailsQuartos as $mostrarStatus):
     $status = $mostrarStatus['status_quarto'];
     $quartoId = $mostrarStatus['id_quarto'];

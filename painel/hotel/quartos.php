@@ -64,6 +64,7 @@ endif;
     <?php require 'components/component-header.php' ?> 
     <!-- Component Head -->
 
+    
       <!-- Container -->
       <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
@@ -138,7 +139,7 @@ endif;
                                     </a>
                                     <?php endif; ?>
                                     <!-- Eliminar -->
-                                    <a href="quartos.php?nomeQuarto=<?= $details[]?>&id=<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="quartos.php?nomeQuarto=<?= $details['tipo_quarto']?>&id=<?= $details['id_quarto'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
