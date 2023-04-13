@@ -96,6 +96,11 @@
                 ><i class="fa fa-fw fa-user"></i>Meu Perfil
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'notifications' ? 'active': '' ?>" href="notifications.php?id=notifications"
+                ><i class="fa fa-fw fa-bell"></i>Notificações
+              </a>
+            </li>
             <li class="nav-item ">
               <a class="nav-link" href="?logout=true"
                 ><i class="fa fa-fw fa-power-off"></i>Terminar Sessão

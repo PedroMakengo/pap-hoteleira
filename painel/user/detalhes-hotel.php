@@ -69,15 +69,9 @@
                                       <td><?= $details['status_quarto'] ?></td>
                                       <td><?= $details['data_criacao_quarto'] ?></td>
                                       <td class="text-center">
-                                       <?php if($details['status_quarto'] == "Reservado"): ?>
-                                          <button type="button" disabled title="Efetuar uma reserva" class="btn btn-success btn-sm">
-                                            <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                          </button>
-                                        <?php else: ?>
-                                          <a title="Efetuar uma reserva" href="register-reserva.php?id=hotel&userId=<?= $details['id_quarto'] ?>" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                          </a>
-                                        <?php endif; ?>
+                                        <a title="Efetuar uma reserva" href="register-reserva.php?id=hotel&userId=<?= $details['id_quarto'] ?>" class="btn btn-primary btn-sm">
+                                          <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
+                                        </a>
                                       </td>
                                     </tr>
                                   <?php 

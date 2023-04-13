@@ -100,90 +100,74 @@
               <!-- Retornar as informações do quarto -->
             </div>
 
-            
-            <?php if($status == 'Disponível'): ?>
-              <div class="col-lg-12 mt-4">
-                <form method="POST" enctype="multipart/form-data">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Efetuar a reservado do quarto selecionado</h3>
-                      <hr>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Nome do Hospede:</label>
-                        <input type="text" name="nome" disabled value="<?= $_SESSION['nome'] ?>" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Quarto:</label>
-                        <input type="text" disabled value="<?= $quarto ?>" name="nome" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Capacidade:</label>
-                        <input type="text" disabled value="<?= $capacidade ?>" name="nome" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Data de Checkin:</label>
-                        <input type="date" name="datacheckin" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Data de Checkout:</label>
-                        <input type="date" name="datacheckout" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="form-group">
-                        <label for="">Nº Hospede:</label>
-                        <input type="number" name="num_hospede" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="form-group">
-                        <label for="">Nº Hospede:</label>
-                        <input type="number" disabled name="preco" value="<?= $preco ?>" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <label for="">Comprovativo:</label>
-                        <input type="file" name="foto" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-lg-3 mt-2">
-                      <div class="form-group">
-                        <input type="submit" name="reserva" value="Efetuar reserva" class="form-control btn-primary" />
-                      </div>
+              
+
+            <!-- Fazer com que a pessoa marque a sua reserva porém com uma data de espera -->
+            <div class="col-lg-12 mt-4">
+              <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h3>Efetuar a reservado do quarto selecionado</h3>
+                    <hr>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Nome do Hospede:</label>
+                      <input type="text" name="nome" disabled value="<?= $_SESSION['nome'] ?>" class="form-control" />
                     </div>
                   </div>
-                </form>
-              </div>
-            <?php elseif($status == 'Manutenção'): ?>
-              <div class="col-lg-12 mt-4">
-                <div class="text-center">
-                  <p>Não é possível efetuar uma reserva porque o quarto encontra-se em manutenção</p>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Quarto:</label>
+                      <input type="text" disabled value="<?= $quarto ?>" name="nome" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Capacidade:</label>
+                      <input type="text" disabled value="<?= $capacidade ?>" name="nome" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Data de Checkin:</label>
+                      <input type="date" name="datacheckin" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Data de Checkout:</label>
+                      <input type="date" name="datacheckout" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <label for="">Nº Hospede:</label>
+                      <input type="number" name="num_hospede" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <label for="">Nº Hospede:</label>
+                      <input type="number" disabled name="preco" value="<?= $preco ?>" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="">Comprovativo:</label>
+                      <input type="file" name="foto" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-3 mt-2">
+                    <div class="form-group">
+                      <input type="submit" name="reserva" value="Efetuar reserva" class="form-control btn-primary" />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            <?php elseif($status == 'Indisponível'): ?>
-              <div class="col-lg-12 mt-4">
-                <div class="text-center">
-                  <p>Não é possível efetuar uma reserva porque o quarto encontra-se Indisponível</p>
-                </div>
-              </div>
-            <?php elseif($status == 'Reservado'): ?>
-              <div class="col-lg-12 mt-4">
-                <div class="text-center">
-                  <p>Não é possível efetuar uma reserva porque o quarto encontra-se Reservado</p>
-                </div>
-              </div>
-            <?php endif; ?>
+              </form>
+            </div>
+            <!-- Fazer com que a pessoa marque a sua reserva porém com uma data de espera -->
+          
           </div>
         </div>
       </div>

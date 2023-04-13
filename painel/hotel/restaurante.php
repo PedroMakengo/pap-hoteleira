@@ -133,7 +133,7 @@
                                     <a href="register-mesa-restaurante.php?id=restaurante&idUser=<?= $details['id_restaurante'] ?>&nome=<?= $details['nome_restaurante'] ?>" class="btn btn-info btn-sm">
                                       <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
                                     </a>
-                                    <a href="#" class="btn btn-primary btn-sm">
+                                    <a href="editar-restaurante.php?id=restaurante&iduser=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm">
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
