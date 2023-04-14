@@ -9,8 +9,6 @@
   INNER JOIN tb_restaurante 
   ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
-
-  
 ?>
 
     <div class="dashboard-main-wrapper">

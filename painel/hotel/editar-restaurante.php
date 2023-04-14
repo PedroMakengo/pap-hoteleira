@@ -2,6 +2,12 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
+    <?php 
+      $parametros = [":id" => $_GET['iduser']];
+      $buscandoRestaurante = new Model();
+      $buscando = $buscandoRestaurante->EXE_QUERY("SELECT * FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
+    ?>
+
     <div class="dashboard-main-wrapper">
       <!-- Component Header -->
       <?php require 'components/component-header.php' ?> 
@@ -42,36 +48,40 @@
                   <div class="col-lg-12">
                     <form method="POST" enctype="multipart/form-data">
                       <div class="row">
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="">Foto do Restaurante:</label>
-                            <input type="file" name="foto" class="form-control form-control-lg">
+
+                        <?php foreach($buscando as $details):?>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="">Foto do Restaurante:</label>
+                              <input type="file" name="foto" class="form-control form-control-lg">
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="">Nome do Restaurante:</label>
-                            <input type="text" placeholder="ex: Afonso Kiala" name="nome" class="form-control form-control-lg">
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="">Nome do Restaurante:</label>
+                              <input type="text" value="<?= $details['nome_restaurante'] ?>" placeholder="ex: Afonso Kiala" name="nome" class="form-control form-control-lg">
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-2">
-                          <div class="form-group">
-                            <label for="">Classificação:</label>
-                            <input type="number" placeholder="ex: Muito Bom" name="classificacao" class="form-control form-control-lg">
+                          <div class="col-lg-2">
+                            <div class="form-group">
+                              <label for="">Classificação:</label>
+                              <input type="number" value="<?= $details['classificacao_restaurante'] ?>" placeholder="ex: Muito Bom" name="classificacao" class="form-control form-control-lg">
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-2">
-                          <div class="form-group">
-                            <label for="">Nº Total de Mesas:</label>
-                            <input type="text" placeholder="ex: 43" name="num_mesas" class="form-control form-control-lg">
+                          <div class="col-lg-2">
+                            <div class="form-group">
+                              <label for="">Nº Total de Mesas:</label>
+                              <input type="text" value="<?= $details['num_mesas_restaurante'] ?>" placeholder="ex: 43" name="num_mesas" class="form-control form-control-lg">
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="form-group">
-                            <label for="">Descrição:</label>
-                           <textarea name="descricao"  placeholder="Insira a descrição" class="form-control form-control-lg"></textarea>
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="">Descrição:</label>
+                              <input type="text" value="<?= $details['descricao_restaurante'] ?>" class="form-control from-control-lg" />
+                            </div>
                           </div>
-                        </div>
+
+                        <?php endforeach; ?>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="register-restaurante" value="Registrar Restaurante" id="">
@@ -110,10 +120,7 @@
         ];
 
         $inserirRestaurante = new Model();
-        $inserirRestaurante->EXE_NON_QUERY("INSERT INTO tb_restaurante 
-        (id_hotel, nome_restaurante, foto, descricao_restaurante, classificacao_restaurante, 
-        num_mesas_restaurante, data_criacao_restaurante, data_atualizacao__restaurante) 
-        VALUES (:id, :nome, :foto, :descricao, :classif, :num_mesas, now(), now())", $parametros);
+        $inserirRestaurante->EXE_NON_QUERY("", $parametros);
 
         if($inserirRestaurante):
 
@@ -133,17 +140,14 @@
           (user_log, action_log, text_log, data_log) 
           VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
           //===================================================================================================================
-          
-          if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-            $sms = "Uploaded feito com sucesso";
-          else:
+         
+          if(!empty($_FILES['foto']['name'])) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+              $sms = "Uploaded feito com sucesso";
+            else:
               $sms = "Não foi possível fazer o upload";
-          endif;
-          if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)):
-            $sms = "Uploaded feito com sucesso";
-          else:
-              $sms = "Não foi possível fazer o upload";
-          endif;
+            endif;
+          }
           echo '<script> 
                 swal({
                   title: "Dados inseridos!",
