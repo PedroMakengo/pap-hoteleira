@@ -43,7 +43,7 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Dados referente ao <strong><?= $_GET['nome'] ?></strong>
+                    <h4>Editar Mesa <strong><?= $_GET['nome'] ?></strong>
                     </h4>
                   </div>
                   <div class="col-lg-12"><hr /></div>
@@ -53,10 +53,12 @@
                   <div class="col-lg-12 p-4">
                   <form method="POST" enctype="multipart/form-data">
                       <div class="row">
+
+                      <?php foreach($listMesasRestaurantes as $details):?>
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Nome da Mesa <sup>*</sup></label>
-                            <input type="text" required name="nome_mesa" class="form-control form-control-lg">
+                            <input type="text" value="<?= $details['nome_mesa'] ?>" required name="nome_mesa" class="form-control form-control-lg">
                           </div>
                         </div>
                         <div class="col-lg-4">
@@ -73,21 +75,21 @@
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Preço <sup>*</sup></label>
-                            <input type="text" name="preco" required class="form-control form-control-lg">
+                            <input type="text" value="<?= $details['preco_mesa'] ?>" name="preco" required class="form-control form-control-lg">
                           </div>
                         </div>
 
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Comidas <sup>*</sup></label>
-                            <input type="text" required name="comidas" class="form-control form-control-lg">
+                            <input type="text" value="<?= $details['descricao_comida'] ?>" required name="comidas" class="form-control form-control-lg">
                           </div>
                         </div>
 
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Bebidas <sup>*</sup></label>
-                            <input type="text" required name="bebidas" class="form-control form-control-lg">
+                            <input type="text" required value="<?= $details['descricao_bebidas'] ?>" name="bebidas" class="form-control form-control-lg">
                           </div>
                         </div>
 
@@ -97,6 +99,8 @@
                             <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
                           </div>
                         </div>
+
+                        <?php endforeach; ?>
 
                         <div class="col-lg-4">
                           <div class="form-group">

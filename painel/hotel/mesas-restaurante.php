@@ -134,7 +134,7 @@ endif;
                                   <td><?= $details['descricao_bebidas'] ?></td>
                                   <td><?= $details['data_criacao_mesa'] ?></td>
                                   <td class="text-center">
-                                    <a href="editar-mesas.php?nome=<?= $details['nome_mesa'] ?>&id=mesas&idUser=<?= $details['id_mesa'] ?>&id=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-primary btn-sm">
+                                    <a href="editar-mesas.php?nome=<?= $details['nome_mesa'] ?>&id=mesas&idUser=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-primary btn-sm">
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <a href="mesas-restaurante.php?nomeMesa=<?= $details['nome_mesa'] ?>&id=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
