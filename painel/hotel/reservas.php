@@ -198,7 +198,11 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['tipo_quarto'] ?></td>
                                               <td><?= $details['data_checkin_reserva'] ?></td>
                                               <td><?= $details['data_checkout_reserva'] ?></td>
-                                              <td><?= $details['comprovativo_reserva'] ?></td>
+                                              <td>
+                                                <!-- Comprovativo -->
+                                                <?= $details['comprovativo_reserva'] ?>
+                                                <!-- Comprovativo -->
+                                              </td>
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
                                                 <!-- Eliminar -->
