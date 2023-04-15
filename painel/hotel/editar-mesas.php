@@ -104,7 +104,7 @@
 
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="register-mesa" value="Registrar Mesa" >
+                            <input type="submit" class="btn btn-primary" name="editar-mesa" value="Registrar Mesa" >
                           </div>
                         </div>
                       </div>
@@ -120,7 +120,7 @@
 
     <?php 
 
-      if(isset($_POST['register-mesa'])):
+      if(isset($_POST['editar-mesa'])):
 
         $nome = $_POST['nome_mesa'];
         $tipo = $_POST['tipo'];
@@ -140,29 +140,10 @@
         ];
 
         $inserirMesa = new Model();
-        $inserirMesa->EXE_NON_QUERY("INSERT INTO tb_mesas
-        (
-          id_restaurante, 
-          nome_mesa, 
-          tipo_mesa, 
-          preco_mesa, 
-          status_mesa,
-          descricao_comida,
-          descricao_bebidas,
-          data_criacao_mesa,
-          data_atualizacao__mesa
-        ) 
-        VALUES (
-        :id, 
-        :nome, 
-        :tipo, 
-        :preco, 
-        :statusMesa,
-        :comida,
-        :bebidas,
-        now(),
-        now()
-        )",$parametros);
+        $inserirMesa->EXE_NON_QUERY("UPDATE tb_restaurante SET
+        nome_restaurante=:nome, foto=:foto, descricao_restaurante=:descricao, 
+        classificacao_restaurante=:classif, num_mesas_restaurante=:num_mesas,
+        data_atualizacao_restaurante=now() WHERE id_mesa=:id",$parametros);
 
         if($inserirMesa):
           echo '<script> 

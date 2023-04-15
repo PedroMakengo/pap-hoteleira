@@ -84,7 +84,7 @@
                         <?php endforeach; ?>
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="register-restaurante" value="Registrar Restaurante" id="">
+                            <input type="submit" class="btn btn-primary" name="editar-restaurante" value="Registrar Restaurante" id="">
                           </div>
                         </div>
                       </div>
@@ -100,7 +100,7 @@
 
     <?php 
 
-      if(isset($_POST['register-restaurante'])):
+      if(isset($_POST['editar-restaurante'])):
 
         $nome          = $_POST['nome'];
         $num_mesas     = $_POST['num_mesas'];
@@ -111,16 +111,20 @@
         $foto          = $_FILES['foto']['name'];
 
         $parametros = [
-          ":id"        => $_SESSION['id'],
-          ":nome"      => $nome,
-          ":foto"      => $foto,
-          ":descricao" => $descricao,
-          ":classif"   => $classificacao,
-          ":num_mesas" => $num_mesas
+          ":idRestaurante"        => $_GET['idUser'],
+          ":nome"                 => $nome,
+          ":foto"                 => $foto,
+          ":descricao"            => $descricao,
+          ":classif"              => $classificacao,
+          ":num_mesas"            => $num_mesas
         ];
 
         $inserirRestaurante = new Model();
-        $inserirRestaurante->EXE_NON_QUERY("", $parametros);
+        $inserirRestaurante->EXE_NON_QUERY("UPDATE tb_restaurante SET
+        nome_restaurante=:nome, foto=:foto, descricao_restaurante=:descricao, 
+        classificacao_restaurante=:classif, num_mesas_restaurante=:num_mesas,
+        data_atualizacao_restaurante=now()
+        WHERE id_restaurante=:idRestaurante", $parametros);
 
         if($inserirRestaurante):
 
