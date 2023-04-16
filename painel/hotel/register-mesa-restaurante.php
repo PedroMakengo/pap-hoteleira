@@ -6,11 +6,14 @@
   $parametros = [":id" => $_SESSION['id']];
   $listMesasUser = new Model();
   $listMesasRestaurantes = $listMesasUser->EXE_QUERY("SELECT * FROM tb_mesas 
-  INNER JOIN tb_restaurante 
-  ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante
+  INNER JOIN tb_restaurante ON 
+  tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
+<<<<<<< HEAD
 
   
+=======
+>>>>>>> ad28a565f4b7a0a673ebfb127494392e3e2d5ecb
 ?>
 
     <div class="dashboard-main-wrapper">
