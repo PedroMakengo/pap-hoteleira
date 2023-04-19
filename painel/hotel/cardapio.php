@@ -2,42 +2,44 @@
 <?php require 'components/component-head.php' ?> 
 <!-- Component Head -->
 
-<!-- Buscando Dados de Restaurantes -->
+<!-- Component Buscando daddos de todos quartos -->
 <?php
   $parametros = [":id" => $_SESSION['id']];
-  $listRestaurante = new Model();
-  $listDetailsRestaurante = $listRestaurante->EXE_QUERY("SELECT * FROM 
-  tb_restaurante WHERE id_hotel=:id", $parametros);
+  $listQuartos = new Model();
+  $listDetailsQuartos = $listQuartos->EXE_QUERY("SELECT * FROM tb_cardapio 
+  INNER JOIN tb_restaurante ON 
+  tb_cardapio.id_restaurante=tb_restaurante.id_restaurante 
+  WHERE tb_restaurante.id_hotel=:id", $parametros);
 ?> 
-<!-- Component Head -->
+<!-- Component -->
 
 <!-- Eliminar Quartos -->
 <?php 
-  if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
     $id = $_GET['id'];
     $parametros  =[
         ":id"=>$id
     ];
     $delete = new Model();
-    $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
+    $delete->EXE_NON_QUERY("DELETE FROM tb_cardapio WHERE id_cardapio=:id", $parametros);
     if($delete == true):
 
-       //===================================================================================================================
-       $today   =  Date('Y-m-d');
-       $nome    = $_SESSION['nome'];
-       $action  = "eliminou";
-       $textLog = "O usuário ". $nome. " ". $action . " um restaurante cujo o nome é ". $_GET['nomeRestaurante'];
-       $parametros = [
-         ":nome"     => $nome, 
-         ":actionLog"   => $action, 
-         ":textLog"  => $textLog,
-         ":dataLog"     => $today       
-       ];
-       $insertLog = new Model();
-       $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
-       (user_log, action_log, text_log, data_log) 
-       VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
-       //===================================================================================================================
+      //===================================================================================================================
+      $today   =  Date('Y-m-d');
+      $nome    = $_SESSION['nome'];
+      $action  = "eliminou";
+      $textLog = "O usuário ". $nome. " ". $action . " um cardapio cujo o nome é ". $_GET['nomeCardapio'];
+      $parametros = [
+        ":nome"     => $nome, 
+        ":actionLog"   => $action, 
+        ":textLog"  => $textLog,
+        ":dataLog"     => $today       
+      ];
+      $insertLog = new Model();
+      $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+      (user_log, action_log, text_log, data_log) 
+      VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+      //===================================================================================================================
 
       echo '<script> 
               swal({
@@ -49,21 +51,21 @@
             </script>';
       echo '<script>
           setTimeout(function() {
-              window.location.href="restaurante.php?id=restaurante";
+              window.location.href="mesas-restaurante.php?id=mesas";
           }, 1000)
       </script>';
     else:
         echo "<script>window.alert('Operação falhou');</script>";
     endif;
-  endif;
+endif;
 ?>
 <!-- Eliminar Quartos -->
 
 
     <div class="dashboard-main-wrapper">
-      <!-- Component Header -->
-      <?php require 'components/component-header.php' ?> 
-      <!-- Component Header -->
+    <!-- Component Head -->
+    <?php require 'components/component-header.php' ?> 
+    <!-- Component Head -->
 
       <!-- Container -->
       <div class="dashboard-wrapper">
@@ -92,15 +94,16 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Listagem de restaurante</h4>
+                    <h4>Listagem de Cardapio</h4>
                   </div>
                   <div class="col-lg-6 text-right">
                     <a
-                      href="register-restaurante.php?id=restaurante"
+                      href="register-cardapio.php?id=cardapio"
                       class="btn btn-primary btn-sm"
-                      >Novo Restaurante</a
+                      >Novo Cardapio</a
                     >
                   </div>
+                  
                   <div class="col-lg-12"><hr /></div>
                 </div>
                 <div class="row">
@@ -110,33 +113,33 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Nome do Restaurante</th>
-                            <th>Classificação</th>
-                            <th>Número de Mesas</th>
+                            <th>Restaurante</th>
+                            <th>Comida</th>
+                            <th>Bebida</th>
+                            <th>Preço Comida</th>
+                            <th>Preço Bebida</th>
                             <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php 
-                            if($listDetailsRestaurante):
-                              foreach($listDetailsRestaurante as $details):
+                            if($listDetailsQuartos):
+                              foreach($listDetailsQuartos as $details):
                               ?>
                                 <tr>
-                                  <td><?= $details['id_restaurante'] ?></td>
+                                  <td><?= $details['id_cardapio'] ?></td>
                                   <td><?= $details['nome_restaurante'] ?></td>
-                                  <td><?= $details['classificacao_restaurante'] ?></td>
-                                  <td><?= $details['num_mesas_restaurante'] ?></td>
-                                  <td><?= $details['data_criacao_restaurante'] ?></td>
+                                  <td><?= $details['comida'] ?></td>
+                                  <td><?= $details['bebida'] ?></td>
+                                  <td><?= $details['preco_comida'] ?></td>
+                                  <td><?= $details['preco_bebida'] ?></td>
+                                  <td><?= $details['data_registro_cardapio'] ?></td>
                                   <td class="text-center">
-                                    <a href="register-mesa-restaurante.php?id=restaurante&idUser=<?= $details['id_restaurante'] ?>&nome=<?= $details['nome_restaurante'] ?>" class="btn btn-info btn-sm">
-                                      <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                    </a>
-                                    <a href="editar-restaurante.php?id=restaurante&iduser=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm">
+                                    <a href="editar-cardapio.php?nome=<?= $details['comida'] ?>&id=cardapio&idUser=<?= $details['id_cardapio'] ?>" class="btn btn-primary btn-sm">
                                       <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
                                     </a>
-                                    <!-- Eliminar -->
-                                    <a href="restaurante.php?nomeRestaurante=<?= $details['nome_restaurante'] ?>id=<?= $details['id_restaurante'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="cardapio.php?nomeCardapio=<?= $details['comida'] ?>&id=<?= $details['id_cardapio'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->
@@ -146,7 +149,7 @@
                               endforeach;
                             else:  ?>
                               <tr>
-                                <td colspan="12">Não existe nenhum registro</td>
+                                <td colspan="12">Não existe registro</td>
                               </tr>
                             <?php 
                             endif;
@@ -158,11 +161,11 @@
                 </div>
               </div>
             </div>
-            <?php endif;?>
+          <?php endif;?>
         </div>
       </div>
     </div>
 
-    <!-- Component Header -->
-    <?php require 'components/component-footer.php' ?> 
-    <!-- Component Header -->
+<!-- Component Footer -->
+<?php require 'components/component-footer.php' ?> 
+<!-- Component Footer -->

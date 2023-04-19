@@ -81,20 +81,6 @@
 
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Comidas <sup>*</sup></label>
-                            <input type="text" value="<?= $details['descricao_comida'] ?>" required name="comidas" class="form-control form-control-lg">
-                          </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="">Bebidas <sup>*</sup></label>
-                            <input type="text" required value="<?= $details['descricao_bebidas'] ?>" name="bebidas" class="form-control form-control-lg">
-                          </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                          <div class="form-group">
                             <label for="">Restaurante</label>
                             <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
                           </div>
@@ -125,8 +111,6 @@
         $nome = $_POST['nome_mesa'];
         $tipo = $_POST['tipo'];
         $preco = $_POST['preco'];
-        $comida = $_POST['comidas'];
-        $bebidas = $_POST['bebidas'];
         $statusMesa = "Disponível";
 
         $parametros = [
@@ -135,8 +119,6 @@
           ":tipo"       => $tipo,
           ":preco"      => $preco,
           ":statusMesa" => $statusMesa,
-          ":comida"     => $comida,
-          ":bebidas"    => $bebidas
         ];
 
         $inserirMesa = new Model();

@@ -9,11 +9,8 @@
   INNER JOIN tb_restaurante ON 
   tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
-<<<<<<< HEAD
 
   
-=======
->>>>>>> ad28a565f4b7a0a673ebfb127494392e3e2d5ecb
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -81,21 +78,7 @@
                             <input type="text" name="preco" required class="form-control form-control-lg">
                           </div>
                         </div>
-
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="">Comidas <sup>*</sup></label>
-                            <input type="text" required name="comidas" class="form-control form-control-lg">
-                          </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="">Bebidas <sup>*</sup></label>
-                            <input type="text" required name="bebidas" class="form-control form-control-lg">
-                          </div>
-                        </div>
-
+                      
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Restaurante</label>
@@ -126,8 +109,6 @@
         $nome = $_POST['nome_mesa'];
         $tipo = $_POST['tipo'];
         $preco = $_POST['preco'];
-        $comida = $_POST['comidas'];
-        $bebidas = $_POST['bebidas'];
         $statusMesa = "Disponível";
 
         $parametros = [
@@ -136,8 +117,6 @@
           ":tipo"       => $tipo,
           ":preco"      => $preco,
           ":statusMesa" => $statusMesa,
-          ":comida"     => $comida,
-          ":bebidas"    => $bebidas
         ];
 
         $inserirMesa = new Model();
@@ -148,8 +127,6 @@
           tipo_mesa, 
           preco_mesa, 
           status_mesa,
-          descricao_comida,
-          descricao_bebidas,
           data_criacao_mesa,
           data_atualizacao__mesa
         ) 
@@ -159,8 +136,6 @@
         :tipo, 
         :preco, 
         :statusMesa,
-        :comida,
-        :bebidas,
         now(),
         now()
         )",$parametros);
