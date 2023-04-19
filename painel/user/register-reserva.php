@@ -128,18 +128,43 @@
                       <input type="text" disabled value="<?= $capacidade ?>" name="nome" class="form-control" />
                     </div>
                   </div>
+
                   <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Tipo de Reserva:</label>
+                       <div class="form-control">
+                          <button>Por Hora:</button>
+                          <button>Por Dia:</button>
+                       </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 reserva-section data-reserva">
                     <div class="form-group">
                       <label for="">Data de Checkin:</label>
                       <input type="date" name="datacheckin" class="form-control" />
                     </div>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 reserva-section data-reserva">
                     <div class="form-group">
                       <label for="">Data de Checkout:</label>
                       <input type="date" name="datacheckout" class="form-control" />
                     </div>
                   </div>
+
+                  <div class="col-lg-4 reserva-section hora-reserva">
+                    <div class="form-group">
+                      <label for="">Hora de Checkin:</label>
+                      <input type="time" name="horaCheckin" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4 reserva-section hora-reserva">
+                    <div class="form-group">
+                      <label for="">Hora de Checkout:</label>
+                      <input type="time" name="horaCheckout" class="form-control" />
+                    </div>
+                  </div>
+
                   <div class="col-lg-2">
                     <div class="form-group">
                       <label for="">Nº Hospede:</label>

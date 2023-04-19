@@ -99,6 +99,13 @@
                 ><i class="fa fa-fw fa-file"></i>Restaurantes
               </a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'cardapio' ? 'active': '' ?>" href="cardapio.php?id=cardapio"
+                ><i class="fa fa-fw fa-utensils"></i>Cardapios
+              </a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'usuarios' ? 'active': '' ?>" href="usuarios.php?id=usuarios"
                 ><i class="fa fa-fw fa-users"></i>Usuários
