@@ -1,3 +1,10 @@
+
+<style>
+  .hora-reserva {
+    display: none;
+  }
+</style>
+
 <!-- Component Head -->
 <?php require 'components/component-head.php' ?>
 <!-- Component Head -->
@@ -132,9 +139,9 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label for="">Tipo de Reserva:</label>
-                       <div class="form-control">
-                          <button>Por Hora:</button>
-                          <button>Por Dia:</button>
+                       <div class="form-control buttons">
+                          <button class="porHora">Por Hora:</button>
+                          <button class="porDia">Por Dia:</button>
                        </div>
                     </div>
                   </div>
@@ -145,6 +152,7 @@
                       <input type="date" name="datacheckin" class="form-control" />
                     </div>
                   </div>
+
                   <div class="col-lg-4 reserva-section data-reserva">
                     <div class="form-group">
                       <label for="">Data de Checkout:</label>
@@ -158,6 +166,7 @@
                       <input type="time" name="horaCheckin" class="form-control" />
                     </div>
                   </div>
+
                   <div class="col-lg-4 reserva-section hora-reserva">
                     <div class="form-group">
                       <label for="">Hora de Checkout:</label>
@@ -208,3 +217,16 @@
 <!-- =============================================== -->
 <?php require '../../source/controllers/CriarReserva.php' ?>
 <!-- =============================================== -->
+
+
+<script>
+  const button = document.querySelectorAll(".buttons button");
+
+  button.forEach(btn => {
+    btn.addEventListener("click",function(event) {
+      event.preventDefault();
+      console.log(btn.classList.toggle('active'))
+    })
+  })
+  
+</script>
