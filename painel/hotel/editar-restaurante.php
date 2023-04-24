@@ -48,7 +48,6 @@
                   <div class="col-lg-12">
                     <form method="POST" enctype="multipart/form-data">
                       <div class="row">
-
                         <?php foreach($buscando as $details):?>
                           <div class="col-lg-4">
                             <div class="form-group">
@@ -77,14 +76,14 @@
                           <div class="col-lg-12">
                             <div class="form-group">
                               <label for="">Descrição:</label>
-                              <input type="text" value="<?= $details['descricao_restaurante'] ?>" class="form-control from-control-lg" />
+                              <input type="text" name="descricao" value="<?= $details['descricao_restaurante'] ?>" class="form-control from-control-lg" />
                             </div>
                           </div>
 
                         <?php endforeach; ?>
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="editar-restaurante" value="Registrar Restaurante" id="">
+                            <input type="submit" class="btn btn-primary" name="editar-restaurante" value="Atualizar Restaurante" id="">
                           </div>
                         </div>
                       </div>
@@ -111,7 +110,7 @@
         $foto          = $_FILES['foto']['name'];
 
         $parametros = [
-          ":idRestaurante"        => $_GET['idUser'],
+          ":idRestaurante"        => $_GET['iduser'],
           ":nome"                 => $nome,
           ":foto"                 => $foto,
           ":descricao"            => $descricao,
@@ -119,19 +118,20 @@
           ":num_mesas"            => $num_mesas
         ];
 
-        $inserirRestaurante = new Model();
-        $inserirRestaurante->EXE_NON_QUERY("UPDATE tb_restaurante SET
-        nome_restaurante=:nome, foto=:foto, descricao_restaurante=:descricao, 
-        classificacao_restaurante=:classif, num_mesas_restaurante=:num_mesas,
-        data_atualizacao_restaurante=now()
+        $atualizarRestaurante = new Model();
+        $atualizarRestaurante->EXE_NON_QUERY("UPDATE tb_restaurante SET
+        nome_restaurante=:nome, 
+        foto=:foto, 
+        descricao_restaurante=:descricao, 
+        classificacao_restaurante=:classif, 
+        num_mesas_restaurante=:num_mesas
         WHERE id_restaurante=:idRestaurante", $parametros);
 
-        if($inserirRestaurante):
-
+        if($atualizarRestaurante):
           //===================================================================================================================
           $today   =  Date('Y-m-d');
           $nome    = $_SESSION['nome'];
-          $action  = "registrou";
+          $action  = "atualizou";
           $textLog = "O usuário ". $nome. " ". $action . " um restaurante cujo o nome é ". $_POST['nome'];
           $parametros = [
             ":nome"     => $nome, 
@@ -154,8 +154,8 @@
           }
           echo '<script> 
                 swal({
-                  title: "Dados inseridos!",
-                  text: "Dados inseridos com sucesso",
+                  title: "Dados atualizados!",
+                  text: "Dados atualizados com sucesso",
                   icon: "success",
                   button: "Fechar!",
                 })

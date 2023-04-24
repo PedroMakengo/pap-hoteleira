@@ -55,12 +55,20 @@
                       <div class="row">
 
                       <?php foreach($listMesasRestaurantes as $details):?>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                           <div class="form-group">
                             <label for="">Nome da Mesa <sup>*</sup></label>
                             <input type="text" value="<?= $details['nome_mesa'] ?>" required name="nome_mesa" class="form-control form-control-lg">
                           </div>
                         </div>
+
+                        <div class="col-lg-2">
+                          <div class="form-group">
+                            <label for="">Preço <sup>*</sup></label>
+                            <input type="text" value="<?= $details['preco_mesa'] ?>" name="preco" required class="form-control form-control-lg">
+                          </div>
+                        </div>
+
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Tipo de Mesa <sup>*</sup></label>
@@ -72,14 +80,20 @@
                             </select>
                           </div>
                         </div>
+
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Preço <sup>*</sup></label>
-                            <input type="text" value="<?= $details['preco_mesa'] ?>" name="preco" required class="form-control form-control-lg">
+                            <label for="">Estado da Mesa <sup>*</sup></label>
+                            <select name="estado" required class="form-control form-control-lg">
+                              <option value="">Selecione o estado de mesa</option>
+                              <option value="Disponível">Disponível</option>
+                              <option value="Ocupado">Ocupado</option>
+                              <option value="Indisponível">Indisponível</option>
+                            </select>
                           </div>
                         </div>
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
                           <div class="form-group">
                             <label for="">Restaurante</label>
                             <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
@@ -90,7 +104,7 @@
 
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="editar-mesa" value="Registrar Mesa" >
+                            <input type="submit" class="btn btn-primary" name="editar-mesa" value="Editar Mesa" >
                           </div>
                         </div>
                       </div>
@@ -111,27 +125,42 @@
         $nome = $_POST['nome_mesa'];
         $tipo = $_POST['tipo'];
         $preco = $_POST['preco'];
-        $statusMesa = "Disponível";
+        $statusMesa = $_POST['estado'];
 
         $parametros = [
           ":id"         => $_GET['idUser'],
           ":nome"       => $nome,
           ":tipo"       => $tipo,
           ":preco"      => $preco,
-          ":statusMesa" => $statusMesa,
+          ":statusMesa" => $statusMesa
         ];
 
         $inserirMesa = new Model();
-        $inserirMesa->EXE_NON_QUERY("UPDATE tb_restaurante SET
-        nome_restaurante=:nome, foto=:foto, descricao_restaurante=:descricao, 
-        classificacao_restaurante=:classif, num_mesas_restaurante=:num_mesas,
-        data_atualizacao_restaurante=now() WHERE id_mesa=:id",$parametros);
+        $inserirMesa->EXE_NON_QUERY("UPDATE tb_mesas SET
+        nome_mesa=:nome, tipo_mesa=:tipo, preco_mesa=:preco, status_mesa=:statusMesa
+        WHERE id_mesa=:id",$parametros);
 
         if($inserirMesa):
+          //===================================================================================================================
+          $today   =  Date('Y-m-d');
+          $nome    = $_SESSION['nome'];
+          $action  = "atualizou";
+          $textLog = "O usuário ". $nome. " ". $action . " uma mesa cujo o nome é ". $_POST['nome'];
+          $parametros = [
+            ":nome"     => $nome, 
+            ":actionLog"   => $action, 
+            ":textLog"  => $textLog,
+            ":dataLog"     => $today       
+          ];
+          $insertLog = new Model();
+          $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+          (user_log, action_log, text_log, data_log) 
+          VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+          //===================================================================================================================
           echo '<script> 
                 swal({
-                  title: "Dados inseridos!",
-                  text: "Dados inseridos com sucesso",
+                  title: "Dados atualizado!",
+                  text: "Dados atualizados com sucesso",
                   icon: "success",
                   button: "Fechar!",
                 })

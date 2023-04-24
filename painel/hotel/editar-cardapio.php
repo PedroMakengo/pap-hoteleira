@@ -9,6 +9,10 @@
   INNER JOIN tb_restaurante ON 
   tb_cardapio.id_restaurante=tb_restaurante.id_restaurante 
   WHERE tb_restaurante.id_hotel=:id", $parametros);
+
+  foreach($listCardapio as $details):
+    $fotoCardapio = $details['foto_comida'];
+  endforeach;
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -53,8 +57,6 @@
                   <div class="col-lg-12 p-4">
                   <form method="POST" enctype="multipart/form-data">
                       <div class="row">
-
-                        
                           <div class="col-lg-8">
                             <div class="form-group">
                               <label for="">Nome do Hotel</label>
@@ -132,32 +134,62 @@
 
     <?php 
 
-      if(isset($_POST['editar-mesa'])):
+      if(isset($_POST['editar-cardapio'])):
+        
+        if(empty($_FILES['foto']['name'])):
+          $foto = $fotoCardapio;
+        else:
+          $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
+          $foto         = $_FILES['foto']['name'];
+        endif;
 
-        $nome = $_POST['nome_mesa'];
-        $tipo = $_POST['tipo'];
-        $preco = $_POST['preco'];
-        $comida = $_POST['comidas'];
-        $bebidas = $_POST['bebidas'];
-        $statusMesa = "Disponível";
+        $comida       = $_POST['prato'];
+        $bebida       = $_POST['bebida'];
+        $precoComida  = $_POST['precoComida'];
+        $precoBebida  = $_POST['precoBebida'];
 
         $parametros = [
-          ":id"         => $_GET['idUser'],
-          ":nome"       => $nome,
-          ":tipo"       => $tipo,
-          ":preco"      => $preco,
-          ":statusMesa" => $statusMesa,
-          ":comida"     => $comida,
-          ":bebidas"    => $bebidas
+          ":id"              => $_GET['idUser'],
+          ":comida"          => $comida,
+          ":bebida"          => $bebida,
+          ":precoComida"     => $precoComida,
+          ":precoBebida"     => $precoBebida,
+          ":fotoComida"      => $foto
         ];
 
-        $inserirMesa = new Model();
-        $inserirMesa->EXE_NON_QUERY("UPDATE tb_restaurante SET
-        nome_restaurante=:nome, foto=:foto, descricao_restaurante=:descricao, 
-        classificacao_restaurante=:classif, num_mesas_restaurante=:num_mesas,
-        data_atualizacao_restaurante=now() WHERE id_mesa=:id",$parametros);
+        $atualizarCardapio = new Model();
+        $atualizarCardapio->EXE_NON_QUERY("UPDATE tb_cardapio SET
+          comida=:comida, 
+          bebida=:bebida, 
+          preco_comida=:precoComida,
+          preco_bebida=:precoBebida, 
+          foto_comida=:fotoComida
+          WHERE id_cardapio=:id",$parametros);
 
-        if($inserirMesa):
+        if($atualizarCardapio):
+          //===================================================================================================================
+          $today   =  Date('Y-m-d');
+          $nome    = $_SESSION['nome'];
+          $action  = "atualizou";
+          $textLog = "O usuário ". $nome. " ". $action . " um cardapio cujo o nome do prato é ". $_POST['nome'];
+          $parametros = [
+            ":nome"     => $nome, 
+            ":actionLog"   => $action, 
+            ":textLog"  => $textLog,
+            ":dataLog"     => $today       
+          ];
+          $insertLog = new Model();
+          $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+          (user_log, action_log, text_log, data_log) 
+          VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+          //===================================================================================================================
+          if(!empty($_FILES['foto']['name'])) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+              $sms = "Uploaded feito com sucesso";
+            else:
+              $sms = "Não foi possível fazer o upload";
+            endif;
+          }
           echo '<script> 
                 swal({
                   title: "Dados inseridos!",
@@ -168,7 +200,7 @@
               </script>';
           echo '<script>
               setTimeout(function() {
-                  window.location.href="mesas-restaurante.php?id=mesas";
+                  window.location.href="cardapio.php?id=cardapio";
               }, 1000)
           </script>';
         endif;

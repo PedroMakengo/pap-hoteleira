@@ -62,7 +62,6 @@
                           <th>E-mail</th>
                           <th>Genero</th>
                           <th>Data de Registro</th>
-                          <th class="text-center">Ações</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -76,13 +75,6 @@
                                 <td><?= $details['email_hospede'] ?></td>
                                 <td><?= $details['genero_hospedes'] == "M" ? "Masculino":"Feminino" ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
-                                <td class="text-center">
-                                  <!-- Eliminar -->
-                                  <a href="restaurante.php?<?= $details['id_reserva'] ?>&action=delete" class="btn btn-info btn-sm">
-                                    <i class="fas fa-eye fs-xl opacity-60 me-2"></i>
-                                  </a>
-                                  <!-- Eliminar -->
-                                </td>
                               </tr>
                             <?php 
                             endforeach;
