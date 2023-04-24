@@ -1,7 +1,10 @@
 
 <style>
-  .hora-reserva {
+  .tab {
     display: none;
+  }
+  .tab.active {
+    display: block;
   }
 </style>
 
@@ -140,37 +143,45 @@
                     <div class="form-group">
                       <label for="">Tipo de Reserva:</label>
                        <div class="form-control buttons">
-                          <button class="porHora">Por Hora:</button>
-                          <button class="porDia">Por Dia:</button>
+                         <button class="porDia active">Por Dia:</button>
+                         <button class="porHora">Por Hora:</button>
                        </div>
                     </div>
                   </div>
 
-                  <div class="col-lg-4 reserva-section data-reserva">
-                    <div class="form-group">
-                      <label for="">Data de Checkin:</label>
-                      <input type="date" name="datacheckin" class="form-control" />
-                    </div>
-                  </div>
+                  <div class="row content-tab">
+                    <div class="col-lg-12 tab active">
+                      <div class="row">
+                        <div class="col-lg-6 reserva-section">
+                          <div class="form-group">
+                            <label for="">Data de Checkin:</label>
+                            <input type="date" name="datacheckin" class="form-control" />
+                          </div>
+                        </div>
 
-                  <div class="col-lg-4 reserva-section data-reserva">
-                    <div class="form-group">
-                      <label for="">Data de Checkout:</label>
-                      <input type="date" name="datacheckout" class="form-control" />
+                        <div class="col-lg-6 reserva-section">
+                          <div class="form-group">
+                            <label for="">Data de Checkout:</label>
+                            <input type="date" name="datacheckout" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-4 reserva-section hora-reserva">
-                    <div class="form-group">
-                      <label for="">Hora de Checkin:</label>
-                      <input type="time" name="horaCheckin" class="form-control" />
-                    </div>
-                  </div>
+                    <div class="tab">
+                      <div class="col-lg-4 reserva-section">
+                        <div class="form-group">
+                          <label for="">Hora de Checkin:</label>
+                          <input type="time" name="horaCheckin" class="form-control" />
+                        </div>
+                      </div>
 
-                  <div class="col-lg-4 reserva-section hora-reserva">
-                    <div class="form-group">
-                      <label for="">Hora de Checkout:</label>
-                      <input type="time" name="horaCheckout" class="form-control" />
+                      <div class="col-lg-4 reserva-section">
+                        <div class="form-group">
+                          <label for="">Hora de Checkout:</label>
+                          <input type="time" name="horaCheckout" class="form-control" />
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -221,11 +232,20 @@
 
 <script>
   const button = document.querySelectorAll(".buttons button");
+  const tab    = document.querySelectorAll(".content-tab .tab");
 
   button.forEach(btn => {
+    console.log(btn.indexOff)
     btn.addEventListener("click",function(event) {
       event.preventDefault();
-      console.log(btn.classList.toggle('active'))
+
+      const verifyExistClassActive = btn.classList.contains('active')
+      
+      if(verifyExistClassActive) {
+        btn.classList.remove('active')
+      } else {
+        btn.classList.add('active');
+      }
     })
   })
   
