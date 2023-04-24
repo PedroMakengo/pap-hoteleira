@@ -199,9 +199,13 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['data_checkin_reserva'] ?></td>
                                               <td><?= $details['data_checkout_reserva'] ?></td>
                                               <td>
-                                                <!-- Comprovativo -->
-                                                <?= $details['comprovativo_reserva'] ?>
-                                                <!-- Comprovativo -->
+                                                <object data="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" type="application/x-pdf" title="Comprovativo">
+                                                  <a href="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" class="text-dark" target="_blank">
+                                                    <p>
+                                                      Comprovativo
+                                                    </p>
+                                                  </a>
+                                                </object>
                                               </td>
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
@@ -254,7 +258,15 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                 <td><?= $details['nome_restaurante'] ?></td>
                                                 <td><?= $details['nome_mesa'] ?></td>
                                                 <td><?= $details['preco_mesa'] ?></td>
-                                                <td><?= $details['comprovativo_mesa_reserva'] ?></td>
+                                                <td>
+                                                  <object data="../../assets/__storage/<?= $details['comprovativo_mesa_reserva'] ?>" type="application/x-pdf" title="Comprovativo">
+                                                    <a href="../../assets/__storage/<?= $details['comprovativo_mesa_reserva'] ?>" class="text-dark" target="_blank">
+                                                      <p>
+                                                        Comprovativo
+                                                      </p>
+                                                    </a>
+                                                  </object>
+                                                </td>
                                                 <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                                 <td class="text-center">
                                                   <!-- Eliminar -->

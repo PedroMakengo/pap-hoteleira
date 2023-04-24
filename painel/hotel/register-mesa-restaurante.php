@@ -9,8 +9,6 @@
   INNER JOIN tb_restaurante ON 
   tb_mesas.id_restaurante=tb_restaurante.id_restaurante
   WHERE tb_restaurante.id_hotel=:id", $parametros);
-
-  
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -79,7 +77,7 @@
                           </div>
                         </div>
                       
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
                           <div class="form-group">
                             <label for="">Restaurante</label>
                             <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
