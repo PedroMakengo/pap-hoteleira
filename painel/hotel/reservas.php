@@ -280,7 +280,7 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                             endforeach;
                                           else:  ?>
                                             <tr>
-                                              <td>Não existe nenhum registro</td>
+                                              <td colspan="12" class="text-center">Não existe nenhum registro</td>
                                             </tr>
                                           <?php 
                                           endif;
