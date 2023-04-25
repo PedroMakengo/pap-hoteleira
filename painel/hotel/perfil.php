@@ -339,11 +339,11 @@
               button: "Fechar!",
             })
           </script>';
-    // echo '<script>
-    //       setTimeout(function() {
-    //           window.location.href="perfil.php?id=perfil";
-    //       }, 2000)
-    //   </script>';
+    echo '<script>
+          setTimeout(function() {
+              window.location.href="perfil.php?id=perfil";
+          }, 2000)
+      </script>';
     endif;
 
   endif;

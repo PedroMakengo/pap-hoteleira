@@ -7,6 +7,10 @@
   $listDataUserPerfil = new Model();
   $listUserPerfil = $listDataUserPerfil->EXE_QUERY("SELECT * FROM tb_hospedes
    WHERE id_hospede=:id", $parametros);
+
+   foreach($listUserPerfil as $details):
+    $fotoPerfil = $details['foto_hospedes'];
+   endforeach;
 ?> 
 
 <div class="dashboard-main-wrapper">
@@ -118,8 +122,12 @@
 
   if(isset($_POST['atualizarPerfil'])):
 
-    $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
-    $foto         = $_FILES['foto']['name'];
+    if(empty($_FILES['foto']['name'])) {
+      $foto = $fotoPerfil;
+    }else {
+      $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
+      $foto         = $_FILES['foto']['name'];
+    }
 
     $nome  = $_POST['nome'];
     $email = $_POST['email'];
@@ -161,11 +169,24 @@
     WHERE id_hospede=:id", $parametros);
 
     if($atualizarPerfilHospede):
-      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-        $sms = "Uploaded feito com sucesso";
-      else:
-        $sms = "Não foi possível fazer o upload";
-      endif;
+
+      // Atualizar também o nome dele dentro da tabela historico reserva
+      $parametros = [
+        ":nome" => $_SESSION['nome'], 
+        ":username"=> $_POST['nome']
+      ];
+      $updateNameUserHistory = new Model();
+      $updateNameUserHistory->EXE_NON_QUERY("UPDATE tb_historico_reserva set 
+      usuario_historico=:username WHERE usuario_historico=:nome", $parametros);
+
+
+      if(!empty($_FILES['foto']['name'])) {
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+          $sms = "Uploaded feito com sucesso";
+        else:
+          $sms = "Não foi possível fazer o upload";
+        endif;
+      }
       echo '<script> 
           swal({
             title: "Dados atualizados!",
