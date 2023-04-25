@@ -59,7 +59,7 @@
                     ?>
                 </div>
                 <?php else:  ?>
-                <div>Não existe nenhum registro</div>
+                <div class="bg-info text-center text-white p-3">Não existe nenhum registro</div>
                 <?php endif;?>
             </div>
           </div>
