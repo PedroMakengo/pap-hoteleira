@@ -1,3 +1,11 @@
+<?php 
+  $parametros = [":nome" => $_SESSION['nome']];
+  $logs = new Model();
+  $contHistoria = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE 
+  usuario_historico=:nome", $parametros);
+?>
+
+
 <!-- Header -->
 <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
@@ -98,7 +106,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'notifications' ? 'active': '' ?>" href="notifications.php?id=notifications"
-                ><i class="fa fa-fw fa-bell"></i>Notificações
+                ><i class="fa fa-fw fa-bell"></i>Notificações <span class="bg-success btn btn-sm"><?= count($contHistoria) ?></span>
               </a>
             </li>
             <li class="nav-item ">

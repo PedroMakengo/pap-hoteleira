@@ -4,9 +4,10 @@
 
 <!-- Listagem de usuários hospedes -->
 <?php 
-   $parametros = [":id" => $_SESSION['id']];
+   $parametros = [":nome" => $_SESSION['nome']];
    $logs = new Model();
-   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_historico=:id", $parametros);
+   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE 
+   usuario_historico=:nome", $parametros);
 ?>
 <!-- Listagem de usuários -->
 

@@ -2,6 +2,8 @@
 <?php require '../../public/verify_session_auth.php' ?>
 <!-- End Head -->
 
+
+
 <!DOCTYPE html>
 <html lang="pt-PT">
   <head>

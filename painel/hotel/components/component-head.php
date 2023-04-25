@@ -12,7 +12,99 @@
 <!-- End Head -->
 
 
+<!-- Inserir assim que a data do checkout passar -->
+<?php 
+        $parametros = [":id" => $_SESSION['id']];
+        $buscandoReservaQuarto = new Model();
+        $quartoDesteHotel = $buscandoReservaQuarto->EXE_QUERY("SELECT * FROM tb_reservas 
+        INNER JOIN tb_quartos 
+        ON tb_reservas.id_quarto=tb_quartos.id_quarto
+        INNER JOIN tb_hospedes 
+        ON tb_reservas.id_hospede=tb_hospedes.id_hospede
+        WHERE tb_quartos.id_hotel=:id", $parametros);
 
+        if($quartoDesteHotel):
+          // Inserir no historico a situação da reserva
+          foreach($quartoDesteHotel as $details):
+            $dataCheckout = $details['data_checkout_reserva'];
+            $nomeHospede  = $details['nome_hospede'];
+          endforeach;
+
+          $date = Date("Y-m-d");
+          
+          $dataCheckoutSelected = new DateTime(date($dataCheckout));
+          $dataAtualFormatada = new DateTime(date($date));
+          $differenceDate = $dataAtualFormatada->diff($dataCheckoutSelected)->days;
+
+          if($differenceDate === 3):
+            // Faltam 3 dias para a tua reserva terminar...
+            $parametros = [
+              ":id"               =>  $_SESSION['id'],
+              ":actionHistorico"  => "prazo de hospedagem",
+              ":nome"             => $nomeHospede,
+              ":dataHistorico"    => Date('Y-m-d')
+            ];
+            $buscandoReservaRecente = new Model();
+            $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
+              id_hotel=:id AND action_historico=:actionHistorico AND usuario_historico=:nome AND data_historico=:dataHistorico", $parametros);
+
+            // echo count($buscando);
+           
+            if(count($buscando) == 0):
+              //===================================================================================================================
+              $today   =  Date('Y-m-d');
+              $id    = $_SESSION['id'];
+              $action  = "prazo de hospedagem";
+              $textLog = $nomeHospede. " ". $action . " termina em 3 dia ";
+              $parametros = [
+                ":id"     => $id, 
+                ":nomeHospede" => $nomeHospede,
+                ":actionLog"   => $action, 
+                ":textLog"  => $textLog  
+              ];
+              $insertLog = new Model();
+              $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+              (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+              VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+              //===================================================================================================================
+            endif;
+          else:
+            $parametros = [
+              ":id"               =>  $_SESSION['id'],
+              ":actionHistorico"  => "prazo terminado",
+              ":nome"             => $nomeHospede,
+              ":dataHistorico"    => Date('Y-m-d')
+            ];
+            $buscandoReservaRecente = new Model();
+            $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
+              id_hotel=:id AND action_historico=:actionHistorico AND usuario_historico=:nome AND data_historico=:dataHistorico", $parametros);
+
+            // Atualizar o estado da reserva do usuário
+            
+
+            // echo count($buscando);
+           
+            if(count($buscando) == 0):
+              //===================================================================================================================
+              $today   =  Date('Y-m-d');
+              $id    = $_SESSION['id'];
+              $action  = "prazo terminado";
+              $textLog = $nomeHospede. " Opps o teu ". $action . " ";
+              $parametros = [
+                ":id"     => $id, 
+                ":nomeHospede" => $nomeHospede,
+                ":actionLog"   => $action, 
+                ":textLog"  => $textLog  
+              ];
+              $insertLog = new Model();
+              $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+              (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+              VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+              //===================================================================================================================
+            endif;
+          endif;
+        endif;
+    ?>
 
 
 <!DOCTYPE html>
