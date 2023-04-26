@@ -234,19 +234,24 @@
   const button = document.querySelectorAll(".buttons button");
   const tab    = document.querySelectorAll(".content-tab .tab");
 
-  button.forEach(btn => {
-    console.log(btn.indexOff)
-    btn.addEventListener("click",function(event) {
-      event.preventDefault();
+  
+const tabNavegator = document.querySelectorAll(".btn-tab");
+const tabContent = document.querySelectorAll(".tab-describe");
 
-      const verifyExistClassActive = btn.classList.contains('active')
-      
-      if(verifyExistClassActive) {
-        btn.classList.remove('active')
-      } else {
-        btn.classList.add('active');
-      }
-    })
-  })
+for (let i = 0; i < tabNavegator.length; i++) {
+  tabNavegator[i].addEventListener("click", function (e) {
+    // Elementos Ativos
+    const tabNavegatorActive = document.querySelector(".btn-tab.btn-active");
+    const tabContentActive = document.querySelector(".tab-describe.tab-active");
+
+    // 1) Tab Navegator
+    tabNavegatorActive.classList.remove("btn-active");
+    tabNavegator[i].classList.add("btn-active");
+
+    // 2) TabContent Navegator
+    tabContentActive.classList.remove("tab-active");
+    tabContent[i].classList.add("tab-active");
+  });
+}
   
 </script>
