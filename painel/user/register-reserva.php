@@ -1,5 +1,16 @@
 
 <style>
+
+  .buttons button {
+    background: #ccc;
+    border: 0;
+  }
+
+  .buttons button.active {
+    background: #704828;
+    color: #FFF;
+  }
+   
   .tab {
     display: none;
   }
@@ -143,8 +154,8 @@
                     <div class="form-group">
                       <label for="">Tipo de Reserva:</label>
                        <div class="form-control buttons">
-                         <button class="porDia active">Por Dia:</button>
-                         <button class="porHora">Por Hora:</button>
+                         <button class="active">Por Dia:</button>
+                         <button class="">Por Hora:</button>
                        </div>
                     </div>
                   </div>
@@ -168,18 +179,20 @@
                       </div>
                     </div>
 
-                    <div class="tab">
-                      <div class="col-lg-4 reserva-section">
-                        <div class="form-group">
-                          <label for="">Hora de Checkin:</label>
-                          <input type="time" name="horaCheckin" class="form-control" />
+                    <div class="col-lg-12 tab">
+                      <div class="row">
+                        <div class="col-lg-6 reserva-section">
+                          <div class="form-group">
+                            <label for="" title="Hora de Checkin">Checkin:</label>
+                            <input type="time" name="horaCheckin" class="form-control" />
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="col-lg-4 reserva-section">
-                        <div class="form-group">
-                          <label for="">Hora de Checkout:</label>
-                          <input type="time" name="horaCheckout" class="form-control" />
+                        <div class="col-lg-6 reserva-section">
+                          <div class="form-group">
+                            <label for="" title="Hora de Checkout">Checkout:</label>
+                            <input type="time" name="horaCheckout" class="form-control" />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -231,27 +244,25 @@
 
 
 <script>
-  const button = document.querySelectorAll(".buttons button");
-  const tab    = document.querySelectorAll(".content-tab .tab");
+    
+  const tabNavegator = document.querySelectorAll(".buttons button");
+  const tabContent = document.querySelectorAll(".content-tab .tab");
 
-  
-const tabNavegator = document.querySelectorAll(".btn-tab");
-const tabContent = document.querySelectorAll(".tab-describe");
+  for (let i = 0; i < tabNavegator.length; i++) {
+    tabNavegator[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      // Elementos Ativos
+      const tabNavegatorActive = document.querySelector(".buttons button.active");
+      const tabContentActive = document.querySelector(".content-tab .tab.active");
 
-for (let i = 0; i < tabNavegator.length; i++) {
-  tabNavegator[i].addEventListener("click", function (e) {
-    // Elementos Ativos
-    const tabNavegatorActive = document.querySelector(".btn-tab.btn-active");
-    const tabContentActive = document.querySelector(".tab-describe.tab-active");
+      // 1) Tab Navegator 
+      tabNavegatorActive.classList.remove("active");
+      tabNavegator[i].classList.add("active");
 
-    // 1) Tab Navegator
-    tabNavegatorActive.classList.remove("btn-active");
-    tabNavegator[i].classList.add("btn-active");
-
-    // 2) TabContent Navegator
-    tabContentActive.classList.remove("tab-active");
-    tabContent[i].classList.add("tab-active");
-  });
-}
+      // 2) TabContent Navegator
+      tabContentActive.classList.remove("active");
+      tabContent[i].classList.add("active");
+    });
+  }
   
 </script>
