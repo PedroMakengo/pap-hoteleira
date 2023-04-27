@@ -5,6 +5,8 @@
     $datacheckin  = $_POST['datacheckin'];
     $datacheckout = $_POST['datacheckout'];
     $num_hospede  = $_POST['num_hospede'];
+    $horaCheckin  = $_POST['horaCheckin'];
+    $horaCheckout = $_POST['horaCheckout'];
   
     $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
     $foto         = $_FILES['foto']['name'];
