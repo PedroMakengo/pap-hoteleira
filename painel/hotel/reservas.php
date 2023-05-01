@@ -179,7 +179,8 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                       <tr>
                                         <th>#</th>
                                         <th>Nome do Hospede</th>
-                                        <th>Quarto</th>
+                                        <th>Nº Quarto</th>
+                                        <th>Estado</th>
                                         <th>Data Checkin</th>
                                         <th>Data Checkout</th>
                                         <th>Comprovativo</th>
@@ -195,7 +196,8 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                             <tr>
                                               <td><?= $details['id_reserva'] ?></td>
                                               <td><?= $details['nome_hospede'] ?></td>
-                                              <td><?= $details['tipo_quarto'] ?></td>
+                                              <td><?= $details['quarto'] ?></td>
+                                              <td><?= $details['status_quarto_reserva'] ?></td>
                                               <td><?= $details['data_checkin_reserva'] ?></td>
                                               <td><?= $details['data_checkout_reserva'] ?></td>
                                               <td>
@@ -209,14 +211,46 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               </td>
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
-                                                <!-- Eliminar -->
-
                                                 <!-- Fazer -->
-                                                <button class="btn btn-success btn-sm">
+                                                <?php if($details['status_quarto_reserva'] == 'Por verificar'): ?>
+                                                <form method="POST">
+                                                  <button class="btn btn-success btn-sm" title="Validar reserva quarto" name="<?= $aprovarReserva = 'aprovarReserva' . $details['id_reserva'] ?>">
+                                                    <i class="fas fas fa-check opacity-60 me-2"></i>
+                                                  </button>
+
+                                                  <?php 
+                                                    if(isset($_POST[$aprovarReserva])):
+                                                      $parametros = [
+                                                        ":id_reserva"     => $details["id_reserva"],
+                                                        ":statusReserva"  => "Reservado"
+                                                      ];
+                                                      $imovelAtualizar = new Model();
+                                                      $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_reservas SET status_quarto_reserva=:statusReserva
+                                                      WHERE id_reserva=:id_reserva", $parametros);
+                                                      echo '<script> 
+                                                            swal({
+                                                              title: "Reserva Validado!",
+                                                              text: "Reservado do Quarto Validado com sucesso",
+                                                              icon: "success",
+                                                              button: "Fechar!",
+                                                            })
+                                                          </script>';
+                                                      echo '<script>
+                                                        setTimeout(function() {
+                                                            window.location.href="reservas.php?id=reservas";
+                                                        }, 2000)
+                                                      </script>';
+                                                    endif;
+                                                  ?>
+                                                </form>
+                                                <?php else:?>
+                                                <button class="btn btn-info btn-sm" disabled title="Validar reserva quarto">
                                                   <i class="fas fas fa-check opacity-60 me-2"></i>
                                                 </button>
+                                                <?php endif;?>
                                                 <!-- Fazer -->
                                                 
+                                                <!-- Eliminar -->
                                                 <a href="reservas.php?nomeQuarto=<?= $details['tipo_quarto'] ?>&id=<?= $details['id_reserva'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
                                                   <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                                 </a>

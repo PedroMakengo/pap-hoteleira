@@ -141,9 +141,11 @@
                                 <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['quarto'] ?></td>
                                 <td><?= $details['tipo_quarto'] ?></td>
-                                <td><?= $details['num_hospedes_reserva'] ?></td>
+                                <td>
+                                  <?= $details['num_hospedes_reserva'] ?>
+                                </td>
                                 <td><?= $details['preco_quarto'] . " kz" ?></td>
-                                <td><?= $details['status_quarto'] ?></td>
+                                <td><?= $details['status_quarto_reserva'] ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <a href="editar-reserva-quarto.php?id=home&idUser=<?= $details['id_reserva'] ?>" class="btn btn-primary btn-sm">

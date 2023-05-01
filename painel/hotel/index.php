@@ -7,6 +7,7 @@
 <?php 
   $parametros = [":id" => $_SESSION['id']];
   $count = new Model();
+
   $quartosCount = $count->EXE_QUERY("SELECT * FROM tb_quartos 
   WHERE id_hotel=:id", $parametros);
 
@@ -19,8 +20,19 @@
     tb_mesa_reservas.id_restaurante=tb_restaurante.id_restaurante
     INNER JOIN tb_hotel ON 
     tb_restaurante.id_hotel=tb_hotel.id_hotel 
-    WHERE tb_hotel.id_hotel=:id", $parametros)
+    WHERE tb_hotel.id_hotel=:id", $parametros);
 
+  $restaurantesCount = $count->EXE_QUERY("SELECT * FROM tb_restaurante WHERE id_hotel=:id", $parametros);
+
+  $totalHospedesCount = $count->EXE_QUERY("SELECT DISTINCT 
+  * FROM  tb_hospedes 
+  INNER JOIN tb_reservas ON 
+  tb_hospedes.id_hospede=tb_reservas.id_hospede 
+  INNER JOIN tb_quartos ON 
+  tb_reservas.id_quarto=tb_quartos.id_quarto 
+  WHERE tb_quartos.id_quarto=:id
+  GROUP BY tb_reservas.id_hospede
+  ", $parametros);
 ?>
 <!-- Count -->
 
@@ -57,7 +69,8 @@
       <div class="container-fluid dashboard-content">
         <div class="ecommerce-widget">
           <div class="row">
-            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12 col-12">
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Quartos</h5>
@@ -71,9 +84,23 @@
                 </div>
               </div>
             </div>
-          
 
-            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                  <h5 class="text-muted">Total de Restaurante</h5>
+                  <div class="metric-value d-inline-block">
+                    <h1 class="mb-1"><?= count($restaurantesCount) ?></h1>
+                  </div>
+                  <div
+                    class="metric-label d-inline-block float-right text-success font-weight-bold"
+                  >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Reservas de Quarto</h5>
@@ -88,7 +115,7 @@
               </div>
             </div>
 
-            <div class="col-xl-4 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Reserva Mesas</h5>
@@ -102,6 +129,24 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                  <h5 class="text-muted">Total de Hospedes</h5>
+                  <div class="metric-value d-inline-block">
+                    <h1 class="mb-1"><?= count($totalHospedesCount) ?></h1>
+                  </div>
+                  <div
+                    class="metric-label d-inline-block float-right text-success font-weight-bold"
+                  >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+
           </div>
 
           <div class="row">

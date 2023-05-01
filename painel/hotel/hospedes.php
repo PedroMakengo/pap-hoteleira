@@ -6,10 +6,14 @@
 <?php
   $parametros = [":id" => $_SESSION['id']];
   $listHospedes = new Model();
-  $listDetailsHospedes = $listHospedes->EXE_QUERY("SELECT * FROM tb_reservas INNER JOIN tb_quartos 
-  ON tb_reservas.id_quarto=tb_quartos.id_quarto 
-  INNER JOIN tb_hospedes ON tb_reservas.id_hospede=tb_hospedes.id_hospede
-  WHERE tb_quartos.id_hotel=:id", $parametros);
+  $listDetailsHospedes = $listHospedes->EXE_QUERY("SELECT DISTINCT 
+  * FROM  tb_hospedes 
+  INNER JOIN tb_reservas ON 
+  tb_hospedes.id_hospede=tb_reservas.id_hospede 
+  INNER JOIN tb_quartos ON 
+  tb_reservas.id_quarto=tb_quartos.id_quarto 
+  WHERE tb_quartos.id_quarto=:id
+  GROUP BY tb_reservas.id_hospede", $parametros);
 
 ?>
 

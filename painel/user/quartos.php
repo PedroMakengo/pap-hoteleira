@@ -3,12 +3,9 @@
 <!-- Component Head -->
 
 <?php
-  $parametros = [":status_quarto" => "Disponível"];
   $listReservas = new Model();
   $listDetailsReservas = $listReservas->EXE_QUERY("SELECT * FROM tb_quartos
-  INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel
-  WHERE status_quarto=:status_quarto
-  ", $parametros);
+  INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel");
 ?> 
 
 <div class="dashboard-main-wrapper">

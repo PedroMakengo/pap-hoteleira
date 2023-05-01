@@ -123,8 +123,6 @@
                                             $imovelAtualizar = new Model();
                                             $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_hotel SET status_hotel=:status_hotel
                                             WHERE id_hotel=:id_hotel", $parametros);
-
-                                            
                                             echo '<script> 
                                                   swal({
                                                     title: "Hotel activo!",

@@ -14,6 +14,8 @@
   $countTotalUsers = $count->EXE_QUERY("SELECT * FROM tb_hospedes");
   // Count Total Reservas
   $countTotalReserva = $count->EXE_QUERY("SELECT * FROM tb_reservas");
+
+  $countTotalQuartos = $count->EXE_QUERY("SELECT * FROM tb_quartos");
 ?>
 <!-- Retornar todos os counts -->
   
@@ -29,7 +31,8 @@
       <div class="container-fluid dashboard-content">
         <div class="ecommerce-widget">
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+
+            <div class="col-xl-3 col-lg-2 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Hoteis</h5>
@@ -46,7 +49,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-3 col-lg-2 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Restaurantes</h5>
@@ -63,7 +66,7 @@
               </div>
             </div>
            
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Usuários</h5>
@@ -80,13 +83,30 @@
               </div>
             </div>
           
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
               <div class="card border-3 border-top border-top-primary">
                 <div class="card-body">
                   <h5 class="text-muted">Reservas</h5>
                   <div class="metric-value d-inline-block">
                     <h1 class="mb-1">
                      <?= count($countTotalReserva) ?>
+                    </h1>
+                  </div>
+                  <div
+                    class="metric-label d-inline-block float-right text-danger font-weight-bold"
+                  >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+              <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                  <h5 class="text-muted">Quartos</h5>
+                  <div class="metric-value d-inline-block">
+                    <h1 class="mb-1">
+                     <?= count($countTotalQuartos) ?>
                     </h1>
                   </div>
                   <div
