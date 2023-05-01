@@ -119,10 +119,11 @@
                       <thead>
                         <tr>
                           <th>#</th>
+                          <th>Nome</th>
                           <th>Hotel</th>
                           <th>Quarto</th>
                           <th>Tipo de Quarto</th>
-                          <th>Capacidade Quarto</th>
+                          <th>Q. de Hospedes</th>
                           <th>Preço do Quarto</th>
                           <th>Status</th>
                           <th>Data de Registro</th>
@@ -136,13 +137,14 @@
                             ?>
                               <tr>
                                 <td><?= $details['id_reserva'] ?></td>
+                                <td><?= $_SESSION['nome'] ?></td>
                                 <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['quarto'] ?></td>
                                 <td><?= $details['tipo_quarto'] ?></td>
-                                <td><?= $details['capacidade_quarto'] ?></td>
+                                <td><?= $details['num_hospedes_reserva'] ?></td>
                                 <td><?= $details['preco_quarto'] . " kz" ?></td>
                                 <td><?= $details['status_quarto'] ?></td>
-                                <td><?= $details['data_criacao_quarto'] ?></td>
+                                <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <a href="editar-reserva-quarto.php?id=home&idUser=<?= $details['id_reserva'] ?>" class="btn btn-primary btn-sm">
                                     <i class="fas fa-edit fs-xl opacity-60 me-2"></i>

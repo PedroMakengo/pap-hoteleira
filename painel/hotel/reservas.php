@@ -214,6 +214,11 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                   <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                                 </a>
                                                 <!-- Eliminar -->
+                                                <!-- Mudar o estado -->
+                                                <!-- <button class="btn btn-sm btn-primary" title="Terminar a reserva do quarto">
+                                                  <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
+                                                </button> -->
+                                                <!-- Mudar o estado -->
                                               </td>
                                             </tr>
                                           <?php 

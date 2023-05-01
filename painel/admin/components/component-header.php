@@ -1,10 +1,11 @@
 <?php 
   // Pegando o dia 
-  $today =  Date('Y-m-d');
+  // $today =  Date('Y-m-d');
 
-  $parametros = [":dataHoje" => $today];
+  // $parametros = [":dataHoje" => $today];
   $buscandoNotifications = new Model();
-  $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs WHERE data_log=:dataHoje", $parametros);
+  // $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs WHERE data_log=:dataHoje", $parametros);
+  $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs");
 ?>
 
 <!-- Header -->

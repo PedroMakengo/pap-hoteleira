@@ -15,6 +15,7 @@
   foreach($listaMesa as $mostrar):
     $idRestaurante = $mostrar['id_restaurante'];
     $idMesa        = $mostrar['id_mesa'];
+    $mesa          = $mostrar['nome_mesas'];
     $statusMesa    = $mostrar['status_mesa'];
     $restaurante   = $mostrar['nome_restaurante'];
     $hotel         = $mostrar['nome_hotel'];

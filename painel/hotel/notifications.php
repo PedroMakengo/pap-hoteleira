@@ -6,7 +6,7 @@
 <?php 
    $parametros = [":id" => $_SESSION['id']];
    $logs = new Model();
-   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_historico=:id", $parametros);
+   $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_hotel=:id", $parametros);
 ?>
 <!-- Listagem de usuários -->
 
@@ -102,7 +102,6 @@
                                   <a href="notifications.php?id=<?= $details['id_historico'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
-                                 
                                 </td> -->
                               </tr>
                             <?php 
@@ -124,7 +123,6 @@
         </div>
       </div>
       <!-- Container -->
-
     </div>
 
 <!-- =============================================== -->

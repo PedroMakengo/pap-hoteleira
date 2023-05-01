@@ -4,10 +4,10 @@
 
 <!-- Listagem de usuários hospedes -->
 <?php 
-   $parametros = [":nome" => $_SESSION['nome']];
+   $parametros = [":nome" => $_SESSION['nome'], ":historico" => "reservou"];
    $logs = new Model();
    $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE 
-   usuario_historico=:nome", $parametros);
+   usuario_historico=:nome AND action_historico!=:historico", $parametros);
 ?>
 <!-- Listagem de usuários -->
 

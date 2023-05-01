@@ -40,10 +40,15 @@
         ":num_hospede"    => $num_hospede,
         ":preco"          => $preco,
         ":statusReserva"  => "Por verificar",
-        ":comprovativo"   => $foto
+        ":comprovativo"   => $foto, 
+        ":totalNoites"    => 0,
+        ":horaCheckin"    => $horaCheckin,      
+        ":horaCheckout"   => $horaCheckout,
+        ":totalHoras"     => 0     
       ];
       $inserirReservaQuarto = new Model();
-      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas (
+      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+        (
           id_hospede, 
           id_quarto, 
           data_checkin_reserva, 
@@ -53,7 +58,11 @@
           status_quarto_reserva,
           comprovativo_reserva,
           data_criacao_reserva,
-          data_atualizacao_reserva
+          data_atualizacao_reserva,
+          total_noites,
+          hora_checkin,
+          hora_checkout,
+          total_horas
           ) VALUES (
             :id, 
             :quarto, 
@@ -64,7 +73,11 @@
             :statusReserva, 
             :comprovativo,
             now(),
-            now()
+            now(),
+            :totalNoites,
+            :horaCheckin, 
+            :horaCheckout,
+            :totalHoras
         )", $parametros);
   
       if($inserirReservaQuarto):
@@ -93,6 +106,25 @@
                   window.location.href="index.php?id=home";
               }, 2000)
           </script>';
+
+
+        // Informar ao hotel quando o usuário faz uma reserva
+        //===================================================================================================================
+        $today   =  Date('Y-m-d');
+        $id      = $hotelId;
+        $action  = "reservou";
+        $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+        $parametros = [
+          ":id"     => $id, 
+          ":nomeHospede" => $_SESSION['nome'],
+          ":actionLog"   => $action, 
+          ":textLog"  => $textLog  
+        ];
+        $insertLog = new Model();
+        $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+        (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+        VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+        //===================================================================================================================
       else:
       echo '<script>
               swal({
@@ -144,6 +176,25 @@
       (:idMesa, :id, :idRestaurante, :dataCheckin, :status_mesa, :foto, now(), now()) ", $parametros);
 
       if($inserirReservaMesa):
+
+        // Histórico de Reserva de Mesa
+        //===================================================================================================================
+        $today   =  Date('Y-m-d');
+        $id      = $hotelId;
+        $action  = "reservou";
+        $textLog = $_SESSION['nome']. " ". $action . " uma mesa com referência " . $mesa;
+        $parametros = [
+          ":id"     => $id, 
+          ":nomeHospede" => $_SESSION['nome'],
+          ":actionLog"   => $action, 
+          ":textLog"  => $textLog  
+        ];
+        $insertLog = new Model();
+        $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+        (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+        VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+        //===================================================================================================================
+
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
           $sms = "Uploaded feito com sucesso";
         else:

@@ -1,6 +1,5 @@
 
 <style>
-
   .buttons button {
     background: #ccc;
     border: 0;
@@ -31,11 +30,12 @@
 
   // global $status, $quartoId;
   foreach($listDetailsQuartos as $mostrarStatus):
-    $status = $mostrarStatus['status_quarto'];
-    $quartoId = $mostrarStatus['id_quarto'];
-    $quarto = $mostrarStatus['quarto'];
+    $status     = $mostrarStatus['status_quarto'];
+    $quartoId   = $mostrarStatus['id_quarto'];
+    $quarto     = $mostrarStatus['quarto'];
     $capacidade = $mostrarStatus['capacidade_quarto'];
-    $preco = $mostrarStatus['preco_quarto'];
+    $preco      = $mostrarStatus['preco_quarto'];
+    $hotelId    = $mostrarStatus['id_hotel'];
   endforeach;
 ?> 
 
@@ -206,7 +206,7 @@
                   </div>
                   <div class="col-lg-2">
                     <div class="form-group">
-                      <label for="">Nº Hospede:</label>
+                      <label for="">Preço:</label>
                       <input type="number" disabled name="preco" value="<?= $preco ?>" class="form-control" />
                     </div>
                   </div>

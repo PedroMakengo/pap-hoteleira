@@ -72,19 +72,15 @@
             $parametros = [
               ":id"               =>  $_SESSION['id'],
               ":actionHistorico"  => "prazo terminado",
-              ":nome"             => $nomeHospede,
-              ":dataHistorico"    => Date('Y-m-d')
+              ":nome"             => $nomeHospede
             ];
             $buscandoReservaRecente = new Model();
             $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
-              id_hotel=:id AND action_historico=:actionHistorico AND usuario_historico=:nome AND data_historico=:dataHistorico", $parametros);
+              id_hotel=:id AND action_historico=:actionHistorico AND usuario_historico=:nome", $parametros);
 
             // Atualizar o estado da reserva do usuário
-            
+            if(count($buscando) === 0):
 
-            // echo count($buscando);
-           
-            if(count($buscando) == 0):
               //===================================================================================================================
               $today   =  Date('Y-m-d');
               $id    = $_SESSION['id'];
@@ -101,6 +97,8 @@
               (id_hotel, usuario_historico, action_historico, historico, data_historico) 
               VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
               //===================================================================================================================
+            else:
+              echo "Testando" . count($buscando);
             endif;
           endif;
         endif;

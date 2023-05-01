@@ -34,7 +34,7 @@
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
                   <div class="col-lg-6">
-                    <h4>Adicionar um novo quarto</h4>
+                    <h4>Adicionar um novo cardapio</h4>
                   </div>
                   <div class="col-lg-12"><hr /></div>
                 </div>
@@ -99,7 +99,7 @@
 
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="register-cardapio" value="Registrar Quarto" id="">
+                            <input type="submit" class="btn btn-primary" name="register-cardapio" value="Registrar Cardápio" id="">
                           </div>
                         </div>
                       </div>
