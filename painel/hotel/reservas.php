@@ -210,15 +210,17 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['data_criacao_reserva'] ?></td>
                                               <td class="text-center">
                                                 <!-- Eliminar -->
+
+                                                <!-- Fazer -->
+                                                <button class="btn btn-success btn-sm">
+                                                  <i class="fas fas fa-check opacity-60 me-2"></i>
+                                                </button>
+                                                <!-- Fazer -->
+                                                
                                                 <a href="reservas.php?nomeQuarto=<?= $details['tipo_quarto'] ?>&id=<?= $details['id_reserva'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
                                                   <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                                 </a>
                                                 <!-- Eliminar -->
-                                                <!-- Mudar o estado -->
-                                                <!-- <button class="btn btn-sm btn-primary" title="Terminar a reserva do quarto">
-                                                  <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
-                                                </button> -->
-                                                <!-- Mudar o estado -->
                                               </td>
                                             </tr>
                                           <?php 
