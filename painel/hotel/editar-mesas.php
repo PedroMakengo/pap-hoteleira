@@ -142,7 +142,7 @@
 
         if($inserirMesa):
           //===================================================================================================================
-          $today   =  Date('Y-m-d');
+          $today   =  Date('Y-m-d H:i:s');
           $nome    = $_SESSION['nome'];
           $action  = "atualizou";
           $textLog = "O usuário ". $nome. " ". $action . " uma mesa cujo o nome é ". $_POST['nome'];

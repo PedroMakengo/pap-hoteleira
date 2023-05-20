@@ -22,7 +22,7 @@
     if($delete == true):
 
       //===================================================================================================================
-      $today   =  Date('Y-m-d');
+      $today   =  Date('Y-m-d H:i:s');
       $nome    = $_SESSION['nome'];
       $action  = "eliminou";
       $textLog = "O usuário ". $nome. " ". $action . " um quarto cujo o nome é ". $_GET['nomeQuarto'];

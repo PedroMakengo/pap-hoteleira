@@ -28,7 +28,7 @@
       $delete->EXE_NON_QUERY("DELETE FROM tb_reservas WHERE id_reserva=:id", $parametros);
       if($delete == true):
         //===================================================================================================================
-        $today   =  Date('Y-m-d');
+        $today   =  Date('Y-m-d H:i:s');
         $nome    = $_SESSION['nome'];
         $action  = "eliminou";
         $textLog = "O usuário ". $nome. " ". $action . " uma reserva de quarto cujo o nome é ". $_GET['nomeQuarto'];

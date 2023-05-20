@@ -5,13 +5,15 @@
 <?php 
   $parametros = [":id" => $_SESSION['id']];
   $listMesasUser = new Model();
-  $listCardapio = $listMesasUser->EXE_QUERY("SELECT * FROM tb_cardapio 
+  $listCardapio = $listMesasUser->EXE_QUERY("SELECT * FROM tb_cardapios
   INNER JOIN tb_restaurante ON 
-  tb_cardapio.id_restaurante=tb_restaurante.id_restaurante 
+  tb_cardapios.id_restaurante=tb_restaurante.id_restaurante 
   WHERE tb_restaurante.id_hotel=:id", $parametros);
 
   foreach($listCardapio as $details):
-    $fotoCardapio = $details['foto_comida'];
+    $fotoUm = $details['foto_um'];
+    $fotoDois = $details['foto_dois'];
+    $fotoTres = $details['foto_tres'];
   endforeach;
 ?>
 
@@ -46,7 +48,7 @@
             <div class="container-fluid dashboard-content">
               <div class="ecommerce-widget bg-white p-5">
                 <div class="row mb-4">
-                  <div class="col-lg-6">
+                  <div class="col-lg-12">
                     <h4>Editar Cardapio <strong><?= $_GET['nome'] ?></strong>
                     </h4>
                   </div>
@@ -57,12 +59,14 @@
                   <div class="col-lg-12 p-4">
                   <form method="POST" enctype="multipart/form-data">
                       <div class="row">
+                        
                           <div class="col-lg-8">
                             <div class="form-group">
                               <label for="">Nome do Hotel</label>
                               <input type="text" name="hotel" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
                             </div>
                           </div>
+
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label for="">Restaurante</label>
@@ -81,46 +85,38 @@
                               </select>
                             </div>
                           </div>
-                          <div class="col-lg-6">
+
+                          <div class="col-lg-4">
                             <div class="form-group">
-                              <label for="">Foto Prato de Comida</label>
-                              <input type="file" name="foto" class="form-control form-control-lg">
+                              <label for="">Cardápio 1</label>
+                              <input type="file" name="foto1" class="form-control form-control-lg">
                             </div>
                           </div>
 
-                          <?php foreach($listCardapio as $details):?>
-                              <div class="col-lg-6">
-                                <div class="form-group">
-                                  <label for="">Nome do Prato</label>
-                                  
-                                  <input type="text" name="prato" value="<?= $details['comida'] ?>" class="form-control form-control-lg" />
-                                </div>
-                              </div>
-                              <div class="col-lg-6">
-                                <div class="form-group">
-                                  <label for="">Bebida</label>
-                                  <input type="text" name="bebida" value="<?= $details['bebida'] ?>"  class="form-control form-control-lg">
-                                </div>
-                              </div>
-                              <div class="col-lg-3">
-                                <div class="form-group">
-                                  <label for="">Preço Comida</label>
-                                  <input type="number" name="precoComida" value="<?= $details['preco_comida'] ?>"  class="form-control form-control-lg">
-                                </div>
-                              </div>
-                              <div class="col-lg-3">
-                                <div class="form-group">
-                                  <label for="">Preço Bebida</label>
-                                  <input type="number" name="precoBebida" value="<?= $details['preco_bebida'] ?>"  class="form-control form-control-lg">
-                                </div>
-                              </div>
-                            <?php endforeach; ?>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="">Cardápio 2</label>
+                              <input type="file" name="foto2" class="form-control form-control-lg">
+                            </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="">Cardápio 3</label>
+                              <input type="file" name="foto3" class="form-control form-control-lg">
+                            </div>
+                          </div>
+
+                        <?php foreach($listCardapio as $details):?>
+                            
+                        <?php endforeach; ?>
 
                         <div class="col-lg-4">
                           <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="editar-cardapio" value="Atualizar Cardapio" >
                           </div>
                         </div>
+
                       </div>
                     </form>
                   </div>
@@ -135,43 +131,47 @@
     <?php 
 
       if(isset($_POST['editar-cardapio'])):
-        
-        if(empty($_FILES['foto']['name'])):
-          $foto = $fotoCardapio;
+        if(empty($_FILES['foto1']['name'])):
+          $foto1         = $fotoUm;
         else:
-          $target       = "../../assets/__storage/" . basename($_FILES['foto']['name']);
-          $foto         = $_FILES['foto']['name'];
+          $target1       = "../../assets/__storage/" . basename($_FILES['foto1']['name']);
+          $foto1         = $_FILES['foto1']['name'];
         endif;
 
-        $comida       = $_POST['prato'];
-        $bebida       = $_POST['bebida'];
-        $precoComida  = $_POST['precoComida'];
-        $precoBebida  = $_POST['precoBebida'];
+        if(empty($_FILES['foto2']['name'])):
+          $foto2         = $fotoDois;
+        else:
+          $target2       = "../../assets/__storage/" . basename($_FILES['foto2']['name']);
+          $foto2         = $_FILES['foto2']['name'];
+        endif;
+
+        if(empty($_FILES['foto3']['name'])):
+          $foto3         = $fotoTres;
+        else:
+          $target3       = "../../assets/__storage/" . basename($_FILES['foto3']['name']);
+          $foto3         = $_FILES['foto3']['name'];
+        endif;
 
         $parametros = [
           ":id"              => $_GET['idUser'],
-          ":comida"          => $comida,
-          ":bebida"          => $bebida,
-          ":precoComida"     => $precoComida,
-          ":precoBebida"     => $precoBebida,
-          ":fotoComida"      => $foto
+          ":foto1"           => $foto1,
+          ":foto2"           => $foto2,
+          ":foto3"           => $foto3
         ];
 
         $atualizarCardapio = new Model();
-        $atualizarCardapio->EXE_NON_QUERY("UPDATE tb_cardapio SET
-          comida=:comida, 
-          bebida=:bebida, 
-          preco_comida=:precoComida,
-          preco_bebida=:precoBebida, 
-          foto_comida=:fotoComida
+        $atualizarCardapio->EXE_NON_QUERY("UPDATE tb_cardapios SET
+          foto_um=:foto1, 
+          foto_dois=:foto2, 
+          foto_tres=:foto3
           WHERE id_cardapio=:id",$parametros);
 
         if($atualizarCardapio):
           //===================================================================================================================
-          $today   =  Date('Y-m-d');
+          $today   =  Date('Y-m-d H:i:s');
           $nome    = $_SESSION['nome'];
           $action  = "atualizou";
-          $textLog = "O usuário ". $nome. " ". $action . " um cardapio cujo o nome do prato é ". $_POST['nome'];
+          $textLog = "O usuário ". $nome. " ". $action . " um cardapio ";
           $parametros = [
             ":nome"     => $nome, 
             ":actionLog"   => $action, 

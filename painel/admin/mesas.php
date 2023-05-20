@@ -31,7 +31,7 @@
       if($delete == true):
 
         //===================================================================================================================
-        $today   =  Date('Y-m-d');
+        $today   =  Date('Y-m-d H:i:s');
         $nome    = $_SESSION['nome'];
         $action  = "eliminou";
         $textLog = "O usuário ". $nome. " ". $action . " uma reserva de mesa cujo o nome é ". $_GET['nomeMesa'];

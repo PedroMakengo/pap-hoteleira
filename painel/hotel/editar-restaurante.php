@@ -129,7 +129,7 @@
 
         if($atualizarRestaurante):
           //===================================================================================================================
-          $today   =  Date('Y-m-d');
+          $today   =  Date('Y-m-d H:i:s');
           $nome    = $_SESSION['nome'];
           $action  = "atualizou";
           $textLog = "O usuário ". $nome. " ". $action . " um restaurante cujo o nome é ". $_POST['nome'];

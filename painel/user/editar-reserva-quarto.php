@@ -141,7 +141,7 @@
       $foto         = $_FILES['foto']['name'];
     }
 
-    $today =  Date('Y-m-d');
+    $today =  Date('Y-m-d H:i:s');
     if($datacheckin > $datacheckout):
       echo '<script> 
               swal({

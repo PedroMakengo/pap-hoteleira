@@ -22,7 +22,7 @@
       $delete->EXE_NON_QUERY("DELETE FROM tb_restaurante WHERE id_restaurante=:id", $parametros);
       if($delete == true):
         //===================================================================================================================
-        $today   =  Date('Y-m-d');
+        $today   =  Date('Y-m-d H:i:s');
         $nome    = $_SESSION['nome'];
         $action  = "eliminou";
         $textLog = "O usuário ". $nome. " ". $action . " um restaurante cujo o nome é ". $_GET['nomeRestaurante']. " em " . $today;

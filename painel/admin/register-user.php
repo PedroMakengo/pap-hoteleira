@@ -157,7 +157,7 @@
     if($inserirUsuario):
 
       //===================================================================================================================
-      $today   =  Date('Y-m-d');
+      $today   =  Date('Y-m-d H:i:s');
       $nome    = $_SESSION['nome'];
       $action  = "registrou";
       $textLog = "O usuário ". $nome. " ". $action . " um hospede cujo o nome é ". $_POST['nome']. " em " . $today;

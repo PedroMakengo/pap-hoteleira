@@ -25,7 +25,7 @@
          $buscandoHotel = new Model();
          $buscando = $buscandoHotel->EXE_QUERY("SELECT * FROM tb_hotel WHERE id_hotel=:id", $parametros);
 
-         $today   =  Date('Y-m-d');
+         $today   =  Date('Y-m-d H:i:s');
          $nome    = $_SESSION['nome'];
          $action  = "eliminou";
          $textLog = "O usuário ". $nome. " ". $action . " um hotel cujo o nome é ". $_GET['nome']. " em " . $today;

@@ -5,9 +5,9 @@
 <!-- Component Buscando daddos de todos quartos -->
 <?php
   $listQuartos = new Model();
-  $listDetailsQuartos = $listQuartos->EXE_QUERY("SELECT * FROM tb_cardapio 
+  $listDetailsQuartos = $listQuartos->EXE_QUERY("SELECT * FROM tb_cardapios 
   INNER JOIN tb_restaurante ON 
-  tb_cardapio.id_restaurante=tb_restaurante.id_restaurante");
+  tb_cardapios.id_restaurante=tb_restaurante.id_restaurante");
 ?> 
 <!-- Component -->
 
@@ -19,11 +19,11 @@
         ":id"=>$id
     ];
     $delete = new Model();
-    $delete->EXE_NON_QUERY("DELETE FROM tb_cardapio WHERE id_cardapio=:id", $parametros);
+    $delete->EXE_NON_QUERY("DELETE FROM tb_cardapios WHERE id_cardapio=:id", $parametros);
     if($delete == true):
 
       //===================================================================================================================
-      $today   =  Date('Y-m-d');
+      $today   =  Date('Y-m-d H:i:s');
       $nome    = $_SESSION['nome'];
       $action  = "eliminou";
       $textLog = "O usuário ". $nome. " ". $action . " um cardapio cujo o nome é ". $_GET['nomeCardapio'];
@@ -49,7 +49,7 @@
             </script>';
       echo '<script>
           setTimeout(function() {
-              window.location.href="mesas-restaurante.php?id=mesas";
+              window.location.href="cardapio.php?id=cardapio";
           }, 1000)
       </script>';
     else:
@@ -79,15 +79,14 @@ endif;
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="table-responsive bg-white p-2">
-                      <table class="table" id="tabela">
+                    <table class="table" id="tabela">
                         <thead>
                           <tr>
                             <th>#</th>
                             <th>Restaurante</th>
-                            <th>Comida</th>
-                            <th>Bebida</th>
-                            <th>Preço Comida</th>
-                            <th>Preço Bebida</th>
+                            <th>Cardápio 1</th>
+                            <th>Cardápio 2</th>
+                            <th>Cardápio 3</th>
                             <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
                           </tr>
@@ -100,13 +99,36 @@ endif;
                                 <tr>
                                   <td><?= $details['id_cardapio'] ?></td>
                                   <td><?= $details['nome_restaurante'] ?></td>
-                                  <td><?= $details['comida'] ?></td>
-                                  <td><?= $details['bebida'] ?></td>
-                                  <td><?= $details['preco_comida'] ?></td>
-                                  <td><?= $details['preco_bebida'] ?></td>
+                                  <td>
+                                    <object data="../../assets/__storage/<?= $details['foto_um'] ?>" type="application/x-pdf" title="Comprovativo">
+                                      <a href="../../assets/__storage/<?= $details['foto_um'] ?>" class="text-dark" target="_blank">
+                                        <p>
+                                          Cardápio 1
+                                        </p>
+                                      </a>
+                                    </object>
+                                  </td>
+                                  <td>
+                                    <object data="../../assets/__storage/<?= $details['foto_dois'] ?>" type="application/x-pdf" title="Comprovativo">
+                                      <a href="../../assets/__storage/<?= $details['foto_dois'] ?>" class="text-dark" target="_blank">
+                                        <p>
+                                         Cardápio 2
+                                        </p>
+                                      </a>
+                                    </object>
+                                  </td>
+                                  <td>
+                                    <object data="../../assets/__storage/<?= $details['foto_tres'] ?>" type="application/x-pdf" title="Comprovativo">
+                                      <a href="../../assets/__storage/<?= $details['foto_tres'] ?>" class="text-dark" target="_blank">
+                                        <p>
+                                          Cardápio 3
+                                        </p>
+                                      </a>
+                                    </object>
+                                  </td>
                                   <td><?= $details['data_registro_cardapio'] ?></td>
                                   <td class="text-center">
-                                    <a href="cardapio.php?nomeCardapio=<?= $details['comida'] ?>&id=<?= $details['id_cardapio'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                    <a href="cardapio.php?nomeCardapio=<?= $details['foto_um'] ?>&id=<?= $details['id_cardapio'] ?>&action=delete" class="btn btn-danger btn-sm">
                                       <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                     </a>
                                     <!-- Eliminar -->

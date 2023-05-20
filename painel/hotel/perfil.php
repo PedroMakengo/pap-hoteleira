@@ -307,7 +307,7 @@
 
       // ATUALIZANDO O PERFIL
       //===================================================================================================================
-      $today   =  Date('Y-m-d');
+      $today   =  Date('Y-m-d H:i:s');
       $nome    = $_SESSION['nome'];
       $action  = "atualizou";
       $textLog = "O usuário ". $nome. " ". $action . " o seu perfil";

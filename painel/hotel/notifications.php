@@ -22,7 +22,7 @@
       $delete->EXE_NON_QUERY("DELETE FROM tb_historico_reserva WHERE id_log=:id", $parametros);
       if($delete == true):
         // INSERT LOG ========================================================
-        $today =  Date('Y-m-d');
+        $today =  Date('Y-m-d H:i:s');
         $nome = $_SESSION['nome'];
         $action = "eliminou";
         $textLog = "O usuário ". $nome. " ". $action . " um log em" . $today;
