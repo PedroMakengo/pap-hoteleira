@@ -150,16 +150,16 @@
     $foto3          = $_FILES['foto3']['name'];
 
     $parametros = [
-      ":id"         => $restaurante,
+      ":id"           => $restaurante,
       ":foto1"       => $foto1,
       ":foto2"       => $foto2,
-      ":foto3"       => $foto3,
+      ":foto3"       => $foto3
     ];
 
     $inserirQuarto = new Model();
-    $inserirQuarto->EXE_NON_QUERY("INSERT INTO tb_cardapio 
+    $inserirQuarto->EXE_NON_QUERY("INSERT INTO tb_cardapios 
       (
-        id_restaurante, id_restaurante, foto_um, foto_dois, foto_tres, data_registro_cardapio
+        id_restaurante, foto_um, foto_dois, foto_tres, data_registro_cardapio
       ) 
       VALUES 
       (:id, :foto1, :foto2, :foto3, now())", $parametros);
@@ -187,7 +187,7 @@
       $today   =  Date('Y-m-d');
       $nome    = $_SESSION['nome'];
       $action  = "registrou";
-      $textLog = "O usuário ". $nome. " ". $action . " um cardapio cujo o prato é ". $_POST['prato'];
+      $textLog = "O usuário ". $nome. " ". $action . " um cardapio";
       $parametros = [
         ":nome"     => $nome, 
         ":actionLog"   => $action, 
