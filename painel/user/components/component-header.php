@@ -109,6 +109,11 @@
                 ><i class="fa fa-fw fa-bell"></i>Notificações <span class="bg-success btn btn-sm"><?= count($contHistoria) ?></span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'comentario' ? 'active': '' ?>" href="comentario.php?id=comentario"
+                ><i class="fa fa-fw fa-comment"></i>Meus Comentários
+              </a>
+            </li>
             <li class="nav-item ">
               <a class="nav-link" href="?logout=true"
                 ><i class="fa fa-fw fa-power-off"></i>Terminar Sessão

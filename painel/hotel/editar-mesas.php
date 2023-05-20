@@ -3,12 +3,16 @@
 <!-- Component Head -->
 
 <?php 
-  $parametros = [":id" => $_SESSION['id']];
+  $mesaId = $_GET['idUser'];
+  $parametros = [
+    ":id" => $_SESSION['id'], 
+    ":mesaId" => $mesaId
+  ];
   $listMesasUser = new Model();
   $listMesasRestaurantes = $listMesasUser->EXE_QUERY("SELECT * FROM tb_mesas 
   INNER JOIN tb_restaurante 
   ON tb_mesas.id_restaurante=tb_restaurante.id_restaurante
-  WHERE tb_restaurante.id_hotel=:id", $parametros);
+  WHERE tb_restaurante.id_hotel=:id AND tb_mesas.id_mesa=:mesaId", $parametros);
 ?>
 
     <div class="dashboard-main-wrapper">
@@ -96,7 +100,7 @@
                         <div class="col-lg-12">
                           <div class="form-group">
                             <label for="">Restaurante</label>
-                            <input type="text" value=<?= $_GET['nome'] ?> disabled name="bebidas" class="form-control form-control-lg">
+                            <input type="text" value=<?= $details['nome_restaurante'] ?> disabled name="bebidas" class="form-control form-control-lg">
                           </div>
                         </div>
 

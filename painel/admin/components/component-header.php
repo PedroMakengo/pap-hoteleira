@@ -6,6 +6,8 @@
   $buscandoNotifications = new Model();
   // $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs WHERE data_log=:dataHoje", $parametros);
   $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_logs");
+
+  $countComentarios = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_comentarios");
 ?>
 
 <!-- Header -->
@@ -140,6 +142,13 @@
                 >
                 <span><i class="fa fa-fw fa-bell"></i>Notificações</span>
                 <span class="bg-success btn btn-sm"><?= count($buscandoCont) ?></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'comentarios' ? 'active': '' ?>" href="comentarios.php?id=comentarios"
+                >
+                <span><i class="fa fa-fw fa-comment"></i>Comentários</span>
+                <span class="bg-success btn btn-sm"><?= count($countComentarios) ?></span>
               </a>
             </li>
             <li class="nav-item">

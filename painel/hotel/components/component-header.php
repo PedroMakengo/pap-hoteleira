@@ -3,6 +3,10 @@
   $parametros = [":id" => $_SESSION['id']];
   $buscandoNotifications = new Model();
   $buscandoCont = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE id_hotel=:id", $parametros);
+
+
+  $countComentario = $buscandoNotifications->EXE_QUERY("SELECT * FROM tb_comentarios WHERE 
+    id_hotel=:id", $parametros);
 ?>
 
 
@@ -122,6 +126,13 @@
                 >
                 <span><i class="fa fa-fw fa-bell"></i>Notificações</span>
                 <span class="bg-success btn btn-sm"><?= count($buscandoCont) ?></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'comentarios' ? 'active': '' ?>" href="comentarios.php?id=comentarios"
+                >
+                <span><i class="fa fa-fw fa-comment"></i>Comentários</span>
+                <span class="bg-success btn btn-sm"><?= count($countComentario) ?></span>
               </a>
             </li>
             <li class="nav-item">
