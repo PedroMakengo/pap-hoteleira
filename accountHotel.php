@@ -49,6 +49,7 @@
                       type="text"
                       id="name"
                       name="nome"
+                      pattern="[A-Za-z\s]+"
                       required
                       placeholder="Insira seu nome"
                     />
@@ -76,6 +77,19 @@
                       name="cidade"
                       required
                       placeholder="ex: Luanda"
+                    />
+                  </label>
+                </div>
+
+                <div class="field-input">
+                  <label for="password">
+                    Confirmar Senha <sup>*</sup>
+                    <input
+                      type="password"
+                      id="password"
+                      name="confirmarSenha"
+                      required
+                      placeholder="Confirme a sua senha"
                     />
                   </label>
                 </div>
@@ -113,23 +127,27 @@
                     />
                   </label>
                 </div>
+
+                <div class="field-input">
+                  <label for="iban">
+                    IBAN <sup>*</sup>
+                    <input
+                      type="text"
+                      id="iban"
+                      name="iban"
+                      required
+                      placeholder="Iban"
+                      maxlength="16"
+                      minlength="16"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
            
 
            
-            <div class="field-input">
-              <label for="password">
-                Confirmar Senha <sup>*</sup>
-                <input
-                  type="password"
-                  id="password"
-                  name="confirmarSenha"
-                  required
-                  placeholder="Confirme a sua senha"
-                />
-              </label>
-            </div>
+           
 
             <div class="field-input">
               <input type="submit" name="accountHotel" value="Cadastrar" class="submit" />

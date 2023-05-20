@@ -42,7 +42,7 @@
             <div class="field-input">
               <label for="name">
                 Nome
-                <input type="text" id="name" name="nome" placeholder="Insira seu nome" />
+                <input type="text" id="name" name="nome" pattern="[A-Za-z\s]+"  placeholder="Insira seu nome" />
               </label>
             </div>
             

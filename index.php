@@ -6,6 +6,8 @@
 
   $searchDataHotel = new Model();
   $data = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_hotel");
+  $dataQuarto = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_quartos
+   INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel");
 ?>
 
 <!DOCTYPE html>
@@ -322,6 +324,10 @@
                         <strong><?= $details['endereco_hotel'] ?></strong>
                        </li>
                        <li>
+                        <span>Site</span>
+                        <strong><?= $details['site_hotel'] ?></strong>
+                       </li>
+                       <li>
                          <a href="login.php">Mais informações</a>
                        </li>
                       </ul>
@@ -343,41 +349,41 @@
             </p>
           </div>
 
-          <div class="rooms-grid">
-            <div class="rooms-left">
-              <div class="room">
-                <img src="./assets/images/room01.png" alt="" />
-                <h5>3 GUEST</h5>
-                <p>Room with View</p>
+          <div id="owl-carousel" class="owl-carousel owl-theme content-items-card">
+            <?php foreach($dataQuarto as $details):?>
+              <div class="item-card">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <img src="assets/__storage/<?= $details['foto_primeira_quarto'] == "" ? "default.jpg": $details['foto_primeira_quarto'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="content">
+                      <ul>
+                       <li>
+                        <span>Quarto</span>
+                        <strong><?= $details['quarto'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Capacidade</span>
+                        <strong><?= $details['capacidade_quarto'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Valor do Quarto</span>
+                        <strong>AOA <?= $details['preco_quarto'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Hotel</span>
+                        <strong><?= $details['nome_hotel'] ?></strong>
+                       </li>
+                       <li>
+                         <a href="login.php">Reservar</a>
+                       </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <div class="room">
-                <img src="./assets/images/room02.png" alt="" />
-                <h5>90.000kz / por noite</h5>
-                <p>Quarto de luxo</p>
-              </div>
-            </div>
-            <div class="rooms-middle">
-              <div class="room">
-                <img src="./assets/images/room03.png" alt="" />
-                <h5>60.000kz / por noite</h5>
-                <p>Quarto de família</p>
-              </div>
-            </div>
-
-            <div class="rooms-right">
-              <div class="room">
-                <img src="./assets/images/room04.png" alt="" />
-                <h5>40.000kz / por noite</h5>
-                <p>Quarto padrão</p>
-              </div>
-
-              <div class="room">
-                <img src="./assets/images/room05.png" alt="" class='img1' />
-                <h5>45.000kz / por noite</h5>
-                <p>Quarto de solteiro</p>
-              </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </section>
       </main>

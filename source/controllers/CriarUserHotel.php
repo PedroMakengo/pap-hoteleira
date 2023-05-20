@@ -7,7 +7,7 @@
     $city  = $_POST['cidade'];
     $nif   = $_POST['nif'];
     $endereco = $_POST['endereco'];
-
+    $iban     = $_POST['iban'];
 
     if(md5(md5($_POST['confirmarSenha'])) == md5(md5($_POST['senha']))):
       $parametros = [
@@ -18,7 +18,8 @@
         ":nif"         => $nif,
         ":endereco"    => $endereco,
         ":foto"        => "",
-        ":city"        => $city
+        ":city"        => $city,
+        ":iban"        => $iban
       ];
 
       $inserirUserHotel = new Model();
@@ -31,9 +32,10 @@
       nif_hotel, 
       endereco_hotel,
       foto_hotel,
-      cidade_hotel
+      cidade_hotel,
+      iban
       ) 
-      VALUES (:nome, :email, :senha, :statusHotel, :nif, :endereco, :foto, :city)", $parametros);
+      VALUES (:nome, :email, :senha, :statusHotel, :nif, :endereco, :foto, :city, :iban)", $parametros);
 
       if($inserirUserHotel):
         echo '<script> 

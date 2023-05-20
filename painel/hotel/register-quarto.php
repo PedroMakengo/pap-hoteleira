@@ -42,7 +42,7 @@
                   <div class="col-lg-12">
                     <form method="POST" enctype="multipart/form-data">
                       <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-8">
                           <div class="form-group">
                             <label for="">Nome do Hotel</label>
                             <input type="text" name="hotel" disabled value="<?= $_SESSION['nome'] ?>" class="form-control form-control-lg">
@@ -62,18 +62,28 @@
                         </div>
                         <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Tipo de Quarto</label>
+                            <label for="">Categoria de Quarto</label>
                             <select name="tipo" required class="form-control form-control-lg">
-                              <option value="">Selecione o tipo de quarto</option>
+                              <option value="">Selecione a categoria do quarto</option>
                               <option value="Vip">Vip</option>
                               <option value="Normal">Normal</option>
                               <option value="Medio">Medio</option>
                             </select>
                           </div>
                         </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Tipo de Quarto</label>
+                            <select name="categoria" required class="form-control form-control-lg">
+                              <option value="">Selecione o tipo de quarto</option>
+                              <option value="Casal">Casal</option>
+                              <option value="Solteiro">Solteiro</option>
+                            </select>
+                          </div>
+                        </div>
                         <div class="col-lg-2">
                           <div class="form-group">
-                            <label for="">Nº do Quarto</label>
+                            <label for="">Ref. do Quarto</label>
                             <input type="text" name="quarto" class="form-control form-control-lg">
                           </div>
                         </div>
@@ -137,6 +147,8 @@
     $hotel      = $_SESSION['id'];
     $descricao  = $_POST['descricao'];
 
+    $categoria  = $_POST['categoria'];
+
     // Pegando a foto
     $target        = "../../assets/__storage/" . basename($_FILES['foto']['name']);
     $foto          = $_FILES['foto']['name'];
@@ -153,7 +165,8 @@
       ":foto"       => $foto,
       ":foto1"      => $foto1,
       ":statusQ"    => $_POST['estado'],
-      ":id"         => $hotel
+      ":id"         => $hotel,
+      ":categoria"  => $categoria
     ];
 
     $inserirQuarto = new Model();
@@ -169,7 +182,8 @@
         status_quarto,
         data_criacao_quarto,
         data_atualizacao_quarto,
-        id_hotel 
+        id_hotel,
+        categoria_quarto
       ) 
       VALUES 
       (
@@ -183,7 +197,9 @@
       :statusQ,
       now(),
       now(),
-      :id)", $parametros);
+      :id,
+      :categoria
+      )", $parametros);
 
     if($inserirQuarto):
 
