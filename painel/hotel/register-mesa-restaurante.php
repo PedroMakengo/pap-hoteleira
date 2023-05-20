@@ -84,6 +84,13 @@
                           </div>
                         </div>
 
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="">Descrição da Mesa</label>
+                            <textarea name="descricao" class="form-control"></textarea>
+                          </div>
+                        </div>
+
                         <div class="col-lg-4">
                           <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="register-mesa" value="Registrar Mesa" >
@@ -108,6 +115,7 @@
         $tipo = $_POST['tipo'];
         $preco = $_POST['preco'];
         $statusMesa = "Disponível";
+        $descricao  = $_POST['descricao'];
 
         $parametros = [
           ":id"         => $_GET['idUser'],
@@ -115,6 +123,7 @@
           ":tipo"       => $tipo,
           ":preco"      => $preco,
           ":statusMesa" => $statusMesa,
+          ":descricao"  => $descricao
         ];
 
         $inserirMesa = new Model();
@@ -125,6 +134,7 @@
           tipo_mesa, 
           preco_mesa, 
           status_mesa,
+          descricao_mesa,
           data_criacao_mesa,
           data_atualizacao__mesa
         ) 
@@ -134,6 +144,7 @@
         :tipo, 
         :preco, 
         :statusMesa,
+        :descricao,
         now(),
         now()
         )",$parametros);

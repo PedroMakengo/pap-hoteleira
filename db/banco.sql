@@ -10,6 +10,16 @@ CREATE TABLE tb_admin(
   foto  VARCHAR(255) NOT NULL
 )
 
+CREATE TABLE tb_cardapios (
+  	id_cardapio int(11) PRIMARY KEY AUTO_INCREMENT,
+   	id_restaurante int(11),
+    foto_um varchar(500),
+    foto_dois varchar(500),
+    foto_tres varchar(500),
+    data_registro_cardapio datetime,
+    FOREIGN KEY(id_restaurante) REFERENCES tb_restaurante(id_restaurante)
+)
+
 INSERT INTO tb_admin (id_admin,nome, email, senha, foto ) 
 VALUES (1, "Beny João", "beny@gmail.com", md5(md5(123)), "beny.jpg");
 

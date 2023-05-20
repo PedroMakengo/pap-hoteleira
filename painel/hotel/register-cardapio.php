@@ -66,13 +66,27 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                           <div class="form-group">
-                            <label for="">Foto Prato de Comida</label>
+                            <label for="">Cardápio 1</label>
                             <input type="file" name="foto" class="form-control form-control-lg">
                           </div>
                         </div>
-                        <div class="col-lg-6">
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Cardápio 2</label>
+                            <input type="file" name="foto2" class="form-control form-control-lg">
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="">Cardápio 3</label>
+                            <input type="file" name="foto3" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <!-- <div class="col-lg-6">
                           <div class="form-group">
                             <label for="">Nome do Prato</label>
                             <input type="text" name="prato" class="form-control form-control-lg">
@@ -95,7 +109,7 @@
                             <label for="">Preço Bebida</label>
                             <input type="number" name="precoBebida" class="form-control form-control-lg">
                           </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-lg-4">
                           <div class="form-group">
@@ -126,27 +140,48 @@
     $precoBebida  = $_POST['precoBebida'];
 
     // Pegando a foto
-    $target        = "../../assets/__storage/" . basename($_FILES['foto']['name']);
-    $foto          = $_FILES['foto']['name'];
+    $target1        = "../../assets/__storage/" . basename($_FILES['foto1']['name']);
+    $foto1          = $_FILES['foto1']['name'];
+
+    $target2        = "../../assets/__storage/" . basename($_FILES['foto2']['name']);
+    $foto2          = $_FILES['foto2']['name'];
+
+    $target3        = "../../assets/__storage/" . basename($_FILES['foto3']['name']);
+    $foto3          = $_FILES['foto3']['name'];
 
     $parametros = [
       ":id"         => $restaurante,
-      ":prato"      => $comida,
-      ":bebida"     => $bebida,
-      ":pComida"    => $precoComida,
-      ":pBebida"    => $precoBebida,
-      ":foto"       => $foto
+      ":foto1"       => $foto1,
+      ":foto2"       => $foto2,
+      ":foto3"       => $foto3,
     ];
 
     $inserirQuarto = new Model();
     $inserirQuarto->EXE_NON_QUERY("INSERT INTO tb_cardapio 
       (
-        id_restaurante, comida, bebida, preco_comida, preco_bebida, foto_comida, data_registro_cardapio
+        id_restaurante, id_restaurante, foto_um, foto_dois, foto_tres, data_registro_cardapio
       ) 
       VALUES 
-      (:id, :prato, :bebida, :pComida, :pBebida, :foto, now())", $parametros);
+      (:id, :foto1, :foto2, :foto3, now())", $parametros);
 
     if($inserirQuarto):
+
+      if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+          $sms = "Não foi possível fazer o upload";
+      endif;
+      if (move_uploaded_file($_FILES['foto2']['tmp_name'], $target2)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+          $sms = "Não foi possível fazer o upload";
+      endif;
+      if (move_uploaded_file($_FILES['foto3']['tmp_name'], $target3)):
+        $sms = "Uploaded feito com sucesso";
+      else:
+          $sms = "Não foi possível fazer o upload";
+      endif;
+
 
       //===================================================================================================================
       $today   =  Date('Y-m-d');
