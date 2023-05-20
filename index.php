@@ -1,3 +1,13 @@
+<?php 
+  // Buscando dados dos hoteis
+
+  require 'source/model/Config.php';
+  require 'source/model/Model.php';
+
+  $searchDataHotel = new Model();
+  $data = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_hotel");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -20,7 +30,52 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
 
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
     <title>Sistema de Gestão Hoteleira</title>
+
+    <style>
+      .item-card  {
+        background: #fafafa;
+        padding: 2rem;
+      }
+
+      .item-card ul  {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-block: 2rem;
+      }
+
+      .item-card ul li{
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      
+      .item-card ul li a {
+        background: #704828;
+        padding: 1rem;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .item-card img {
+        height: 40vh;
+      }
+
+      .owl-nav {
+        display: none;
+      }
+
+      .owl-dots button { 
+        background: none !important;
+        border: 0 !important;
+      }
+    </style>
   </head>
   <body>
     <div id="container">
@@ -38,7 +93,6 @@
               <li><a href="#about">Sobre Nos</a></li>
               <li><a href="#hotel">Hoteis</a></li>
               <li><a href="#rooms">Quartos</a></li>
-              <li><a href="#restaurante">Restaurante</a></li>
             </ul>
             <div>
               <a href="accountHotel.php" class="button">Registro Hotel</a>
@@ -63,17 +117,19 @@
             </div>
           </nav>
         </div>
-        <div class="header-cols">
+        <!-- <div class="header-cols">
           <div class="header-cols-a">
             <h1>Encontre um hotel 5 estrelas</h1>
           </div>
-        </div>
+        </div> -->
       </header>
+
+
       <main id="main">
         <!-- Section Hotel -->
-        <section id="hotel-img">
+        <!-- <section id="hotel-img">
           <img src="./assets/images/Rectangle.png" alt="" />
-        </section>
+        </section> -->
 
         <!-- Section Banner-->
         <section id="banner">
@@ -232,17 +288,58 @@
           </div>
         </section>
 
+        <section id="rooms">
+          <div class="rooms-header">
+            <h4>nossos hoteis</h4>
+            <h2>Mundo da <span>escolha</span></h2>
+            <p>Listagem de Todos os hoteis</p>
+          </div>
+
+          <div class="items-hoteis">
+            <div class="item"></div>
+          </div>
+
+          <div id="owl-carousel" class="owl-carousel owl-theme content-items-card">
+            <?php foreach($data as $details):?>
+              <div class="item-card">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <img src="assets/__storage/<?= $details['foto_hotel'] == "" ? "default.jpg": $details['foto_hotel'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="content">
+                      <ul>
+                       <li>
+                        <span>Nome do Hotel</span>
+                        <strong><?= $details['nome_hotel'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Cidade</span>
+                        <strong><?= $details['cidade_hotel'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Endereço</span>
+                        <strong><?= $details['endereco_hotel'] ?></strong>
+                       </li>
+                       <li>
+                         <a href="login.php">Mais informações</a>
+                       </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </section>
+
         <!-- Section Rooms -->
         <section id="rooms">
           <div class="rooms-header">
             <h4>nossos quartos</h4>
             <h2>Mundo da <span>escolha</span></h2>
             <p>
-              <!--
-            Os quartos de hotéis são mais do que apenas um lugar para dormir. Eles são um espaço para relaxar, descontrair e desfrutar da sua estadia, por isso os nossos hotéis  oferecem melhores quartos para seus hóspedes.
--->
-
-Os quartos do The Breakdance são espaçosos e confortáveis, equipados com comodidades modernas, como televisões de tela plana, acesso Wi-Fi gratuito e sistemas de som de alta qualidade.
+             Os quartos do The Breakdance são espaçosos e confortáveis, equipados com comodidades modernas, como televisões de tela plana, acesso Wi-Fi gratuito e sistemas de som de alta qualidade.
             </p>
           </div>
 
@@ -336,4 +433,29 @@ Os quartos do The Breakdance são espaçosos e confortáveis, equipados com como
       </footer>
     </div>
   </body>
+
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+      rtl: false,
+      loop: true,
+      margin: 15,
+      nav: true,
+      autoplay: true,
+      smartSpeed: 2e3,
+      animateOut: 'fadeOut',
+      responsive: {
+        0: {
+          items: 1,
+        },
+        600: {
+          items: 1,
+        },
+        1000: {
+          items: 3,
+        },
+      },
+    })
+  </script>
 </html>

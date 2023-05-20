@@ -6,4 +6,4 @@
   $bd_charset="UTF8";
 
   $bd_usuario ="root";
-  $bd_password = "123";
+  $bd_password = "";

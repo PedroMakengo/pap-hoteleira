@@ -14,8 +14,8 @@ ul {
 
 #header {
   width: 100vw;
-  height: 41rem;
-  background-color: #121212;
+  /* height: 41rem; */
+  background-color: #fff;
 }
 #header .header-top {
   width: 90%;
@@ -43,22 +43,32 @@ ul {
   height: 100%;
   gap: 2rem;
 }
+
+.header-top #nav-bar ul li a {
+  color: #fff;
+}
+
 .header-top #nav-bar .menu a {
   text-decoration: none;
   font-weight: 500;
   line-height: 1.9rem;
   transition: all 0.3s;
+
+  
 }
 .header-top nav .menu a:hover {
-  color: #ff7500;
+  color: #704828;
 }
 .button {
-  border: 2px solid #ffffff;
+  border: 2px solid #fff;
   padding: 1rem;
   transition: all 0.4s;
+
+  color: #fff;
 }
 .button:hover {
-  background-color: #ff7500;
+  background-color: #704828;
+  color: #fff;
 }
 #open-menu,
 #close-menu {
@@ -117,7 +127,7 @@ ul {
 }
 .banner-content .banner-flex i {
   font-size: 3rem;
-  color: #ff7500;
+  color: #704828;
   border-radius: 50%;
   padding: 0.8rem;
   background: rgba(255, 117, 0, 0.07);
@@ -145,7 +155,7 @@ ul {
   margin-bottom: 1.8rem;
 }
 #why .why-header > h2 span {
-  color: #ff7500;
+  color: #704828;
 }
 #why .why-header > p {
   width:40%;
@@ -176,7 +186,7 @@ ul {
   font-size: 1.5rem;
   line-height: 133.02%;
   border-radius: 50%;
-  background: #ff7500;
+  background: #704828;
   padding: 0.5rem;
 }
 .why-cols .why-cols-a h3 {
@@ -234,11 +244,16 @@ ul {
 
 /*====================== Home Page====================================*/
 
+
+
 #header {
   line-height: 133.02%;
+  height: 80vh;
+
+  background: linear-gradient(#00000088, #00000088), url(../images/Rectangle.png);
 }
 .services-content .services-header h2 span {
-  color: #ff7500;
+  color: #704828;
 }
 .services-content .services-header h4 {
   font-size: 2.4rem;
@@ -268,7 +283,7 @@ ul {
   margin: 1.6rem 0 1.8rem 0;
 }
 #rooms .rooms-header h2 span {
-  color: #ff7500;
+  color: #704828;
 }
 #rooms .rooms-header p {
   width: 60%;
@@ -341,7 +356,7 @@ ul {
   transition: 0.3s;
 }
 .services-cards .service-card:hover {
-  border: 3px solid #ff7500;
+  border: 3px solid #704828;
 }
 .services-cards .service-card .services-subtitle {
   font-weight: 700;
@@ -352,7 +367,7 @@ ul {
 }
 .services-cards .service-card i {
   font-size: 6rem;
-  color: #ff7500;
+  color: #704828;
 }
 .services-cards .service-card p {
   font-weight: 500;
@@ -383,7 +398,7 @@ ul {
   content: "";
   width: 13rem;
   height: 0.4rem;
-  background-color: #ff7500;
+  background-color: #704828;
   border: 0.3.5rem;
   display: block;
   margin-top: 1.6rem;
@@ -402,7 +417,7 @@ ul {
   margin-top: 2rem;
   font-weight: 500;
   line-height: 162.52%;
-  background: #ff7500;
+  background: #704828;
   border-radius: 2.7rem;
   border: none;
   color: #ffffff;
@@ -413,7 +428,7 @@ ul {
 }
 .about-col-a button:hover {
   background: white;
-  color: #ff7500;
+  color: #704828;
   border: 2px solid #fff;
   transform: scale(1.1);
 }
@@ -493,7 +508,7 @@ ul {
   border: none;
   padding: 1rem 3rem;
   border-radius: 0.6rem;
-  background-color: #ff7500;
+  background-color: #704828;
   color: #ffffff;
   top: 0.6rem;
   right: 0.6rem;
@@ -581,7 +596,7 @@ ul {
   /*--------------------Bannner----------------------------*/
   #banner .banner-content {
     width: 75%;
-    background-color: #ff7500;
+    background-color: #704828;
   }
  /*--------------------------Why-----------------*/
  #why .why-cols {
