@@ -69,7 +69,7 @@
                         <div class="col-lg-4">
                           <div class="form-group">
                             <label for="">Cardápio 1</label>
-                            <input type="file" name="foto" class="form-control form-control-lg">
+                            <input type="file" name="foto1" class="form-control form-control-lg">
                           </div>
                         </div>
 
@@ -86,6 +86,7 @@
                             <input type="file" name="foto3" class="form-control form-control-lg">
                           </div>
                         </div>
+
                         <!-- <div class="col-lg-6">
                           <div class="form-group">
                             <label for="">Nome do Prato</label>
@@ -126,18 +127,17 @@
         </div>
       </div>
     </div>
-
-
     
 <?php
 
   if(isset($_POST['register-cardapio'])):
+    // $comida       = $_POST['prato'];
+    // $bebida       = $_POST['bebida'];
+    // $precoComida  = $_POST['precoComida'];
+    // $precoBebida  = $_POST['precoBebida'];
+    
     // Pegando os dados 
-    $comida       = $_POST['prato'];
-    $bebida       = $_POST['bebida'];
     $restaurante  = $_POST['restaurante'];
-    $precoComida  = $_POST['precoComida'];
-    $precoBebida  = $_POST['precoBebida'];
 
     // Pegando a foto
     $target1        = "../../assets/__storage/" . basename($_FILES['foto1']['name']);
