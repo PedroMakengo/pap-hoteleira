@@ -169,6 +169,27 @@
     WHERE id_hospede=:id", $parametros);
 
     if($atualizarPerfilHospede):
+      
+
+       // ATUALIZANDO O PERFIL
+      //===================================================================================================================
+      $today   =  Date('Y-m-d H:i:s');
+      $nome    = $_SESSION['nome'];
+      $action  = "atualizou";
+      $textLog = "O usuário ". $nome. " ". $action . " o seu perfil";
+      $parametros = [
+        ":nome"     => $nome, 
+        ":actionLog"   => $action, 
+        ":textLog"  => $textLog,
+        ":dataLog"     => $today       
+      ];
+      $insertLog = new Model();
+      $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+      (user_log, action_log, text_log, data_log) 
+      VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+      //==================================================================================================================
+ 
+
 
       // Atualizar também o nome dele dentro da tabela historico reserva
       $parametros = [

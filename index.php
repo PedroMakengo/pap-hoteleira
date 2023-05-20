@@ -8,6 +8,8 @@
   $data = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_hotel");
   $dataQuarto = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_quartos
    INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel");
+
+   $comentarios = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_comentarios");
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +79,58 @@
         background: none !important;
         border: 0 !important;
       }
+
+      
+      #comentarios {
+        padding-block: 5rem;
+      }
+
+      #comentarios .container {
+        width: 85%;
+        margin: 0 auto;
+        padding-block: 2rem;
+      }
+
+      #comentarios h1{
+        text-align: center;
+
+        color: #292929;
+        font-size: 4.5rem;
+        font-weight: bold;
+        line-height: 133.02%;
+        margin-bottom: 1.8rem;
+      }
+
+      #comentarios .items-comentarios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        padding-block: 2rem;
+        margin-top: 4rem;
+      }
+
+      #comentarios .items-comentarios .item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+
+        background: #fafafa;
+        padding: 2rem;
+      }
+
+      #comentarios .items-comentarios .item span{
+        font-size: 2rem;
+        font-weight: bold;
+        margin-block: 1rem;
+      }
+
+      #comentarios .items-comentarios .item p {
+        font-size: 1.3rem;
+      }
+
     </style>
   </head>
   <body>
@@ -384,6 +438,24 @@
                 </div>
               </div>
             <?php endforeach; ?>
+          </div>
+        </section>
+
+
+        <section id="comentarios">
+          <div class="container">
+            <h1>Comentarios</h1>
+
+            <div class="items-comentarios">
+              <?php foreach($comentarios as $details): ?> 
+              <div class="item">
+                <img src="" alt="">
+                
+                <span><?= $details['nome'] ?></span>
+                <p><?= $details['comentario'] ?></p>
+              </div>
+              <?php endforeach; ?>
+            </div>
           </div>
         </section>
       </main>

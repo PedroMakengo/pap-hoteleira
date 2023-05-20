@@ -116,7 +116,7 @@
                             <label for="">Estado do Quarto</label>
                             <select name="estado" required class="form-control form-control-lg">
                               <option value="">Selecione o estado do quarto</option>
-                              <!-- <option value="Disponível">Disponível</option> -->
+                              <option value="Disponível">Disponível</option>
                               <option value="Indisponível">Indisponível</option>
                               <option value="Manutenção">Manutenção</option>
                             </select>
