@@ -13,151 +13,210 @@
   
     // Verificar data 
     $today =  Date('Y-m-d');
-    if($datacheckin > $datacheckout):
-      echo '<script> 
-              swal({
-                title: "Ops!!",
-                text: "A data de checkin não pode ser superior a data de checkout.",
-                icon: "error",
-                button: "Fechar!",
-              })
-            </script>';
-    elseif($datacheckin < $today):
-      echo '<script> 
-          swal({
-            title: "Ops!!",
-            text: "A data de checkin não pode ser menor que a data de hoje",
-            icon: "error",
-            button: "Fechar!",
-          })
-        </script>';
-    else:
 
-      // Verificar se existe uma reserva com essa data de checkin e checkout 
-      $parametros = [
-        ":dataCheckin" => $datacheckin, 
-        ":dataCheckout" => $datacheckout
-      ];
+    // Pegando o campo hora checkout
 
-      $reservas = new Model();
-      $buscandoTodosQuartosReservados = $reservas->EXE_QUERY("SELECT * FROM tb_reservas
-      WHERE data_checkin_reserva=:dataCheckin AND data_checkout_reserva=:dataCheckout", $parametros);
-
-      if($buscandoTodosQuartosReservados):
+    if($_POST['tipo'] == "tab1"):
+      // Registro de reserva por dia
+      if($datacheckin > $datacheckout):
         echo '<script> 
                 swal({
                   title: "Ops!!",
-                  text: "Não podes reservas nesta data de checkin e checkout",
+                  text: "A data de checkin não pode ser superior a data de checkout.",
                   icon: "error",
                   button: "Fechar!",
                 })
               </script>';
+      elseif($datacheckin < $today):
+        echo '<script> 
+            swal({
+              title: "Ops!!",
+              text: "A data de checkin não pode ser menor que a data de hoje",
+              icon: "error",
+              button: "Fechar!",
+            })
+          </script>';
       else:
-        $parametros = [
-          ":id"             => $_SESSION['id'],
-          ":quarto"         => $quartoId,
-          ":dataCheckin"    => $datacheckin,
-          ":dataCheckout"   => $datacheckout,
-          ":num_hospede"    => $num_hospede,
-          ":preco"          => $preco,
-          ":statusReserva"  => "Por verificar",
-          ":comprovativo"   => $foto, 
-          ":totalNoites"    => 0,
-          ":horaCheckin"    => $horaCheckin,      
-          ":horaCheckout"   => $horaCheckout,
-          ":totalHoras"     => 0     
-        ];
-        $inserirReservaQuarto = new Model();
-        $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
-          (
-            id_hospede, 
-            id_quarto, 
-            data_checkin_reserva, 
-            data_checkout_reserva,
-            num_hospedes_reserva,
-            preco_total_reserva,
-            status_quarto_reserva,
-            comprovativo_reserva,
-            data_criacao_reserva,
-            data_atualizacao_reserva,
-            total_noites,
-            hora_checkin,
-            hora_checkout,
-            total_horas
-            ) VALUES (
-              :id, 
-              :quarto, 
-              :dataCheckin, 
-              :dataCheckout, 
-              :num_hospede,
-              :preco, 
-              :statusReserva, 
-              :comprovativo,
-              now(),
-              now(),
-              :totalNoites,
-              :horaCheckin, 
-              :horaCheckout,
-              :totalHoras
-          )", $parametros);
-    
-        if($inserirReservaQuarto):
-          // Executar a operação de atualizar o estado da reserva
-          $parametros = [":id" => $quartoId, ":statusQuarto" => "Reservado"];
-          $atualizarQuarto = new Model();
-          $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_quartos SET
-            status_quarto=:statusQuarto
-            WHERE id_quarto=:id", $parametros);
 
-          if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-            $sms = "Uploaded feito com sucesso";
-          else:
-            $sms = "Não foi possível fazer o upload";
-          endif;
+        // Verificar se existe uma reserva com essa data de checkin e checkout 
+        $parametros = [
+          ":dataCheckin" => $datacheckin, 
+          ":dataCheckout" => $datacheckout
+        ];
+
+        $reservas = new Model();
+        $buscandoTodosQuartosReservados = $reservas->EXE_QUERY("SELECT * FROM tb_reservas
+        WHERE data_checkin_reserva=:dataCheckin AND data_checkout_reserva=:dataCheckout", $parametros);
+
+        if($buscandoTodosQuartosReservados):
           echo '<script> 
                   swal({
-                    title: "Dados inseridos!",
-                    text: "Usuário cadastrado com sucesso",
-                    icon: "success",
+                    title: "Ops!!",
+                    text: "Não podes reservas nesta data de checkin e checkout",
+                    icon: "error",
                     button: "Fechar!",
                   })
                 </script>';
-          echo '<script>
-                setTimeout(function() {
-                    window.location.href="index.php?id=home";
-                }, 2000)
-            </script>';
-
-
-          // Informar ao hotel quando o usuário faz uma reserva
-          //===================================================================================================================
-          $today   =  Date('Y-m-d');
-          $id      = $hotelId;
-          $action  = "reservou";
-          $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
-          $parametros = [
-            ":id"     => $id, 
-            ":nomeHospede" => $_SESSION['nome'],
-            ":actionLog"   => $action, 
-            ":textLog"  => $textLog  
-          ];
-          $insertLog = new Model();
-          $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-          (id_hotel, usuario_historico, action_historico, historico, data_historico) 
-          VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
-          //===================================================================================================================
         else:
-        echo '<script>
-                swal({
-                  title: "Opps!",
-                  text: "Ocorreu um erro ao inserir este usuário"
-                  icon: "error",
-                  button: "Fechar!",
-                })
+          $parametros = [
+            ":id"             => $_SESSION['id'],
+            ":quarto"         => $quartoId,
+            ":dataCheckin"    => $datacheckin,
+            ":dataCheckout"   => $datacheckout,
+            ":num_hospede"    => $num_hospede,
+            ":preco"          => $preco,
+            ":statusReserva"  => "Por verificar",
+            ":comprovativo"   => $foto, 
+            ":totalNoites"    => 0,
+            ":horaCheckin"    => $horaCheckin,      
+            ":horaCheckout"   => $horaCheckout,
+            ":totalHoras"     => 0     
+          ];
+          $inserirReservaQuarto = new Model();
+          $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+            (
+              id_hospede, 
+              id_quarto, 
+              data_checkin_reserva, 
+              data_checkout_reserva,
+              num_hospedes_reserva,
+              preco_total_reserva,
+              status_quarto_reserva,
+              comprovativo_reserva,
+              data_criacao_reserva,
+              data_atualizacao_reserva,
+              total_noites,
+              hora_checkin,
+              hora_checkout,
+              total_horas
+              ) VALUES (
+                :id, 
+                :quarto, 
+                :dataCheckin, 
+                :dataCheckout, 
+                :num_hospede,
+                :preco, 
+                :statusReserva, 
+                :comprovativo,
+                now(),
+                now(),
+                :totalNoites,
+                :horaCheckin, 
+                :horaCheckout,
+                :totalHoras
+            )", $parametros);
+
+          if($inserirReservaQuarto):
+            // Executar a operação de atualizar o estado da reserva
+            $parametros = [":id" => $quartoId, ":statusQuarto" => "Reservado"];
+            $atualizarQuarto = new Model();
+            $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_quartos SET
+              status_quarto=:statusQuarto
+              WHERE id_quarto=:id", $parametros);
+
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+              $sms = "Uploaded feito com sucesso";
+            else:
+              $sms = "Não foi possível fazer o upload";
+            endif;
+            echo '<script> 
+                    swal({
+                      title: "Dados inseridos!",
+                      text: "Usuário cadastrado com sucesso",
+                      icon: "success",
+                      button: "Fechar!",
+                    })
+                  </script>';
+            echo '<script>
+                  setTimeout(function() {
+                      window.location.href="index.php?id=home";
+                  }, 2000)
               </script>';
+
+
+            // Informar ao hotel quando o usuário faz uma reserva
+            //===================================================================================================================
+            $today   =  Date('Y-m-d');
+            $id      = $hotelId;
+            $action  = "reservou";
+            $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+            $parametros = [
+              ":id"     => $id, 
+              ":nomeHospede" => $_SESSION['nome'],
+              ":actionLog"   => $action, 
+              ":textLog"  => $textLog  
+            ];
+            $insertLog = new Model();
+            $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+            (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+            VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+            //===================================================================================================================
+          else:
+          echo '<script>
+                  swal({
+                    title: "Opps!",
+                    text: "Ocorreu um erro ao inserir este usuário"
+                    icon: "error",
+                    button: "Fechar!",
+                  })
+                </script>';
+          endif;
         endif;
       endif;
+      // Registro de reserva por dia
+    else:
+      echo "Hora";
+      $parametros = [
+        ":id"             => $_SESSION['id'],
+        ":quarto"         => $quartoId,
+        ":dataCheckin"    => $datacheckin,
+        ":dataCheckout"   => $datacheckout,
+        ":num_hospede"    => $num_hospede,
+        ":preco"          => $preco,
+        ":statusReserva"  => "Por verificar",
+        ":comprovativo"   => $foto, 
+        ":totalNoites"    => 0,
+        ":horaCheckin"    => $horaCheckin,      
+        ":horaCheckout"   => $horaCheckout,
+        ":totalHoras"     => 0     
+      ];
+      $inserirReservaQuarto = new Model();
+      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+        (
+          id_hospede, 
+          id_quarto, 
+          data_checkin_reserva, 
+          data_checkout_reserva,
+          num_hospedes_reserva,
+          preco_total_reserva,
+          status_quarto_reserva,
+          comprovativo_reserva,
+          data_criacao_reserva,
+          data_atualizacao_reserva,
+          total_noites,
+          hora_checkin,
+          hora_checkout,
+          total_horas 
+          ) VALUES (
+            :id, 
+            :quarto, 
+            :dataCheckin, 
+            :dataCheckout, 
+            :num_hospede,
+            :preco, 
+            :statusReserva, 
+            :comprovativo,
+            now(),
+            now(),
+            :totalNoites,
+            :horaCheckin, 
+            :horaCheckout,
+            :totalHoras
+        )", $parametros);
+
+        echo "Feito";
     endif;
+
   endif;
 
 

@@ -13,9 +13,6 @@
   .tab {
     display: none;
   }
-  .tab.active {
-    display: block;
-  }
 </style>
 
 <!-- Component Head -->
@@ -42,7 +39,7 @@
 <div class="dashboard-main-wrapper">
   
 <!-- Component Head -->
-<?php require 'components/component-header.php' ?>
+<?php //require 'components/component-header.php' ?>
 <!-- Component Head -->
 
   <!-- Container -->
@@ -150,18 +147,19 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 mr-4">
                     <div class="form-group">
                       <label for="">Tipo de Reserva:</label>
-                       <div class="form-control buttons">
-                         <button class="active">Por Dia:</button>
-                         <button class="">Por Hora:</button>
-                       </div>
+                      <select name="tipo" id="tabSelect" onchange="changeTab()" class="buttons form-control">
+                        <option value="">Selecione o período</option>
+                        <option value="tab1">Por dia</option>
+                        <option value="tab2">Por hora</option>
+                      </select>
                     </div>
                   </div>
 
                   <div class="row content-tab">
-                    <div class="col-lg-12 tab active">
+                    <div class="col-lg-12 tab" id="tab1">
                       <div class="row">
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
@@ -179,12 +177,13 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-12 tab">
+                    <div class="col-lg-12 tab" id="tab2">
                       <div class="row">
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
                             <label for="" title="Hora de Checkin">Checkin:</label>
                             <input type="time" name="horaCheckin" class="form-control" />
+                            <input type="text" style="display: none" value="hora" name="reservaTipo" class="form-control" />
                           </div>
                         </div>
 
@@ -234,7 +233,7 @@
 </div>
 
 <!-- Component Footer -->
-<?php require 'components/component-footer.php' ?>
+<?php require 'components/component-footer-reserva.php' ?>
 <!-- Component Footer -->
 
 
@@ -245,24 +244,15 @@
 
 <script>
     
-  const tabNavegator = document.querySelectorAll(".buttons button");
-  const tabContent = document.querySelectorAll(".content-tab .tab");
+    function changeTab() {
+      var select = document.getElementById("tabSelect");
+      var selectedTab = select.options[select.selectedIndex].value;
 
-  for (let i = 0; i < tabNavegator.length; i++) {
-    tabNavegator[i].addEventListener("click", function (e) {
-      e.preventDefault();
-      // Elementos Ativos
-      const tabNavegatorActive = document.querySelector(".buttons button.active");
-      const tabContentActive = document.querySelector(".content-tab .tab.active");
-
-      // 1) Tab Navegator 
-      tabNavegatorActive.classList.remove("active");
-      tabNavegator[i].classList.add("active");
-
-      // 2) TabContent Navegator
-      tabContentActive.classList.remove("active");
-      tabContent[i].classList.add("active");
-    });
-  }
-  
+      var tabs = document.getElementsByClassName("tab");
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+      }
+      
+      document.getElementById(selectedTab).style.display = "block";
+    }
 </script>
