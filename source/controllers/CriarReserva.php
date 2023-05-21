@@ -5,6 +5,7 @@
     $datacheckin  = $_POST['datacheckin'];
     $datacheckout = $_POST['datacheckout'];
     $num_hospede  = $_POST['num_hospede'];
+
     $horaCheckin  = $_POST['horaCheckin'];
     $horaCheckout = $_POST['horaCheckout'];
   
@@ -214,7 +215,19 @@
             :totalHoras
         )", $parametros);
 
-        echo "Feito";
+        echo '<script> 
+                swal({
+                  title: "Dados inseridos!",
+                  text: "Usuário cadastrado com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+        echo '<script>
+              setTimeout(function() {
+                  window.location.href="index.php?id=home";
+              }, 2000)
+          </script>';
     endif;
 
   endif;
