@@ -19,6 +19,12 @@
 
     if($_POST['tipo'] == "tab1"):
       // Registro de reserva por dia
+      $checkInTimestamp = strtotime($datacheckin);
+      $checkOutTimestamp = strtotime($datacheckout);
+  
+      $difference = $checkOutTimestamp - $checkInTimestamp;
+      $totalDays = floor($difference / (60 * 60 * 24));
+
       if($datacheckin > $datacheckout):
         echo '<script> 
                 swal({
@@ -68,7 +74,7 @@
             ":preco"          => $preco,
             ":statusReserva"  => "Por verificar",
             ":comprovativo"   => $foto, 
-            ":totalNoites"    => 0,
+            ":totalNoites"    => $totalDays,
             ":horaCheckin"    => $horaCheckin,      
             ":horaCheckout"   => $horaCheckout,
             ":totalHoras"     => 0     
@@ -134,7 +140,6 @@
                   }, 2000)
               </script>';
 
-
             // Informar ao hotel quando o usuário faz uma reserva
             //===================================================================================================================
             $today   =  Date('Y-m-d');
@@ -165,8 +170,20 @@
         endif;
       endif;
       // Registro de reserva por dia
-    else:
-      echo "Hora";
+    else:   
+      // Extrair horas e minutos de check-in e check-out
+      list($checkInHour, $checkInMinute) = explode(':', $horaCheckin);
+      list($checkOutHour, $checkOutMinute) = explode(':', $horaCheckout);
+
+      
+      // Calcular total de minutos de check-in e check-out
+      $totalCheckInMinutes = ($checkInHour * 60) + $checkInMinute;
+      $totalCheckOutMinutes = ($checkOutHour * 60) + $checkOutMinute;
+
+      // Calcular total de horas
+      $totalMinutes = $totalCheckOutMinutes - $totalCheckInMinutes;
+      $totalHours = floor($totalMinutes / 60);
+
       $parametros = [
         ":id"             => $_SESSION['id'],
         ":quarto"         => $quartoId,
@@ -179,7 +196,7 @@
         ":totalNoites"    => 0,
         ":horaCheckin"    => $horaCheckin,      
         ":horaCheckout"   => $horaCheckout,
-        ":totalHoras"     => 0     
+        ":totalHoras"     => $totalHours 
       ];
       $inserirReservaQuarto = new Model();
       $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
@@ -215,6 +232,26 @@
             :totalHoras
         )", $parametros);
 
+      if($inserirReservaQuarto):
+        // echo $totalHours; 
+        // Informar ao hotel quando o usuário faz uma reserva
+        //===================================================================================================================
+        $today   =  Date('Y-m-d');
+        $id      = $hotelId;
+        $action  = "reservou";
+        $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+        $parametros = [
+          ":id"     => $id, 
+          ":nomeHospede" => $_SESSION['nome'],
+          ":actionLog"   => $action, 
+          ":textLog"  => $textLog  
+        ];
+        $insertLog = new Model();
+        $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+        (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+        VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+       //===================================================================================================================
+
         echo '<script> 
                 swal({
                   title: "Dados inseridos!",
@@ -227,7 +264,8 @@
               setTimeout(function() {
                   window.location.href="index.php?id=home";
               }, 2000)
-          </script>';
+         </script>';
+      endif;
     endif;
 
   endif;
