@@ -180,94 +180,105 @@
       $totalCheckInMinutes = ($checkInHour * 60) + $checkInMinute;
       $totalCheckOutMinutes = ($checkOutHour * 60) + $checkOutMinute;
 
-      // Calcular total de horas
-      $totalMinutes = $totalCheckOutMinutes - $totalCheckInMinutes;
-      $totalHours = floor($totalMinutes / 60);
-
-      $parametros = [
-        ":id"             => $_SESSION['id'],
-        ":quarto"         => $quartoId,
-        ":dataCheckin"    => $datacheckin,
-        ":dataCheckout"   => $datacheckout,
-        ":num_hospede"    => $num_hospede,
-        ":preco"          => $preco,
-        ":statusReserva"  => "Por verificar",
-        ":comprovativo"   => $foto, 
-        ":totalNoites"    => 0,
-        ":horaCheckin"    => $horaCheckin,      
-        ":horaCheckout"   => $horaCheckout,
-        ":totalHoras"     => $totalHours 
-      ];
-      $inserirReservaQuarto = new Model();
-      $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
-        (
-          id_hospede, 
-          id_quarto, 
-          data_checkin_reserva, 
-          data_checkout_reserva,
-          num_hospedes_reserva,
-          preco_total_reserva,
-          status_quarto_reserva,
-          comprovativo_reserva,
-          data_criacao_reserva,
-          data_atualizacao_reserva,
-          total_noites,
-          hora_checkin,
-          hora_checkout,
-          total_horas 
-          ) VALUES (
-            :id, 
-            :quarto, 
-            :dataCheckin, 
-            :dataCheckout, 
-            :num_hospede,
-            :preco, 
-            :statusReserva, 
-            :comprovativo,
-            now(),
-            now(),
-            :totalNoites,
-            :horaCheckin, 
-            :horaCheckout,
-            :totalHoras
-        )", $parametros);
-
-      if($inserirReservaQuarto):
-        // echo $totalHours; 
-        // Informar ao hotel quando o usuário faz uma reserva
-        //===================================================================================================================
-        $today   =  Date('Y-m-d');
-        $id      = $hotelId;
-        $action  = "reservou";
-        $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
-        $parametros = [
-          ":id"     => $id, 
-          ":nomeHospede" => $_SESSION['nome'],
-          ":actionLog"   => $action, 
-          ":textLog"  => $textLog  
-        ];
-        $insertLog = new Model();
-        $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-        (id_hotel, usuario_historico, action_historico, historico, data_historico) 
-        VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
-       //===================================================================================================================
-
+      if($totalCheckInMinutes > $totalCheckOutMinutes):
         echo '<script> 
-                swal({
-                  title: "Dados inseridos!",
-                  text: "Usuário cadastrado com sucesso",
-                  icon: "success",
-                  button: "Fechar!",
-                })
-              </script>';
-        echo '<script>
-              setTimeout(function() {
-                  window.location.href="index.php?id=home";
-              }, 2000)
-         </script>';
+          swal({
+            title: "Ops!!",
+            text: "A hora de checkin não pode ser superior a hora de checkout.",
+            icon: "error",
+            button: "Fechar!",
+          })
+        </script>';
+      else:
+        // Calcular total de horas
+        $totalMinutes = $totalCheckOutMinutes - $totalCheckInMinutes;
+        $totalHours = floor($totalMinutes / 60);
+
+        $parametros = [
+          ":id"             => $_SESSION['id'],
+          ":quarto"         => $quartoId,
+          ":dataCheckin"    => $datacheckin,
+          ":dataCheckout"   => $datacheckout,
+          ":num_hospede"    => $num_hospede,
+          ":preco"          => $preco,
+          ":statusReserva"  => "Por verificar",
+          ":comprovativo"   => $foto, 
+          ":totalNoites"    => 0,
+          ":horaCheckin"    => $horaCheckin,      
+          ":horaCheckout"   => $horaCheckout,
+          ":totalHoras"     => $totalHours 
+        ];
+        $inserirReservaQuarto = new Model();
+        $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+          (
+            id_hospede, 
+            id_quarto, 
+            data_checkin_reserva, 
+            data_checkout_reserva,
+            num_hospedes_reserva,
+            preco_total_reserva,
+            status_quarto_reserva,
+            comprovativo_reserva,
+            data_criacao_reserva,
+            data_atualizacao_reserva,
+            total_noites,
+            hora_checkin,
+            hora_checkout,
+            total_horas 
+            ) VALUES (
+              :id, 
+              :quarto, 
+              :dataCheckin, 
+              :dataCheckout, 
+              :num_hospede,
+              :preco, 
+              :statusReserva, 
+              :comprovativo,
+              now(),
+              now(),
+              :totalNoites,
+              :horaCheckin, 
+              :horaCheckout,
+              :totalHoras
+          )", $parametros);
+
+        if($inserirReservaQuarto):
+          // echo $totalHours; 
+          // Informar ao hotel quando o usuário faz uma reserva
+          //===================================================================================================================
+          $today   =  Date('Y-m-d');
+          $id      = $hotelId;
+          $action  = "reservou";
+          $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+          $parametros = [
+            ":id"     => $id, 
+            ":nomeHospede" => $_SESSION['nome'],
+            ":actionLog"   => $action, 
+            ":textLog"  => $textLog  
+          ];
+          $insertLog = new Model();
+          $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+          (id_hotel, usuario_historico, action_historico, historico, data_historico) 
+          VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
+        //===================================================================================================================
+
+          echo '<script> 
+                  swal({
+                    title: "Dados inseridos!",
+                    text: "Operação efetuada com sucesso",
+                    icon: "success",
+                    button: "Fechar!",
+                  })
+                </script>';
+          echo '<script>
+                setTimeout(function() {
+                    window.location.href="index.php?id=home";
+                }, 2000)
+          </script>';
+        endif;
+
       endif;
     endif;
-
   endif;
 
 
