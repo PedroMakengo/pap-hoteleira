@@ -150,11 +150,7 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                       <h4>Listagem de reservas</h4>
                     </div>
                     <div class="col-lg-6 text-right">
-                      <!-- <a
-                        href="register-quarto.html"
-                        class="btn btn-primary btn-small"
-                        >Nova Reserva</a
-                      > -->
+                      <a href="../../public/relatorio.php?id=minhas-reservas" target="_blank" class="btn btn-sm btn-info">Imprimir Reserva Quartos</a>
                     </div>
 
                     <div class="col-lg-12"><hr /></div>

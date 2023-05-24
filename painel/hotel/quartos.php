@@ -94,7 +94,7 @@ endif;
                     <h4>Listagem de Quartos</h4>
                   </div>
                   <div class="col-lg-6 text-right">
-                    <a href="../../public/relatorio.php?id=hoteis" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
+                    <a href="../../public/relatorio.php?id=meus-quartos" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
                     <a
                       href="register-quarto.php?id=quartos"
                       class="btn btn-primary btn-sm"
