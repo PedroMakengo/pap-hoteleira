@@ -60,7 +60,10 @@
 
   // Buscando todos os cardápios relacionados a um determinado Restaurante
   $buscandoCardapioRestaurante = new Model();
-  $buscandoCardapio = $buscandoCardapioRestaurante->EXE_QUERY("SELECT * FROM tb_cardapio WHERE id_cardapio=:id", $parametros);
+  $buscandoCardapio = $buscandoCardapioRestaurante->EXE_QUERY("SELECT * FROM tb_cardapios 
+    INNER JOIN tb_restaurante ON 
+    tb_cardapios.id_restaurante=tb_restaurante.id_restaurante
+    WHERE tb_restaurante.id_restaurante=:id", $parametros);
 ?> 
 
 <div class="dashboard-main-wrapper">
@@ -90,20 +93,15 @@
                       <?php foreach($buscandoCardapio as $details):?>
                         <div class="item-card">
                           <div class="row">
-                            <div class="col-lg-4">
-                              <img src="../../assets/__storage/<?= $details['foto_comida'] ?>" class="col-lg-12 photoRestaurante" alt="">
-                            </div>
-                            <div class="col-lg-8">
-                              <div class="content-restaurante">
-                              <ul>
-                                <li><span>ID:</span> <strong><?= $details['id_cardapio'] ?></strong></li>
-                                <li><span>Comida:</span> <strong><?= $details['comida'] ?></strong></li>
-                                <li><span>Bebida:</span> <strong><?= $details['bebida'] ?></strong></li>
-                                <li><span>Preço Comida:</span> <strong><?= $details['preco_comida'] ?></strong></li>
-                                <li><span>Preço Bebida:</span> <strong><?= $details['preco_bebida'] ?></strong></li>
-                                <li><span>Data de Regristo:</span> <strong><?= $details['data_registro_cardapio'] ?></strong></li>
-                              </ul>
-                            </div>
+                              <div class="col-lg-4">
+                                <img src="../../assets/__storage/<?= $details['foto_um'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                              </div>
+                              <div class="col-lg-4">
+                                <img src="../../assets/__storage/<?= $details['foto_dois'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                              </div>
+                              <div class="col-lg-4">
+                                <img src="../../assets/__storage/<?= $details['foto_tres'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                              </div>
                             </div>
                           </div>
                         </div>
