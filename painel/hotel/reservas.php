@@ -173,8 +173,8 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                           <div class="tab-content" id="myTabContent2">
                               <div class="tab-pane fade active show" id="outline-one" role="tabpanel" aria-labelledby="tab-outline-one">
                                 <!-- Tabela dos quartos reservados -->
-                                <div class="table-responsive bg-white p-2">
-                                  <table class="table" id="tabela">
+                                <div class="table-responsive bg-white p-2" style="overflow-x: auto">
+                                  <table class="table" id="tabela" style="width: 1400px !important">
                                     <thead>
                                       <tr>
                                         <th>#</th>
@@ -183,6 +183,13 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                         <th>Estado</th>
                                         <th>Data Checkin</th>
                                         <th>Data Checkout</th>
+
+                                        <th>Hora de Checkin</th>
+                                        <th>Hora de Checkout</th>
+
+                                        <th>Total de Horas</th>
+                                        <th>Total de Dias</th>
+
                                         <th>Comprovativo</th>
                                         <th>Data de Registro</th>
                                         <th class="text-center">Ações</th>
@@ -200,6 +207,10 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['status_quarto_reserva'] ?></td>
                                               <td><?= $details['data_checkin_reserva'] ?></td>
                                               <td><?= $details['data_checkout_reserva'] ?></td>
+                                              <td><?= $details['hora_checkin'] ?></td>
+                                              <td><?= $details['hora_checkout'] ?></td>
+                                              <td><?= $details['total_horas'] ?></td>
+                                              <td><?= $details['total_noites'] ?></td>
                                               <td>
                                                 <object data="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" type="application/x-pdf" title="Comprovativo">
                                                   <a href="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" class="text-dark" target="_blank">
