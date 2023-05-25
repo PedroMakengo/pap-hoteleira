@@ -1,3 +1,19 @@
+<style>
+  .imageQuarto {
+    width: 50px !important;
+    height: 50px !important;
+
+    position: relative;
+    transform: translateY(-60%);
+    right: -10%;
+  }
+
+  .contentMargin {
+    position: relative;
+    transform: translateY(-10%);
+  }
+</style>
+
 <!-- Component Head -->
 <?php require 'components/component-head.php' ?>
 <!-- Component Head -->
@@ -35,15 +51,19 @@
                     ?>
                       <div class="col-lg-4">
                         <div class="card">
+
                           <?php if($details['foto_primeira_quarto'] == ""): ?>
                           <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/default.jpg" alt="Card image cap">
                           <?php else: ?>
                           <img class="card-img-top" style="height: 28vh" src="../../assets/__storage/<?= $details['foto_primeira_quarto'] ?>" alt="Card image cap">
+                          <img class="card-img-top imageQuarto" style="height: 28vh" src="../../assets/__storage/<?= $details['foto_segunda_quarto'] ?>" alt="Card image cap">
                           <?php endif; ?>
-                          <div class="card-body">
+
+
+                          <div class="card-body contentMargin">
                             <h3 class="card-title">Quarto <?= $details['quarto'] ?></h3>
                             <span class="card-text">Hotel: <strong><?= $details['nome_hotel'] ?></strong></span><br>
-                            <span class="card-text">Categópria do Quarto: <strong><?= $details['tipo_quarto'] ?></strong></span><br>
+                            <span class="card-text">Categória do Quarto: <strong><?= $details['tipo_quarto'] ?></strong></span><br>
                             <span class="card-text">Tipo do Quarto: <strong><?= $details['categoria_quarto'] ?></strong></span><br>
 
                             <span class="card-text">Preço do Quarto Por Noite: <strong><?= $details['preco_quarto'] . " kz" ?></strong></span><br>

@@ -92,24 +92,34 @@
                               </select>
                             </div>
                           </div>
+
                           <div class="col-lg-2">
                             <div class="form-group">
                               <label for="">Nº do Quarto</label>
                               <input type="text" value="<?= $details['quarto'] ?>" name="quarto" class="form-control form-control-lg">
                             </div>
                           </div>
+
                           <div class="col-lg-2">
                             <div class="form-group">
                               <label for="">Capacidade</label>
                               <input type="text"  value="<?= $details['capacidade_quarto'] ?>" name="capacidade" class="form-control form-control-lg">
                             </div>
                           </div>
-                          <div class="col-lg-4">
+
+                          <div class="col-lg-2">
                             <div class="form-group">
-                              <label for="">Preço </label>
+                              <label for="">Preço por noite:</label>
                               <input type="number" value="<?= $details['preco_quarto'] ?>" name="preco" class="form-control form-control-lg">
+                            </div>
                           </div>
-                        </div>
+
+                          <div class="col-lg-2">
+                            <div class="form-group">
+                              <label for="">Preço por hora: </label>
+                              <input type="number" value="<?= $details['preco_hora'] ?>" name="precoHora" class="form-control form-control-lg">
+                            </div>
+                          </div>
 
                         <div class="col-lg-4">
                           <div class="form-group">
@@ -155,6 +165,7 @@
     $capacidade = $_POST['capacidade'];
     $hotel      = $_SESSION['id'];
     $descricao  = $_POST['descricao'];
+    $precoHora  = $_POST['precoHora'];
 
     $estado = $_POST['estado'];
 
@@ -179,6 +190,7 @@
       ":foto"          => $foto,
       ":foto1"         => $foto1,
       ":statusQuarto"  => $estado,
+      ":precoHora"     => $precoHora,
       ":id"            => $_GET['userId']
     ];
 
@@ -191,7 +203,8 @@
       descricao_quarto=:descricao, 
       foto_primeira_quarto=:foto, 
       foto_segunda_quarto=:foto1,
-      status_quarto=:statusQuarto
+      status_quarto=:statusQuarto, 
+      preco_hora=:precoHora
       where id_quarto=:id", $parametros);
 
     if($inserirQuarto):

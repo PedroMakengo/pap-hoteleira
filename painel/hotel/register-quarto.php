@@ -90,13 +90,19 @@
                         <div class="col-lg-2">
                           <div class="form-group">
                             <label for="">Capacidade</label>
-                            <input type="text" name="capacidade" class="form-control form-control-lg">
+                            <input type="number" name="capacidade" class="form-control form-control-lg">
                           </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                           <div class="form-group">
-                            <label for="">Preço </label>
-                            <input type="number" name="preco" class="form-control form-control-lg">
+                            <label for="preco">Preço por Noite:</label>
+                            <input type="number" id="preco" name="preco" class="form-control form-control-lg">
+                          </div>
+                        </div>
+                        <div class="col-lg-2">
+                          <div class="form-group">
+                            <label for="precoHora">Preço Por Hora:</label>
+                            <input type="number" id="precoHora" name="precoHora" class="form-control form-control-lg">
                           </div>
                         </div>
 
@@ -143,6 +149,7 @@
     $tipo       = $_POST['tipo'];
     $quarto     = $_POST['quarto'];
     $preco      = $_POST['preco'];
+    $precoHora  = $_POST['precoHora'];
     $capacidade = $_POST['capacidade'];
     $hotel      = $_SESSION['id'];
     $descricao  = $_POST['descricao'];
@@ -166,7 +173,8 @@
       ":foto1"      => $foto1,
       ":statusQ"    => $_POST['estado'],
       ":id"         => $hotel,
-      ":categoria"  => $categoria
+      ":categoria"  => $categoria,
+      ":precoHora"  => $precoHora
     ];
 
     $inserirQuarto = new Model();
@@ -183,7 +191,8 @@
         data_criacao_quarto,
         data_atualizacao_quarto,
         id_hotel,
-        categoria_quarto
+        categoria_quarto,
+        preco_hora
       ) 
       VALUES 
       (
@@ -198,11 +207,11 @@
       now(),
       now(),
       :id,
-      :categoria
+      :categoria,
+      :precoHora
       )", $parametros);
 
     if($inserirQuarto):
-
       //===================================================================================================================
       $today   =  Date('Y-m-d');
       $nome    = $_SESSION['nome'];

@@ -113,7 +113,8 @@ endif;
                             <th>#</th>
                             <th>Tipo de Quarto</th>
                             <th>Capacidade Quarto</th>
-                            <th>Preço do Quarto</th>
+                            <th>Preço por noite</th>
+                            <th>Preço por hora</th>
                             <th>Status</th>
                             <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
@@ -128,7 +129,8 @@ endif;
                                   <td><?= $details['id_quarto'] ?></td>
                                   <td><?= $details['tipo_quarto'] ?></td>
                                   <td><?= $details['capacidade_quarto'] ?></td>
-                                  <td><?= $details['preco_quarto'] . " kz" ?></td>
+                                  <td><?= $details['preco_quarto'] . "kz" ?></td>
+                                  <td><?= $details['preco_hora'] . "kz" ?></td>
                                   <td><?= $details['status_quarto'] ?></td>
                                   <td><?= $details['data_criacao_quarto'] ?></td>
                                   <td class="text-center">

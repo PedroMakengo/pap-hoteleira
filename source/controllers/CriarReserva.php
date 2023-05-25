@@ -27,8 +27,6 @@
       $difference = $checkOutTimestamp - $checkInTimestamp;
       $totalDays = floor($difference / (60 * 60 * 24));
 
-   
-
 
       if($datacheckin > $datacheckout):
         echo '<script> 
@@ -224,15 +222,12 @@
 
 
 
-
-
       // Registro de reserva por dia
     else:   
       // Extrair horas e minutos de check-in e check-out
       list($checkInHour, $checkInMinute) = explode(':', $horaCheckin);
       list($checkOutHour, $checkOutMinute) = explode(':', $horaCheckout);
 
-      
       // Calcular total de minutos de check-in e check-out
       $totalCheckInMinutes = ($checkInHour * 60) + $checkInMinute;
       $totalCheckOutMinutes = ($checkOutHour * 60) + $checkOutMinute;
@@ -284,6 +279,7 @@
             ":horaCheckout"   => $horaCheckout,
             ":totalHoras"     => $totalHours 
           ];
+
           $inserirReservaQuarto = new Model();
           $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
             (
