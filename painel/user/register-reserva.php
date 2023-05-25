@@ -212,7 +212,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label for="">Comprovativo:</label>
-                      <input type="file" name="foto" class="form-control" />
+                      <input type="file" name="foto" required class="form-control" />
                     </div>
                   </div>
                   <div class="col-lg-3 mt-2">

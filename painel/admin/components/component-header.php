@@ -114,6 +114,7 @@
                 ><i class="fa fa-fw fa-users"></i>Usuários
               </a>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link <?= $_GET['id'] == 'reservas' ? 'active': '' ?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-user-circle"></i>Reservas</a>
                 <div id="submenu-2" class="collapse submenu" style="">

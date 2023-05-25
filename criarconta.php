@@ -49,7 +49,14 @@
             <div class="field-input">
               <label for="email">
                 Email
-                <input type="email" name="email" id="email" required placeholder="Insira seu email" />
+                <input 
+                  type="email" 
+                  name="email"
+                  id="email" 
+                  required 
+                  placeholder="Insira seu email"
+                  pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                 />
               </label>
             </div>
             <div class="field-input">

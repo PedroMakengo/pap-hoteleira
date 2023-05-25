@@ -16,6 +16,8 @@
     $today =  Date('Y-m-d');
 
     // Pegando o campo hora checkout
+    // Verificando a capacidade do quarto 
+   
 
     if($_POST['tipo'] == "tab1"):
       // Registro de reserva por dia
@@ -24,6 +26,9 @@
   
       $difference = $checkOutTimestamp - $checkInTimestamp;
       $totalDays = floor($difference / (60 * 60 * 24));
+
+   
+
 
       if($datacheckin > $datacheckout):
         echo '<script> 
@@ -65,144 +70,155 @@
                   })
                 </script>';
         else:
-          $parametros = [
-            ":id"             => $_SESSION['id'],
-            ":quarto"         => $quartoId,
-            ":dataCheckin"    => $datacheckin,
-            ":dataCheckout"   => $datacheckout,
-            ":num_hospede"    => $num_hospede,
-            ":preco"          => $preco,
-            ":statusReserva"  => "Por verificar",
-            ":comprovativo"   => $foto, 
-            ":totalNoites"    => $totalDays,
-            ":horaCheckin"    => $horaCheckin,      
-            ":horaCheckout"   => $horaCheckout,
-            ":totalHoras"     => 0     
-          ];
-          $inserirReservaQuarto = new Model();
-          $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
-            (
-              id_hospede, 
-              id_quarto, 
-              data_checkin_reserva, 
-              data_checkout_reserva,
-              num_hospedes_reserva,
-              preco_total_reserva,
-              status_quarto_reserva,
-              comprovativo_reserva,
-              data_criacao_reserva,
-              data_atualizacao_reserva,
-              total_noites,
-              hora_checkin,
-              hora_checkout,
-              total_horas
-              ) VALUES (
-                :id, 
-                :quarto, 
-                :dataCheckin, 
-                :dataCheckout, 
-                :num_hospede,
-                :preco, 
-                :statusReserva, 
-                :comprovativo,
-                now(),
-                now(),
-                :totalNoites,
-                :horaCheckin, 
-                :horaCheckout,
-                :totalHoras
-            )", $parametros);
 
-          if($inserirReservaQuarto):
-            // Executar a operação de atualizar o estado da reserva
-            $parametros = [":id" => $quartoId, ":statusQuarto" => "Reservado"];
-            $atualizarQuarto = new Model();
-            $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_quartos SET
-              status_quarto=:statusQuarto
-              WHERE id_quarto=:id", $parametros);
-
-            if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
-              $sms = "Uploaded feito com sucesso";
-            else:
-              $sms = "Não foi possível fazer o upload";
-            endif;
-           
-            // Buscar o id da reserva 
-            $parametros = [
-              ":idHospede"    => $_SESSION['id'],
-              ":numHospede"   => $num_hospede,
-              ":comprovativo" => $foto
-            ];
-            // Só executa isso depois de encontrar o id da reserva
-            $buscandoIdReserva = new Model();
-            $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
-            WHERE 
-              id_hospede=:idHospede AND 
-              num_hospedes_reserva=:numHospede AND 
-              comprovativo_reserva=:comprovativo
-              ", $parametros);
-
-            foreach($reservaSearch as $details):
-              $idReserva = $details['id_reserva'];
-            endforeach;
-
-            if(count($reservaSearch)):
-                 // Informar ao hotel quando o usuário faz uma reserva
-                //===================================================================================================================
-                $today   =  Date('Y-m-d');
-                $id      = $hotelId;
-                $action  = "reservou";
-                $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
-                $parametros = [
-                  ":id"          => $id, 
-                  ":nomeHospede" => $_SESSION['nome'],
-                  ":actionLog"   => $action, 
-                  ":textLog"     => $textLog,
-                  ":idReserva"   => $idReserva,
-                  ":idQuarto"    => $quartoId
-                ];
-                $insertLog = new Model();
-                $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-                (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
-                VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
-              //===================================================================================================================
-
-                echo '<script> 
-                      swal({
-                        title: "Dados inseridos!",
-                        text: "Usuário cadastrado com sucesso",
-                        icon: "success",
-                        button: "Fechar!",
-                      })
-                    </script>';
-              echo '<script>
-                    setTimeout(function() {
-                        window.location.href="index.php?id=home";
-                    }, 2000)
-                </script>';
-            endif;
-          // Mensagem de erro 
-          else:
-          echo '<script>
+          $parametros = [":id" => $quartoId];
+          $buscandoNumCapacidadeQuarto = new Model();
+          $quartoCapacidade = $buscandoNumCapacidadeQuarto->EXE_QUERY("SELECT * FROM tb_quartos WHERE id_quarto=:id", $parametros);
+          foreach($quartoCapacidade as $details):
+            $numQuantidadeHopesde = $details['capacidade_quarto'];
+          endforeach;
+          
+          if($num_hospede > $numQuantidadeHopesde):
+            echo '<script> 
                   swal({
-                    title: "Opps!",
-                    text: "Ocorreu um erro ao inserir este usuário"
+                    title: "Erro!",
+                    text: "O nº de hospede não pode ser maior que a capacidade do quarto",
                     icon: "error",
                     button: "Fechar!",
                   })
                 </script>';
+
+          else:
+            $parametros = [
+              ":id"             => $_SESSION['id'],
+              ":quarto"         => $quartoId,
+              ":dataCheckin"    => $datacheckin,
+              ":dataCheckout"   => $datacheckout,
+              ":num_hospede"    => $num_hospede,
+              ":preco"          => $preco,
+              ":statusReserva"  => "Por verificar",
+              ":comprovativo"   => $foto, 
+              ":totalNoites"    => $totalDays,
+              ":horaCheckin"    => $horaCheckin,      
+              ":horaCheckout"   => $horaCheckout,
+              ":totalHoras"     => 0     
+            ];
+            $inserirReservaQuarto = new Model();
+            $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+              (
+                id_hospede, 
+                id_quarto, 
+                data_checkin_reserva, 
+                data_checkout_reserva,
+                num_hospedes_reserva,
+                preco_total_reserva,
+                status_quarto_reserva,
+                comprovativo_reserva,
+                data_criacao_reserva,
+                data_atualizacao_reserva,
+                total_noites,
+                hora_checkin,
+                hora_checkout,
+                total_horas
+                ) VALUES (
+                  :id, 
+                  :quarto, 
+                  :dataCheckin, 
+                  :dataCheckout, 
+                  :num_hospede,
+                  :preco, 
+                  :statusReserva, 
+                  :comprovativo,
+                  now(),
+                  now(),
+                  :totalNoites,
+                  :horaCheckin, 
+                  :horaCheckout,
+                  :totalHoras
+              )", $parametros);
+  
+            if($inserirReservaQuarto):
+              // Executar a operação de atualizar o estado da reserva
+              $parametros = [":id" => $quartoId, ":statusQuarto" => "Reservado"];
+              $atualizarQuarto = new Model();
+              $atualizarQuarto->EXE_NON_QUERY("UPDATE tb_quartos SET
+                status_quarto=:statusQuarto
+                WHERE id_quarto=:id", $parametros);
+  
+              if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)):
+                $sms = "Uploaded feito com sucesso";
+              else:
+                $sms = "Não foi possível fazer o upload";
+              endif;
+            
+              // Buscar o id da reserva 
+              $parametros = [
+                ":idHospede"    => $_SESSION['id'],
+                ":numHospede"   => $num_hospede,
+                ":comprovativo" => $foto
+              ];
+              // Só executa isso depois de encontrar o id da reserva
+              $buscandoIdReserva = new Model();
+              $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
+              WHERE 
+                id_hospede=:idHospede AND 
+                num_hospedes_reserva=:numHospede AND 
+                comprovativo_reserva=:comprovativo
+                ", $parametros);
+  
+              foreach($reservaSearch as $details):
+                $idReserva = $details['id_reserva'];
+              endforeach;
+  
+              if(count($reservaSearch)):
+                  // Informar ao hotel quando o usuário faz uma reserva
+                  //===================================================================================================================
+                  $today   =  Date('Y-m-d');
+                  $id      = $hotelId;
+                  $action  = "reservou";
+                  $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+                  $parametros = [
+                    ":id"          => $id, 
+                    ":nomeHospede" => $_SESSION['nome'],
+                    ":actionLog"   => $action, 
+                    ":textLog"     => $textLog,
+                    ":idReserva"   => $idReserva,
+                    ":idQuarto"    => $quartoId
+                  ];
+                  $insertLog = new Model();
+                  $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+                  (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
+                  VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
+                //===================================================================================================================
+  
+                  echo '<script> 
+                        swal({
+                          title: "Dados inseridos!",
+                          text: "Usuário cadastrado com sucesso",
+                          icon: "success",
+                          button: "Fechar!",
+                        })
+                      </script>';
+                echo '<script>
+                      setTimeout(function() {
+                          window.location.href="index.php?id=home";
+                      }, 2000)
+                  </script>';
+              endif;
+            // Mensagem de erro 
+            else:
+            echo '<script>
+                    swal({
+                      title: "Opps!",
+                      text: "Ocorreu um erro ao inserir este usuário"
+                      icon: "error",
+                      button: "Fechar!",
+                    })
+                  </script>';
+            endif;
           endif;
         endif;
       endif;
-
-
-
-
-
-
-
-
-
 
 
 
@@ -231,115 +247,135 @@
           })
         </script>';
       else:
-        // Calcular total de horas
-        $totalMinutes = $totalCheckOutMinutes - $totalCheckInMinutes;
-        $totalHours = floor($totalMinutes / 60);
 
-        $parametros = [
-          ":id"             => $_SESSION['id'],
-          ":quarto"         => $quartoId,
-          ":dataCheckin"    => $datacheckin,
-          ":dataCheckout"   => $datacheckout,
-          ":num_hospede"    => $num_hospede,
-          ":preco"          => $preco,
-          ":statusReserva"  => "Por verificar",
-          ":comprovativo"   => $foto, 
-          ":totalNoites"    => 0,
-          ":horaCheckin"    => $horaCheckin,      
-          ":horaCheckout"   => $horaCheckout,
-          ":totalHoras"     => $totalHours 
-        ];
-        $inserirReservaQuarto = new Model();
-        $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
-          (
-            id_hospede, 
-            id_quarto, 
-            data_checkin_reserva, 
-            data_checkout_reserva,
-            num_hospedes_reserva,
-            preco_total_reserva,
-            status_quarto_reserva,
-            comprovativo_reserva,
-            data_criacao_reserva,
-            data_atualizacao_reserva,
-            total_noites,
-            hora_checkin,
-            hora_checkout,
-            total_horas 
-            ) VALUES (
-              :id, 
-              :quarto, 
-              :dataCheckin, 
-              :dataCheckout, 
-              :num_hospede,
-              :preco, 
-              :statusReserva, 
-              :comprovativo,
-              now(),
-              now(),
-              :totalNoites,
-              :horaCheckin, 
-              :horaCheckout,
-              :totalHoras
-          )", $parametros);
+        $parametros = [":id" => $quartoId];
+        $buscandoNumCapacidadeQuarto = new Model();
+        $quartoCapacidade = $buscandoNumCapacidadeQuarto->EXE_QUERY("SELECT * FROM tb_quartos WHERE id_quarto=:id", $parametros);
+        foreach($quartoCapacidade as $details):
+          $numQuantidadeHopesde = $details['capacidade_quarto'];
+        endforeach;
 
-        if($inserirReservaQuarto):
-          // Buscar o id da reserva 
+        if($num_hospede > $numQuantidadeHopesde):
+          echo '<script> 
+                swal({
+                  title: "Erro!",
+                  text: "O nº de hospede não pode ser maior que a capacidade do quarto",
+                  icon: "error",
+                  button: "Fechar!",
+                })
+              </script>';
+        else:
+
+          // Calcular total de horas
+          $totalMinutes = $totalCheckOutMinutes - $totalCheckInMinutes;
+          $totalHours = floor($totalMinutes / 60);
+
           $parametros = [
-            ":idHospede"    => $_SESSION['id'],
-            ":numHospede"   => $num_hospede,
-            ":comprovativo" => $foto
+            ":id"             => $_SESSION['id'],
+            ":quarto"         => $quartoId,
+            ":dataCheckin"    => $datacheckin,
+            ":dataCheckout"   => $datacheckout,
+            ":num_hospede"    => $num_hospede,
+            ":preco"          => $preco,
+            ":statusReserva"  => "Por verificar",
+            ":comprovativo"   => $foto, 
+            ":totalNoites"    => 0,
+            ":horaCheckin"    => $horaCheckin,      
+            ":horaCheckout"   => $horaCheckout,
+            ":totalHoras"     => $totalHours 
           ];
+          $inserirReservaQuarto = new Model();
+          $inserirReservaQuarto->EXE_NON_QUERY("INSERT INTO tb_reservas 
+            (
+              id_hospede, 
+              id_quarto, 
+              data_checkin_reserva, 
+              data_checkout_reserva,
+              num_hospedes_reserva,
+              preco_total_reserva,
+              status_quarto_reserva,
+              comprovativo_reserva,
+              data_criacao_reserva,
+              data_atualizacao_reserva,
+              total_noites,
+              hora_checkin,
+              hora_checkout,
+              total_horas 
+              ) VALUES (
+                :id, 
+                :quarto, 
+                :dataCheckin, 
+                :dataCheckout, 
+                :num_hospede,
+                :preco, 
+                :statusReserva, 
+                :comprovativo,
+                now(),
+                now(),
+                :totalNoites,
+                :horaCheckin, 
+                :horaCheckout,
+                :totalHoras
+            )", $parametros);
 
-          $buscandoIdReserva = new Model();
-          $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
-          WHERE 
-            id_hospede=:idHospede AND 
-            num_hospedes_reserva=:numHospede AND 
-            comprovativo_reserva=:comprovativo
-            ", $parametros);
-
-          foreach($reservaSearch as $details):
-            $idReserva = $details['id_reserva'];
-          endforeach;
-
-
-          echo " Estou aqui ". $idReserva;
-     
-          if(count($reservaSearch)):
-            // Informar ao hotel quando o usuário faz uma reserva
-            //===================================================================================================================
-            $today   =  Date('Y-m-d');
-            $id      = $hotelId;
-            $action  = "reservou";
-            $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+          if($inserirReservaQuarto):
+            // Buscar o id da reserva 
             $parametros = [
-              ":id"          => $id, 
-              ":nomeHospede" => $_SESSION['nome'],
-              ":actionLog"   => $action, 
-              ":textLog"     => $textLog,
-              ":idReserva"   => $idReserva,
-              ":idQuarto"    => $quartoId
+              ":idHospede"    => $_SESSION['id'],
+              ":numHospede"   => $num_hospede,
+              ":comprovativo" => $foto
             ];
-            $insertLog = new Model();
-            $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-            (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
-            VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
-          //===================================================================================================================
 
-            echo '<script> 
-                    swal({
-                      title: "Dados inseridos!",
-                      text: "Operação efetuada com sucesso",
-                      icon: "success",
-                      button: "Fechar!",
-                    })
-                  </script>';
-            echo '<script>
-                  setTimeout(function() {
-                      window.location.href="index.php?id=home";
-                  }, 2000)
-            </script>';
+            $buscandoIdReserva = new Model();
+            $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
+            WHERE 
+              id_hospede=:idHospede AND 
+              num_hospedes_reserva=:numHospede AND 
+              comprovativo_reserva=:comprovativo
+              ", $parametros);
+
+            foreach($reservaSearch as $details):
+              $idReserva = $details['id_reserva'];
+            endforeach;
+
+
+            echo " Estou aqui ". $idReserva;
+      
+            if(count($reservaSearch)):
+              // Informar ao hotel quando o usuário faz uma reserva
+              //===================================================================================================================
+              $today   =  Date('Y-m-d');
+              $id      = $hotelId;
+              $action  = "reservou";
+              $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+              $parametros = [
+                ":id"          => $id, 
+                ":nomeHospede" => $_SESSION['nome'],
+                ":actionLog"   => $action, 
+                ":textLog"     => $textLog,
+                ":idReserva"   => $idReserva,
+                ":idQuarto"    => $quartoId
+              ];
+              $insertLog = new Model();
+              $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+              (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
+              VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
+            //===================================================================================================================
+
+              echo '<script> 
+                      swal({
+                        title: "Dados inseridos!",
+                        text: "Operação efetuada com sucesso",
+                        icon: "success",
+                        button: "Fechar!",
+                      })
+                    </script>';
+              echo '<script>
+                    setTimeout(function() {
+                        window.location.href="index.php?id=home";
+                    }, 2000)
+              </script>';
+            endif;
           endif;
         endif;
       endif;

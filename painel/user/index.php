@@ -123,7 +123,8 @@
                           <th>Quarto</th>
                           <th>Tipo de Quarto</th>
                           <th>Q. de Hospedes</th>
-                          <th>Preço do Quarto</th>
+                          <th>Preço do Quarto Dias</th>
+                          <th>Preço do Quarto Horas</th>
                           <th>Status</th>
                           <th>Total de Horas</th>
                           <th>Total de Dias</th>
@@ -144,7 +145,8 @@
                                 <td>
                                   <?= $details['num_hospedes_reserva'] ?>
                                 </td>
-                                <td><?= $details['preco_quarto'] . " kz" ?></td>
+                                <td><?= $details['precoTotalDias']. "kz" ?></td>
+                                <td><?= $details['precoTotalHoras']. "kz" ?></td>
                                 <td><?= $details['status_quarto_reserva'] ?></td>
                                 <td><?= $details['total_horas'] ?></td>
                                 <td><?= $details['total_noites'] ?></td>

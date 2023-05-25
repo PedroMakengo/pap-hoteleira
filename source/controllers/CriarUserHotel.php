@@ -48,7 +48,7 @@
               </script>';
         echo '<script>
               setTimeout(function() {
-                  window.location.href="login.php";
+                  window.location.href="hoteis.php?id=hoteis";
               }, 2000)
           </script>';
       else:

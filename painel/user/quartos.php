@@ -46,7 +46,7 @@
                             <span class="card-text">Categópria do Quarto: <strong><?= $details['tipo_quarto'] ?></strong></span><br>
                             <span class="card-text">Tipo do Quarto: <strong><?= $details['categoria_quarto'] ?></strong></span><br>
 
-                            <span class="card-text">Preço do Quarto: <strong><?= $details['preco_quarto'] . " kz" ?></strong></span><br>
+                            <span class="card-text">Preço do Quarto Por Noite: <strong><?= $details['preco_quarto'] . " kz" ?></strong></span><br>
                             <span class="card-text">Capacidade do Quarto: <strong><?= $details['capacidade_quarto'] ?></strong></span><br>
                             <span class="card-text">Estado do Quarto: <strong><?= $details['status_quarto'] ?></strong></span><br>
                             <a href="register-reserva.php?id=hotel&userId=<?= $details['id_quarto'] ?>" class="btn-sm col-lg-12 mt-2 btn btn-primary">Reservar</a>

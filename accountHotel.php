@@ -58,7 +58,7 @@
 
                 <div class="field-input">
                   <label for="email">
-                    Email <sup>*</sup>
+                    E-mail <sup>*</sup>
                     <input
                       type="email"
                       id="email"

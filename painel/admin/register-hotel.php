@@ -19,97 +19,127 @@
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
-                <form action="" class="col-lg-12">
+                <form method="POST" class="col-lg-12">
                   <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="">Nome Hotel:</label>
                         <input
                           type="text"
+                          id="name"
+                          name="nome"
+                          pattern="[A-Za-z\s]+"
+                          required
+                          placeholder="Insira seu nome"
                           class="form-control form-control-lg"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="">NIF:</label>
                         <input
                           type="text"
                           class="form-control form-control-lg"
+                          id="bi" 
+                          required 
+                          name="nif" 
+                          placeholder="digite o seu nif"
+                          maxlength="16"
+                          minlength="16"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="email">E-mail:</label>
                         <input
-                          type="text"
                           class="form-control form-control-lg"
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          placeholder="Insira seu email"
+                          pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="endereco">Endereço:</label>
                         <input
                           type="text"
                           class="form-control form-control-lg"
+                          id="endereco"
+                          name="endereco"
+                          required
+                          placeholder="Insira o seu endereço"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="cidade">Cidade:</label>
                         <input
                           type="text"
                           class="form-control form-control-lg"
+                          id="cidade"
+                          name="cidade"
+                          required
+                          placeholder="ex: Luanda"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="password">Senha:</label>
                         <input
-                          type="text"
                           class="form-control form-control-lg"
+                          type="password"
+                          id="password"
+                          name="senha"
+                          required
+                          placeholder="Insira sua senha"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="password">Confirmar senha:</label>
                         <input
-                          type="text"
                           class="form-control form-control-lg"
+                          type="password"
+                          id="password"
+                          name="confirmarSenha"
+                          required
+                          placeholder="Confirme a sua senha"
                         />
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label for="">Nome:</label>
+                        <label for="iban">Iban:</label>
                         <input
-                          type="text"
                           class="form-control form-control-lg"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label for="">Nome:</label>
-                        <input
                           type="text"
-                          class="form-control form-control-lg"
+                          id="iban"
+                          name="iban"
+                          required
+                          placeholder="Iban"
+                          maxlength="26"
+                          minlength="26"
                         />
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                       <input
                         type="submit"
                         value="Registrar"
                         class="form-control form-control-lg btn-primary"
+                        name="accountHotel" value="Cadastrar" class="submit"
                       />
                     </div>
                   </div>
@@ -127,3 +157,4 @@
 <?php include "components/component-footer.php" ?>
 <!-- =============================================== -->
 
+<?php include "../../source/controllers/CriarUserHotel.php" ?>
