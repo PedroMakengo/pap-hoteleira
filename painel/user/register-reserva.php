@@ -39,7 +39,7 @@
 <div class="dashboard-main-wrapper">
   
 <!-- Component Head -->
-<?php require 'components/component-header.php' ?>
+<?php //require 'components/component-header.php' ?>
 <!-- Component Head -->
 
   <!-- Container -->

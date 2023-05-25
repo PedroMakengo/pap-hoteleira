@@ -126,37 +126,62 @@
             else:
               $sms = "Não foi possível fazer o upload";
             endif;
-            echo '<script> 
-                    swal({
-                      title: "Dados inseridos!",
-                      text: "Usuário cadastrado com sucesso",
-                      icon: "success",
-                      button: "Fechar!",
-                    })
-                  </script>';
-            echo '<script>
-                  setTimeout(function() {
-                      window.location.href="index.php?id=home";
-                  }, 2000)
-              </script>';
-
-            // Informar ao hotel quando o usuário faz uma reserva
-            //===================================================================================================================
-            $today   =  Date('Y-m-d');
-            $id      = $hotelId;
-            $action  = "reservou";
-            $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+           
+            // Buscar o id da reserva 
             $parametros = [
-              ":id"     => $id, 
-              ":nomeHospede" => $_SESSION['nome'],
-              ":actionLog"   => $action, 
-              ":textLog"  => $textLog  
+              ":idHospede"    => $_SESSION['id'],
+              ":numHospede"   => $num_hospede,
+              ":comprovativo" => $foto
             ];
-            $insertLog = new Model();
-            $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-            (id_hotel, usuario_historico, action_historico, historico, data_historico) 
-            VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
-            //===================================================================================================================
+            // Só executa isso depois de encontrar o id da reserva
+            $buscandoIdReserva = new Model();
+            $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
+            WHERE 
+              id_hospede=:idHospede AND 
+              num_hospedes_reserva=:numHospede AND 
+              comprovativo_reserva=:comprovativo
+              ", $parametros);
+
+            foreach($reservaSearch as $details):
+              $idReserva = $details['id_reserva'];
+            endforeach;
+
+            if(count($reservaSearch)):
+                 // Informar ao hotel quando o usuário faz uma reserva
+                //===================================================================================================================
+                $today   =  Date('Y-m-d');
+                $id      = $hotelId;
+                $action  = "reservou";
+                $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+                $parametros = [
+                  ":id"          => $id, 
+                  ":nomeHospede" => $_SESSION['nome'],
+                  ":actionLog"   => $action, 
+                  ":textLog"     => $textLog,
+                  ":idReserva"   => $idReserva,
+                  ":idQuarto"    => $quartoId
+                ];
+                $insertLog = new Model();
+                $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+                (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
+                VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
+              //===================================================================================================================
+
+                echo '<script> 
+                      swal({
+                        title: "Dados inseridos!",
+                        text: "Usuário cadastrado com sucesso",
+                        icon: "success",
+                        button: "Fechar!",
+                      })
+                    </script>';
+              echo '<script>
+                    setTimeout(function() {
+                        window.location.href="index.php?id=home";
+                    }, 2000)
+                </script>';
+            endif;
+          // Mensagem de erro 
           else:
           echo '<script>
                   swal({
@@ -169,6 +194,22 @@
           endif;
         endif;
       endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       // Registro de reserva por dia
     else:   
       // Extrair horas e minutos de check-in e check-out
@@ -243,43 +284,91 @@
           )", $parametros);
 
         if($inserirReservaQuarto):
-          // echo $totalHours; 
-          // Informar ao hotel quando o usuário faz uma reserva
-          //===================================================================================================================
-          $today   =  Date('Y-m-d');
-          $id      = $hotelId;
-          $action  = "reservou";
-          $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+          // Buscar o id da reserva 
           $parametros = [
-            ":id"     => $id, 
-            ":nomeHospede" => $_SESSION['nome'],
-            ":actionLog"   => $action, 
-            ":textLog"  => $textLog  
+            ":idHospede"    => $_SESSION['id'],
+            ":numHospede"   => $num_hospede,
+            ":comprovativo" => $foto
           ];
-          $insertLog = new Model();
-          $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-          (id_hotel, usuario_historico, action_historico, historico, data_historico) 
-          VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
-        //===================================================================================================================
 
-          echo '<script> 
-                  swal({
-                    title: "Dados inseridos!",
-                    text: "Operação efetuada com sucesso",
-                    icon: "success",
-                    button: "Fechar!",
-                  })
-                </script>';
-          echo '<script>
-                setTimeout(function() {
-                    window.location.href="index.php?id=home";
-                }, 2000)
-          </script>';
+          $buscandoIdReserva = new Model();
+          $reservaSearch = $buscandoIdReserva->EXE_QUERY("SELECT * FROM tb_reservas
+          WHERE 
+            id_hospede=:idHospede AND 
+            num_hospedes_reserva=:numHospede AND 
+            comprovativo_reserva=:comprovativo
+            ", $parametros);
+
+          foreach($reservaSearch as $details):
+            $idReserva = $details['id_reserva'];
+          endforeach;
+
+
+          echo " Estou aqui ". $idReserva;
+     
+          if(count($reservaSearch)):
+            // Informar ao hotel quando o usuário faz uma reserva
+            //===================================================================================================================
+            $today   =  Date('Y-m-d');
+            $id      = $hotelId;
+            $action  = "reservou";
+            $textLog = $_SESSION['nome']. " ". $action . " um quarto referência " . $quarto;
+            $parametros = [
+              ":id"          => $id, 
+              ":nomeHospede" => $_SESSION['nome'],
+              ":actionLog"   => $action, 
+              ":textLog"     => $textLog,
+              ":idReserva"   => $idReserva,
+              ":idQuarto"    => $quartoId
+            ];
+            $insertLog = new Model();
+            $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+            (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
+            VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
+          //===================================================================================================================
+
+            echo '<script> 
+                    swal({
+                      title: "Dados inseridos!",
+                      text: "Operação efetuada com sucesso",
+                      icon: "success",
+                      button: "Fechar!",
+                    })
+                  </script>';
+            echo '<script>
+                  setTimeout(function() {
+                      window.location.href="index.php?id=home";
+                  }, 2000)
+            </script>';
+          endif;
         endif;
-
       endif;
     endif;
   endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // Reserva Mesa
