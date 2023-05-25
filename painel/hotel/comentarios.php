@@ -14,6 +14,53 @@
 ?>
 <!-- Listagem de usuários -->
 
+
+<!-- Eliminar Usuário -->
+<?php 
+     if (isset($_GET['action']) && $_GET['action'] == 'delete'):
+      $id = $_GET['id'];
+      $parametros  =[
+          ":id"=>$id
+      ];
+      $delete = new Model();
+      $delete->EXE_NON_QUERY("DELETE FROM tb_comentarios WHERE id_comentario=:id", $parametros);
+      if($delete == true):
+        // INSERT LOG ========================================================
+        $today =  Date('Y-m-d H:i:s');
+        $nome = $_SESSION['nome'];
+        $action = "eliminou";
+        $textLog = "O usuário ". $nome. " ". $action . " um log em" . $today;
+        $parametros = [
+          ":nome"     => $nome, 
+          ":actionLog"   => $action, 
+          ":textLog"  => $textLog,
+          ":dataLog"     => $today       
+        ];
+        $insertLog = new Model();
+        $insertLog->EXE_NON_QUERY("INSERT INTO tb_logs 
+        (user_log, action_log, text_log, data_log) 
+        VALUES (:nome, :actionLog, :textLog, :dataLog) ", $parametros);
+        // ===================================================================
+        echo '<script> 
+                swal({
+                  title: "Dados eliminados!",
+                  text: "Dados eliminados com sucesso",
+                  icon: "success",
+                  button: "Fechar!",
+                })
+              </script>';
+        echo '<script>
+            setTimeout(function() {
+                window.location.href="comentarios.php?id=comentario";
+            }, 2000)
+        </script>';
+      else:
+          echo "<script>window.alert('Operação falhou');</script>";
+      endif;
+  endif;
+?>
+<!-- Eliminar Usuário -->
+
     <div class="dashboard-main-wrapper">
       <!-- Component Head -->
       <?php require 'components/component-header.php' ?> 
@@ -59,7 +106,7 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Hotel</th>
+                          <th>Usuário</th>
                           <th>Comentario</th>
                           <th>Data</th>
                           <th class="text-center">Ações</th>
@@ -72,11 +119,11 @@
                             ?>
                               <tr>
                                 <td><?= $details['id_comentario'] ?></td>
-                                <td><?= $details['nome_hotel'] ?></td>
+                                <td><?= $details['nome'] ?></td>
                                 <td><?= $details['comentario'] ?></td>
                                 <td><?= $details['data_registro_comentario'] ?></td>
                                 <td class="text-center">
-                                  <a href="comentario.php?id=<?= $details['id_comentario'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="comentarios.php?id=<?= $details['id_comentario'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                  
