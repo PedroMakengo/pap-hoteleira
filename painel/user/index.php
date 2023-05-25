@@ -145,11 +145,11 @@
                                 <td>
                                   <?= $details['num_hospedes_reserva'] ?>
                                 </td>
-                                <td><?= $details['preco_quarto'] === 0 ? "" : $details['preco_quarto'] * $details['total_noites']. "kz" ?></td>
-                                <td><?= $details['preco_hora'] === 0 ? "" : $details['preco_hora'] * $details['total_horas']. "kz" ?></td>
+                                <td><?= $details['preco_quarto'] === 0 ? "*" : $details['preco_quarto'] * $details['total_noites']. "kz" ?></td>
+                                <td><?= $details['preco_hora'] === 0 ?   "*" : $details['preco_hora'] * $details['total_horas']. "kz" ?></td>
                                 <td><?= $details['status_quarto_reserva'] ?></td>
-                                <td><?= $details['total_horas'] === 0 ? " " :  $details['total_horas'] ?></td>
-                                <td><?= $details['total_noites'] === 0 ? " " : $details['total_noites']  ?></td>
+                                <td><?= $details['total_horas'] === 0 ?  "*" :  $details['total_horas'] ?></td>
+                                <td><?= $details['total_noites'] === 0 ? "*" : $details['total_noites']  ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <a href="editar-reserva-quarto.php?id=home&idUser=<?= $details['id_reserva'] ?>" class="btn btn-primary btn-sm">

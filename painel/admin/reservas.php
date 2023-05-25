@@ -109,8 +109,8 @@
                                 <td><?= $details['nome_hospede'] ?></td>
                                 <td><?= $details['nome_hotel'] ?></td>
                                 <td><?= $details['quarto'] ?></td>
-                                <td><?= $details['data_checkin_reserva'] ?></td>
-                                <td><?= $details['data_checkout_reserva'] ?></td>
+                                <td><?= $details['data_checkin_reserva'] === "0000-00-00" ? "*": $details['data_checkin_reserva'] ?></td>
+                                <td><?= $details['data_checkout_reserva'] === "0000-00-00"? "*": $details['data_checkout_reserva'] ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->

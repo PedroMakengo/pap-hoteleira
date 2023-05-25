@@ -32,6 +32,7 @@
     $quarto     = $mostrarStatus['quarto'];
     $capacidade = $mostrarStatus['capacidade_quarto'];
     $preco      = $mostrarStatus['preco_quarto'];
+    $precoHora  = $mostrarStatus['preco_hora'];
     $hotelId    = $mostrarStatus['id_hotel'];
   endforeach;
 ?> 
@@ -203,10 +204,16 @@
                       <input type="number" name="num_hospede" class="form-control" />
                     </div>
                   </div>
-                  <div class="col-lg-2">
+                  <div class="col-lg-4">
                     <div class="form-group">
-                      <label for="">Preço:</label>
+                      <label for="">Preço por Noite:</label>
                       <input type="number" disabled name="preco" value="<?= $preco ?>" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label for="">Preço por Hora:</label>
+                      <input type="number" disabled name="precoHora" value="<?= $precoHora ?>" class="form-control" />
                     </div>
                   </div>
                   <div class="col-lg-12">

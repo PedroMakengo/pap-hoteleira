@@ -103,7 +103,7 @@
                                 <td><?= $user['nome_hospede'] ?></td>
                                 <td><?= $user['email_hospede'] ?></td>
                                 <td><?= $user['bi_hospede'] ?></td>
-                                <td><?= $user['data_nascimento_hospede'] ?></td>
+                                <td><?= $user['data_nascimento_hospede'] === "0000-00-00" ? "*": $user['data_nascimento_hospede'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
                                   <a href="usuarios.php?nomeHospede=<?= $user['nome_hospede'] ?>&id=<?= $user['id_hospede'] ?>&action=delete" class="btn btn-danger btn-sm">

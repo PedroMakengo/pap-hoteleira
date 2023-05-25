@@ -201,12 +201,12 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                               <td><?= $details['nome_hospede'] ?></td>
                                               <td><?= $details['quarto'] ?></td>
                                               <td><?= $details['status_quarto_reserva'] ?></td>
-                                              <td><?= $details['data_checkin_reserva'] ?></td>
-                                              <td><?= $details['data_checkout_reserva'] ?></td>
-                                              <td><?= $details['hora_checkin'] ?></td>
-                                              <td><?= $details['hora_checkout'] ?></td>
-                                              <td><?= $details['total_horas'] ?></td>
-                                              <td><?= $details['total_noites'] ?></td>
+                                              <td><?= $details['data_checkin_reserva'] === "0000-00-00" ? "*":  $details['data_checkin_reserva'] ?></td>
+                                              <td><?= $details['data_checkout_reserva'] === "0000-00-00"? "*":  $details['data_checkout_reserva']?></td>
+                                              <td><?= $details['hora_checkin']  === "00:00:00" ? "*": $details['hora_checkin'] ?></td>
+                                              <td><?= $details['hora_checkout'] === "00:00:00" ? "*": $details['hora_checkout'] ?></td>
+                                              <td><?= $details['total_horas'] === 0 ? "*":  $details['total_horas'] ?></td>
+                                              <td><?= $details['total_noites'] === 0 ? "*": $details['total_noites']?></td>
                                               <td>
                                                 <object data="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" type="application/x-pdf" title="Comprovativo">
                                                   <a href="../../assets/__storage/<?= $details['comprovativo_reserva'] ?>" class="text-dark" target="_blank">
