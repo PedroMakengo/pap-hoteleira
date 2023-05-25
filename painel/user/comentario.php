@@ -107,10 +107,12 @@
                                 <td><?= $details['comentario'] ?></td>
                                 <td><?= $details['data_registro_comentario'] ?></td>
                                 <td class="text-center">
+                                  <a href="edit-comentario.php?id=<?= $details['id_comentario'] ?>&hotelId=<?= $details['id_hotel'] ?>" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit fs-xl opacity-60 me-2"></i>
+                                  </a>
                                   <a href="comentario.php?id=<?= $details['id_comentario'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
-                                 
                                 </td>
                               </tr>
                             <?php 

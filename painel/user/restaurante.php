@@ -79,12 +79,10 @@
                       <img src="../../assets/__storage/<?= $details['foto'] ?>" class="col-lg-12 photoRestaurante" alt="">
                       <div class="p-2 content-restaurante">
                         <ul>
-                          <li><span>ID:</span> <strong><?= $details['id_restaurante'] ?></strong></li>
                           <li><span>Hotel:</span> <strong><?= $details['nome_hotel'] ?></strong></li>
                           <li><span>Restaurante:</span> <strong><?= $details['nome_restaurante'] ?></strong></li>
                           <li><span>Classificação:</span> <strong><?= $details['classificacao_restaurante'] ?></strong></li>
                           <li><span>Nº de Mesas:</span> <strong><?= $details['num_mesas_restaurante'] ?></strong></li>
-                          <li><span>Data de Criação:</span> <strong><?= $details['data_criacao_restaurante'] ?></strong></li>
                         </ul>
                         <span class="text-center ">
                           <a href="detalhes-restaurante.php?id=restaurante&userId=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm col-lg-12 p-3">

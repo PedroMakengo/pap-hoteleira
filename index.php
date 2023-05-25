@@ -9,7 +9,7 @@
   $dataQuarto = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_quartos
    INNER JOIN tb_hotel ON tb_quartos.id_hotel=tb_hotel.id_hotel");
 
-   $comentarios = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_comentarios");
+  $comentarios = $searchDataHotel->EXE_QUERY("SELECT * FROM tb_comentarios ORDER BY id_comentario DESC LIMIT 6");
 ?>
 
 <!DOCTYPE html>
@@ -378,10 +378,6 @@
                         <strong><?= $details['endereco_hotel'] ?></strong>
                        </li>
                        <li>
-                        <span>Site</span>
-                        <strong><?= $details['site_hotel'] ?></strong>
-                       </li>
-                       <li>
                          <a href="login.php">Mais informações</a>
                        </li>
                       </ul>
@@ -419,7 +415,7 @@
                        </li>
                        <li>
                         <span>Capacidade</span>
-                        <strong><?= $details['capacidade_quarto'] ?></strong>
+                        <strong><?= $details['capacidade_quarto'] ?> Pessoas</strong>
                        </li>
                        <li>
                         <span>Valor do Quarto</span>
