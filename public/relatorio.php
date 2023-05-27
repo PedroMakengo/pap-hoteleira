@@ -44,7 +44,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Hotel</p>
+                                  <p class='mt-2'>Relatório de Hoteis Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -104,7 +104,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -128,7 +128,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Restaurantes</p>
+                                  <p class='mt-2'>Relatório de Restaurantes Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -186,7 +186,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -210,7 +210,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Usuários</p>
+                                  <p class='mt-2'>Relatório de Hospedes de Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -239,6 +239,7 @@
                                             <td>{$mostrar["bi_hospede"] }</td>
                                             <td>{$mostrar["telefone_hospede"] }</td>
                                             <td>{$genero}</td>
+                                            <td>{$mostrar['data_criacao_hospede']}</td>s
                                           </tr>
                 ";
                       endforeach;
@@ -276,7 +277,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -300,7 +301,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Usuários</p>
+                                  <p class='mt-2'>Relatório de Reservas de Quartos Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -368,7 +369,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -392,7 +393,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Usuários</p>
+                                  <p class='mt-2'>Relatório de Mesas Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -415,7 +416,7 @@
                                             <td>{$mostrar["id_reserva_mesa"] }</td>
                                             <td>{$mostrar["nome_hospede"] }</td>
                                             <td>{$mostrar["nome_hotel"] }</td>
-                                            <td>{$mostrar["nome_mesas"] }</td>
+                                            <td>{$mostrar["nome_mesa"] }</td>
                                             <td>{$mostrar["data_criacao_mesa_reserva"] }</td>
                                           </tr>
                 ";
@@ -450,7 +451,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -474,7 +475,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Quartos</p>
+                                  <p class='mt-2'>Relatório de Quartos Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>
@@ -536,7 +537,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -620,7 +621,7 @@
                           .nav-header {margin: 0px auto;text-align: center;}
                           .mk-title {font-weight: 100;font-size: 18px;}
                           .mk-title-lg {font-weight: 100;font-size: 18px}
-                          img {width: 200px}
+                         img {width: 200px}
 
                           table { width: 100%; border-spacing: 0 0.5rem; }
                           table th {
@@ -644,7 +645,7 @@
                               <div class='nav-header'>
                                   <img src='../assets/images/logo.png'>
                                   <h2 class='text-center h5 mk-title'>Sistema de Gestão Hoteleiro</h2>
-                                  <p class='mt-2'>Relatório de Quartos</p>
+                                  <p class='mt-2'>Relatório de Reservadas Cadastrados</p>
                               </div>
                           </div>
                           <div class='body-mk mt-4'>

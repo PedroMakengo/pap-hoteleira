@@ -417,8 +417,12 @@
                         <strong><?= $details['capacidade_quarto'] ?> Pessoas</strong>
                        </li>
                        <li>
-                        <span>Valor do Quarto</span>
-                        <strong>AOA <?= $details['preco_quarto'] ?></strong>
+                        <span>Preço Por Noite</span>
+                        <strong><?= $details['preco_quarto'] ?></strong>
+                       </li>
+                       <li>
+                        <span>Preço Por Hora</span>
+                        <strong><?= $details['preco_hora'] ?></strong>
                        </li>
                        <li>
                         <span>Hotel</span>
