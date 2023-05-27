@@ -7,7 +7,7 @@
    $parametros = [":nome" => $_SESSION['nome'], ":historico" => "reservou"];
    $logs = new Model();
    $listLogs = $logs->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE 
-   usuario_historico=:nome AND action_historico!=:historico", $parametros);
+   usuario_historico=:nome AND action_historico!=:historico AND action_historico!='reservou.' ", $parametros);
 ?>
 <!-- Listagem de usuários -->
 
