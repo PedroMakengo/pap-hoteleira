@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 21-Maio-2023 às 15:04
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1
+-- Tempo de geração: 27-Maio-2023 às 13:53
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,15 +27,13 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `tb_admin`
 --
 
-DROP TABLE IF EXISTS `tb_admin`;
-CREATE TABLE IF NOT EXISTS `tb_admin` (
-  `id_admin` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id_admin`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tb_admin` (
+  `id_admin` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_admin`
@@ -51,17 +49,22 @@ INSERT INTO `tb_admin` (`id_admin`, `nome`, `email`, `senha`, `foto`) VALUES
 -- Estrutura da tabela `tb_cardapios`
 --
 
-DROP TABLE IF EXISTS `tb_cardapios`;
-CREATE TABLE IF NOT EXISTS `tb_cardapios` (
-  `id_cardapio` int NOT NULL AUTO_INCREMENT,
-  `id_restaurante` int DEFAULT NULL,
-  `foto_um` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto_dois` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto_tres` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `data_registro_cardapio` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_cardapio`),
-  KEY `id_restaurante` (`id_restaurante`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tb_cardapios` (
+  `id_cardapio` int(11) NOT NULL,
+  `id_restaurante` int(11) DEFAULT NULL,
+  `foto_um` varchar(500) DEFAULT NULL,
+  `foto_dois` varchar(500) DEFAULT NULL,
+  `foto_tres` varchar(500) DEFAULT NULL,
+  `data_registro_cardapio` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_cardapios`
+--
+
+INSERT INTO `tb_cardapios` (`id_cardapio`, `id_restaurante`, `foto_um`, `foto_dois`, `foto_tres`, `data_registro_cardapio`) VALUES
+(2, 8, 'WhatsApp Image 2023-05-24 at 10.25.29.jpeg', 'WhatsApp Image 2023-05-24 at 10.25.29.jpeg', 'WhatsApp Image 2023-05-24 at 10.25.29.jpeg', '2023-05-24 23:22:54'),
+(3, 9, '1681858299433.jpg', '1663962632242.jpg', 'Captura da Web_24-11-2022_181641_meet.google.com.jpeg', '2023-05-25 14:27:14');
 
 -- --------------------------------------------------------
 
@@ -69,28 +72,13 @@ CREATE TABLE IF NOT EXISTS `tb_cardapios` (
 -- Estrutura da tabela `tb_comentarios`
 --
 
-DROP TABLE IF EXISTS `tb_comentarios`;
-CREATE TABLE IF NOT EXISTS `tb_comentarios` (
-  `id_comentario` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int DEFAULT NULL,
-  `nome` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `comentario` text COLLATE utf8mb4_general_ci,
-  `data_registro_comentario` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_comentario`),
-  KEY `id_hotel` (`id_hotel`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Extraindo dados da tabela `tb_comentarios`
---
-
-INSERT INTO `tb_comentarios` (`id_comentario`, `id_hotel`, `nome`, `comentario`, `data_registro_comentario`) VALUES
-(2, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur.', '2023-05-20 16:02:34'),
-(3, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur', '2023-05-20 16:21:21'),
-(4, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur', '2023-05-20 16:28:08'),
-(5, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur', '2023-05-20 16:28:15'),
-(6, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur', '2023-05-20 16:28:22'),
-(7, 1, 'Manuel dos Santos', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptas, odio ipsam est similique commodi iusto. Sequi, libero nam, enim reiciendis eaque obcaecati deleniti earum deserunt dicta quibusdam delectus consectetur', '2023-05-20 16:28:34');
+CREATE TABLE `tb_comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `id_hotel` int(11) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
+  `comentario` text DEFAULT NULL,
+  `data_registro_comentario` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -98,25 +86,25 @@ INSERT INTO `tb_comentarios` (`id_comentario`, `id_hotel`, `nome`, `comentario`,
 -- Estrutura da tabela `tb_historico_reserva`
 --
 
-DROP TABLE IF EXISTS `tb_historico_reserva`;
-CREATE TABLE IF NOT EXISTS `tb_historico_reserva` (
-  `id_historico` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int DEFAULT NULL,
-  `usuario_historico` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `action_historico` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `historico` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+CREATE TABLE `tb_historico_reserva` (
+  `id_historico` int(11) NOT NULL,
+  `id_hotel` int(11) DEFAULT NULL,
+  `usuario_historico` varchar(50) DEFAULT NULL,
+  `action_historico` varchar(50) DEFAULT NULL,
+  `historico` varchar(500) DEFAULT NULL,
   `data_historico` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_historico`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_reserva` int(11) NOT NULL,
+  `id_quarto` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_historico_reserva`
 --
 
-INSERT INTO `tb_historico_reserva` (`id_historico`, `id_hotel`, `usuario_historico`, `action_historico`, `historico`, `data_historico`) VALUES
-(1, 1, 'Manuel dos Santos', 'prazo terminado', 'Manuel dos Santos Opps o teu prazo terminado ', '2023-05-01 12:08:58'),
-(5, 1, 'Manuel dos Santos', 'reservou', 'Manuel dos Santos reservou um quarto referência 503-A', '2023-05-01 13:19:38'),
-(4, 1, 'Manuel dos Santos', 'reservou', 'Manuel dos Santos reservou um quarto 1', '2023-05-01 13:08:53');
+INSERT INTO `tb_historico_reserva` (`id_historico`, `id_hotel`, `usuario_historico`, `action_historico`, `historico`, `data_historico`, `id_reserva`, `id_quarto`) VALUES
+(1, 1, 'Paulo Manuel', 'reservou', 'Paulo Manuel reservou um quarto referência A03938', '2023-05-25 17:02:00', 1, 6),
+(2, 1, 'Paulo Manuel', 'reservou', 'Paulo Manuel reservou um quarto referência A03938', '2023-05-25 17:02:35', 2, 6),
+(3, 1, 'Manuel dos Santos', 'reservou', 'Manuel dos Santos reservou um quarto referência 480-A', '2023-05-25 17:45:44', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -124,23 +112,21 @@ INSERT INTO `tb_historico_reserva` (`id_historico`, `id_hotel`, `usuario_histori
 -- Estrutura da tabela `tb_hospedes`
 --
 
-DROP TABLE IF EXISTS `tb_hospedes`;
-CREATE TABLE IF NOT EXISTS `tb_hospedes` (
-  `id_hospede` int NOT NULL AUTO_INCREMENT,
-  `nome_hospede` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_hospede` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `senha_hospede` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_hospedes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `genero_hospedes` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `endereco_hospede` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `cidade_hospede` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `bi_hospede` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `telefone_hospede` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `tb_hospedes` (
+  `id_hospede` int(11) NOT NULL,
+  `nome_hospede` varchar(255) NOT NULL,
+  `email_hospede` varchar(255) NOT NULL,
+  `senha_hospede` varchar(255) NOT NULL,
+  `foto_hospedes` varchar(255) NOT NULL,
+  `genero_hospedes` varchar(25) NOT NULL,
+  `endereco_hospede` varchar(255) NOT NULL,
+  `cidade_hospede` varchar(255) NOT NULL,
+  `bi_hospede` varchar(15) NOT NULL,
+  `telefone_hospede` varchar(20) NOT NULL,
   `data_nascimento_hospede` date NOT NULL,
-  `data_criacao_hospede` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao_hospede` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_hospede`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `data_criacao_hospede` datetime DEFAULT current_timestamp(),
+  `data_atualizacao_hospede` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_hospedes`
@@ -148,7 +134,9 @@ CREATE TABLE IF NOT EXISTS `tb_hospedes` (
 
 INSERT INTO `tb_hospedes` (`id_hospede`, `nome_hospede`, `email_hospede`, `senha_hospede`, `foto_hospedes`, `genero_hospedes`, `endereco_hospede`, `cidade_hospede`, `bi_hospede`, `telefone_hospede`, `data_nascimento_hospede`, `data_criacao_hospede`, `data_atualizacao_hospede`) VALUES
 (3, 'Manuel dos Santos', 'manueldossantos@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', 'M', 'Luanda, Maianga', 'Luanda, São Paulo', '0111111111111', '930018123732', '1999-01-02', '2023-04-13 14:36:24', '2023-05-20 16:40:21'),
-(2, 'Flavio António', 'flavioantonio@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'avatar.jpg', 'M', 'Luanda, Maianga', 'Luanda, São Paulo', '0111111111111', '+244921538972', '1999-01-01', '2023-04-13 12:48:07', '2023-04-13 12:48:07');
+(2, 'Flavio António', 'flavioantonio@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'avatar.jpg', 'M', 'Luanda, Maianga', 'Luanda, São Paulo', '0111111111111', '+244921538972', '1999-01-01', '2023-04-13 12:48:07', '2023-04-13 12:48:07'),
+(4, 'Eduardo Domingos', 'eduardodomingos@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', '', '', '', '', '', '', '0000-00-00', '2023-05-25 11:54:31', '2023-05-25 11:54:31'),
+(5, 'Paulo Manuel', 'paulomanuel@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', '1af5d65e-b8cc-474e-b497-296be2aff42f.jpg', 'M', 'Cazenga', 'Luanda', '111111111111111', '92520039', '0000-00-00', '2023-05-25 13:28:35', '2023-05-25 17:05:52');
 
 -- --------------------------------------------------------
 
@@ -156,40 +144,40 @@ INSERT INTO `tb_hospedes` (`id_hospede`, `nome_hospede`, `email_hospede`, `senha
 -- Estrutura da tabela `tb_hotel`
 --
 
-DROP TABLE IF EXISTS `tb_hotel`;
-CREATE TABLE IF NOT EXISTS `tb_hotel` (
-  `id_hotel` int NOT NULL AUTO_INCREMENT,
-  `nome_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `senha_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status_hotel` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nif_hotel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `endereco_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_hotel` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `cidade_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `iban` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao_hotel` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `classificacao_hotel` int NOT NULL,
-  `num_quartos_hotel` int NOT NULL,
-  `servicos_hotel` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `telefone_hotel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `site_hotel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `data_criacao_hotel` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao_hotel` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_hotel`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tb_hotel` (
+  `id_hotel` int(11) NOT NULL,
+  `nome_hotel` varchar(255) NOT NULL,
+  `email_hotel` varchar(255) NOT NULL,
+  `senha_hotel` varchar(255) NOT NULL,
+  `status_hotel` varchar(25) NOT NULL,
+  `nif_hotel` varchar(20) NOT NULL,
+  `endereco_hotel` varchar(255) NOT NULL,
+  `foto_hotel` varchar(225) NOT NULL,
+  `cidade_hotel` varchar(255) NOT NULL,
+  `iban` varchar(20) NOT NULL,
+  `descricao_hotel` text DEFAULT NULL,
+  `classificacao_hotel` int(11) NOT NULL,
+  `num_quartos_hotel` int(11) NOT NULL,
+  `servicos_hotel` text DEFAULT NULL,
+  `telefone_hotel` varchar(20) NOT NULL,
+  `site_hotel` varchar(255) DEFAULT NULL,
+  `data_criacao_hotel` datetime DEFAULT current_timestamp(),
+  `data_atualizacao_hotel` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_admin` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_hotel`
 --
 
-INSERT INTO `tb_hotel` (`id_hotel`, `nome_hotel`, `email_hotel`, `senha_hotel`, `status_hotel`, `nif_hotel`, `endereco_hotel`, `foto_hotel`, `cidade_hotel`, `iban`, `descricao_hotel`, `classificacao_hotel`, `num_quartos_hotel`, `servicos_hotel`, `telefone_hotel`, `site_hotel`, `data_criacao_hotel`, `data_atualizacao_hotel`) VALUES
-(1, 'CasaDubai', 'casadubai@gmail.com', '74be16979710d4c4e7c6647856088456', 'Ativo', '0012102000', 'Luanda, Maianga', '1681858299433.jpg', 'Luanda', '', 'Testando333', 5, 5, 'Hotelaria, Restaurante', '90000', 'https://epicsana.gov', '2023-03-30 21:24:20', '2023-05-20 16:37:42'),
-(2, 'MakaHotel', 'makahotel@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Ativo', '0012102000', 'Luanda', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-03-30 21:28:48', '2023-03-30 21:29:42'),
-(3, 'MakaLuanda', 'makaluanda@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Ativo', '0012102000', 'Luanda', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-03-30 21:31:12', '2023-03-30 21:31:16'),
-(4, 'Hotel SNIR', 'hotelsnir@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'Ativo', '0012102000', 'Luanda, Maianga', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-04-13 10:42:01', '2023-04-13 10:43:03'),
-(5, 'Hotel Luanda', 'hotelluanda@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'Ativo', '0012102000', 'Luanda, Maianga', '', 'Luanda, São Paulo', '', NULL, 0, 0, NULL, '', NULL, '2023-04-13 10:42:18', '2023-04-13 10:43:09'),
-(13, 'Vance Garcia', 'tuqekyzaze@mailinator.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Inativo', 'Troy Lara', 'Rerum accusamus omni', '', 'Aspen Hinton', '0000000000000000', NULL, 0, 0, NULL, '', NULL, '2023-05-20 13:53:21', '2023-05-20 13:53:21');
+INSERT INTO `tb_hotel` (`id_hotel`, `nome_hotel`, `email_hotel`, `senha_hotel`, `status_hotel`, `nif_hotel`, `endereco_hotel`, `foto_hotel`, `cidade_hotel`, `iban`, `descricao_hotel`, `classificacao_hotel`, `num_quartos_hotel`, `servicos_hotel`, `telefone_hotel`, `site_hotel`, `data_criacao_hotel`, `data_atualizacao_hotel`, `id_admin`) VALUES
+(1, 'CasaDubai', 'casadubai@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Ativo', '0012102000', 'Luanda, Maianga', '1681858299433.jpg', 'Luanda', '', 'Testando333', 5, 5, 'Hotelaria, Restaurante', '90000', 'https://epicsana.gov', '2023-03-30 21:24:20', '2023-05-25 14:38:26', 1),
+(2, 'MakaHotel', 'makahotel@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Ativo', '0012102000', 'Luanda', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-03-30 21:28:48', '2023-05-25 14:38:29', 1),
+(3, 'MakaLuanda', 'makaluanda@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Ativo', '0012102000', 'Luanda', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-03-30 21:31:12', '2023-05-25 14:38:32', 1),
+(4, 'Hotel SNIR', 'hotelsnir@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'Ativo', '0012102000', 'Luanda, Maianga', '', 'Luanda', '', NULL, 0, 0, NULL, '', NULL, '2023-04-13 10:42:01', '2023-05-25 14:38:34', 1),
+(5, 'Hotel Luanda', 'hotelluanda@gmail.com', 'd9b1d7db4cd6e70935368a1efb10e377', 'Ativo', '0012102000', 'Luanda, Maianga', '', 'Luanda, São Paulo', '', NULL, 0, 0, NULL, '', NULL, '2023-04-13 10:42:18', '2023-05-25 14:38:37', 1),
+(13, 'Vance Garcia', 'tuqekyzaze@mailinator.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Inativo', 'Troy Lara', 'Rerum accusamus omni', '', 'Aspen Hinton', '0000000000000000', NULL, 0, 0, NULL, '', NULL, '2023-05-20 13:53:21', '2023-05-25 14:38:39', 1),
+(14, 'AngoHotel', 'angohotel@gmail.com', '3049a1f0f1c808cdaa4fbed0e01649b1', 'Inativo', '1111111111111111', 'Luanda, Cazenga', '', 'Luanda', '11111111111111111111', NULL, 0, 0, NULL, '', NULL, '2023-05-25 14:53:48', '2023-05-25 14:53:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -197,15 +185,13 @@ INSERT INTO `tb_hotel` (`id_hotel`, `nome_hotel`, `email_hotel`, `senha_hotel`, 
 -- Estrutura da tabela `tb_logs`
 --
 
-DROP TABLE IF EXISTS `tb_logs`;
-CREATE TABLE IF NOT EXISTS `tb_logs` (
-  `id_log` int NOT NULL AUTO_INCREMENT,
-  `user_log` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `action_log` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `text_log` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `data_log` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_log`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tb_logs` (
+  `id_log` int(11) NOT NULL,
+  `user_log` varchar(100) DEFAULT NULL,
+  `action_log` varchar(100) DEFAULT NULL,
+  `text_log` text DEFAULT NULL,
+  `data_log` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_logs`
@@ -221,7 +207,26 @@ INSERT INTO `tb_logs` (`id_log`, `user_log`, `action_log`, `text_log`, `data_log
 (7, 'CasaDubai', 'atualizou', 'O usuário CasaDubai atualizou o seu perfil', '2023-05-20 15:37:42'),
 (8, 'Manuel dos Santos', 'atualizou', 'O usuário Manuel dos Santos atualizou o seu perfil', '2023-05-20 15:39:52'),
 (9, 'Manuel dos Santos', 'atualizou', 'O usuário Manuel dos Santos atualizou o seu perfil', '2023-05-20 15:40:21'),
-(10, 'Beny João', 'atualizou', 'O usuário Beny João atualizou o seu perfil', '2023-05-20 15:40:44');
+(10, 'Beny João', 'atualizou', 'O usuário Beny João atualizou o seu perfil', '2023-05-20 15:40:44'),
+(11, 'CasaDubai', 'registrou', 'O usuário CasaDubai registrou um cardapio', '2023-05-25 00:22:54'),
+(12, 'Paulo Manuel', 'registrou', 'O usuário Paulo Manuel registrou fez um comentário ', '2023-05-25 00:00:00'),
+(13, 'Paulo Manuel', 'editou', 'O usuário Paulo Manuel editou comentário ', '2023-05-25 00:00:00'),
+(14, 'Paulo Manuel', 'editou', 'O usuário Paulo Manuel editou comentário ', '2023-05-25 00:00:00'),
+(15, 'Paulo Manuel', 'editou', 'O usuário Paulo Manuel editou comentário ', '2023-05-25 00:00:00'),
+(16, 'Paulo Manuel', 'editou', 'O usuário Paulo Manuel editou comentário ', '2023-05-25 00:00:00'),
+(17, 'Paulo Manuel', 'editou', 'O usuário Paulo Manuel editou comentário ', '2023-05-25 00:00:00'),
+(18, 'CasaDubai', 'registrou', 'O usuário CasaDubai registrou um cardapio', '2023-05-25 15:27:15'),
+(19, 'CasaDubai', 'registrou', 'O usuário CasaDubai registrou um quarto cujo o nome é A03938', '2023-05-25 00:00:00'),
+(20, 'Paulo Manuel', 'atualizou', 'O usuário Paulo Manuel atualizou o seu perfil', '2023-05-25 18:05:52'),
+(21, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:19', '2023-05-25 18:38:19'),
+(22, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:28', '2023-05-25 18:38:28'),
+(23, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:29', '2023-05-25 18:38:29'),
+(24, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:31', '2023-05-25 18:38:31'),
+(25, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:36', '2023-05-25 18:38:36'),
+(26, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:41', '2023-05-25 18:38:41'),
+(27, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:45', '2023-05-25 18:38:45'),
+(28, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:51', '2023-05-25 18:38:51'),
+(29, 'CasaDubai', 'eliminou', 'O usuário CasaDubai eliminou um log em2023-05-25 18:38:55', '2023-05-25 18:38:55');
 
 -- --------------------------------------------------------
 
@@ -229,27 +234,24 @@ INSERT INTO `tb_logs` (`id_log`, `user_log`, `action_log`, `text_log`, `data_log
 -- Estrutura da tabela `tb_mesas`
 --
 
-DROP TABLE IF EXISTS `tb_mesas`;
-CREATE TABLE IF NOT EXISTS `tb_mesas` (
-  `id_mesa` int NOT NULL AUTO_INCREMENT,
-  `id_restaurante` int NOT NULL,
-  `nome_mesa` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `tipo_mesa` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `tb_mesas` (
+  `id_mesa` int(11) NOT NULL,
+  `id_restaurante` int(11) NOT NULL,
+  `nome_mesa` varchar(25) NOT NULL,
+  `tipo_mesa` varchar(25) NOT NULL,
   `preco_mesa` decimal(10,2) NOT NULL,
-  `status_mesa` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao_mesa` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `data_criacao_mesa` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao__mesa` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_mesa`),
-  KEY `id_restaurante` (`id_restaurante`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status_mesa` varchar(50) NOT NULL,
+  `descricao_mesa` varchar(255) NOT NULL,
+  `data_criacao_mesa` datetime DEFAULT current_timestamp(),
+  `data_atualizacao__mesa` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_mesas`
 --
 
 INSERT INTO `tb_mesas` (`id_mesa`, `id_restaurante`, `nome_mesa`, `tipo_mesa`, `preco_mesa`, `status_mesa`, `descricao_mesa`, `data_criacao_mesa`, `data_atualizacao__mesa`) VALUES
-(1, 1, '0001', 'Vip', '4000.00', 'Disponível', '', '2023-04-13 10:45:26', '2023-04-13 10:45:26'),
+(1, 1, '0001', 'Vip', '4000.00', 'Reservado', '', '2023-04-13 10:45:26', '2023-05-25 15:04:16'),
 (2, 6, '0005', 'Vip', '4000.00', 'Disponível', '', '2023-04-13 10:48:11', '2023-04-13 10:48:11'),
 (3, 8, '00001', 'Normal', '3000.00', 'Ocupado', '', '2023-04-13 17:50:40', '2023-04-24 21:55:31'),
 (4, 8, 'Et deserunt consequa', 'Vip', '400.00', 'Disponível', 'Aut esse et vitae i', '2023-05-20 14:16:54', '2023-05-20 14:16:54');
@@ -260,22 +262,24 @@ INSERT INTO `tb_mesas` (`id_mesa`, `id_restaurante`, `nome_mesa`, `tipo_mesa`, `
 -- Estrutura da tabela `tb_mesa_reservas`
 --
 
-DROP TABLE IF EXISTS `tb_mesa_reservas`;
-CREATE TABLE IF NOT EXISTS `tb_mesa_reservas` (
-  `id_reserva_mesa` int NOT NULL AUTO_INCREMENT,
-  `id_mesa` int NOT NULL,
-  `id_hospede` int NOT NULL,
-  `id_restaurante` int NOT NULL,
+CREATE TABLE `tb_mesa_reservas` (
+  `id_reserva_mesa` int(11) NOT NULL,
+  `id_mesa` int(11) NOT NULL,
+  `id_hospede` int(11) NOT NULL,
+  `id_restaurante` int(11) NOT NULL,
   `data_checkin_mesa_reserva` date NOT NULL,
-  `status_mesa_reserva` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `comprovativo_mesa_reserva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `data_criacao_mesa_reserva` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao_mesa_reserva` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_reserva_mesa`),
-  KEY `id_mesa` (`id_mesa`),
-  KEY `id_hospede` (`id_hospede`),
-  KEY `id_restaurante` (`id_restaurante`)
+  `status_mesa_reserva` varchar(20) NOT NULL,
+  `comprovativo_mesa_reserva` varchar(255) NOT NULL,
+  `data_criacao_mesa_reserva` datetime DEFAULT current_timestamp(),
+  `data_atualizacao_mesa_reserva` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_mesa_reservas`
+--
+
+INSERT INTO `tb_mesa_reservas` (`id_reserva_mesa`, `id_mesa`, `id_hospede`, `id_restaurante`, `data_checkin_mesa_reserva`, `status_mesa_reserva`, `comprovativo_mesa_reserva`, `data_criacao_mesa_reserva`, `data_atualizacao_mesa_reserva`) VALUES
+(1, 1, 5, 1, '2023-05-30', 'Reservado', '1af5d65e-b8cc-474e-b497-296be2aff42f.jpg', '2023-05-25 15:04:16', '2023-05-25 15:04:16');
 
 -- --------------------------------------------------------
 
@@ -283,35 +287,34 @@ CREATE TABLE IF NOT EXISTS `tb_mesa_reservas` (
 -- Estrutura da tabela `tb_quartos`
 --
 
-DROP TABLE IF EXISTS `tb_quartos`;
-CREATE TABLE IF NOT EXISTS `tb_quartos` (
-  `id_quarto` int NOT NULL AUTO_INCREMENT,
-  `quarto` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `tipo_quarto` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `capacidade_quarto` int NOT NULL,
+CREATE TABLE `tb_quartos` (
+  `id_quarto` int(11) NOT NULL,
+  `quarto` varchar(25) NOT NULL,
+  `tipo_quarto` varchar(50) NOT NULL,
+  `capacidade_quarto` int(11) NOT NULL,
   `preco_quarto` decimal(10,2) NOT NULL,
-  `descricao_quarto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `foto_primeira_quarto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_segunda_quarto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status_quarto` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `data_criacao_quarto` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao_quarto` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_hotel` int NOT NULL,
-  `categoria_quarto` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id_quarto`),
-  KEY `id_hotel` (`id_hotel`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `descricao_quarto` text DEFAULT NULL,
+  `foto_primeira_quarto` varchar(255) NOT NULL,
+  `foto_segunda_quarto` varchar(255) NOT NULL,
+  `status_quarto` varchar(20) NOT NULL,
+  `data_criacao_quarto` datetime DEFAULT current_timestamp(),
+  `data_atualizacao_quarto` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_hotel` int(11) NOT NULL,
+  `categoria_quarto` varchar(25) NOT NULL,
+  `preco_hora` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_quartos`
 --
 
-INSERT INTO `tb_quartos` (`id_quarto`, `quarto`, `tipo_quarto`, `capacidade_quarto`, `preco_quarto`, `descricao_quarto`, `foto_primeira_quarto`, `foto_segunda_quarto`, `status_quarto`, `data_criacao_quarto`, `data_atualizacao_quarto`, `id_hotel`, `categoria_quarto`) VALUES
-(1, '31', 'Normal', 30, '200.00', 'Testando', 'avatar.jpg', 'avatar.jpg', 'Reservado', '2023-04-13 14:35:33', '2023-04-13 14:49:02', 1, ''),
-(2, '503-A', 'Vip', 4, '300.00', 'Terminando a parte do quarto para ....', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', '1663962632242.jpg', 'Reservado', '2023-05-01 12:34:39', '2023-05-01 13:19:38', 1, ''),
-(3, '480-A', 'Normal', 4, '600.00', 'Testando o quarto', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', '28d11523-9921-4354-acbb-a4f5b2df2c7b.jpg', 'Reservado', '2023-05-01 12:35:21', '2023-05-01 12:57:18', 1, ''),
-(4, 'A948', 'Medio', 4, '38.00', 'Labore dignissimos e', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', 'vlcsnap-2023-02-28-14h30m44s831.png', 'Disponível', '2023-05-20 14:12:41', '2023-05-20 14:12:41', 1, 'Casal'),
-(5, 'A03828', 'Normal', 2, '340.00', 'FAFAFA', '', '', 'Disponível', '2023-05-20 16:36:30', '2023-05-20 16:36:30', 1, 'Casal');
+INSERT INTO `tb_quartos` (`id_quarto`, `quarto`, `tipo_quarto`, `capacidade_quarto`, `preco_quarto`, `descricao_quarto`, `foto_primeira_quarto`, `foto_segunda_quarto`, `status_quarto`, `data_criacao_quarto`, `data_atualizacao_quarto`, `id_hotel`, `categoria_quarto`, `preco_hora`) VALUES
+(1, '31', 'Normal', 30, '200.00', 'Testando', 'avatar.jpg', 'avatar.jpg', 'Reservado', '2023-04-13 14:35:33', '2023-05-25 15:39:11', 1, 'Casal', 0),
+(2, '503-A', 'Vip', 4, '300.00', 'Terminando a parte do quarto para ....', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', '1663962632242.jpg', 'Reservado', '2023-05-01 12:34:39', '2023-05-25 15:39:14', 1, 'Casal', 0),
+(3, '480-A', 'Normal', 4, '600.00', 'Testando o quarto', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', '28d11523-9921-4354-acbb-a4f5b2df2c7b.jpg', 'Reservado', '2023-05-01 12:35:21', '2023-05-25 15:39:17', 1, 'Casal', 0),
+(4, 'A948', 'Medio', 4, '38.00', 'Labore dignissimos e', '63437fda-4abc-4d2b-be1d-8378476b5bd9.jpg', 'vlcsnap-2023-02-28-14h30m44s831.png', 'Reservado', '2023-05-20 14:12:41', '2023-05-21 23:42:58', 1, 'Casal', 0),
+(5, 'A03828', 'Normal', 2, '340.00', 'FAFAFA', '', '', 'Reservado', '2023-05-20 16:36:30', '2023-05-21 23:45:45', 1, 'Casal', 0),
+(6, 'A03938', '', 3, '16000.00', 'Teste fafa', '1af5d65e-b8cc-474e-b497-296be2aff42f.jpg', 'insignia.png', 'Reservado', '2023-05-25 16:44:05', '2023-05-25 17:02:00', 1, 'Solteiro', 3000);
 
 -- --------------------------------------------------------
 
@@ -319,36 +322,32 @@ INSERT INTO `tb_quartos` (`id_quarto`, `quarto`, `tipo_quarto`, `capacidade_quar
 -- Estrutura da tabela `tb_reservas`
 --
 
-DROP TABLE IF EXISTS `tb_reservas`;
-CREATE TABLE IF NOT EXISTS `tb_reservas` (
-  `id_reserva` int NOT NULL AUTO_INCREMENT,
-  `id_hospede` int NOT NULL,
-  `id_quarto` int NOT NULL,
+CREATE TABLE `tb_reservas` (
+  `id_reserva` int(11) NOT NULL,
+  `id_hospede` int(11) NOT NULL,
+  `id_quarto` int(11) NOT NULL,
   `data_checkin_reserva` date NOT NULL,
   `data_checkout_reserva` date NOT NULL,
-  `num_hospedes_reserva` int NOT NULL,
+  `num_hospedes_reserva` int(11) NOT NULL,
   `preco_total_reserva` decimal(10,2) NOT NULL,
-  `status_quarto_reserva` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `comprovativo_reserva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `data_criacao_reserva` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao_reserva` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `total_noites` int NOT NULL,
+  `status_quarto_reserva` varchar(20) NOT NULL,
+  `comprovativo_reserva` varchar(255) NOT NULL,
+  `data_criacao_reserva` datetime DEFAULT current_timestamp(),
+  `data_atualizacao_reserva` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `total_noites` int(11) NOT NULL,
   `hora_checkin` time NOT NULL,
   `hora_checkout` time NOT NULL,
-  `total_horas` int NOT NULL,
-  PRIMARY KEY (`id_reserva`),
-  KEY `id_hospede` (`id_hospede`),
-  KEY `id_quarto` (`id_quarto`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `total_horas` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_reservas`
 --
 
 INSERT INTO `tb_reservas` (`id_reserva`, `id_hospede`, `id_quarto`, `data_checkin_reserva`, `data_checkout_reserva`, `num_hospedes_reserva`, `preco_total_reserva`, `status_quarto_reserva`, `comprovativo_reserva`, `data_criacao_reserva`, `data_atualizacao_reserva`, `total_noites`, `hora_checkin`, `hora_checkout`, `total_horas`) VALUES
-(1, 3, 1, '2023-04-13', '2023-04-15', 3, '200.00', 'Disponível', 'avatar.jpg', '2023-04-13 14:49:02', '2023-04-25 12:12:22', 0, '00:00:00', '00:00:00', 0),
-(5, 3, 3, '2023-05-02', '2023-05-03', 2, '600.00', 'Disponível', '1663962632242.jpg', '2023-05-01 13:08:53', '2023-05-01 13:08:55', 0, '00:00:00', '00:00:00', 0),
-(6, 3, 2, '2023-05-02', '2023-05-03', 2, '300.00', 'Disponível', '1663962632242.jpg', '2023-05-01 13:19:38', '2023-05-01 13:19:41', 0, '00:00:00', '00:00:00', 0);
+(1, 5, 6, '2023-05-25', '2023-05-28', 3, '16000.00', 'Reservado', 'insignia.png', '2023-05-25 17:02:00', '2023-05-27 12:45:43', 3, '00:00:00', '00:00:00', 0),
+(2, 5, 6, '0000-00-00', '0000-00-00', 2, '16000.00', 'Por verificar', 'insignia.png', '2023-05-25 17:02:35', '2023-05-25 17:51:54', 0, '15:20:00', '18:20:00', 3),
+(3, 3, 3, '2023-06-20', '2023-06-25', 2, '600.00', 'Por verificar', 'da9e7fa8-3097-4df3-af6e-c0efc9799ed8.jpg', '2023-05-25 17:45:44', '2023-05-25 17:45:44', 5, '00:00:00', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -356,20 +355,17 @@ INSERT INTO `tb_reservas` (`id_reserva`, `id_hospede`, `id_quarto`, `data_checki
 -- Estrutura da tabela `tb_restaurante`
 --
 
-DROP TABLE IF EXISTS `tb_restaurante`;
-CREATE TABLE IF NOT EXISTS `tb_restaurante` (
-  `id_restaurante` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int NOT NULL,
-  `nome_restaurante` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `foto` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao_restaurante` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `classificacao_restaurante` int NOT NULL,
-  `num_mesas_restaurante` int NOT NULL,
-  `data_criacao_restaurante` datetime DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao__restaurante` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_restaurante`),
-  KEY `id_hotel` (`id_hotel`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tb_restaurante` (
+  `id_restaurante` int(11) NOT NULL,
+  `id_hotel` int(11) NOT NULL,
+  `nome_restaurante` varchar(50) NOT NULL,
+  `foto` varchar(250) NOT NULL,
+  `descricao_restaurante` text DEFAULT NULL,
+  `classificacao_restaurante` int(11) NOT NULL,
+  `num_mesas_restaurante` int(11) NOT NULL,
+  `data_criacao_restaurante` datetime DEFAULT current_timestamp(),
+  `data_atualizacao__restaurante` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_restaurante`
@@ -380,6 +376,169 @@ INSERT INTO `tb_restaurante` (`id_restaurante`, `id_hotel`, `nome_restaurante`, 
 (4, 4, 'FoodsRestaurante', 'avatar.jpg', 'Testa', 5, 5, '2023-04-13 10:47:00', '2023-04-13 10:47:00'),
 (8, 1, 'CasaFoods', '1681858299433.jpg', 'Testando Nova', 5, 5, '2023-04-13 17:19:05', '2023-04-25 09:44:28'),
 (9, 1, 'fronteira-api', 'avatar.jpg', 'fafafa', 5, 5, '2023-04-15 12:04:28', '2023-04-15 12:04:28');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Índices para tabela `tb_cardapios`
+--
+ALTER TABLE `tb_cardapios`
+  ADD PRIMARY KEY (`id_cardapio`),
+  ADD KEY `id_restaurante` (`id_restaurante`);
+
+--
+-- Índices para tabela `tb_comentarios`
+--
+ALTER TABLE `tb_comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_hotel` (`id_hotel`);
+
+--
+-- Índices para tabela `tb_historico_reserva`
+--
+ALTER TABLE `tb_historico_reserva`
+  ADD PRIMARY KEY (`id_historico`);
+
+--
+-- Índices para tabela `tb_hospedes`
+--
+ALTER TABLE `tb_hospedes`
+  ADD PRIMARY KEY (`id_hospede`);
+
+--
+-- Índices para tabela `tb_hotel`
+--
+ALTER TABLE `tb_hotel`
+  ADD PRIMARY KEY (`id_hotel`),
+  ADD KEY `fk_id_admin` (`id_admin`);
+
+--
+-- Índices para tabela `tb_logs`
+--
+ALTER TABLE `tb_logs`
+  ADD PRIMARY KEY (`id_log`);
+
+--
+-- Índices para tabela `tb_mesas`
+--
+ALTER TABLE `tb_mesas`
+  ADD PRIMARY KEY (`id_mesa`),
+  ADD KEY `id_restaurante` (`id_restaurante`);
+
+--
+-- Índices para tabela `tb_mesa_reservas`
+--
+ALTER TABLE `tb_mesa_reservas`
+  ADD PRIMARY KEY (`id_reserva_mesa`),
+  ADD KEY `id_mesa` (`id_mesa`),
+  ADD KEY `id_hospede` (`id_hospede`),
+  ADD KEY `id_restaurante` (`id_restaurante`);
+
+--
+-- Índices para tabela `tb_quartos`
+--
+ALTER TABLE `tb_quartos`
+  ADD PRIMARY KEY (`id_quarto`),
+  ADD KEY `id_hotel` (`id_hotel`);
+
+--
+-- Índices para tabela `tb_reservas`
+--
+ALTER TABLE `tb_reservas`
+  ADD PRIMARY KEY (`id_reserva`),
+  ADD KEY `id_hospede` (`id_hospede`),
+  ADD KEY `id_quarto` (`id_quarto`);
+
+--
+-- Índices para tabela `tb_restaurante`
+--
+ALTER TABLE `tb_restaurante`
+  ADD PRIMARY KEY (`id_restaurante`),
+  ADD KEY `id_hotel` (`id_hotel`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tb_cardapios`
+--
+ALTER TABLE `tb_cardapios`
+  MODIFY `id_cardapio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `tb_comentarios`
+--
+ALTER TABLE `tb_comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `tb_historico_reserva`
+--
+ALTER TABLE `tb_historico_reserva`
+  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `tb_hospedes`
+--
+ALTER TABLE `tb_hospedes`
+  MODIFY `id_hospede` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `tb_hotel`
+--
+ALTER TABLE `tb_hotel`
+  MODIFY `id_hotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `tb_logs`
+--
+ALTER TABLE `tb_logs`
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT de tabela `tb_mesas`
+--
+ALTER TABLE `tb_mesas`
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `tb_mesa_reservas`
+--
+ALTER TABLE `tb_mesa_reservas`
+  MODIFY `id_reserva_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `tb_quartos`
+--
+ALTER TABLE `tb_quartos`
+  MODIFY `id_quarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `tb_reservas`
+--
+ALTER TABLE `tb_reservas`
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `tb_restaurante`
+--
+ALTER TABLE `tb_restaurante`
+  MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

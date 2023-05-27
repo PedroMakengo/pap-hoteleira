@@ -243,14 +243,16 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                         $id      = $_SESSION['id'];
                                                         $action  = "confirmado";
                                                         $textLog = $details['nome_hospede']. " a sua reserva foi ". $action . " com sucesso no quarto " . $details['quarto'];
+
                                                         $parametros = [
                                                           ":id"          => $id, 
                                                           ":nomeHospede" => $details['nome_hospede'],
                                                           ":actionLog"   => $action, 
                                                           ":textLog"     => $textLog,
                                                           ":idReserva"   => $details['id_reserva'],
-                                                          ":idQuarto"    => $quartoId
+                                                          ":idQuarto"    => $details['id_quarto']
                                                         ];
+
                                                         $insertLog = new Model();
                                                         $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
                                                         (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
