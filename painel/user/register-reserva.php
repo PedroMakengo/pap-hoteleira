@@ -78,9 +78,14 @@
                             <p>Tipo de Quarto: <strong><?= $details['tipo_quarto'] ?></strong></p>
                           </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-3">
                           <div class="border-bottom mb-2 pb-2">
-                            <p>Preço do Quarto: <strong><?= $details['preco_quarto'] ?></strong></p>
+                            <p>Preço Por Noite: <strong><?= $details['preco_quarto'] ?></strong></p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3">
+                          <div class="border-bottom mb-2 pb-2">
+                            <p>Preço Por Hora: <strong><?= $details['preco_hora'] ?></strong></p>
                           </div>
                         </div>
                         <div class="col-lg-6">
