@@ -11,8 +11,6 @@
 ?>
 <!-- End Head -->
 
-
-
 <!-- Inserir assim que a data do checkout passar -->
 <?php 
       $parametros = [":id" => $_SESSION['id']];
@@ -39,7 +37,9 @@
         $dataAtualFormatada = new DateTime(date($date));
         $differenceDate = $dataAtualFormatada->diff($dataCheckoutSelected)->days;
 
-        if($differenceDate === 3):
+        if($differenceDate === 1):
+          // Definir...
+        elseif($differenceDate === 3):
           // Faltam 3 dias para a tua reserva terminar...
           $parametros = [
             ":id"               =>  $_SESSION['id'],
