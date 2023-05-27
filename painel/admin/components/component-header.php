@@ -104,6 +104,12 @@
             </li>
 
             <li class="nav-item">
+              <a class="nav-link <?= $_GET['id'] == 'mesas' ? 'active': '' ?>" href="mesas.php?id=mesas"
+                ><i class="fa fa-fw fa-utensils"></i>Mesas
+              </a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link <?= $_GET['id'] == 'cardapio' ? 'active': '' ?>" href="cardapio.php?id=cardapio"
                 ><i class="fa fa-fw fa-utensils"></i>Cardapios
               </a>

@@ -192,6 +192,7 @@
                             <th>Restaurante</th>
                             <th>Data de Checkin</th>
                             <th>Status Mesa</th>
+                            <th>Descrição Mesa</th>
                             <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
                           </tr>
@@ -207,6 +208,7 @@
                                   <td><?= $details['nome_restaurante'] ?></td>
                                   <td><?= $details['data_checkin_mesa_reserva'] ?></td>
                                   <td><?= $details['status_mesa_reserva'] ?></td>
+                                  <td><?= $details['descricao_mesa'] ?></td>
                                   <td><?= $details['data_criacao_mesa_reserva'] ?></td>
                                   <td class="text-center">
                                     <a href="index.php?id=<?= $details['id_reserva_mesa'] ?>&action=deleteReservaMesa" class="btn btn-danger btn-sm">
@@ -218,7 +220,7 @@
                               endforeach;
                             else:  ?>
                               <tr>
-                                <td>Não existe nenhum registro</td>
+                                <td colspan="12">Não existe nenhum registro</td>
                               </tr>
                             <?php 
                             endif;

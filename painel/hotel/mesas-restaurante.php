@@ -97,7 +97,7 @@ endif;
                     <h4>Listagem de Mesas</h4>
                   </div>
                   <div class="col-lg-6 text-right">
-                    <a href="../../public/relatorio.php?id=minhas-mesas" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
+                    <!-- <a href="../../public/relatorio.php?id=minhas-mesas" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a> -->
                   </div>
 
                   <div class="col-lg-12"><hr /></div>
@@ -113,6 +113,7 @@ endif;
                             <th>Tipo</th>
                             <th>Preço da Mesa</th>
                             <th>Status</th>
+                            <th>Descrição da Mesa</th>
                             <th>Data de Registro</th>
                             <th class="text-center">Ações</th>
                           </tr>
@@ -128,6 +129,7 @@ endif;
                                   <td><?= $details['tipo_mesa'] ?></td>
                                   <td><?= $details['preco_mesa'] . " kz" ?></td>
                                   <td><?= $details['status_mesa'] ?></td>
+                                  <td><?= $details['descricao_mesa'] ?></td>
                                   <td><?= $details['data_criacao_mesa'] ?></td>
                                   <td class="text-center">
                                     <a href="editar-mesas.php?nome=<?= $details['nome_mesa'] ?>&id=mesas&idUser=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-primary btn-sm">

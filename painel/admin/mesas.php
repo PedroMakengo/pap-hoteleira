@@ -5,16 +5,7 @@
 <!-- Listagem de usuários hospedes -->
 <?php 
    $mesas = new Model();
-   $listMesasReservas= $mesas->EXE_QUERY("SELECT * FROM tb_mesa_reservas 
-    INNER JOIN tb_mesas ON 
-    tb_mesa_reservas.id_mesa=tb_mesas.id_mesa 
-    INNER JOIN tb_restaurante ON 
-    tb_mesas.id_restaurante=tb_restaurante.id_restaurante 
-    INNER JOIN tb_hotel ON 
-    tb_restaurante.id_hotel=tb_hotel.id_hotel
-    INNER JOIN tb_hospedes ON 
-    tb_mesa_reservas.id_hospede=tb_hospedes.id_hospede
-   ");
+   $listMesasReservas= $mesas->EXE_QUERY("SELECT * FROM tb_mesas");
 ?>
 <!-- Listagem de usuários -->
 
@@ -27,7 +18,7 @@
           ":id"=>$id
       ];
       $delete = new Model();
-      $delete->EXE_NON_QUERY("DELETE FROM tb_mesa_reservas WHERE id_reserva_mesa=:id", $parametros);
+      $delete->EXE_NON_QUERY("DELETE FROM tb_mesas WHERE id_mesa=:id", $parametros);
       if($delete == true):
 
         //===================================================================================================================
@@ -80,9 +71,6 @@
                 <div class="col-lg-6">
                   <h4>Listagem de Mesas</h4>
                 </div>
-                <div class="col-lg-6 text-right">
-                  <a href="../../public/relatorio.php?id=reservas-mesa" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
-                </div>
                 <div class="col-lg-12"><hr /></div>
               </div>
               <div class="row">
@@ -107,16 +95,15 @@
                             foreach($listMesasReservas as $details):
                             ?>
                               <tr>
-                                <td><?= $details['id_reserva_mesa'] ?></td>
-                                <td><?= $details['nome_hospede'] ?></td>
-                                <td><?= $details['nome_hotel'] ?></td>
+                                <td><?= $details['id_mesa'] ?></td>
                                 <td><?= $details['nome_mesa'] ?></td>
-                                <td><?= $details['comprovativo_mesa_reserva'] ?></td>
-                                <td><?= $details['status_mesa_reserva'] ?></td>
-                                <td><?= $details['data_criacao_mesa_reserva'] ?></td>
+                                <td><?= $details['tipo_mesa'] ?></td>
+                                <td><?= $details['preco_mesa'] . " kz" ?></td>
+                                <td><?= $details['status_mesa'] ?></td>
+                                <td><?= $details['descricao_mesa'] ?></td>
+                                <td><?= $details['data_criacao_mesa'] ?></td>
                                 <td class="text-center">
-                                  <!-- Eliminar -->
-                                  <a href="mesas.php?nomeMesa=<?= $details['nome_mesa'] ?>&id=<?= $details['id_reserva_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                  <a href="mesas-restaurante.php?id=<?= $details['id_mesa'] ?>&action=delete" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->

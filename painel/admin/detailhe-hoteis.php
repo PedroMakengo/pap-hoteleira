@@ -202,7 +202,7 @@
                                 <td><?= $hotel['status_quarto'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->
-                                  <a href="detailhe-hoteis.php?nomeQuarto=<?= $hotel['nome_quarto'] ?>&id=<?= $hotel['id_quarto'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
+                                  <a href="detailhe-hoteis.php?nomeQuarto=<?= $hotel['quarto'] ?>&id=<?= $hotel['id_quarto'] ?>&action=deleteQuarto" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash fs-xl opacity-60 me-2"></i>
                                   </a>
                                   <!-- Eliminar -->
