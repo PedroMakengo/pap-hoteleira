@@ -126,6 +126,8 @@
                           <th title="Preço do Quarto Por Noite">Preço Noite</th>
                           <th title="Preco do Quarto por Hora">Preço Hora</th>
                           <th>Status</th>
+                          <th>Checkin</th>
+                          <th>Checkout</th>
                           <th>Total de Horas</th>
                           <th>Total de Dias</th>
                           <th>Data de Registro</th>
@@ -148,6 +150,8 @@
                                 <td><?= $details['preco_quarto'] === 0 ? "*" : $details['preco_quarto'] * $details['total_noites']. "kz" ?></td>
                                 <td><?= $details['preco_hora'] === 0 ?   "*" : $details['preco_hora'] * $details['total_horas']. "kz" ?></td>
                                 <td><?= $details['status_quarto_reserva'] ?></td>
+                                <td><?= $details['data_checkin_reserva'] === "0000-00-00"  ? "*" : $details['data_checkin_reserva'] ?></td>
+                                <td><?= $details['data_checkout_reserva'] === "0000-00-00" ? "*" : $details['data_checkout_reserva']  ?></td>
                                 <td><?= $details['total_horas'] === 0 ?  "*" :  $details['total_horas'] ?></td>
                                 <td><?= $details['total_noites'] === 0 ? "*" : $details['total_noites']  ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
