@@ -11,7 +11,6 @@
 ?>
 <!-- End Head -->
 
-
 <!DOCTYPE html>
 <html lang="pt-PT">
   <head>

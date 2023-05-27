@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-lg-12">
                           <div class="border-bottom mb-2 pb-2">
-                            <p>Descrição: <br> <strong><?= $details['descricao_restaurante'] ?></strong></p>
+                            <p>Descrição da Mesa: <br> <strong><?= $details['descricao_mesa'] ?></strong></p>
                           </div>
                         </div>
                       </div>
