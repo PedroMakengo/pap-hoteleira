@@ -92,13 +92,16 @@
         $parametros = [
           ":id"               =>  $_SESSION['id'],
           ":nome"             => $nomeHospede,
+          ":accao"            => "reservou",
           ":idReserva"        => $idReserva
         ];  
         $buscandoReservaRecente = new Model();
         $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
-          id_hotel=:id AND usuario_historico=:nome AND id_reserva=:idReserva LIMIT 1", $parametros);
-        if(count($buscando)):
-          echo " Makengo ";
+        id_hotel=:id AND usuario_historico=:nome AND action_historico=:accao AND id_reserva=:idReserva LIMIT 1", $parametros);
+
+
+
+        if(count($buscando) === 0):
           //===================================================================================================================            $today   =  Date('Y-m-d');
           $id    = $_SESSION['id'];
           $action  = "prazo de hospedagem";
@@ -114,7 +117,14 @@
           (id_hotel, usuario_historico, action_historico, historico, data_historico) 
           VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
           //===================================================================================================================
+        else:
+          echo "Nada por fazer";
         endif;
+        
+
+
+
+
       else:
         $parametros = [
           ":id"               =>  $_SESSION['id'],
@@ -157,7 +167,7 @@
 
     <div class="dashboard-main-wrapper">
       <!-- =============================================== -->
-      <?php //include "components/component-header.php" ?>
+      <?php include "components/component-header.php" ?>
       <!-- =============================================== -->
 
       <!-- Container -->
