@@ -87,48 +87,18 @@
       $dataAtualFormatada = new DateTime(date($date));
       $differenceDate = $dataAtualFormatada->diff($dataCheckoutSelected)->days;
 
-
-      if($differenceDate === 1):
+      if($differenceDate === 3):
         // Faltam 3 dias para a tua reserva terminar...
         $parametros = [
           ":id"               =>  $_SESSION['id'],
           ":nome"             => $nomeHospede,
-          ":idReserva"        => $idReserva,
-          ":idQuarto"         => $idQuarto
+          ":idReserva"        => $idReserva
         ];  
         $buscandoReservaRecente = new Model();
         $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
-          id_hotel=:id AND usuario_historico=:nome AND id_reserva=:idReserva AND id_quarto=:idQuarto", $parametros);
-
-        if(count($buscando) === 0):
-          //===================================================================================================================            $today   =  Date('Y-m-d');
-          $id    = $_SESSION['id'];
-          $action  = "prazo de hospedagem";
-          $textLog = $nomeHospede. " ". $action . " termina em 1 dia ";
-          $parametros = [
-            ":id"     => $id, 
-            ":nomeHospede" => $nomeHospede,
-            ":actionLog"   => $action, 
-            ":textLog"  => $textLog  
-          ];
-          $insertLog = new Model();
-          $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
-          (id_hotel, usuario_historico, action_historico, historico, data_historico) 
-          VALUES (:id, :nomeHospede,  :actionLog, :textLog, now()) ", $parametros);
-          //===================================================================================================================
-      elseif($differenceDate === 3):
-        // Faltam 3 dias para a tua reserva terminar...
-        $parametros = [
-          ":id"               =>  $_SESSION['id'],
-          ":nome"             => $nomeHospede,
-          ":idReserva"        => $idReserva,
-          ":idQuarto"         => $idQuarto
-        ];  
-        $buscandoReservaRecente = new Model();
-        $buscando = $buscandoReservaRecente->EXE_QUERY("SELECT * FROM tb_historico_reserva WHERE
-          id_hotel=:id AND usuario_historico=:nome AND id_reserva=:idReserva AND id_quarto=:idQuarto", $parametros);
-
-        if(count($buscando) === 0):
+          id_hotel=:id AND usuario_historico=:nome AND id_reserva=:idReserva LIMIT 1", $parametros);
+        if(count($buscando)):
+          echo " Makengo ";
           //===================================================================================================================            $today   =  Date('Y-m-d');
           $id    = $_SESSION['id'];
           $action  = "prazo de hospedagem";
@@ -177,7 +147,6 @@
         else:
           echo "Testando" . count($buscando);
         endif;
-        endif;
       endif;
     endif;
   ?>
@@ -188,7 +157,7 @@
 
     <div class="dashboard-main-wrapper">
       <!-- =============================================== -->
-      <?php include "components/component-header.php" ?>
+      <?php //include "components/component-header.php" ?>
       <!-- =============================================== -->
 
       <!-- Container -->

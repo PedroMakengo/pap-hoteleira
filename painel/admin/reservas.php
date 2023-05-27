@@ -95,6 +95,8 @@
                           <th>Quarto</th>
                           <th>Data Checkin</th>
                           <th>Data Checkout</th>
+                          <th>Hora Checkin</th>
+                          <th>Hora Checkout</th>
                           <th>Data Registro</th>
                           <th class="text-center">Ações</th>
                         </tr>
@@ -111,6 +113,8 @@
                                 <td><?= $details['quarto'] ?></td>
                                 <td><?= $details['data_checkin_reserva'] === "0000-00-00" ? "*": $details['data_checkin_reserva'] ?></td>
                                 <td><?= $details['data_checkout_reserva'] === "0000-00-00"? "*": $details['data_checkout_reserva'] ?></td>
+                                <td><?= $details['hora_checkin'] === "00:00:00"? "*": $details['hora_checkin'] ?></td>
+                                <td><?= $details['hora_checkout'] === "00:00:00"? "*": $details['hora_checkout'] ?></td>
                                 <td><?= $details['data_criacao_reserva'] ?></td>
                                 <td class="text-center">
                                   <!-- Eliminar -->

@@ -24,13 +24,15 @@
 
   $restaurantesCount = $count->EXE_QUERY("SELECT * FROM tb_restaurante WHERE id_hotel=:id", $parametros);
 
+  $parametros = [":idHotel" => $_SESSION['id']];
+  
   $totalHospedesCount = $count->EXE_QUERY("SELECT DISTINCT 
   * FROM  tb_hospedes 
   INNER JOIN tb_reservas ON 
   tb_hospedes.id_hospede=tb_reservas.id_hospede 
   INNER JOIN tb_quartos ON 
   tb_reservas.id_quarto=tb_quartos.id_quarto 
-  WHERE tb_quartos.id_quarto=:id
+  WHERE tb_quartos.id_hotel=:idHotel
   GROUP BY tb_reservas.id_hospede
   ", $parametros);
 ?>
