@@ -234,19 +234,43 @@ $listDetailsReservasMesas = $listReservas->EXE_QUERY("SELECT * FROM
                                                       $imovelAtualizar = new Model();
                                                       $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_reservas SET status_quarto_reserva=:statusReserva
                                                       WHERE id_reserva=:id_reserva", $parametros);
-                                                      echo '<script> 
-                                                            swal({
-                                                              title: "Reserva Validado!",
-                                                              text: "Reservado do Quarto Validado com sucesso",
-                                                              icon: "success",
-                                                              button: "Fechar!",
-                                                            })
-                                                          </script>';
-                                                      echo '<script>
-                                                        setTimeout(function() {
-                                                            window.location.href="reservas.php?id=reservas";
-                                                        }, 2000)
-                                                      </script>';
+
+                                                      if($imovelAtualizar):
+
+                                                        // Informar ao hotel quando o usuário faz uma reserva
+                                                        //===================================================================================================================
+                                                        $today   =  Date('Y-m-d');
+                                                        $id      = $_SESSION['id'];
+                                                        $action  = "confirmado";
+                                                        $textLog = $details['nome_hospede']. " a sua reserva foi ". $action . " com sucesso no quarto " . $details['quarto'];
+                                                        $parametros = [
+                                                          ":id"          => $id, 
+                                                          ":nomeHospede" => $details['nome_hospede'],
+                                                          ":actionLog"   => $action, 
+                                                          ":textLog"     => $textLog,
+                                                          ":idReserva"   => $details['id_reserva'],
+                                                          ":idQuarto"    => $quartoId
+                                                        ];
+                                                        $insertLog = new Model();
+                                                        $insertLog->EXE_NON_QUERY("INSERT INTO tb_historico_reserva 
+                                                        (id_hotel, usuario_historico, action_historico, historico, data_historico, id_reserva, id_quarto) 
+                                                        VALUES (:id, :nomeHospede,  :actionLog, :textLog, now(), :idReserva, :idQuarto)", $parametros);
+                                                      //===================================================================================================================
+
+                                                        echo '<script> 
+                                                              swal({
+                                                                title: "Reserva Validado!",
+                                                                text: "Reservado do Quarto Validado com sucesso",
+                                                                icon: "success",
+                                                                button: "Fechar!",
+                                                              })
+                                                            </script>';
+                                                        echo '<script>
+                                                          setTimeout(function() {
+                                                              window.location.href="reservas.php?id=reservas";
+                                                          }, 2000)
+                                                        </script>';
+                                                      endif;
                                                     endif;
                                                   ?>
                                                 </form>
