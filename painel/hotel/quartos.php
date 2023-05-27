@@ -96,7 +96,7 @@ endif;
                   <div class="col-lg-6 text-right">
                     <a href="../../public/relatorio.php?id=meus-quartos" target="_blank" class="btn btn-sm btn-info">Imprimir relatório</a>
                     <a
-                      href="register-quarto.php?id=quartos"
+                      href="register-quarto.php?id=quartos&idHotel=<?= $_SESSION['id'] ?>"
                       class="btn btn-primary btn-sm"
                       >Novo Quarto</a
                     >

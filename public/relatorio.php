@@ -439,8 +439,10 @@
 
       // HOTEL   
       case 'meus-quartos':
-        // Instanciando
-          $parametros = [":id" => $_SESSION['id']];
+          // Instanciando
+          $parametros = [
+            ":idU" => $_GET['idHotel']
+          ];
           $sql = $hotel->EXE_QUERY("SELECT * FROM tb_quartos WHERE id_hotel=:id", $parametros);
           $html = "
                 <html>
