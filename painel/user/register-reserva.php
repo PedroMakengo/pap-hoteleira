@@ -170,14 +170,18 @@
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
                             <label for="">Data de Checkin:</label>
-                            <input type="date" name="datacheckin" class="form-control" />
+                            <input type="date" id="data1" name="datacheckin" class="form-control" 
+                              onchange="calcularDiferenca()"
+                            />
                           </div>
                         </div>
 
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
                             <label for="">Data de Checkout:</label>
-                            <input type="date" name="datacheckout" class="form-control" />
+                            <input type="date" id="data2" name="datacheckout" class="form-control"
+                              onchange="calcularDiferenca()"
+                            />
                           </div>
                         </div>
                       </div>
@@ -188,7 +192,13 @@
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
                             <label for="" title="Hora de Checkin">Checkin:</label>
-                            <input type="time" name="horaCheckin" class="form-control" />
+                            <input 
+                              type="time" 
+                              name="horaCheckin" 
+                              id="hora1" 
+                              class="form-control" 
+                              onchange="calcularDiferencaHora()" 
+                            />
                             <input type="text" style="display: none" value="hora" name="reservaTipo" class="form-control" />
                           </div>
                         </div>
@@ -196,7 +206,13 @@
                         <div class="col-lg-6 reserva-section">
                           <div class="form-group">
                             <label for="" title="Hora de Checkout">Checkout:</label>
-                            <input type="time" name="horaCheckout" class="form-control" />
+                            <input 
+                            type="time" 
+                            name="horaCheckout" 
+                            id="hora2"   
+                            class="form-control"
+                            onchange="calcularDiferencaHora()"
+                            />
                           </div>
                         </div>
                       </div>
@@ -212,13 +228,14 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label for="">Preço por Noite:</label>
-                      <input type="number" disabled name="preco" value="<?= $preco ?>" class="form-control" />
+                      <input type="hidden" name="diferencaEmDias" id="diferenca" />
+                      <input type="text" disabled name="preco" value="<?= $preco ?>" id="diferencaVisualizar" class="form-control" />
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label for="">Preço por Hora:</label>
-                      <input type="number" disabled name="precoHora" value="<?= $precoHora ?>" class="form-control" />
+                      <input type="text" disabled name="precoHora" id="precoHora" value="<?= $precoHora ?>" class="form-control" />
                     </div>
                   </div>
                   <div class="col-lg-12">
@@ -236,7 +253,6 @@
               </form>
             </div>
             <!-- Fazer com que a pessoa marque a sua reserva porém com uma data de espera -->
-          
           </div>
         </div>
       </div>
@@ -266,5 +282,53 @@
       }
       
       document.getElementById(selectedTab).style.display = "block";
+    }
+
+    // CALCULAR DIFERENÇA DE DIAS
+    function calcularDiferenca() {
+      var data1 = new Date(document.getElementById('data1').value);
+      var data2 = new Date(document.getElementById('data2').value);
+
+      // Calcula a diferença em milissegundos
+      var diffEmMilissegundos = Math.abs(data2 - data1);
+
+      // Calcula a diferença em dias
+      var diffEmDias = Math.ceil(diffEmMilissegundos / (1000 * 60 * 60 * 24));
+
+      // Adiciona o valor no input "diferenca"
+      document.getElementById('diferenca').value = diffEmDias;
+
+      // Calcula o valor total
+      var preco = <?php echo $preco; ?>;
+      var valorTotal = preco * diffEmDias;
+
+      var valorTotalFormatado  = valorTotal.toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' });
+
+      // Exibe o valor da diferença e o valor total dentro do campo de entrada
+      document.getElementById('diferencaVisualizar').value = valorTotalFormatado;
+    }
+
+    function calcularDiferencaHora() {
+      var hora1 = document.getElementById('hora1').value;
+      var hora2 = document.getElementById('hora2').value;
+
+      // Converter as horas para objetos Date
+      var time1 = new Date('1970-01-01T' + hora1 + 'Z');
+      var time2 = new Date('1970-01-01T' + hora2 + 'Z');
+
+      // Calcular a diferença em minutos
+      var diffEmMinutos = (time2 - time1) / 1000 / 60;
+
+      // Adicionar o valor no input "diferenca"
+      document.getElementById('diferenca').value = diffEmMinutos;
+
+      // Calcular o valor total
+      var valorTotal = <?= $precoHora ?> * diffEmMinutos;
+
+      var valorTotalFormatado  = valorTotal.toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' });
+
+      // console.log(valorTotalFormatado)
+      // Exibir o valor da diferença e o valor total dentro do campo de entrada
+      document.getElementById('precoHora').value = valorTotalFormatado;
     }
 </script>

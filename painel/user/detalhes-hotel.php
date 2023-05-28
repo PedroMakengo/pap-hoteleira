@@ -145,5 +145,5 @@
 </div>
 
 <!-- Component Footer -->
-<?php require 'components/component-footer.php' ?>
+<?php require 'components/component-footer-reserva.php' ?>
 <!-- Component Footer -->

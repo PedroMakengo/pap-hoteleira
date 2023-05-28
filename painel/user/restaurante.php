@@ -68,34 +68,30 @@
             <div class="col-lg-12"><hr /></div>
           </div>
 
-          <div class="row">
-            <div class="" style="overflow-x: hidden">
-               <div id="owl-carousel" class="owl-carousel owl-theme content-items-card">
-                  <?php 
-                    if($listRestaurantesDetalhes):
-                      foreach($listRestaurantesDetalhes as $details):
-                  ?>
-                    <div class="item-card">
-                      <img src="../../assets/__storage/<?= $details['foto'] ?>" class="col-lg-12 photoRestaurante" alt="">
-                      <div class="p-2 content-restaurante">
-                        <ul>
-                          <li><span>Hotel:</span> <strong><?= $details['nome_hotel'] ?></strong></li>
-                          <li><span>Restaurante:</span> <strong><?= $details['nome_restaurante'] ?></strong></li>
-                          <li><span>Classificação:</span> <strong><?= $details['classificacao_restaurante'] ?></strong></li>
-                          <li><span>Nº de Mesas:</span> <strong><?= $details['num_mesas_restaurante'] ?></strong></li>
-                        </ul>
-                        <span class="text-center ">
-                          <a href="detalhes-restaurante.php?id=restaurante&userId=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm col-lg-12 p-3">
-                            Mais Informações
-                          </a>
-                        </span>
-                      </div>
-                    </div>
-                  <?php endforeach;?>
-                <?php endif;?>
+          <div id="owl-carousel" class="owl-carousel owl-theme content-items-card">
+            <?php 
+              if($listRestaurantesDetalhes):
+                foreach($listRestaurantesDetalhes as $details):
+            ?>
+              <div class="item-card">
+                <img src="../../assets/__storage/<?= $details['foto'] ?>" class="col-lg-12 photoRestaurante" alt="">
+                <div class="p-2 content-restaurante">
+                  <ul>
+                    <li><span>Hotel:</span> <strong><?= $details['nome_hotel'] ?></strong></li>
+                    <li><span>Restaurante:</span> <strong><?= $details['nome_restaurante'] ?></strong></li>
+                    <li><span>Classificação:</span> <strong><?= $details['classificacao_restaurante'] ?></strong></li>
+                    <li><span>Nº de Mesas:</span> <strong><?= $details['num_mesas_restaurante'] ?></strong></li>
+                  </ul>
+                  <span class="text-center ">
+                    <a href="detalhes-restaurante.php?id=restaurante&userId=<?= $details['id_restaurante'] ?>" class="btn btn-primary btn-sm col-lg-12 p-3">
+                      Mais Informações
+                    </a>
+                  </span>
+                </div>
               </div>
-            </div>
-          </div>
+            <?php endforeach;?>
+          <?php endif;?>
+        </div>
         </div>
       </div>
     </div>
@@ -103,7 +99,7 @@
 </div>
 
 <!-- Component Footer -->
-<?php require 'components/component-footer.php' ?>
+<?php require 'components/component-footer-reserva.php' ?>
 <!-- Component Footer -->
 
 <script src="../../assets/js/owl.carousel.min.js"></script>

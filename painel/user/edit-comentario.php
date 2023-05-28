@@ -124,6 +124,6 @@
   endif;
   ?>
 
-  <!-- Component Header -->
-  <?php require 'components/component-footer.php' ?> 
-  <!-- Component Header -->
+<!-- Component Footer -->
+<?php require 'components/component-footer-reserva.php' ?>
+<!-- Component Footer -->

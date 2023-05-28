@@ -128,6 +128,6 @@
 
     </div>
 
-<!-- =============================================== -->
-<?php include "components/component-footer.php" ?>
-<!-- =============================================== -->
+<!-- Component Footer -->
+<?php require 'components/component-footer-reserva.php' ?>
+<!-- Component Footer -->
